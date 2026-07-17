@@ -20,6 +20,13 @@ For every UI change, before reporting back or opening/updating a PR:
 2. **Always take screenshots and provide them to the user.** Capture the
    relevant states (normal view plus any changed/special states) and send
    them with the summary. A change without a screenshot is not done.
+3. **Automated tests live in `<app>/tests/`.** Write or extend the
+   Playwright e2e suite there for every behavior change, and run it —
+   it must pass before reporting back. For jass-scoreboard:
+   `cd jass-scoreboard/tests && npm install && node e2e.test.mjs`.
+4. **Keep specs in sync.** Whenever behavior changes, update the spec in
+   the same change so it always reflects reality: the PRD issue (issue #6
+   for jass-scoreboard), the app's README, and this file's app notes.
 
 ## App notes
 
