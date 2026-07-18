@@ -25,15 +25,22 @@ For every UI change, before reporting back or opening/updating a PR:
    it must pass before reporting back. For jass-scoreboard:
    `cd jass-scoreboard/tests && npm install && node e2e.test.mjs`.
 4. **Keep specs in sync.** Whenever behavior changes, update the spec in
-   the same change so it always reflects reality: the PRD issue (issue #6
-   for jass-scoreboard), the app's README, and this file's app notes.
+   the same change so it always reflects reality. The PRD is a file in
+   the app folder (`jass-scoreboard/PRD.md`) and is the single source of
+   truth; the README is user-facing only (what it is, how to use/run/
+   test) and must not duplicate spec detail. Also update this file's app
+   notes.
 
 ## App notes
 
 ### jass-scoreboard
 
-- Requirements PRD: issue #6. Module structure (`state.js`, `storage.js`,
-  `scoring.js`, `renderer.js`, `ui.js`, `app.js`) is mandated by the PRD.
+- Requirements PRD: `jass-scoreboard/PRD.md`. Module structure
+  (`state.js`, `storage.js`, `scoring.js`, `renderer.js`, `ui.js`,
+  `app.js`) is mandated by the PRD.
+- Cache busting: every local asset URL (CSS link, script tag, every
+  inter-module import) carries the same `?v=N`. Bump N in ALL files on
+  every release — the e2e suite fails on divergence.
 - The board is one SVG scene; each Z is point-symmetric so both Z's read
   correctly from both sides of the table (far half rotated 180°).
 - Chalk semantics: marks are written per round and never converted
