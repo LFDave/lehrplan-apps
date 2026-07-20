@@ -22,29 +22,24 @@ For every UI change, before reporting back or opening/updating a PR:
    them with the summary. A change without a screenshot is not done.
 3. **Automated tests live in `<app>/tests/`.** Write or extend the
    Playwright e2e suite there for every behavior change, and run it —
-   it must pass before reporting back. For jass-scoreboard:
-   `cd jass-scoreboard/tests && npm install && node e2e.test.mjs`.
+   it must pass before reporting back.
 4. **Keep specs in sync.** Whenever behavior changes, update the spec in
    the same change so it always reflects reality. The PRD is a file in
-   the app folder (`jass-scoreboard/PRD.md`) and is the single source of
-   truth; the README is user-facing only (what it is, how to use/run/
-   test) and must not duplicate spec detail. Also update this file's app
+   the app folder (`<app>/PRD.md`) and is the single source of truth;
+   the README is user-facing only (what it is, how to use/run/test) and
+   must not duplicate spec detail. Also update the app's `CLAUDE.md`
    notes.
+
+## Repo-wide conventions
+
+- **Cache busting:** every local asset URL (CSS link, script tag, every
+  inter-module import) carries the same `?v=N` query. Bump N in ALL
+  files on every release so mobile browsers pick up changed JS/CSS on a
+  plain reload. Where an e2e suite exists it must enforce this
+  (jass-scoreboard's does).
 
 ## App notes
 
-### jass-scoreboard
-
-- Requirements PRD: `jass-scoreboard/PRD.md`. Module structure
-  (`state.js`, `storage.js`, `scoring.js`, `renderer.js`, `ui.js`,
-  `app.js`) is mandated by the PRD.
-- Cache busting: every local asset URL (CSS link, script tag, every
-  inter-module import) carries the same `?v=N`. Bump N in ALL files on
-  every release — the e2e suite fails on divergence.
-- The board is one SVG scene; each Z is point-symmetric so both Z's read
-  correctly from both sides of the table (far half rotated 180°).
-- Chalk semantics: marks are written per round and never converted
-  between lines (no exchanging five 20s for a 100); 20s align right on
-  the bottom bar; all lines bundle tallies in fives (`||||\`); only undo
-  removes the last round's marks. The rest number is always below 20 —
-  at 20 it carries into a 20-mark.
+App-specific instructions live in a `CLAUDE.md` inside the app's own
+folder (e.g. `jass-scoreboard/CLAUDE.md`) — it is loaded automatically
+when working on files in that directory, in addition to this file.
