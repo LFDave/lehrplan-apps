@@ -29,6 +29,12 @@ For every UI change, before reporting back or opening/updating a PR:
    the README is user-facing only (what it is, how to use/run/test) and
    must not duplicate spec detail. Also update the app's `CLAUDE.md`
    notes.
+5. **Always post a fresh live link.** When reporting back, include a
+   direct link to the deployed app on GitHub Pages with a unique `?r=`
+   cache-buster so the user never hits stale cached HTML, e.g.
+   `https://lfdave.github.io/small-apps/jass-scoreboard/index.html?r=YYYYMMDD-N`
+   (any unique value works; the app ignores the query). Note the change
+   is only live once the PR is merged and Pages has redeployed.
 
 ## Repo-wide conventions
 
