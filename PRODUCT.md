@@ -124,6 +124,18 @@ Avoid language such as:
 - Obviously.
 - You should know this.
 
+## Known-length input checks itself
+
+When an input has a known, fixed length, for example a code, a PIN, or a quiz answer whose digit count the app knows, do not add a confirm button. Check the answer the moment the last character is entered, like a phone unlock screen. The correct answer locks in on the last keypress; that instant confirmation is the reward.
+
+- Evaluate the whole answer, never each character as it is typed. Per-character validation turns recall into digit-by-digit guessing.
+- On success, lock the input and show the result immediately. Moving on stays a separate, deliberate action so feedback remains visible.
+- On a wrong answer, evaluate just as immediately: mark the wrong positions, keep the feedback supportive, offer retry. Corrections happen via backspace before the last character, so nothing is lost.
+- Announce the behavior in visible text near the input, for example "Bei der letzten Ziffer siehst du sofort, ob es stimmt." This advisory is required by WCAG 3.2.2 On Input, not just politeness.
+- Announce the result in a status region with role="status" so screen readers hear it without a focus jump (WCAG 4.1.3).
+- Do not add hidden timing such as grace delays before showing a wrong result. Auto-check stays instant and predictable (WCAG 2.2.1).
+- Keep a confirm button only where the input length is unknown.
+
 ## Visual direction
 
 The visual system should be dark-only, quiet, and content-led. Use layered charcoal and navy surfaces with soft separation. Use one accent per app. Avoid loud gradients, glowing neon, oversized decorative headings, nested card stacks, repeated pill labels, and thick colored side borders.
@@ -203,7 +215,7 @@ Each app uses exactly one accent family from DESIGN.md. Before starting a new ap
 | geotriad-game | small-apps repo | not recorded | EN, DE | pre-baseline |
 | jass-scoreboard | small-apps repo | not recorded | DE | pre-baseline |
 | pokemon-game | small-apps repo | not recorded | EN | pre-baseline |
-| add-subtract | small-apps repo | not recorded | not recorded | pre-baseline |
+| add-subtract | small-apps repo | sage | DE | baseline |
 | add-subtract-mission | small-apps repo | not recorded | not recorded | pre-baseline |
 | jass-schieber | Cloudflare Pages | not recorded | DE, EN | pre-baseline |
 | swiss-1938-goal | Cloudflare Pages | not recorded | EN | pre-baseline |

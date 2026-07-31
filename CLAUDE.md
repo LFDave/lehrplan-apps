@@ -100,6 +100,17 @@ For game apps:
 - Avoid speed-only pressure unless explicitly requested.
 - Let users recover from errors.
 
+## Input rules
+
+- When the expected answer length is known, auto-check on the last character. No confirm button. Follow the known-length input pattern in PRODUCT.md.
+- Evaluate the whole answer, never each character as it is typed.
+- Lock the input on success and show the result at once. Advancing stays a separate action.
+- On a wrong answer, mark the wrong positions, stay supportive, and offer retry via backspace.
+- State the auto-check behavior in visible text near the input (WCAG 3.2.2).
+- Announce results in a role="status" region (WCAG 4.1.3).
+- No grace delays or hidden timing around evaluation (WCAG 2.2.1).
+- Keep a confirm button where the input length is unknown.
+
 ## Language rules
 
 - The default UI language is German.
