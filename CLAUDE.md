@@ -11,7 +11,7 @@ Before creating or editing any mini app, read:
 
 Treat PRODUCT.md as the strategic source and DESIGN.md as the visual source. If they conflict, ask whether the strategy or token system should change. Do not silently invent a new direction.
 
-game-design-system.md is superseded by DESIGN.md. Do not use it for new apps.
+geotriad-game/game-design-system.md is the old GeoTriad design system, superseded by DESIGN.md. Do not use it for new apps.
 
 ## Project goal
 
