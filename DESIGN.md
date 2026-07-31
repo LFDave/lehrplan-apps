@@ -1,4 +1,4 @@
-version: 2026-07-31
+version: 2026-08-01
 name: mini-apps-design-system
 role: token-only
 register: product-surface
@@ -291,6 +291,10 @@ icon:
   library: lucide
   delivery: inline-svg
   external-icon-cdn: false
+  favicon:
+    format: svg
+    file: favicon.svg
+    self-hosted: true
   stroke-width: 2
   size:
     sm: "1rem"

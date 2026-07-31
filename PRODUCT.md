@@ -1,6 +1,6 @@
 # Mini Apps Product Principles
 
-Version: 2026-07-31
+Version: 2026-08-01
 
 ## Product register
 
@@ -188,6 +188,8 @@ Prefer explicit app data files over hardcoded logic. Data should be reviewable b
 - Every app is a static page. No server, no database, no build step.
 - Apps deploy to GitHub Pages or Cloudflare Pages.
 - Apps must keep working after the first load without a network connection, except flag images.
+- Every app ships a favicon.
+- Every site serves a helpful 404 page that leads back to the app overview.
 
 ## Accent assignment
 
@@ -197,6 +199,7 @@ Each app uses exactly one accent family from DESIGN.md. Before starting a new ap
 
 | App | Home | Accent | Languages | Status |
 | --- | --- | --- | --- | --- |
+| nummernfuchs | small-apps repo | violet | DE | baseline |
 | geotriad-game | small-apps repo | not recorded | EN, DE | pre-baseline |
 | jass-scoreboard | small-apps repo | not recorded | DE | pre-baseline |
 | pokemon-game | small-apps repo | not recorded | EN | pre-baseline |

@@ -1,6 +1,6 @@
 # Claude Instructions for Mini Apps
 
-Version: 2026-07-31
+Version: 2026-08-01
 
 ## Read first
 
@@ -25,6 +25,8 @@ Build small, calm, high-usability web apps for learning, practice, quizzes, game
 - Self-host fonts as woff2 files in the app's fonts subfolder. No external font services.
 - Inline Lucide icons as SVG markup. No icon fonts and no icon CDNs.
 - The only allowed external request is flagcdn for country flags.
+- Give each app a favicon.svg and link it with `<link rel="icon" href="favicon.svg" type="image/svg+xml">`. Without the link, browsers request favicon.ico and log a 404 in the console.
+- robots.txt works only at a domain root. Apps deployed as their own site, for example on Cloudflare Pages, ship a simple allow-all robots.txt. Apps under the GitHub Pages project path cannot have their own; do not add per-app robots.txt files there.
 - Use relative URLs for all assets so the app works from a subpath on GitHub Pages or Cloudflare Pages.
 - The app must keep working after the first load without a network connection, except flag images.
 - New apps get their own folder. Some older apps exist as single HTML files at the repo root. Leave them until they are next edited.
@@ -73,6 +75,7 @@ For every UI change, before reporting back or opening or updating a PR:
 
 - Cache busting: every local asset URL, meaning every CSS link, script tag, and inter-module import, carries the same `?v=N` query. Bump N in all files on every release so mobile browsers pick up changed JS and CSS on a plain reload. Where an e2e suite exists it must enforce this. The jass-scoreboard suite does.
 - App-specific instructions live in a CLAUDE.md inside the app's own folder, for example `jass-scoreboard/CLAUDE.md`. It is loaded automatically when working on files in that directory, in addition to this file.
+- 404.html at the repo root is the custom not-found page for the whole GitHub Pages site. Keep it dark, calm, and German, following the DESIGN.md tokens, with a link to the app overview.
 - Git commits: always use the GitHub noreply address `36726874+LFDave@users.noreply.github.com` as the commit email, with user name `LFDave`. The GitHub account blocks pushes that expose the private email (error GH007). In a fresh environment, set both with `git config user.name` and `git config user.email` before committing.
 
 ## Product behavior
@@ -263,5 +266,6 @@ Before finalizing, confirm:
 - Progress and settings survive a reload where the app has progress.
 - Where the app has an e2e suite, it passes, and screenshots of the changed states are provided.
 - No generated-UI anti-patterns are present.
+- The app has a favicon and the console shows no favicon.ico 404.
 - No placeholder content or broken images remain.
 - No unrelated branding has been introduced.
