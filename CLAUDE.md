@@ -75,6 +75,8 @@ For every UI change, before reporting back or opening or updating a PR:
 
 - Cache busting: every local asset URL, meaning every CSS link, script tag, and inter-module import, carries the same `?v=N` query. Bump N in all files on every release so mobile browsers pick up changed JS and CSS on a plain reload. Where an e2e suite exists it must enforce this. The jass-scoreboard suite does.
 - App-specific instructions live in a CLAUDE.md inside the app's own folder, for example `jass-scoreboard/CLAUDE.md`. It is loaded automatically when working on files in that directory, in addition to this file.
+- index.html at the repo root is the German app overview for the GitHub Pages site, built with the DESIGN.md tokens. README.md is for the repository page on GitHub only. Update both together when an app is added or renamed.
+- The repo root has a .nojekyll file so Pages serves files as-is without Jekyll processing.
 - 404.html at the repo root is the custom not-found page for the whole GitHub Pages site. Keep it dark, calm, and German, following the DESIGN.md tokens, with a link to the app overview.
 - Git commits: always use the GitHub noreply address `36726874+LFDave@users.noreply.github.com` as the commit email, with user name `LFDave`. The GitHub account blocks pushes that expose the private email (error GH007). In a fresh environment, set both with `git config user.name` and `git config user.email` before committing.
 
