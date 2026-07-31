@@ -80,6 +80,24 @@ typography:
   font-source:
     policy: self-hosted
     external-font-services: false
+    ship-only-used-fonts: true
+  font-usage:
+    body:
+      - body-copy
+      - labels
+      - buttons
+      - feedback
+    display:
+      - titles
+      - display-headings
+    mono:
+      - timers
+      - scores
+      - streaks
+      - column-arithmetic
+      - codes-and-ids
+    policy:
+      mono-for-body-copy: false
   weight:
     regular: 400
     medium: 500
