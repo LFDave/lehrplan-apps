@@ -215,6 +215,7 @@ Each app uses exactly one accent family from DESIGN.md. Before starting a new ap
 | geotriad-game | small-apps repo | not recorded | EN, DE | pre-baseline |
 | jass-scoreboard | small-apps repo | not recorded | DE | pre-baseline |
 | pokemon-game | small-apps repo | not recorded | EN | pre-baseline |
+| nummernfuchs | small-apps repo | violet | DE | baseline |
 | add-subtract | small-apps repo | sage | DE | baseline |
 | add-subtract-mission | small-apps repo | not recorded | not recorded | pre-baseline |
 | jass-schieber | Cloudflare Pages | not recorded | DE, EN | pre-baseline |
