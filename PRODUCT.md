@@ -65,6 +65,10 @@ Learning apps need persistent feedback. Do not flash feedback and remove it befo
 
 Games should reward effort, not speed alone. Avoid punishing mistakes harshly. Show progress, score, streak, or completion clearly, but keep rewards quiet and focused.
 
+### Progression stays light
+
+Apps may add XP, levels, and medals as a quiet progression layer. GAMIFICATION.md is the source for how: rewards scale with practice and difficulty, never with speed; progress never resets; locked goals stay visible; harder levels are proposed when the current one sits well, never forced. No daily pressure, no leaderboards, no casino mechanics.
+
 ### Small screens are first-class
 
 Many apps will be used on laptops, tablets, and phones. The default layout should work at mobile width without horizontal scrolling, cramped controls, or hidden instructions.
@@ -240,6 +244,7 @@ Pre-baseline apps were built before this document. Bring them in line with the b
 - Storage: local device storage only, no accounts, no analytics.
 - Sound: user-initiated only, always mutable.
 - DESIGN.md: tokens only.
+- Gamification: light progression per GAMIFICATION.md, rewards practice, never speed or perfection.
 - No project-specific corporate branding unless explicitly requested.
 
 ## Definition of done

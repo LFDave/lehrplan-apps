@@ -8,6 +8,7 @@ Before creating or editing any mini app, read:
 
 1. PRODUCT.md for product direction, audience, interaction principles, and accepted decisions.
 2. DESIGN.md for the token system.
+3. GAMIFICATION.md whenever an app has or gets XP, levels, medals, or difficulty progression.
 
 Treat PRODUCT.md as the strategic source and DESIGN.md as the visual source. If they conflict, ask whether the strategy or token system should change. Do not silently invent a new direction.
 
@@ -92,6 +93,8 @@ For learning and quiz apps:
 - Explain mistakes briefly when it helps learning.
 - Do not punish mistakes harshly.
 - When the app offers a number range, the range bounds every number in the task, including the result. Draw the result from the range first and derive the operands from it.
+
+For progression (XP, levels, medals): follow GAMIFICATION.md. Reward practice, never speed or perfection. Rewards stay quiet and appear only on completion, medals are pure functions of stored counters, and difficulty steps are proposed, never forced.
 
 For game apps:
 
