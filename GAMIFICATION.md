@@ -36,7 +36,7 @@ Games and learning apps may use a light progression layer: XP, levels, and medal
 
 When an exercise has a difficulty dial (length, range, level), the app may suggest the next step up. It never forces it.
 
-- Trigger on mastery, not on time: a fixed number of consecutive clean runs (completed without a wrong answer) at the current difficulty. Two is a good default for exercises that take minutes; short, quick tasks need a higher count.
+- Trigger on mastery, not on time: a fixed number of consecutive clean runs (completed without a wrong answer) at the current difficulty. Five is a good default; long exercises that take several minutes each may use fewer.
 - The suggestion appears on the completion screen as a short, warm line plus a one-tap action ("Probier es mit 6 Ziffern!"). Accepting it updates the saved setting and starts immediately; the manual control stays available and follows the change.
 - A run with mistakes resets the mastery streak silently. No message, no lost progress, and full XP: struggling at a level is practicing, not failing.
 - Never lower the difficulty automatically. Stepping down is always the learner's own choice.
