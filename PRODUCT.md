@@ -98,6 +98,8 @@ For quizzes and practice apps:
 4. Explain briefly when useful.
 5. Move forward only when the learner is ready or when the game mode clearly auto-advances.
 
+When a practice app offers a number range, the range describes the whole number space of the task. Every operand and every result stays inside it. A range of 0 to 100 never produces 96 + 87.
+
 Write feedback in German first. Use language such as:
 
 - Richtig.

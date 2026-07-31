@@ -91,6 +91,7 @@ For learning and quiz apps:
 - Use supportive language.
 - Explain mistakes briefly when it helps learning.
 - Do not punish mistakes harshly.
+- When the app offers a number range, the range bounds every number in the task, including the result. Draw the result from the range first and derive the operands from it.
 
 For game apps:
 
