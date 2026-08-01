@@ -117,12 +117,25 @@ For game apps:
 
 ## Language rules
 
-- The default UI language is German.
-- Use Swiss standard German. Write ss, never ß.
-- An English toggle is optional per app. When it exists, keep all UI strings in one strings data structure keyed by stable IDs and render every label from it.
-- Never mix languages on one screen, except proper nouns.
+- The default UI language is German. Use Swiss standard German. Write ss, never ß.
+- The supported set is the four Swiss national languages plus English: `de` (default), `fr`, `it`, `rm`, `en`. Rumantsch means Rumantsch Grischun. An app may ship a subset, always including German.
+- Keep all UI strings in one strings data structure keyed by stable IDs, one entry per language, and render every label from it. Never put copy in markup or logic.
+- German is the fallback for a missing key, and a missing key is a bug.
+- Never mix languages on one screen, except proper nouns and factual data such as the name of a service.
+- Set `document.documentElement.lang` when the language changes.
 - Persist the language choice in localStorage.
-- Test layouts with the longer German labels.
+- Test layouts with the longest labels. German and French run long, Rumantsch longer still.
+- Record the shipped set in the PRODUCT.md app registry.
+
+## Settings rules
+
+- An app with something to configure gets a settings view, following the Settings section in PRODUCT.md.
+- Entry point is a gear icon button (Lucide `settings`) in the home header, with an `aria-label`.
+- The settings view has its own back button, one panel per setting, and a choice grid per panel with `aria-pressed` on the options.
+- Changes apply and persist immediately. No save button, no confirmation, no toast.
+- Language is always the first panel.
+- Reset stays in the home footer, not in settings.
+- Country-dependent apps get a country setting defaulting to Switzerland, with fact tables keyed by ISO 3166-1 alpha-2 code and missing entries named in the interface rather than filled in.
 
 ## Persistence and privacy
 
