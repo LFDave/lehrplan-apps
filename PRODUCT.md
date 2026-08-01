@@ -75,22 +75,51 @@ Many apps will be used on laptops, tablets, and phones. The default layout shoul
 
 ## Language
 
-- The default UI language is German.
-- Use Swiss standard German. Write ss, never ß.
-- An English toggle is optional per app. Add it when the app is useful beyond German-speaking users.
-- When an app supports both languages, every label, instruction, and feedback message must exist in both. No mixed screens.
-- Keep wording child-friendly in both languages.
+- The default UI language is German, written in Swiss standard German. Write ss, never ß.
+- The supported set is the four Swiss national languages plus English:
+
+| Code | Language | Label shown in the picker |
+| --- | --- | --- |
+| de | German (default) | Deutsch |
+| fr | French | Français |
+| it | Italian | Italiano |
+| rm | Rumantsch | Rumantsch |
+| en | English | English |
+
+- Rumantsch means Rumantsch Grischun, the written standard.
+- An app may ship a subset of the five. German is always present. Record the shipped set in the app registry.
+- Language is a setting, not a hidden toggle. It lives in the settings view and is the first setting every app gets.
+- Every shipped language must be complete. Every label, instruction, and feedback message exists in each one. No mixed screens, apart from proper nouns and factual data such as the name of an emergency service.
+- Keep all UI strings in one strings structure keyed by stable IDs, with one entry per language, and render every label from it. Copy never lives in markup or logic.
+- German is the fallback when a key is missing. A missing key is a bug, not a feature.
+- Set the document language on the root element when the language changes, so screen readers switch voice.
+- Test layouts with the longest labels. German and French run long, Rumantsch runs longer still.
+- Keep wording child-friendly in every language.
 - Store the language choice on the device.
+
+## Settings
+
+Every app with something to configure uses the same settings surface, so a child who learns it in one app knows it in all of them.
+
+- One entry point: a gear icon button in the header of the home screen, with a text label for screen readers. No hidden gestures, no dropdown menus.
+- Settings open as their own view with a back button, not as a modal or an overlay.
+- One panel per setting. Each panel has a short heading and one line saying what the setting changes.
+- Options render as a choice grid of large buttons. The selected option is marked by an accent border and `aria-pressed`, never by color alone.
+- A change applies immediately and is saved immediately. No save button, no confirm step, no toast.
+- Language is the first setting in every app that has settings, and it stays at the top.
+- Settings are stored on the device next to the app's progress, under the app's own storage key.
+- Destructive controls such as reset do not belong in settings. They stay in the home footer with their confirmation.
+- Defaults must be useful without ever opening settings: German for language, and Switzerland where an app depends on a country.
 
 ## Screen model
 
 Use a consistent structure unless a specific app needs otherwise:
 
-1. App shell with title, short instruction, and optional progress.
+1. App shell with title, short instruction, optional progress, and the settings button when the app has settings.
 2. Main content area for the current task.
 3. Primary action area.
 4. Persistent feedback area.
-5. Optional secondary controls below or behind a simple settings affordance.
+5. Secondary controls below the main content, with everything configurable behind the settings button.
 
 ## Learning interaction model
 
@@ -193,6 +222,15 @@ Use Lucide icons only. Icons should support comprehension, not decorate every he
 
 Prefer explicit app data files over hardcoded logic. Data should be reviewable by a parent, teacher, or developer. Use stable IDs. Keep labels and translations consistent. Do not invent facts when a game depends on real-world data.
 
+### Country-dependent facts
+
+Some content is true in one country only: emergency numbers, dialling codes, postal formats, school terms. When an app teaches that kind of content:
+
+- Make the country an explicit setting with Switzerland as the default, and key the fact tables by ISO 3166-1 alpha-2 code.
+- Never carry a fact across a border because it looks similar. 118 is the fire brigade in Switzerland and the ambulance service in Italy.
+- Where a country has no equivalent of something another country has, say so in the interface and name what to do instead. Do not leave a blank, and never fill the gap with an invented or a foreign number.
+- Record the source of the fact table in the app's PRD so a parent can check it.
+
 ## Privacy and data storage
 
 - No accounts, no sign-up, no login.
@@ -217,11 +255,10 @@ Each app uses exactly one accent family from DESIGN.md. Before starting a new ap
 
 | App | Home | Accent | Languages | Status |
 | --- | --- | --- | --- | --- |
-| nummernfuchs | small-apps repo | violet | DE | baseline |
+| nummernfuchs | small-apps repo | violet | DE, EN, FR, IT, RM | baseline |
 | geotriad-game | small-apps repo | not recorded | EN, DE | pre-baseline |
 | jass-scoreboard | small-apps repo | not recorded | DE | pre-baseline |
 | pokemon-game | small-apps repo | not recorded | EN | pre-baseline |
-| nummernfuchs | small-apps repo | violet | DE | baseline |
 | add-subtract | small-apps repo | sage | DE | baseline |
 | add-subtract-mission | small-apps repo | not recorded | not recorded | pre-baseline |
 | jass-schieber | Cloudflare Pages | not recorded | DE, EN | pre-baseline |
@@ -239,7 +276,9 @@ Pre-baseline apps were built before this document. Bring them in line with the b
 - Icons: Lucide only.
 - Fonts: self-hosted.
 - Country flags: flagcdn images, never Unicode flag emoji.
-- Language: German default in Swiss standard German, optional English toggle per app.
+- Language: German default in Swiss standard German. Supported set is de, fr, it, rm, en. Apps may ship a subset, always including German.
+- Settings: one gear button in the home header, one settings view, one panel per setting, language first, saved immediately.
+- Country-dependent facts: explicit country setting defaulting to Switzerland, gaps named in the interface rather than filled.
 - Delivery: static pages without a build step, hosted on GitHub Pages or Cloudflare Pages.
 - Storage: local device storage only, no accounts, no analytics.
 - Sound: user-initiated only, always mutable.
@@ -256,7 +295,8 @@ A mini app is done when:
 - the content is readable and not cramped
 - the design uses only documented tokens
 - the German copy is complete and child-friendly
-- when an English toggle exists, both languages are complete
+- every shipped language is complete, with no fallback text visible on screen
+- settings follow the shared pattern and every default is useful without opening them
 - the app has meaningful empty, loading, success, and error states where relevant
 - feedback is persistent enough to learn from
 - keyboard and focus behavior work
