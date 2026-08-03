@@ -1,6 +1,6 @@
 # PRD — Lehrplan-Kompass
 
-Version: 1.0. Dieses Dokument ist die massgebende Spezifikation der App.
+Version: 2.0. Dieses Dokument ist die massgebende Spezifikation der App.
 Verhalten und PRD werden immer in derselben Änderung angepasst.
 
 ## Zweck
@@ -19,10 +19,21 @@ sich spätere Übungsmodule anhängen lassen.
 - Struktur, Codes und Bereichstitel folgen dem Lehrplan 21, Ausgabe Kanton
   Bern (be.lehrplan.ch, Gesamtausgabe PDF, Stand der Ausgabe 2016/2022).
 - Abgebildet sind alle 16 Fach- und Modulbereiche mit 90 Kompetenzbereichen
-  und 358 Kompetenzen: D, FS1F, FS2E, FS3I, MA, NMG, NT, WAH, RZG, ERG, BG,
+  und 363 Kompetenzen: D, FS1F, FS2E, FS3I, MA, NMG, NT, WAH, RZG, ERG, BG,
   TTG, MU, BS, MI, BO.
-- Die Kompetenztexte sind bewusst eigene, kindgerechte Umschreibungen in
-  Ich-Form. Sie sind keine Originaltexte des Lehrplans; massgebend bleibt der
+- Jede Kompetenz hat pro Zyklus, in dem sie im Lehrplan Kompetenzstufen hat,
+  einen eigenen kindgerechten Text in Ich-Form: insgesamt 721 Zyklus-Texte
+  (Zyklus 1: 176, Zyklus 2: 239, Zyklus 3: 306). Grundlage ist eine
+  layoutbasierte Auswertung des Kompetenzaufbaus im Gesamtausgabe-PDF
+  (Zyklusbänder und Grundanspruch-Markierungen pro Kompetenzstufe); der Text
+  eines Zyklus orientiert sich am Niveau des jeweiligen Grundanspruchs.
+- Die Zyklus-Zuordnung ist damit pro Kompetenz aus dem Lehrplan abgeleitet,
+  nicht pauschal pro Fachbereich. Zwei Kompetenzaufbauten weichen vom
+  Fachbereichsrahmen ab und werden entsprechend ausgeblendet: TTG.3.B.1
+  beginnt erst im 2. Zyklus, MU.3.A.1 endet vor dem 3. Zyklus.
+  Kompetenzstufen an Zyklusgrenzen (gestaffelte Bänder im Lehrplan) zählen
+  zu beiden angrenzenden Zyklen.
+- Die Texte sind keine Originaltexte des Lehrplans; massgebend bleibt der
   offizielle Lehrplan. Der offizielle Code steht sichtbar neben jedem Text,
   damit Eltern und Lehrpersonen die Stelle im Lehrplan finden.
 - Lange offizielle Bereichstitel sind für die Anzeige gekürzt (zum Beispiel
@@ -30,13 +41,13 @@ sich spätere Übungsmodule anhängen lassen.
 
 ## Bewusste Vereinfachungen
 
-- Die Kompetenzstufen (a, b, c ...) und Grundansprüche des Lehrplans sind
-  nicht abgebildet; die App bleibt auf Kompetenz-Ebene. Eine Kompetenz gilt
-  in jedem Zyklus des Fachbereichs als eigener Haken, weil dieselbe Kompetenz
-  pro Zyklus auf höherem Niveau weitergeführt wird.
-- Zyklus-Zuordnung erfolgt pro Fachbereich, nicht pro Kompetenz: NMG gilt für
-  Zyklus 1 und 2; NT, WAH, RZG, ERG, BO und FS3I für Zyklus 3; FS1F und FS2E
-  für Zyklus 2 und 3; alle übrigen für alle drei Zyklen.
+- Die einzelnen Kompetenzstufen (a, b, c ...) werden nicht als eigene
+  Einträge angezeigt; pro Kompetenz und Zyklus fasst ein Text das
+  Zyklus-Niveau zusammen. Grundansprüche und Orientierungspunkte sind
+  nicht als Markierung sichtbar; die Texte sind am Grundanspruch
+  ausgerichtet.
+- Ein Haken gilt pro Kompetenz und Zyklus, weil dieselbe Kompetenz pro
+  Zyklus auf höherem Niveau weitergeführt wird.
 - FS3I ist als Freifach markiert, MI und BO als Modul.
 
 ## Kernablauf
@@ -47,7 +58,10 @@ sich spätere Übungsmodule anhängen lassen.
 2. Fachansicht (Navigation über `location.hash`, Browser-Zurück funktioniert):
    Zurück-Knopf, Fachtitel, Fortschrittszeile mit Balken, Hinweis für welchen
    Zyklus die Häkchen gelten, danach je Kompetenzbereich eine Sektion mit
-   Kompetenzzeilen.
+   Kompetenzzeilen. Angezeigt werden nur Kompetenzen mit Text für den
+   gewählten Zyklus; leere Bereiche werden ausgeblendet. Öffnet ein Deep-Link
+   ein Fach, das es im gespeicherten Zyklus nicht gibt, wechselt die App auf
+   den ersten Zyklus des Fachs.
 3. Eine Kompetenzzeile ist ein einziger grosser Toggle-Button
    (`aria-pressed`): Kreis-Checkbox, Ich-Text, Code-Chip. Antippen hakt ab,
    erneut antippen entfernt den Haken. Fortschritt aktualisiert sofort.
@@ -84,7 +98,7 @@ sich spätere Übungsmodule anhängen lassen.
 - Tokens aus DESIGN.md, Akzentfamilie **blue**, dunkel, ruhig.
 - Schrift Atkinson Hyperlegible (400/700), selbst gehostet.
 - Lucide-Icons inline (`icons.js`), ein Icon pro Fachbereich.
-- Cache-Busting `?v=N` auf allen lokalen Asset-URLs, aktuell `v=1`.
+- Cache-Busting `?v=N` auf allen lokalen Asset-URLs, aktuell `v=2`.
 
 ## Barrierefreiheit
 
@@ -99,13 +113,17 @@ sich spätere Übungsmodule anhängen lassen.
 ## Tests
 
 - Playwright-e2e-Suite in `tests/e2e.test.mjs`; sie prüft Cache-Busting-
-  Konsistenz, Datenintegrität (358 eindeutige Codes, Präfixe, kein ß),
-  Zyklenwahl, Abhaken, Persistenz pro Zyklus über Reload, Browser-Zurück,
-  Reset mit Bestätigung, Layout ohne horizontales Scrollen (320px und
-  Desktop), Konsole ohne Fehler und dass kein externer Request abgeht.
+  Konsistenz, Datenintegrität (363 eindeutige Codes, 721 Zyklus-Texte mit
+  Summen 176/239/306, Präfixe, keine identischen Texte über Zyklen, kein ß,
+  die beiden Abweichungen TTG.3.B.1 und MU.3.A.1), Zyklenwahl mit
+  zyklusspezifischen Texten und Anzahlen, Abhaken, Persistenz pro Zyklus
+  über Reload, Browser-Zurück, Reset mit Bestätigung, Layout ohne
+  horizontales Scrollen (320px und Desktop), Konsole ohne Fehler und dass
+  kein externer Request abgeht.
 
-## Ausblick (nicht Teil von v1)
+## Ausblick (nicht Teil von v2)
 
 - Übungsmodule pro Kompetenzbereich, verlinkt über die Lehrplan-Codes.
 - Weitere Sprachen (fr, it, rm, en).
-- Optionale Anzeige der Kompetenzstufen pro Zyklus.
+- Optionale Anzeige der einzelnen Kompetenzstufen und der Grundanspruch-
+  Markierung.

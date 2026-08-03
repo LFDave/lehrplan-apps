@@ -4,19 +4,19 @@
 //   cd lehrplan-kompass/tests && npm install && node e2e.test.mjs
 //
 // Spawns its own static server (node, no external deps) and drives the
-// real flows in Chromium: cycle switching, opening a subject, checking
-// competencies, per-cycle persistence across reloads, browser back, and
-// the reset confirmation. Exits non-zero if any check fails.
-// Screenshots land in tests/screenshots/ (gitignored).
+// real flows in Chromium: cycle switching with per-cycle texts, opening
+// a subject, checking competencies, per-cycle persistence across
+// reloads, browser back, and the reset confirmation. Exits non-zero if
+// any check fails. Screenshots land in tests/screenshots/ (gitignored).
 
 import { chromium } from "playwright";
 import { createServer } from "node:http";
 import { readFile } from "node:fs/promises";
 import { mkdirSync, existsSync, readFileSync, readdirSync } from "node:fs";
-import { dirname, join, extname, relative } from "node:path";
+import { dirname, join, extname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { SUBJECTS, subjectsForCycle, competencyCount } from "../data.js?v=1";
-import { STRINGS } from "../strings.js?v=1";
+import { SUBJECTS, subjectsForCycle, areaCompetenciesForCycle, competencyCount } from "../data.js?v=2";
+import { STRINGS } from "../strings.js?v=2";
 
 const TESTS_DIR = dirname(fileURLToPath(import.meta.url));
 const APP_DIR = join(TESTS_DIR, "..");
@@ -68,6 +68,7 @@ function check(name, condition, detail = "") {
 {
   const codes = new Set();
   let total = 0;
+  let cycleTexts = 0;
   let ok = true;
   const issues = [];
   for (const s of SUBJECTS) {
@@ -81,19 +82,43 @@ function check(name, condition, detail = "") {
         if (codes.has(c.code)) { ok = false; issues.push(`duplicate ${c.code}`); }
         codes.add(c.code);
         if (!c.code.startsWith(a.id + ".")) { ok = false; issues.push(`${c.code} not in ${a.id}`); }
-        if (!c.text || c.text.length < 10) { ok = false; issues.push(`${c.code}: text too short`); }
+        const cycles = Object.keys(c.texts).map(Number);
+        if (!cycles.length) { ok = false; issues.push(`${c.code}: no cycle texts`); }
+        if (cycles.some((cy) => !s.cycles.includes(cy))) {
+          ok = false; issues.push(`${c.code}: text outside subject cycles`);
+        }
+        for (const t of Object.values(c.texts)) {
+          cycleTexts++;
+          if (!t || t.length < 15) { ok = false; issues.push(`${c.code}: text too short`); }
+        }
+        // per-cycle texts must actually differ (that was the v1 flaw)
+        const values = Object.values(c.texts);
+        if (new Set(values).size !== values.length) {
+          ok = false; issues.push(`${c.code}: identical texts across cycles`);
+        }
       }
     }
   }
   check("data: subjects, areas and codes are consistent", ok, issues.slice(0, 5).join("; "));
-  check("data: 358 competencies across 16 subjects", total === 358 && SUBJECTS.length === 16, `${total}/${SUBJECTS.length}`);
+  check("data: 363 competencies across 16 subjects", total === 363 && SUBJECTS.length === 16, `${total}/${SUBJECTS.length}`);
+  check("data: 721 cycle-specific texts", cycleTexts === 721, String(cycleTexts));
+  check("data: per-cycle totals are 176/239/306",
+    [1, 2, 3].map((cy) => subjectsForCycle(cy).reduce((n, s) => n + competencyCount(s, cy), 0)).join("/") === "176/239/306");
+
+  // documented deviations from subject-level cycles
+  const ttg = SUBJECTS.find((s) => s.id === "TTG");
+  const ttgB1 = ttg.areas.flatMap((a) => a.competencies).find((c) => c.code === "TTG.3.B.1");
+  check("data: TTG.3.B.1 has no cycle-1 text", !ttgB1.texts[1] && Boolean(ttgB1.texts[2]));
+  const mu = SUBJECTS.find((s) => s.id === "MU");
+  const mu3a1 = mu.areas.flatMap((a) => a.competencies).find((c) => c.code === "MU.3.A.1");
+  check("data: MU.3.A.1 has no cycle-3 text", !mu3a1.texts[3] && Boolean(mu3a1.texts[2]));
 
   const eszett = [];
   for (const s of SUBJECTS) {
-    if ((s.name + (s.tag || "")).includes("ß")) eszett.push(s.id);
     for (const a of s.areas) {
-      if (a.title.includes("ß")) eszett.push(a.id);
-      for (const c of a.competencies) if (c.text.includes("ß")) eszett.push(c.code);
+      for (const c of a.competencies) {
+        for (const t of Object.values(c.texts)) if (t.includes("ß")) eszett.push(c.code);
+      }
     }
   }
   for (const [id, v] of Object.entries(STRINGS.de)) if (v.includes("ß")) eszett.push(id);
@@ -142,52 +167,73 @@ await page.click('[data-cycle="3"]');
 await page.waitForSelector('[data-cycle="3"][aria-pressed="true"]');
 check("home: cycle 3 shows 15 subjects",
   await page.locator(".subject-card").count() === subjectsForCycle(3).length);
-check("home: cycle 3 summary counts all cycle-3 competencies",
+check("home: cycle 3 summary counts cycle-3 entries only",
   (await page.textContent(".summary")).includes(
-    `von ${subjectsForCycle(3).reduce((n, s) => n + competencyCount(s), 0)}`));
+    `von ${subjectsForCycle(3).reduce((n, s) => n + competencyCount(s, 3), 0)}`));
 await page.screenshot({ path: join(SHOTS_DIR, "02-home-cycle3.png"), fullPage: true });
 
-/* ── Subject view: checking competencies ──────────────────────────── */
-await page.click('[data-cycle="2"]');
-await page.waitForSelector('[data-cycle="2"][aria-pressed="true"]');
+/* ── Subject view: per-cycle texts ────────────────────────────────── */
+const ma = SUBJECTS.find((s) => s.id === "MA");
+const ma1a1 = ma.areas[0].competencies[0];
+
+await page.click('[data-cycle="1"]');
 await page.click('a[href="#MA"]');
 await page.waitForSelector(".competence");
+const textZ1 = await page.textContent('[data-code="MA.1.A.1"] .competence-text');
+check("subject: cycle 1 renders the cycle-1 text", textZ1 === ma1a1.texts[1]);
+check("subject: cycle 1 renders cycle-1 count",
+  await page.locator(".competence").count() === competencyCount(ma, 1));
 
-const ma = SUBJECTS.find((s) => s.id === "MA");
-check("subject: renders all MA competencies",
-  await page.locator(".competence").count() === competencyCount(ma));
-check("subject: progress starts at 0",
-  (await page.textContent(".subject-progress")).includes(`0 von ${competencyCount(ma)}`));
+await page.goBack();
+await page.waitForSelector(".cycle-grid");
+await page.click('[data-cycle="2"]');
+await page.click('a[href="#MA"]');
+await page.waitForSelector(".competence");
+const textZ2 = await page.textContent('[data-code="MA.1.A.1"] .competence-text');
+check("subject: cycle 2 renders a different text for the same code",
+  textZ2 === ma1a1.texts[2] && textZ2 !== textZ1);
 
+/* ── TTG in cycle 1 hides TTG.3.B.1 ───────────────────────────────── */
+await page.goto(URL);
+await page.waitForSelector(".subject-grid");
+await page.click('[data-cycle="1"]');
+await page.click('a[href="#TTG"]');
+await page.waitForSelector(".competence");
+check("subject: TTG.3.B.1 is hidden in cycle 1",
+  await page.locator('[data-code="TTG.3.B.1"]').count() === 0);
+check("subject: TTG cycle-1 count matches data",
+  await page.locator(".competence").count() === competencyCount(SUBJECTS.find((s) => s.id === "TTG"), 1));
+
+/* ── Checking and per-cycle persistence ───────────────────────────── */
+await page.goto(URL + "#MA");
+await page.waitForSelector(".competence");
+// still cycle 1 from above
 await page.click('[data-code="MA.1.A.1"]');
 await page.click('[data-code="MA.1.A.3"]');
 check("subject: checked state toggles aria-pressed",
   await page.getAttribute('[data-code="MA.1.A.1"]', "aria-pressed") === "true");
 check("subject: progress updates to 2",
-  (await page.textContent(".subject-progress")).includes(`2 von ${competencyCount(ma)}`));
+  (await page.textContent(".subject-progress")).includes(`2 von ${competencyCount(ma, 1)}`));
 await page.screenshot({ path: join(SHOTS_DIR, "03-subject-ma-checked.png"), fullPage: false });
 
 await page.click('[data-code="MA.1.A.3"]');
 check("subject: unchecking works",
-  (await page.textContent(".subject-progress")).includes(`1 von ${competencyCount(ma)}`));
+  (await page.textContent(".subject-progress")).includes(`1 von ${competencyCount(ma, 1)}`));
 
-/* ── Persistence across reload, per cycle ─────────────────────────── */
 await page.reload();
 await page.waitForSelector(".competence");
 check("persistence: check survives reload",
   await page.getAttribute('[data-code="MA.1.A.1"]', "aria-pressed") === "true");
 
-await page.goBack();
+await page.goto(URL);
 await page.waitForSelector(".subject-grid");
-check("navigation: browser back returns to home",
-  await page.locator(".cycle-grid").count() === 1);
-const maCard = page.locator('a[href="#MA"] .progress-num');
-check("home: MA card shows 1 checked", (await maCard.textContent()).trim() === `1/${competencyCount(ma)}`);
+check("home: MA card shows 1 checked",
+  (await page.locator('a[href="#MA"] .progress-num').textContent()).trim() === `1/${competencyCount(ma, 1)}`);
 
 await page.click('[data-cycle="3"]');
 await page.waitForSelector('[data-cycle="3"][aria-pressed="true"]');
 check("cycles: checks are separate per cycle",
-  (await page.locator('a[href="#MA"] .progress-num').textContent()).trim() === `0/${competencyCount(ma)}`);
+  (await page.locator('a[href="#MA"] .progress-num').textContent()).trim() === `0/${competencyCount(ma, 3)}`);
 
 /* ── Reset flow ───────────────────────────────────────────────────── */
 await page.click('[data-action="reset-arm"]');
@@ -199,12 +245,12 @@ await page.screenshot({ path: join(SHOTS_DIR, "04-reset-confirm.png"), fullPage:
 await page.click('[data-action="reset-cancel"]');
 check("reset: cancel keeps progress", await page.locator(".reset-confirm").count() === 0);
 
-await page.click('[data-cycle="2"]');
+await page.click('[data-cycle="1"]');
 await page.click('[data-action="reset-arm"]');
 await page.click('[data-action="reset-confirm"]');
 await page.waitForSelector('[data-action="reset-arm"]');
 check("reset: confirm clears all checks",
-  (await page.locator('a[href="#MA"] .progress-num').textContent()).trim() === `0/${competencyCount(ma)}`);
+  (await page.locator('a[href="#MA"] .progress-num').textContent()).trim() === `0/${competencyCount(ma, 1)}`);
 
 /* ── Desktop layout and console health ────────────────────────────── */
 await page.setViewportSize({ width: 1280, height: 900 });

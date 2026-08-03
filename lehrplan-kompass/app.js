@@ -2,9 +2,9 @@
 // Zykluswahl und Häkchen. Navigation läuft über location.hash, damit der
 // Zurück-Knopf des Browsers funktioniert.
 
-import { CYCLES, SUBJECTS, subjectsForCycle, subjectById, competencyCount } from './data.js?v=1';
-import { STRINGS, t } from './strings.js?v=1';
-import { icon } from './icons.js?v=1';
+import { CYCLES, subjectsForCycle, subjectById, areaCompetenciesForCycle, competencyCount } from './data.js?v=2';
+import { STRINGS, t } from './strings.js?v=2';
+import { icon } from './icons.js?v=2';
 
 const STORE_CYCLE = 'kompass.cycle';
 const STORE_CHECKED = 'kompass.checked';
@@ -47,7 +47,7 @@ function isChecked(code) {
 function doneCount(subject) {
   let n = 0;
   for (const area of subject.areas) {
-    for (const c of area.competencies) {
+    for (const c of areaCompetenciesForCycle(area, state.cycle)) {
       if (isChecked(c.code)) n++;
     }
   }
@@ -76,7 +76,7 @@ function render() {
 
 function renderHome() {
   const subjects = subjectsForCycle(state.cycle);
-  const total = subjects.reduce((n, s) => n + competencyCount(s), 0);
+  const total = subjects.reduce((n, s) => n + competencyCount(s, state.cycle), 0);
   const done = subjects.reduce((n, s) => n + doneCount(s), 0);
 
   app.innerHTML = `
@@ -105,7 +105,7 @@ function renderHome() {
       </div>
       <ul class="subject-grid">
         ${subjects.map((s) => {
-          const sTotal = competencyCount(s);
+          const sTotal = competencyCount(s, state.cycle);
           const sDone = doneCount(s);
           const pct = sTotal ? Math.round((sDone / sTotal) * 100) : 0;
           return `
@@ -157,7 +157,11 @@ function renderHome() {
 }
 
 function renderSubject(subject) {
-  const total = competencyCount(subject);
+  if (!subject.cycles.includes(state.cycle)) {
+    state.cycle = subject.cycles[0];
+    saveState();
+  }
+  const total = competencyCount(subject, state.cycle);
   const done = doneCount(subject);
   const pct = total ? Math.round((done / total) * 100) : 0;
 
@@ -170,23 +174,27 @@ function renderSubject(subject) {
       <p class="cycle-note">${t('subject.cycleNote', { cycle: t(`cycle.${state.cycle}.title`) })}</p>
     </header>
 
-    ${subject.areas.map((area) => `
+    ${subject.areas.map((area) => {
+      const competencies = areaCompetenciesForCycle(area, state.cycle);
+      if (!competencies.length) return '';
+      return `
       <section class="area" aria-label="${esc(area.title)}">
         <h2 class="area-title">${esc(area.title)} <span class="code-chip">${area.id}</span></h2>
         <ul class="competence-list">
-          ${area.competencies.map((c) => `
+          ${competencies.map((c) => `
             <li>
               <button class="competence${isChecked(c.code) ? ' checked' : ''}"
                       data-code="${c.code}" aria-pressed="${isChecked(c.code)}">
                 <span class="checkbox" aria-hidden="true">${icon('check')}</span>
-                <span class="competence-text">${esc(c.text)}</span>
+                <span class="competence-text">${esc(c.texts[state.cycle])}</span>
                 <span class="code-chip">${c.code}</span>
               </button>
             </li>
           `).join('')}
         </ul>
       </section>
-    `).join('')}
+    `;
+    }).join('')}
   `;
 
   for (const btn of app.querySelectorAll('[data-code]')) {
@@ -206,7 +214,7 @@ function renderSubject(subject) {
 }
 
 function updateSubjectProgress(subject) {
-  const total = competencyCount(subject);
+  const total = competencyCount(subject, state.cycle);
   const done = doneCount(subject);
   const pct = total ? Math.round((done / total) * 100) : 0;
   const label = app.querySelector('.subject-progress');

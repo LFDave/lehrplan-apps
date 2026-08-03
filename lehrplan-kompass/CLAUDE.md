@@ -7,18 +7,24 @@ spec-sync rules, cache-busting convention) applies as well.
   updated in the same change as any behavior change.
 - Follows the repo baseline (root PRODUCT.md/DESIGN.md): dark-only tokens
   in `styles.css`, accent family **blue**.
-- **Content data** lives in `data.js`: 16 subjects, 90 areas, 358
-  competencies. Codes are official Lehrplan 21 codes (Bern edition) and
-  double as storage IDs — never rename or reuse them. Competency `text`
-  is an intentional child-friendly paraphrase in Ich-form, NOT the
-  official wording; do not paste original Lehrplan text (copyright), and
-  keep paraphrases grounded in the official statements when editing.
-  Swiss standard German, ss never ß (the e2e suite fails on ß).
+- **Content data** lives in `data.js`: 16 subjects, 90 areas, 363
+  competencies, 721 cycle texts. Codes are official Lehrplan 21 codes
+  (Bern edition) and double as storage IDs — never rename or reuse them.
+  Each competency carries `texts` keyed by cycle (1/2/3); a missing key
+  means the Lehrplan has no Kompetenzstufen for that cycle and the app
+  hides the row there (TTG.3.B.1 has no cycle 1, MU.3.A.1 no cycle 3 —
+  the e2e suite pins both). Texts are intentional child-friendly
+  paraphrases in Ich-form at the level of that cycle's Grundanspruch,
+  NOT official wording; do not paste original Lehrplan text (copyright),
+  and keep edits grounded in the official Kompetenzstufen. Swiss
+  standard German, ss never ß (the e2e suite fails on ß). Cycle texts of
+  one competency must differ from each other (suite enforces this).
 - **UI copy** lives in `strings.js` keyed by stable IDs; `app.js` renders
   only via `t()`. v1 ships German only; adding a language means a second
   complete table with identical keys, German stays the fallback.
-- Cycle scoping is per subject (`cycles` array), a documented
-  simplification — see PRD "Bewusste Vereinfachungen" before changing it.
+- Subject `cycles` arrays gate the home grid; per-competency presence
+  comes from the `texts` keys. Both derive from the PDF's cycle bands —
+  see PRD before changing either.
 - Checks are stored per cycle: key `"<cycle>|<code>"` in
   `kompass.checked`; cycle choice in `kompass.cycle`. Anything touching
   storage goes through the helpers in `app.js`.
@@ -31,7 +37,7 @@ spec-sync rules, cache-busting convention) applies as well.
   `PATHS`, keep the Lucide names.
 - Tests: `cd tests && npm install && node e2e.test.mjs` — must pass
   before reporting back. Enforces `?v=N` consistency (index.html, module
-  imports, css font urls), data integrity (358 unique codes, prefix
+  imports, css font urls), data integrity (363 unique codes, prefix
   chains, minimum text length), per-cycle persistence, reset
   confirmation, no horizontal scroll at 320px, no console errors, no
   external requests.

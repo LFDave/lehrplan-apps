@@ -4,9 +4,9 @@ Entdecke, was du in der Schule lernst, und hake ab, was du schon kannst.
 
 Der Lehrplan-Kompass zeigt die Fachbereiche des Lehrplans 21 (Ausgabe Kanton
 Bern) für alle drei Zyklen der Volksschule. Kinder und Eltern wählen den
-Zyklus, öffnen ein Fach und haken Kompetenzen ab: "Das kann ich schon." Die
-Texte sind kindgerechte Umschreibungen; der offizielle Lehrplan-Code steht
-neben jedem Eintrag.
+Zyklus, öffnen ein Fach und haken Kompetenzen ab: "Das kann ich schon." Jede
+Kompetenz hat pro Zyklus einen eigenen, kindgerechten Text auf dem Niveau
+dieses Zyklus; der offizielle Lehrplan-Code steht neben jedem Eintrag.
 
 ## Benutzen
 
