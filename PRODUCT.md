@@ -256,6 +256,7 @@ Each app uses exactly one accent family from DESIGN.md. Before starting a new ap
 | App | Home | Accent | Languages | Status |
 | --- | --- | --- | --- | --- |
 | nummernfuchs | small-apps repo | violet | DE, EN, FR, IT, RM | baseline |
+| wortwerkstatt | small-apps repo | blue | DE, EN | baseline |
 | geotriad-game | small-apps repo | not recorded | EN, DE | pre-baseline |
 | jass-scoreboard | small-apps repo | not recorded | DE | pre-baseline |
 | pokemon-game | small-apps repo | not recorded | EN | pre-baseline |
@@ -263,6 +264,8 @@ Each app uses exactly one accent family from DESIGN.md. Before starting a new ap
 | add-subtract-mission | small-apps repo | not recorded | not recorded | pre-baseline |
 | jass-schieber | Cloudflare Pages | not recorded | DE, EN | pre-baseline |
 | swiss-1938-goal | Cloudflare Pages | not recorded | EN | pre-baseline |
+
+The Languages column is the interface languages an app ships. An app that teaches a language has a second, separate dimension: wortwerkstatt ships German orthography as its only content pack, selectable as "Lernsprache", while the interface runs in German or English.
 
 Pre-baseline apps were built before this document. Bring them in line with the baseline when they are next edited.
 
