@@ -20,6 +20,7 @@ export const STRINGS = {
     'subject.competencies': '{n} Kompetenzen',
     'subject.back': 'Zurück zur Übersicht',
     'subject.cycleNote': 'Deine Häkchen gelten für {cycle}.',
+    'subject.practice': 'Üben mit {name}',
     'check.aria': '{code}: {text}',
     'reset.button': 'Alles zurücksetzen',
     'reset.question': 'Wirklich alle Häkchen löschen? Dein Fortschritt ist nur auf diesem Gerät gespeichert.',

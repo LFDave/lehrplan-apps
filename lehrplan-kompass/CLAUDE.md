@@ -41,3 +41,4 @@ spec-sync rules, cache-busting convention) applies as well.
   chains, minimum text length), per-cycle persistence, reset
   confirmation, no horizontal scroll at 320px, no console errors, no
   external requests.
+- Practice-app links: `PRACTICE_APPS` in `data.js` maps official codes to sibling apps; rows with an entry render an "Üben mit ..." link below the toggle (relative href, never inside the button element).

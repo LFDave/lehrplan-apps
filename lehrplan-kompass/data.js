@@ -709,3 +709,13 @@ export function competencyCount(subject, cycle) {
   return subject.areas.reduce(
     (n, a) => n + areaCompetenciesForCycle(a, cycle).length, 0);
 }
+
+// Übungs-Apps dieser Sammlung, verknüpft über den offiziellen
+// Kompetenz-Code. Relative Links, damit die Verknüpfung auf GitHub
+// Pages und lokal funktioniert.
+export const PRACTICE_APPS = {
+  'MA.1.A.2': { name: 'Zahlensprung', href: '../zahlensprung/' },
+  'MA.1.A.3': { name: 'Rechenturm', href: '../rechenturm/' },
+  'MA.3.A.2': { name: 'Masswerk', href: '../masswerk/' },
+  'D.4.F.1': { name: 'Wortwerkstatt', href: '../wortwerkstatt/' },
+};

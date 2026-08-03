@@ -15,8 +15,8 @@ import { readFile } from "node:fs/promises";
 import { mkdirSync, existsSync, readFileSync, readdirSync } from "node:fs";
 import { dirname, join, extname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { SUBJECTS, subjectsForCycle, areaCompetenciesForCycle, competencyCount } from "../data.js?v=2";
-import { STRINGS } from "../strings.js?v=2";
+import { SUBJECTS, subjectsForCycle, areaCompetenciesForCycle, competencyCount } from "../data.js?v=3";
+import { STRINGS } from "../strings.js?v=3";
 
 const TESTS_DIR = dirname(fileURLToPath(import.meta.url));
 const APP_DIR = join(TESTS_DIR, "..");
@@ -55,7 +55,7 @@ function check(name, condition, detail = "") {
     ];
     for (const m of refs) {
       const whole = m[0];
-      if (whole.includes("http") || whole.includes('"#')) continue;
+      if (whole.includes("http") || whole.includes('"#') || whole.includes("${")) continue;
       if (m[2]) versions.add(m[2]);
       else unversioned.push(`${file}: ${whole}`);
     }
@@ -203,6 +203,21 @@ check("subject: TTG.3.B.1 is hidden in cycle 1",
   await page.locator('[data-code="TTG.3.B.1"]').count() === 0);
 check("subject: TTG cycle-1 count matches data",
   await page.locator(".competence").count() === competencyCount(SUBJECTS.find((s) => s.id === "TTG"), 1));
+
+/* ── Practice-app links ───────────────────────────────────────────── */
+await page.goto(URL + "#MA");
+await page.waitForSelector(".competence");
+check("practice: MA shows three practice links",
+  await page.locator(".practice-link").count() === 3);
+check("practice: MA.1.A.2 links to Zahlensprung",
+  await page.locator('.practice-link[href="../zahlensprung/"]').count() === 1
+  && (await page.locator('.practice-link[href="../zahlensprung/"]').textContent()).includes("Zahlensprung"));
+check("practice: MA.1.A.3 links to Rechenturm",
+  await page.locator('.practice-link[href="../rechenturm/"]').count() === 1);
+await page.goto(URL + "#D");
+await page.waitForSelector(".competence");
+check("practice: D.4.F.1 links to Wortwerkstatt",
+  await page.locator('.practice-link[href="../wortwerkstatt/"]').count() === 1);
 
 /* ── Checking and per-cycle persistence ───────────────────────────── */
 await page.goto(URL + "#MA");

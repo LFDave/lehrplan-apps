@@ -77,6 +77,15 @@ sich spätere Übungsmodule anhängen lassen.
 - Fortschritt: Balken pro Fach, Summenzeile pro Zyklus (`role="status"`).
 - Reset-Bestätigung: Inline-Dialog (`role="alertdialog"`) mit Ja/Abbrechen.
 
+## Übungs-Apps
+
+Kompetenzen, zu denen es in dieser Sammlung ein Übungsmodul gibt, zeigen
+unter der Kompetenzzeile einen Link "Üben mit ..." (relative URL, damit er
+lokal und auf GitHub Pages funktioniert). Die Zuordnung liegt als
+`PRACTICE_APPS` in `data.js`, keyed nach dem offiziellen Kompetenz-Code:
+MA.1.A.2 Zahlensprung, MA.1.A.3 Rechenturm, MA.3.A.2 Masswerk,
+D.4.F.1 Wortwerkstatt. Neue Übungsmodule werden dort ergänzt.
+
 ## Persistenz
 
 - `localStorage`, Schlüssel `kompass.cycle` (gewählter Zyklus als Zahl) und

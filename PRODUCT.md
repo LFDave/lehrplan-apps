@@ -257,6 +257,8 @@ Each app uses exactly one accent family from DESIGN.md. Before starting a new ap
 | --- | --- | --- | --- | --- |
 | lehrplan-kompass | small-apps repo | blue | DE | baseline |
 | zahlensprung | small-apps repo | amber | DE | baseline |
+| rechenturm | small-apps repo | coral | DE | baseline |
+| masswerk | small-apps repo | sage | DE | baseline |
 | nummernfuchs | small-apps repo | violet | DE, EN, FR, IT, RM | baseline |
 | wortwerkstatt | small-apps repo | blue | DE, EN | baseline |
 | geotriad-game | small-apps repo | not recorded | EN, DE | pre-baseline |

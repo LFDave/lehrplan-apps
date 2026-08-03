@@ -2,9 +2,9 @@
 // Zykluswahl und Häkchen. Navigation läuft über location.hash, damit der
 // Zurück-Knopf des Browsers funktioniert.
 
-import { CYCLES, subjectsForCycle, subjectById, areaCompetenciesForCycle, competencyCount } from './data.js?v=2';
-import { STRINGS, t } from './strings.js?v=2';
-import { icon } from './icons.js?v=2';
+import { CYCLES, subjectsForCycle, subjectById, areaCompetenciesForCycle, competencyCount, PRACTICE_APPS } from './data.js?v=3';
+import { STRINGS, t } from './strings.js?v=3';
+import { icon } from './icons.js?v=3';
 
 const STORE_CYCLE = 'kompass.cycle';
 const STORE_CHECKED = 'kompass.checked';
@@ -181,7 +181,9 @@ function renderSubject(subject) {
       <section class="area" aria-label="${esc(area.title)}">
         <h2 class="area-title">${esc(area.title)} <span class="code-chip">${area.id}</span></h2>
         <ul class="competence-list">
-          ${competencies.map((c) => `
+          ${competencies.map((c) => {
+            const practice = PRACTICE_APPS[c.code];
+            return `
             <li>
               <button class="competence${isChecked(c.code) ? ' checked' : ''}"
                       data-code="${c.code}" aria-pressed="${isChecked(c.code)}">
@@ -189,8 +191,13 @@ function renderSubject(subject) {
                 <span class="competence-text">${esc(c.texts[state.cycle])}</span>
                 <span class="code-chip">${c.code}</span>
               </button>
+              ${practice ? `
+              <a class="practice-link" href="${practice.href}">
+                ${icon('play')}${t('subject.practice', { name: practice.name })}
+              </a>` : ''}
             </li>
-          `).join('')}
+          `;
+          }).join('')}
         </ul>
       </section>
     `;

@@ -22,6 +22,8 @@ python3 -m http.server 8000
 
 - Zyklus wählen (Zyklus 1 bis 3), Fach öffnen, Kompetenz antippen zum
   Abhaken. Häkchen gelten pro Zyklus.
+- Zu einigen Kompetenzen gibt es eine passende Übungs-App; ein Link
+  "Üben mit ..." unter dem Eintrag führt direkt hin.
 - Der Fortschritt bleibt auf dem Gerät gespeichert (localStorage). Keine
   Konten, keine Cookies, keine externen Anfragen.
 - "Alles zurücksetzen" im Fuss der Startansicht löscht alle Häkchen nach
