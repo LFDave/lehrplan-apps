@@ -255,6 +255,7 @@ Each app uses exactly one accent family from DESIGN.md. Before starting a new ap
 
 | App | Home | Accent | Languages | Status |
 | --- | --- | --- | --- | --- |
+| lehrplan-kompass | small-apps repo | blue | DE | baseline |
 | nummernfuchs | small-apps repo | violet | DE, EN, FR, IT, RM | baseline |
 | wortwerkstatt | small-apps repo | blue | DE, EN | baseline |
 | geotriad-game | small-apps repo | not recorded | EN, DE | pre-baseline |
