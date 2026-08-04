@@ -33,11 +33,18 @@ app's PRD).
 | [groessenwissen](groessenwissen/) | MA.3.A.1 — Einheiten, Referenzen, Fachwörter |
 | [masswerk](masswerk/) | MA.3.A.2 — Grössen umwandeln und berechnen |
 | [wertepfad](wertepfad/) | MA.3.A.3 — Folgen, Proportionalität, Funktionen |
+| [schreibprobe](schreibprobe/) | D.4.F.1 — Rechtschreibregeln beim Überarbeiten |
+| [wortbau](wortbau/) | D.5.D.1 — Wortarten, Zeitformen, Satzglieder |
+| [motschatz](motschatz/) | FS1F.5.B.1 — französischer Grundwortschatz |
+| [wordschatz](wordschatz/) | FS2E.5.B.1 — englischer Grundwortschatz |
+| [zeitreise](zeitreise/) | NMG.9.1 — Zeitbegriffe, Kalender, Epochen |
+| [bitkiste](bitkiste/) | MI.2.1 — Daten darstellen und strukturieren |
 
-That is all ten math competencies of the Operieren-und-Benennen aspect.
-The Wortwerkstatt (D.4.F.1, German orthography) lives in the sibling
-repo [small-apps](https://github.com/LFDave/small-apps); the Kompass
-links to it.
+That covers all ten math competencies of the Operieren-und-Benennen
+aspect plus first modules for German, French, English, NMG and
+Informatik. The older Wortwerkstatt remains standalone in the sibling
+repo [small-apps](https://github.com/LFDave/small-apps); its
+competency D.4.F.1 is now covered by Schreibprobe here.
 
 ## Common ground
 
@@ -51,6 +58,13 @@ links to it.
 - Every app has a Playwright e2e suite (`<app>/tests/`) whose oracle
   re-computes each generated task independently; suites must pass
   before any change ships.
+
+## Source
+
+All apps are grounded in **Lehrplan 21, Ausgabe Kanton Bern, Stand
+01.08.2022** (the version date printed in the footer of the official
+PDF): [be.lehrplan.ch](https://be.lehrplan.ch), Gesamtausgabe PDF at
+[be.lehrplan.ch/container/BE_DE_Gesamtausgabe.pdf](https://be.lehrplan.ch/container/BE_DE_Gesamtausgabe.pdf).
 
 ## Content and copyright
 

@@ -17,7 +17,8 @@ sich spätere Übungsmodule anhängen lassen.
 ## Quelle und Inhalte
 
 - Struktur, Codes und Bereichstitel folgen dem Lehrplan 21, Ausgabe Kanton
-  Bern (be.lehrplan.ch, Gesamtausgabe PDF, Stand der Ausgabe 2016/2022).
+  Bern, Stand 01.08.2022 (Datum in der Fusszeile des offiziellen PDF):
+  https://be.lehrplan.ch/container/BE_DE_Gesamtausgabe.pdf.
 - Abgebildet sind alle 16 Fach- und Modulbereiche mit 90 Kompetenzbereichen
   und 363 Kompetenzen: D, FS1F, FS2E, FS3I, MA, NMG, NT, WAH, RZG, ERG, BG,
   TTG, MU, BS, MI, BO.
@@ -87,9 +88,9 @@ Alle zehn Mathematik-Kompetenzen des Handlungsaspekts "Operieren und
 Benennen" sind abgedeckt: MA.1.A.1 Zahlenwissen, MA.1.A.2 Zahlensprung,
 MA.1.A.3 Rechenturm, MA.1.A.4 Rechenkniff, MA.2.A.1 Formenreich,
 MA.2.A.2 Spiegelraster, MA.2.A.3 Figurenmass, MA.3.A.1 Grössenwissen,
-MA.3.A.2 Masswerk, MA.3.A.3 Wertepfad; dazu D.4.F.1 Wortwerkstatt
-(im Schwester-Repo small-apps, verlinkt mit absoluter URL auf demselben
-Origin).
+MA.3.A.2 Masswerk, MA.3.A.3 Wertepfad. Dazu kommen D.4.F.1
+Schreibprobe, D.5.D.1 Wortbau, FS1F.5.B.1 Motschatz, FS2E.5.B.1
+Wordschatz, NMG.9.1 Zeitreise und MI.2.1 Bitkiste.
 Neue Übungsmodule werden dort ergänzt.
 
 ## Persistenz

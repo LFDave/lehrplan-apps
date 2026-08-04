@@ -1,7 +1,8 @@
 # Lehrplan-Extraktion
 
 Derives the grounding data for new practice apps from the official
-Lehrplan 21 PDF (Bern edition). **Only the script lives in the repo** —
+Lehrplan 21 PDF (Ausgabe Kanton Bern, Stand 01.08.2022 — the version
+date printed in the page footers). **Only the script lives in the repo** —
 the PDF and the extracted `stufen.json` contain official Lehrplan text
 and are not committed for copyright reasons. Re-derive them locally
 when starting a new app.
