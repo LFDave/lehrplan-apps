@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lehrplan-Apps</title>
+<meta name="description" content="Ruhige Lern-Apps zum Lehrplan 21: Kompass zur Selbsteinschätzung und Übungs-Apps pro Kompetenz.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23D8C47A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='7' height='7' x='3' y='3' rx='1'/%3E%3Crect width='7' height='7' x='14' y='3' rx='1'/%3E%3Crect width='7' height='7' x='14' y='14' rx='1'/%3E%3Crect width='7' height='7' x='3' y='14' rx='1'/%3E%3C/svg%3E" type="image/svg+xml">
+<style>
+  :root {
+    --color-background-app: #0E141D;
+    --color-background-surface: #162232;
+    --color-background-surface-raised: #1B2A3C;
+    --color-action-secondary-hover-bg: #26384E;
+    --color-border-subtle: #263648;
+    --color-border-focus: #F4E7B1;
+    --color-text-primary: #F5F7FA;
+    --color-text-secondary: #C5D0DD;
+    --color-text-muted: #8FA1B4;
+    --color-accent: #D8C47A;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    --duration-base: 180ms;
+    --easing-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --size-xl: 1.375rem;
+    --size-xxl: 1.75rem;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100svh;
+    background: var(--color-background-app);
+    color: var(--color-text-primary);
+    font-family: system-ui, sans-serif;
+    line-height: 1.55;
+    padding: var(--space-4);
+  }
+  main {
+    max-width: 42rem;
+    margin: 0 auto;
+    padding-block: var(--space-8);
+  }
+  header { margin-bottom: var(--space-8); }
+  h1 {
+    font-size: var(--size-xxl);
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    margin: 0 0 var(--space-2);
+  }
+  .intro {
+    margin: 0;
+    color: var(--color-text-secondary);
+  }
+  ul.apps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-3);
+  }
+  a.app {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-5);
+    background: var(--color-background-surface-raised);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-md);
+    color: inherit;
+    text-decoration: none;
+    min-height: 3rem;
+    transition: background-color var(--duration-base) var(--easing-out);
+  }
+  a.app:hover { background: var(--color-action-secondary-hover-bg); }
+  a.app:focus-visible {
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: 2px;
+  }
+  .app svg {
+    flex: none;
+    color: var(--color-accent);
+  }
+  .app .name {
+    display: block;
+    font-weight: 600;
+  }
+  .app .desc {
+    display: block;
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+  }
+  footer {
+    margin-top: var(--space-8);
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+  }
+  footer p { margin: 0 0 var(--space-2); }
+  footer a { color: var(--color-text-secondary); }
+  footer a:focus-visible {
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Lehrplan-Apps</h1>
+    <p class="intro">Ruhige Lern-Apps zum Lehrplan 21: der Kompass zur Selbsteinschätzung und eine Übungs-App pro Kompetenz.</p>
+  </header>
+
+  <ul class="apps">
+<li>
+      <a class="app" href="lehrplan-kompass/">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/><circle cx="12" cy="12" r="10"/></svg>
+        <span>
+          <span class="name">Lehrplan-Kompass</span>
+          <span class="desc">Entdecke, was du in der Schule lernst, und hake ab, was du schon kannst. Nach Lehrplan 21.</span>
+        </span>
+      </a>
+    </li>
+<li>
+      <a class="app" href="zahlensprung/">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 16v-2.38C4 11.5 2.97 10.5 3 8c.03-2.72 1.49-6 4.5-6C9.37 2 10 3.8 10 5.5c0 3.11-2 5.66-2 8.68V16a2 2 0 1 1-4 0"/><path d="M20 20v-2.38c0-2.12 1.03-3.12 1-5.62-.03-2.72-1.49-6-4.5-6C14.63 6 14 7.8 14 9.5c0 3.11 2 5.66 2 8.68V20a2 2 0 1 0 4 0"/><path d="M16 17h4"/><path d="M4 13h4"/></svg>
+        <span>
+          <span class="name">Zahlensprung</span>
+          <span class="desc">Zählen, ordnen und überschlagen üben, Stufe für Stufe nach Lehrplan 21.</span>
+        </span>
+      </a>
+    </li>
+<li>
+      <a class="app" href="rechenturm/">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="7" height="7" x="14" y="3" rx="1"/><path d="M10 21V8a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1H3"/></svg>
+        <span>
+          <span class="name">Rechenturm</span>
+          <span class="desc">Plus, minus, mal, geteilt und Potenzen üben, Stufe für Stufe nach Lehrplan 21.</span>
+        </span>
+      </a>
+    </li>
+<li>
+      <a class="app" href="masswerk/">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m17.5 15.5 2-2"/></svg>
+        <span>
+          <span class="name">Masswerk</span>
+          <span class="desc">Geld, Längen, Gewichte und Zeit üben, Stufe für Stufe nach Lehrplan 21.</span>
+        </span>
+      </a>
+    </li>
+<li>
+      <a class="app" href="zahlenwissen/">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+        <span>
+          <span class="name">Zahlenwissen</span>
+          <span class="desc">Zahlen lesen, schreiben und benennen, Stufe für Stufe nach Lehrplan 21.</span>
+        </span>
+      </a>
+    </li>
+<li>
+      <a class="app" href="rechenkniff/">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+        <span>
+          <span class="name">Rechenkniff</span>
+          <span class="desc">Zahlen zerlegen und mit Rechengesetzen umformen, nach Lehrplan 21.</span>
+        </span>
+      </a>
+    </li>
+<li>
+      <a class="app" href="formenreich/">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.3 10a.7.7 0 0 1-.626-1.079L11.4 3a.7.7 0 0 1 1.198-.043L16.3 8.9a.7.7 0 0 1-.572 1.1Z"/><rect x="3" y="14" width="7" height="7" rx="1"/><circle cx="17.5" cy="17.5" r="3.5"/></svg>
+        <span>
+          <span class="name">Formenreich</span>
+          <span class="desc">Formen, Körper und ihre Namen entdecken, nach Lehrplan 21.</span>
+        </span>
+      </a>
+    </li>
+<li>
+      <a class="app" href="spiegelraster/">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v14c0 1.1.9 2 2 2h3"/><path d="M16 3h3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-3"/><path d="M12 20v2"/><path d="M12 14v2"/><path d="M12 8v2"/><path d="M12 2v2"/></svg>
+        <span>
+          <span class="name">Spiegelraster</span>
+          <span class="desc">Spiegeln, drehen und verschieben im Raster, nach Lehrplan 21.</span>
+        </span>
+      </a>
+    </li>
+<li>
+      <a class="app" href="figurenmass/">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.83 2.38a2 2 0 0 1 2.34 0l8 5.74a2 2 0 0 1 .73 2.25l-3.04 9.26a2 2 0 0 1-1.9 1.37H7.04a2 2 0 0 1-1.9-1.37L2.1 10.37a2 2 0 0 1 .73-2.25z"/></svg>
+        <span>
+          <span class="name">Figurenmass</span>
+          <span class="desc">Umfang, Fläche und Volumen berechnen, nach Lehrplan 21.</span>
+        </span>
+      </a>
+    </li>
+<li>
+      <a class="app" href="groessenwissen/">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>
+        <span>
+          <span class="name">Grössenwissen</span>
+          <span class="desc">Einheiten, Referenzgrössen und Fachwörter üben, nach Lehrplan 21.</span>
+        </span>
+      </a>
+    </li>
+<li>
+      <a class="app" href="wertepfad/">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg>
+        <span>
+          <span class="name">Wertepfad</span>
+          <span class="desc">Zahlenfolgen, Tabellen und Funktionen üben, nach Lehrplan 21.</span>
+        </span>
+      </a>
+    </li>
+  </ul>
+
+  <footer>
+    <p>Keine Konten, keine Cookies. Der Fortschritt wird auf diesem Gerät gespeichert.</p>
+    <p><a href="https://github.com/LFDave/small-apps">Quellcode auf GitHub</a></p>
+  </footer>
+</main>
+</body>
+</html>

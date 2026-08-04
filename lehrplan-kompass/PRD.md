@@ -87,7 +87,9 @@ Alle zehn Mathematik-Kompetenzen des Handlungsaspekts "Operieren und
 Benennen" sind abgedeckt: MA.1.A.1 Zahlenwissen, MA.1.A.2 Zahlensprung,
 MA.1.A.3 Rechenturm, MA.1.A.4 Rechenkniff, MA.2.A.1 Formenreich,
 MA.2.A.2 Spiegelraster, MA.2.A.3 Figurenmass, MA.3.A.1 Grössenwissen,
-MA.3.A.2 Masswerk, MA.3.A.3 Wertepfad; dazu D.4.F.1 Wortwerkstatt.
+MA.3.A.2 Masswerk, MA.3.A.3 Wertepfad; dazu D.4.F.1 Wortwerkstatt
+(im Schwester-Repo small-apps, verlinkt mit absoluter URL auf demselben
+Origin).
 Neue Übungsmodule werden dort ergänzt.
 
 ## Persistenz

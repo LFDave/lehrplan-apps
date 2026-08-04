@@ -12,11 +12,16 @@ Before creating or editing any mini app, read:
 
 Treat PRODUCT.md as the strategic source and DESIGN.md as the visual source. If they conflict, ask whether the strategy or token system should change. Do not silently invent a new direction.
 
-geotriad-game/game-design-system.md is the old GeoTriad design system, superseded by DESIGN.md. Do not use it for new apps.
-
 ## Project goal
 
-Build small, calm, high-usability web apps for learning, practice, quizzes, games, and lightweight tools. The result should be simple, beautiful, focused on the task, and suitable for children and families.
+Build the Lehrplan 21 app family: the Lehrplan-Kompass (self-assessment
+across all subjects) and one calm practice app per competency. The
+guiding principle for every practice app: **one app = one Lehrplan 21
+competency; the app's difficulty levels ARE the official
+Kompetenzstufen; the Grundansprüche are the visible milestones.** Steps
+an app cannot test honestly are skipped visibly, never faked. The
+result should be simple, beautiful, focused on the task, and suitable
+for children and families.
 
 ## Tech stack and delivery
 
@@ -30,7 +35,7 @@ Build small, calm, high-usability web apps for learning, practice, quizzes, game
 - robots.txt works only at a domain root. Apps deployed as their own site, for example on Cloudflare Pages, ship a simple allow-all robots.txt. Apps under the GitHub Pages project path cannot have their own; do not add per-app robots.txt files there.
 - Use relative URLs for all assets so the app works from a subpath on GitHub Pages or Cloudflare Pages.
 - The app must keep working after the first load without a network connection, except flag images.
-- New apps get their own folder. Some older apps exist as single HTML files at the repo root. Leave them until they are next edited.
+- New apps get their own folder. Ground every new practice app in the official Kompetenzstufen (see tools/lehrplan-extraktion to derive the data from the public PDF).
 
 ## Non-negotiable design rules
 
@@ -70,13 +75,13 @@ For every UI change, before reporting back or opening or updating a PR:
 2. Take screenshots and provide them to the user. Capture the normal view plus any changed or special states. A change without a screenshot is not done.
 3. Automated tests live in `<app>/tests/`. Write or extend the Playwright e2e suite there for every behavior change and run it. It must pass before reporting back.
 4. Keep specs in sync. When behavior changes, update the spec in the same change so it always reflects reality. The PRD is a file in the app folder, `<app>/PRD.md`, and is the single source of truth. The README is user facing only, covering what the app is and how to use, run, and test it, and must not duplicate spec detail. Also update the app's own CLAUDE.md notes.
-5. Post a fresh live link when reporting back. Include a direct link to the deployed app on GitHub Pages with a unique `?r=` cache buster so the user never hits stale cached HTML, for example `https://lfdave.github.io/small-apps/jass-scoreboard/index.html?r=YYYYMMDD-N`. Any unique value works and the app ignores the query. The change is only live once the PR is merged and Pages has redeployed.
+5. Post a fresh live link when reporting back. Include a direct link to the deployed app on GitHub Pages with a unique `?r=` cache buster so the user never hits stale cached HTML, for example `https://lfdave.github.io/lehrplan-apps/lehrplan-kompass/index.html?r=YYYYMMDD-N`. Any unique value works and the app ignores the query. The change is only live once the PR is merged and Pages has redeployed.
 
 ## Repo conventions
 
-- Cache busting: every local asset URL, meaning every CSS link, script tag, and inter-module import, carries the same `?v=N` query. Bump N in all files on every release so mobile browsers pick up changed JS and CSS on a plain reload. Where an e2e suite exists it must enforce this. The jass-scoreboard suite does.
-- App-specific instructions live in a CLAUDE.md inside the app's own folder, for example `jass-scoreboard/CLAUDE.md`. It is loaded automatically when working on files in that directory, in addition to this file.
-- index.html at the repo root is the German app overview for the GitHub Pages site, built with the DESIGN.md tokens. README.md is for the repository page on GitHub only. Update both together when an app is added or renamed.
+- Cache busting: every local asset URL, meaning every CSS link, script tag, and inter-module import, carries the same `?v=N` query. Bump N in all files on every release so mobile browsers pick up changed JS and CSS on a plain reload. Every app's e2e suite enforces this.
+- App-specific instructions live in a CLAUDE.md inside the app's own folder, for example `lehrplan-kompass/CLAUDE.md`. It is loaded automatically when working on files in that directory, in addition to this file.
+- index.html at the repo root is the German overview of the Lehrplan apps for the GitHub Pages site, built with the DESIGN.md tokens. README.md is for the repository page on GitHub only. Update both together when an app is added or renamed.
 - The repo root has a .nojekyll file so Pages serves files as-is without Jekyll processing.
 - 404.html at the repo root is the custom not-found page for the whole GitHub Pages site. Keep it dark, calm, and German, following the DESIGN.md tokens, with a link to the app overview.
 - Git commits: always use the GitHub noreply address `36726874+LFDave@users.noreply.github.com` as the commit email, with user name `LFDave`. The GitHub account blocks pushes that expose the private email (error GH007). In a fresh environment, set both with `git config user.name` and `git config user.email` before committing.
@@ -140,7 +145,7 @@ For game apps:
 ## Persistence and privacy
 
 - Store progress and settings in localStorage only.
-- Prefix storage keys with the app name, for example geotriad.progress.
+- Prefix storage keys with the app name, for example zahlensprung.progress.
 - No accounts, no analytics, no cookies, no external storage.
 - Ask for confirmation before destructive resets and say that the data lives on this device.
 

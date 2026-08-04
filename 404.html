@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seite nicht gefunden</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23D8C47A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpolygon points='16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76'/%3E%3C/svg%3E" type="image/svg+xml">
+<style>
+  :root {
+    --color-background-app: #0E141D;
+    --color-background-surface: #162232;
+    --color-border-subtle: #263648;
+    --color-border-focus: #F4E7B1;
+    --color-text-primary: #F5F7FA;
+    --color-text-secondary: #C5D0DD;
+    --color-action-primary-bg: #F5F7FA;
+    --color-action-primary-text: #101722;
+    --color-action-primary-hover-bg: #E5EAF0;
+    --color-accent: #D8C47A;
+    --space-2: 0.5rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --radius-lg: 1rem;
+    --radius-pill: 999px;
+    --shadow-sm: 0 1px 2px #00000033;
+    --duration-base: 180ms;
+    --easing-out: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100svh;
+    display: grid;
+    place-items: center;
+    padding: var(--space-4);
+    background: var(--color-background-app);
+    color: var(--color-text-primary);
+    font-family: system-ui, sans-serif;
+    line-height: 1.55;
+  }
+  main {
+    max-width: 26rem;
+    text-align: center;
+    background: var(--color-background-surface);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: var(--space-6);
+  }
+  .icon { color: var(--color-accent); }
+  h1 {
+    font-size: 1.375rem;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    margin: var(--space-4) 0 var(--space-2);
+  }
+  p {
+    margin: 0 0 var(--space-5);
+    color: var(--color-text-secondary);
+  }
+  a.primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.75rem;
+    padding: 0 var(--space-5);
+    border-radius: var(--radius-pill);
+    background: var(--color-action-primary-bg);
+    color: var(--color-action-primary-text);
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color var(--duration-base) var(--easing-out);
+  }
+  a.primary:hover { background: var(--color-action-primary-hover-bg); }
+  a.primary:focus-visible {
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+<main>
+  <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+  <h1>Seite nicht gefunden</h1>
+  <p>Diese Seite existiert nicht oder ist umgezogen.</p>
+  <a class="primary" href="/lehrplan-apps/">Zur App-Übersicht</a>
+</main>
+</body>
+</html>

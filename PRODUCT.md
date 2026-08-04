@@ -8,7 +8,7 @@ Mini apps are product surfaces, not brand surfaces. The interface exists to help
 
 ## Purpose
 
-Create small, high-quality web apps for learning, practice, quizzes, games, and lightweight tools. Each app should feel calm, usable, and complete enough to hand to a child, parent, teacher, or casual learner without further explanation.
+Create the Lehrplan 21 app family: the Lehrplan-Kompass for self-assessment across all subjects of the Swiss curriculum (Bern edition), plus one small practice app per competency. Every practice app follows one principle: one app = one Lehrplan 21 competency, its difficulty levels are the official Kompetenzstufen, the Grundansprüche are the visible milestones, and steps an app cannot test honestly are skipped visibly. Each app should feel calm, usable, and complete enough to hand to a child, parent, teacher, or casual learner without further explanation.
 
 ## Audience
 
@@ -253,33 +253,22 @@ Each app uses exactly one accent family from DESIGN.md. Before starting a new ap
 
 ## App registry
 
-| App | Home | Accent | Languages | Status |
+| App | Competency | Accent | Languages | Status |
 | --- | --- | --- | --- | --- |
-| lehrplan-kompass | small-apps repo | blue | DE | baseline |
-| zahlensprung | small-apps repo | amber | DE | baseline |
-| rechenturm | small-apps repo | coral | DE | baseline |
-| masswerk | small-apps repo | sage | DE | baseline |
-| zahlenwissen | small-apps repo | sage | DE | baseline |
-| rechenkniff | small-apps repo | violet | DE | baseline |
-| formenreich | small-apps repo | violet | DE | baseline |
-| spiegelraster | small-apps repo | coral | DE | baseline |
-| figurenmass | small-apps repo | blue | DE | baseline |
-| groessenwissen | small-apps repo | amber | DE | baseline |
-| wertepfad | small-apps repo | blue | DE | baseline |
-| nummernfuchs | small-apps repo | violet | DE, EN, FR, IT, RM | baseline |
-| wortwerkstatt | small-apps repo | blue | DE, EN | baseline |
-| geotriad-game | small-apps repo | not recorded | EN, DE | pre-baseline |
-| jass-scoreboard | small-apps repo | not recorded | DE | pre-baseline |
-| pokemon-game | small-apps repo | not recorded | EN | pre-baseline |
-| add-subtract | small-apps repo | sage | DE | baseline |
-| add-subtract-mission | small-apps repo | not recorded | not recorded | pre-baseline |
-| jass-schieber | Cloudflare Pages | not recorded | DE, EN | pre-baseline |
-| swiss-1938-goal | Cloudflare Pages | not recorded | EN | pre-baseline |
+| lehrplan-kompass | all subjects (self-assessment) | blue | DE | baseline |
+| zahlenwissen | MA.1.A.1 | sage | DE | baseline |
+| zahlensprung | MA.1.A.2 | amber | DE | baseline |
+| rechenturm | MA.1.A.3 | coral | DE | baseline |
+| rechenkniff | MA.1.A.4 | violet | DE | baseline |
+| formenreich | MA.2.A.1 | violet | DE | baseline |
+| spiegelraster | MA.2.A.2 | coral | DE | baseline |
+| figurenmass | MA.2.A.3 | blue | DE | baseline |
+| groessenwissen | MA.3.A.1 | amber | DE | baseline |
+| masswerk | MA.3.A.2 | sage | DE | baseline |
+| wertepfad | MA.3.A.3 | blue | DE | baseline |
 
-The Languages column is the interface languages an app ships. An app that teaches a language has a second, separate dimension: wortwerkstatt ships German orthography as its only content pack, selectable as "Lernsprache", while the interface runs in German or English.
-
-Pre-baseline apps were built before this document. Bring them in line with the baseline when they are next edited.
-
+The Wortwerkstatt (D.4.F.1) lives in the sibling repo small-apps; the
+Kompass links to it with an absolute URL.
 ## Accepted decisions
 
 - Default theme: dark only.

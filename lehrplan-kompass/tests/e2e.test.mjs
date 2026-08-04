@@ -225,7 +225,7 @@ check("practice: every MA A-competency has a practice link",
 await page.goto(URL + "#D");
 await page.waitForSelector(".competence");
 check("practice: D.4.F.1 links to Wortwerkstatt",
-  await page.locator('.practice-link[href="../wortwerkstatt/"]').count() === 1);
+  await page.locator('.practice-link[href="https://lfdave.github.io/small-apps/wortwerkstatt/"]').count() === 1);
 
 /* ── Checking and per-cycle persistence ───────────────────────────── */
 await page.goto(URL + "#MA");

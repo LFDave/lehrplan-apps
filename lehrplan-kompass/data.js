@@ -724,5 +724,6 @@ export const PRACTICE_APPS = {
   'MA.3.A.1': { name: 'Grössenwissen', href: '../groessenwissen/' },
   'MA.3.A.2': { name: 'Masswerk', href: '../masswerk/' },
   'MA.3.A.3': { name: 'Wertepfad', href: '../wertepfad/' },
-  'D.4.F.1': { name: 'Wortwerkstatt', href: '../wortwerkstatt/' },
+  // Die Wortwerkstatt lebt im Schwester-Repo small-apps, gleicher Origin.
+  'D.4.F.1': { name: 'Wortwerkstatt', href: 'https://lfdave.github.io/small-apps/wortwerkstatt/' },
 };
