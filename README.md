@@ -39,10 +39,15 @@ app's PRD).
 | [wordschatz](wordschatz/) | FS2E.5.B.1 — englischer Grundwortschatz |
 | [zeitreise](zeitreise/) | NMG.9.1 — Zeitbegriffe, Kalender, Epochen |
 | [bitkiste](bitkiste/) | MI.2.1 — Daten darstellen und strukturieren |
+| [schrittweise](schrittweise/) | MI.2.2 — Anleitungen, Schleifen, kleine Programme |
+| [nordpfeil](nordpfeil/) | NMG.8.5 — Pläne, Karten, Himmelsrichtungen |
+| [sternwarte](sternwarte/) | NMG.4.5 — Sonne, Mond, Planeten, Sterne |
+| [buchstabenleiter](buchstabenleiter/) | D.5.E.1 — ABC, Stammregel, Grossschreibung |
 
 That covers all ten math competencies of the Operieren-und-Benennen
-aspect plus first modules for German, French, English, NMG and
-Informatik. The older Wortwerkstatt remains standalone in the sibling
+aspect, both Informatik competencies MI.2.1 and MI.2.2, two German
+competencies, French and English vocabulary, and three NMG
+competencies. The older Wortwerkstatt remains standalone in the sibling
 repo [small-apps](https://github.com/LFDave/small-apps); its
 competency D.4.F.1 is now covered by Schreibprobe here.
 

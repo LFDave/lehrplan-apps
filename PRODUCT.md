@@ -272,6 +272,10 @@ Each app uses exactly one accent family from DESIGN.md. Before starting a new ap
 | wordschatz | FS2E.5.B.1 | sage | DE | baseline |
 | zeitreise | NMG.9.1 | amber | DE | baseline |
 | bitkiste | MI.2.1 | coral | DE | baseline |
+| schrittweise | MI.2.2 | violet | DE | baseline |
+| nordpfeil | NMG.8.5 | sage | DE | baseline |
+| sternwarte | NMG.4.5 | blue | DE | baseline |
+| buchstabenleiter | D.5.E.1 | amber | DE | baseline |
 
 D.4.F.1 is covered by Schreibprobe in this repo; the older
 Wortwerkstatt remains in the sibling repo small-apps as a standalone.
