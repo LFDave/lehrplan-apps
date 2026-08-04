@@ -224,8 +224,30 @@ check("practice: every MA A-competency has a practice link",
   && await page.locator('.practice-link[href="../wertepfad/"]').count() === 1);
 await page.goto(URL + "#D");
 await page.waitForSelector(".competence");
-check("practice: D.4.F.1 links to Wortwerkstatt",
-  await page.locator('.practice-link[href="https://lfdave.github.io/small-apps/wortwerkstatt/"]').count() === 1);
+check("practice: D.4.F.1 links to Schreibprobe",
+  await page.locator('.practice-link[href="../schreibprobe/"]').count() === 1);
+check("practice: D.5.D.1 links to Wortbau",
+  await page.locator('.practice-link[href="../wortbau/"]').count() === 1);
+check("practice: D.5.E.1 links to Buchstabenleiter",
+  await page.locator('.practice-link[href="../buchstabenleiter/"]').count() === 1);
+await page.goto(URL + "#FS1F");
+await page.waitForSelector(".competence");
+check("practice: FS1F.5.B.1 links to Motschatz",
+  await page.locator('.practice-link[href="../motschatz/"]').count() === 1);
+await page.goto(URL + "#NMG");
+await page.waitForSelector(".competence");
+check("practice: NMG.9.1 links to Zeitreise",
+  await page.locator('.practice-link[href="../zeitreise/"]').count() === 1);
+check("practice: NMG.4.5 links to Sternwarte",
+  await page.locator('.practice-link[href="../sternwarte/"]').count() === 1);
+check("practice: NMG.8.5 links to Nordpfeil",
+  await page.locator('.practice-link[href="../nordpfeil/"]').count() === 1);
+await page.goto(URL + "#MI");
+await page.waitForSelector(".competence");
+check("practice: MI.2.1 links to Bitkiste",
+  await page.locator('.practice-link[href="../bitkiste/"]').count() === 1);
+check("practice: MI.2.2 links to Schrittweise",
+  await page.locator('.practice-link[href="../schrittweise/"]').count() === 1);
 
 /* ── Checking and per-cycle persistence ───────────────────────────── */
 await page.goto(URL + "#MA");

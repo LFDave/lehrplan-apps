@@ -724,6 +724,14 @@ export const PRACTICE_APPS = {
   'MA.3.A.1': { name: 'Grössenwissen', href: '../groessenwissen/' },
   'MA.3.A.2': { name: 'Masswerk', href: '../masswerk/' },
   'MA.3.A.3': { name: 'Wertepfad', href: '../wertepfad/' },
-  // Die Wortwerkstatt lebt im Schwester-Repo small-apps, gleicher Origin.
-  'D.4.F.1': { name: 'Wortwerkstatt', href: 'https://lfdave.github.io/small-apps/wortwerkstatt/' },
+  'D.4.F.1': { name: 'Schreibprobe', href: '../schreibprobe/' },
+  'D.5.D.1': { name: 'Wortbau', href: '../wortbau/' },
+  'D.5.E.1': { name: 'Buchstabenleiter', href: '../buchstabenleiter/' },
+  'FS1F.5.B.1': { name: 'Motschatz', href: '../motschatz/' },
+  'FS2E.5.B.1': { name: 'Wordschatz', href: '../wordschatz/' },
+  'NMG.4.5': { name: 'Sternwarte', href: '../sternwarte/' },
+  'NMG.8.5': { name: 'Nordpfeil', href: '../nordpfeil/' },
+  'NMG.9.1': { name: 'Zeitreise', href: '../zeitreise/' },
+  'MI.2.1': { name: 'Bitkiste', href: '../bitkiste/' },
+  'MI.2.2': { name: 'Schrittweise', href: '../schrittweise/' },
 };

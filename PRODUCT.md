@@ -266,9 +266,19 @@ Each app uses exactly one accent family from DESIGN.md. Before starting a new ap
 | groessenwissen | MA.3.A.1 | amber | DE | baseline |
 | masswerk | MA.3.A.2 | sage | DE | baseline |
 | wertepfad | MA.3.A.3 | blue | DE | baseline |
+| schreibprobe | D.4.F.1 | coral | DE | baseline |
+| wortbau | D.5.D.1 | violet | DE | baseline |
+| motschatz | FS1F.5.B.1 | blue | DE | baseline |
+| wordschatz | FS2E.5.B.1 | sage | DE | baseline |
+| zeitreise | NMG.9.1 | amber | DE | baseline |
+| bitkiste | MI.2.1 | coral | DE | baseline |
+| schrittweise | MI.2.2 | violet | DE | baseline |
+| nordpfeil | NMG.8.5 | sage | DE | baseline |
+| sternwarte | NMG.4.5 | blue | DE | baseline |
+| buchstabenleiter | D.5.E.1 | amber | DE | baseline |
 
-The Wortwerkstatt (D.4.F.1) lives in the sibling repo small-apps; the
-Kompass links to it with an absolute URL.
+D.4.F.1 is covered by Schreibprobe in this repo; the older
+Wortwerkstatt remains in the sibling repo small-apps as a standalone.
 ## Accepted decisions
 
 - Default theme: dark only.
