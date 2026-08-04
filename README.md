@@ -43,11 +43,16 @@ app's PRD).
 | [nordpfeil](nordpfeil/) | NMG.8.5 — Pläne, Karten, Himmelsrichtungen |
 | [sternwarte](sternwarte/) | NMG.4.5 — Sonne, Mond, Planeten, Sterne |
 | [buchstabenleiter](buchstabenleiter/) | D.5.E.1 — ABC, Stammregel, Grossschreibung |
+| [motbau](motbau/) | FS1F.5.D.1 — französische Grammatik |
+| [wordbau](wordbau/) | FS2E.5.D.1 — englische Grammatik |
+| [ortho](ortho/) | FS1F.5.E.1 — französische Rechtschreibung |
+| [spellwerk](spellwerk/) | FS2E.5.E.1 — englische Rechtschreibung |
 
 That covers all ten math competencies of the Operieren-und-Benennen
-aspect, both Informatik competencies MI.2.1 and MI.2.2, two German
-competencies, French and English vocabulary, and three NMG
-competencies. The older Wortwerkstatt remains standalone in the sibling
+aspect, both Informatik competencies MI.2.1 and MI.2.2, three German
+competencies, vocabulary, grammar and spelling for both French and
+English, and three NMG competencies. The older Wortwerkstatt remains
+standalone in the sibling
 repo [small-apps](https://github.com/LFDave/small-apps); its
 competency D.4.F.1 is now covered by Schreibprobe here.
 

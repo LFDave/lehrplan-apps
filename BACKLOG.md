@@ -8,7 +8,7 @@ the official Kompetenzstufen, the Grundansprüche are the visible
 milestones, and untestable steps are translated openly or excluded
 honestly.
 
-Status: **16 of 363 competencies have a practice app**, plus the
+Status: **20 of 363 competencies have a practice app**, plus the
 Kompass covering all 363 for self-assessment.
 
 ## How to read this file
@@ -36,9 +36,10 @@ MA.1.A.1 Zahlenwissen, MA.1.A.2 Zahlensprung, MA.1.A.3 Rechenturm,
 MA.1.A.4 Rechenkniff, MA.2.A.1 Formenreich, MA.2.A.2 Spiegelraster,
 MA.2.A.3 Figurenmass, MA.3.A.1 Grössenwissen, MA.3.A.2 Masswerk,
 MA.3.A.3 Wertepfad, D.4.F.1 Schreibprobe, D.5.D.1 Wortbau,
-D.5.E.1 Buchstabenleiter, FS1F.5.B.1 Motschatz, FS2E.5.B.1
-Wordschatz, NMG.4.5 Sternwarte, NMG.8.5 Nordpfeil, NMG.9.1 Zeitreise,
-MI.2.1 Bitkiste, MI.2.2 Schrittweise.
+D.5.E.1 Buchstabenleiter, FS1F.5.B.1 Motschatz, FS1F.5.D.1 Motbau,
+FS1F.5.E.1 Ortho, FS2E.5.B.1 Wordschatz, FS2E.5.D.1 Wordbau,
+FS2E.5.E.1 Spellwerk, NMG.4.5 Sternwarte, NMG.8.5 Nordpfeil,
+NMG.9.1 Zeitreise, MI.2.1 Bitkiste, MI.2.2 Schrittweise.
 
 ---
 
@@ -46,15 +47,6 @@ MI.2.1 Bitkiste, MI.2.2 Schrittweise.
 
 Ordered by suggested batches. Each is one app, one competency, built
 with the existing template and suite pattern.
-
-### Batch 4 — languages round out
-
-| Competency | Working title | Content sketch |
-| --- | --- | --- |
-| FS1F.5.D.1 | Grammaire | French basics: le/la/les, un/une, plural, present of -er verbs, être/avoir |
-| FS2E.5.D.1 | Wordbau | English basics: plural -s, 3rd-person -s, pronouns, question words, a/an |
-| FS1F.5.E.1 | Ortho | typed spelling of the Motschatz basic vocabulary (accents é/è, silent letters) |
-| FS2E.5.E.1 | Spellwerk | typed spelling of the Wordschatz basic vocabulary (double letters, ee/ea) |
 
 ### Batch 5 — NMG knowledge cores
 

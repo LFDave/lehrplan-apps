@@ -90,9 +90,10 @@ MA.1.A.3 Rechenturm, MA.1.A.4 Rechenkniff, MA.2.A.1 Formenreich,
 MA.2.A.2 Spiegelraster, MA.2.A.3 Figurenmass, MA.3.A.1 Grössenwissen,
 MA.3.A.2 Masswerk, MA.3.A.3 Wertepfad. Dazu kommen D.4.F.1
 Schreibprobe, D.5.D.1 Wortbau, D.5.E.1 Buchstabenleiter, FS1F.5.B.1
-Motschatz, FS2E.5.B.1 Wordschatz, NMG.4.5 Sternwarte, NMG.8.5
-Nordpfeil, NMG.9.1 Zeitreise, MI.2.1 Bitkiste und MI.2.2
-Schrittweise. Neue Übungsmodule werden dort ergänzt.
+Motschatz, FS1F.5.D.1 Motbau, FS1F.5.E.1 Ortho, FS2E.5.B.1
+Wordschatz, FS2E.5.D.1 Wordbau, FS2E.5.E.1 Spellwerk, NMG.4.5
+Sternwarte, NMG.8.5 Nordpfeil, NMG.9.1 Zeitreise, MI.2.1 Bitkiste
+und MI.2.2 Schrittweise. Neue Übungsmodule werden dort ergänzt.
 
 ## Persistenz
 

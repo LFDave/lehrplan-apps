@@ -234,6 +234,16 @@ await page.goto(URL + "#FS1F");
 await page.waitForSelector(".competence");
 check("practice: FS1F.5.B.1 links to Motschatz",
   await page.locator('.practice-link[href="../motschatz/"]').count() === 1);
+check("practice: FS1F.5.D.1 links to Motbau",
+  await page.locator('.practice-link[href="../motbau/"]').count() === 1);
+check("practice: FS1F.5.E.1 links to Ortho",
+  await page.locator('.practice-link[href="../ortho/"]').count() === 1);
+await page.goto(URL + "#FS2E");
+await page.waitForSelector(".competence");
+check("practice: FS2E.5.D.1 links to Wordbau",
+  await page.locator('.practice-link[href="../wordbau/"]').count() === 1);
+check("practice: FS2E.5.E.1 links to Spellwerk",
+  await page.locator('.practice-link[href="../spellwerk/"]').count() === 1);
 await page.goto(URL + "#NMG");
 await page.waitForSelector(".competence");
 check("practice: NMG.9.1 links to Zeitreise",
