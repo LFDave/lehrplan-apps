@@ -82,9 +82,13 @@ sich spätere Übungsmodule anhängen lassen.
 Kompetenzen, zu denen es in dieser Sammlung ein Übungsmodul gibt, zeigen
 unter der Kompetenzzeile einen Link "Üben mit ..." (relative URL, damit er
 lokal und auf GitHub Pages funktioniert). Die Zuordnung liegt als
-`PRACTICE_APPS` in `data.js`, keyed nach dem offiziellen Kompetenz-Code:
-MA.1.A.2 Zahlensprung, MA.1.A.3 Rechenturm, MA.3.A.2 Masswerk,
-D.4.F.1 Wortwerkstatt. Neue Übungsmodule werden dort ergänzt.
+`PRACTICE_APPS` in `data.js`, keyed nach dem offiziellen Kompetenz-Code.
+Alle zehn Mathematik-Kompetenzen des Handlungsaspekts "Operieren und
+Benennen" sind abgedeckt: MA.1.A.1 Zahlenwissen, MA.1.A.2 Zahlensprung,
+MA.1.A.3 Rechenturm, MA.1.A.4 Rechenkniff, MA.2.A.1 Formenreich,
+MA.2.A.2 Spiegelraster, MA.2.A.3 Figurenmass, MA.3.A.1 Grössenwissen,
+MA.3.A.2 Masswerk, MA.3.A.3 Wertepfad; dazu D.4.F.1 Wortwerkstatt.
+Neue Übungsmodule werden dort ergänzt.
 
 ## Persistenz
 

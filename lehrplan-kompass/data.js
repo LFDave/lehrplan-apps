@@ -714,8 +714,15 @@ export function competencyCount(subject, cycle) {
 // Kompetenz-Code. Relative Links, damit die Verknüpfung auf GitHub
 // Pages und lokal funktioniert.
 export const PRACTICE_APPS = {
+  'MA.1.A.1': { name: 'Zahlenwissen', href: '../zahlenwissen/' },
   'MA.1.A.2': { name: 'Zahlensprung', href: '../zahlensprung/' },
   'MA.1.A.3': { name: 'Rechenturm', href: '../rechenturm/' },
+  'MA.1.A.4': { name: 'Rechenkniff', href: '../rechenkniff/' },
+  'MA.2.A.1': { name: 'Formenreich', href: '../formenreich/' },
+  'MA.2.A.2': { name: 'Spiegelraster', href: '../spiegelraster/' },
+  'MA.2.A.3': { name: 'Figurenmass', href: '../figurenmass/' },
+  'MA.3.A.1': { name: 'Grössenwissen', href: '../groessenwissen/' },
   'MA.3.A.2': { name: 'Masswerk', href: '../masswerk/' },
+  'MA.3.A.3': { name: 'Wertepfad', href: '../wertepfad/' },
   'D.4.F.1': { name: 'Wortwerkstatt', href: '../wortwerkstatt/' },
 };

@@ -207,13 +207,21 @@ check("subject: TTG cycle-1 count matches data",
 /* ── Practice-app links ───────────────────────────────────────────── */
 await page.goto(URL + "#MA");
 await page.waitForSelector(".competence");
-check("practice: MA shows three practice links",
-  await page.locator(".practice-link").count() === 3);
+check("practice: MA shows ten practice links",
+  await page.locator(".practice-link").count() === 10);
 check("practice: MA.1.A.2 links to Zahlensprung",
   await page.locator('.practice-link[href="../zahlensprung/"]').count() === 1
   && (await page.locator('.practice-link[href="../zahlensprung/"]').textContent()).includes("Zahlensprung"));
 check("practice: MA.1.A.3 links to Rechenturm",
   await page.locator('.practice-link[href="../rechenturm/"]').count() === 1);
+check("practice: every MA A-competency has a practice link",
+  await page.locator('.practice-link[href="../zahlenwissen/"]').count() === 1
+  && await page.locator('.practice-link[href="../rechenkniff/"]').count() === 1
+  && await page.locator('.practice-link[href="../formenreich/"]').count() === 1
+  && await page.locator('.practice-link[href="../spiegelraster/"]').count() === 1
+  && await page.locator('.practice-link[href="../figurenmass/"]').count() === 1
+  && await page.locator('.practice-link[href="../groessenwissen/"]').count() === 1
+  && await page.locator('.practice-link[href="../wertepfad/"]').count() === 1);
 await page.goto(URL + "#D");
 await page.waitForSelector(".competence");
 check("practice: D.4.F.1 links to Wortwerkstatt",

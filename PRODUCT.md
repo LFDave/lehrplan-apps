@@ -259,6 +259,13 @@ Each app uses exactly one accent family from DESIGN.md. Before starting a new ap
 | zahlensprung | small-apps repo | amber | DE | baseline |
 | rechenturm | small-apps repo | coral | DE | baseline |
 | masswerk | small-apps repo | sage | DE | baseline |
+| zahlenwissen | small-apps repo | sage | DE | baseline |
+| rechenkniff | small-apps repo | violet | DE | baseline |
+| formenreich | small-apps repo | violet | DE | baseline |
+| spiegelraster | small-apps repo | coral | DE | baseline |
+| figurenmass | small-apps repo | blue | DE | baseline |
+| groessenwissen | small-apps repo | amber | DE | baseline |
+| wertepfad | small-apps repo | blue | DE | baseline |
 | nummernfuchs | small-apps repo | violet | DE, EN, FR, IT, RM | baseline |
 | wortwerkstatt | small-apps repo | blue | DE, EN | baseline |
 | geotriad-game | small-apps repo | not recorded | EN, DE | pre-baseline |

@@ -1,0 +1,7 @@
+{
+  "name": "wertepfad-tests",
+  "private": true,
+  "type": "module",
+  "scripts": { "test": "node e2e.test.mjs" },
+  "dependencies": { "playwright": "^1.49.0" }
+}

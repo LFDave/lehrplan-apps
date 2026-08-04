@@ -2,9 +2,9 @@
 // Zykluswahl und Häkchen. Navigation läuft über location.hash, damit der
 // Zurück-Knopf des Browsers funktioniert.
 
-import { CYCLES, subjectsForCycle, subjectById, areaCompetenciesForCycle, competencyCount, PRACTICE_APPS } from './data.js?v=3';
-import { STRINGS, t } from './strings.js?v=3';
-import { icon } from './icons.js?v=3';
+import { CYCLES, subjectsForCycle, subjectById, areaCompetenciesForCycle, competencyCount, PRACTICE_APPS } from './data.js?v=4';
+import { STRINGS, t } from './strings.js?v=4';
+import { icon } from './icons.js?v=4';
 
 const STORE_CYCLE = 'kompass.cycle';
 const STORE_CHECKED = 'kompass.checked';
