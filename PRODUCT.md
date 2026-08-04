@@ -279,6 +279,11 @@ Each app uses exactly one accent family from DESIGN.md. Before starting a new ap
 
 D.4.F.1 is covered by Schreibprobe in this repo; the older
 Wortwerkstatt remains in the sibling repo small-apps as a standalone.
+
+The full roadmap to complete coverage — every remaining competency
+classified as ready, needs-concept, or not app-testable, plus
+platform work — lives in BACKLOG.md.
+
 ## Accepted decisions
 
 - Default theme: dark only.
