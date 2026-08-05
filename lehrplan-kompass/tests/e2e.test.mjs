@@ -252,6 +252,12 @@ check("practice: NMG.4.5 links to Sternwarte",
   await page.locator('.practice-link[href="../sternwarte/"]').count() === 1);
 check("practice: NMG.8.5 links to Nordpfeil",
   await page.locator('.practice-link[href="../nordpfeil/"]').count() === 1);
+check("practice: NMG.1.4 links to Körperatlas",
+  await page.locator('.practice-link[href="../koerperatlas/"]').count() === 1);
+check("practice: NMG.2.4 links to Artenreich",
+  await page.locator('.practice-link[href="../artenreich/"]').count() === 1);
+check("practice: NMG.4.4 links to Wetterwarte",
+  await page.locator('.practice-link[href="../wetterwarte/"]').count() === 1);
 await page.goto(URL + "#MI");
 await page.waitForSelector(".competence");
 check("practice: MI.2.1 links to Bitkiste",

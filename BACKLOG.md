@@ -8,7 +8,7 @@ the official Kompetenzstufen, the Grundansprüche are the visible
 milestones, and untestable steps are translated openly or excluded
 honestly.
 
-Status: **20 of 363 competencies have a practice app**, plus the
+Status: **23 of 363 competencies have a practice app**, plus the
 Kompass covering all 363 for self-assessment.
 
 ## How to read this file
@@ -38,7 +38,8 @@ MA.2.A.3 Figurenmass, MA.3.A.1 Grössenwissen, MA.3.A.2 Masswerk,
 MA.3.A.3 Wertepfad, D.4.F.1 Schreibprobe, D.5.D.1 Wortbau,
 D.5.E.1 Buchstabenleiter, FS1F.5.B.1 Motschatz, FS1F.5.D.1 Motbau,
 FS1F.5.E.1 Ortho, FS2E.5.B.1 Wordschatz, FS2E.5.D.1 Wordbau,
-FS2E.5.E.1 Spellwerk, NMG.4.5 Sternwarte, NMG.8.5 Nordpfeil,
+FS2E.5.E.1 Spellwerk, NMG.1.4 Körperatlas, NMG.2.4 Artenreich,
+NMG.4.4 Wetterwarte, NMG.4.5 Sternwarte, NMG.8.5 Nordpfeil,
 NMG.9.1 Zeitreise, MI.2.1 Bitkiste, MI.2.2 Schrittweise.
 
 ---
@@ -47,14 +48,6 @@ NMG.9.1 Zeitreise, MI.2.1 Bitkiste, MI.2.2 Schrittweise.
 
 Ordered by suggested batches. Each is one app, one competency, built
 with the existing template and suite pattern.
-
-### Batch 5 — NMG knowledge cores
-
-| Competency | Working title | Content sketch |
-| --- | --- | --- |
-| NMG.1.4 | Körperatlas | body parts, organs and their functions, skeleton, senses' organs |
-| NMG.2.4 | Artenreich | animal classes (Säugetiere, Vögel, Fische, Reptilien, Amphibien, Insekten), Laub-/Nadelbäume, categorising |
-| NMG.4.4 | Wetterwarte | weather phenomena, thermometer reading, water cycle, Naturereignisse vocabulary |
 
 ### Batch 6 — cycle-3 civics, science, informatics
 

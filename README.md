@@ -47,11 +47,14 @@ app's PRD).
 | [wordbau](wordbau/) | FS2E.5.D.1 — englische Grammatik |
 | [ortho](ortho/) | FS1F.5.E.1 — französische Rechtschreibung |
 | [spellwerk](spellwerk/) | FS2E.5.E.1 — englische Rechtschreibung |
+| [koerperatlas](koerperatlas/) | NMG.1.4 — Körper, Organe, Kreislauf |
+| [artenreich](artenreich/) | NMG.2.4 — Tiere und Pflanzen ordnen |
+| [wetterwarte](wetterwarte/) | NMG.4.4 — Wetter und Naturereignisse |
 
 That covers all ten math competencies of the Operieren-und-Benennen
 aspect, both Informatik competencies MI.2.1 and MI.2.2, three German
 competencies, vocabulary, grammar and spelling for both French and
-English, and three NMG competencies. The older Wortwerkstatt remains
+English, and six NMG competencies. The older Wortwerkstatt remains
 standalone in the sibling
 repo [small-apps](https://github.com/LFDave/small-apps); its
 competency D.4.F.1 is now covered by Schreibprobe here.
