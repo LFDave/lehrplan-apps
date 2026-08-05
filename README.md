@@ -43,11 +43,24 @@ app's PRD).
 | [nordpfeil](nordpfeil/) | NMG.8.5 — Pläne, Karten, Himmelsrichtungen |
 | [sternwarte](sternwarte/) | NMG.4.5 — Sonne, Mond, Planeten, Sterne |
 | [buchstabenleiter](buchstabenleiter/) | D.5.E.1 — ABC, Stammregel, Grossschreibung |
+| [motbau](motbau/) | FS1F.5.D.1 — französische Grammatik |
+| [wordbau](wordbau/) | FS2E.5.D.1 — englische Grammatik |
+| [ortho](ortho/) | FS1F.5.E.1 — französische Rechtschreibung |
+| [spellwerk](spellwerk/) | FS2E.5.E.1 — englische Rechtschreibung |
+| [koerperatlas](koerperatlas/) | NMG.1.4 — Körper, Organe, Kreislauf |
+| [artenreich](artenreich/) | NMG.2.4 — Tiere und Pflanzen ordnen |
+| [wetterwarte](wetterwarte/) | NMG.4.4 — Wetter und Naturereignisse |
+| [weltatlas](weltatlas/) | RZG.4.1 — Kontinente, Länder, Gradnetz |
+| [demokratielabor](demokratielabor/) | RZG.8.1 — Schweizer Demokratie |
+| [stromkreis](stromkreis/) | NT.5.2 — Elektrik und Ohmsches Gesetz |
+| [rechnerraum](rechnerraum/) | MI.2.3 — Computer, Speicher, Netze |
 
 That covers all ten math competencies of the Operieren-und-Benennen
-aspect, both Informatik competencies MI.2.1 and MI.2.2, two German
-competencies, French and English vocabulary, and three NMG
-competencies. The older Wortwerkstatt remains standalone in the sibling
+aspect, all three Informatik competencies, three German competencies,
+vocabulary, grammar and spelling for both French and English, six NMG
+competencies, and first modules for RZG (Geografie, Demokratie) and
+NT (Elektrik). The older Wortwerkstatt remains standalone in the
+sibling
 repo [small-apps](https://github.com/LFDave/small-apps); its
 competency D.4.F.1 is now covered by Schreibprobe here.
 

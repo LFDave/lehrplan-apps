@@ -234,6 +234,16 @@ await page.goto(URL + "#FS1F");
 await page.waitForSelector(".competence");
 check("practice: FS1F.5.B.1 links to Motschatz",
   await page.locator('.practice-link[href="../motschatz/"]').count() === 1);
+check("practice: FS1F.5.D.1 links to Motbau",
+  await page.locator('.practice-link[href="../motbau/"]').count() === 1);
+check("practice: FS1F.5.E.1 links to Ortho",
+  await page.locator('.practice-link[href="../ortho/"]').count() === 1);
+await page.goto(URL + "#FS2E");
+await page.waitForSelector(".competence");
+check("practice: FS2E.5.D.1 links to Wordbau",
+  await page.locator('.practice-link[href="../wordbau/"]').count() === 1);
+check("practice: FS2E.5.E.1 links to Spellwerk",
+  await page.locator('.practice-link[href="../spellwerk/"]').count() === 1);
 await page.goto(URL + "#NMG");
 await page.waitForSelector(".competence");
 check("practice: NMG.9.1 links to Zeitreise",
@@ -242,12 +252,37 @@ check("practice: NMG.4.5 links to Sternwarte",
   await page.locator('.practice-link[href="../sternwarte/"]').count() === 1);
 check("practice: NMG.8.5 links to Nordpfeil",
   await page.locator('.practice-link[href="../nordpfeil/"]').count() === 1);
+check("practice: NMG.1.4 links to Körperatlas",
+  await page.locator('.practice-link[href="../koerperatlas/"]').count() === 1);
+check("practice: NMG.2.4 links to Artenreich",
+  await page.locator('.practice-link[href="../artenreich/"]').count() === 1);
+check("practice: NMG.4.4 links to Wetterwarte",
+  await page.locator('.practice-link[href="../wetterwarte/"]').count() === 1);
 await page.goto(URL + "#MI");
 await page.waitForSelector(".competence");
 check("practice: MI.2.1 links to Bitkiste",
   await page.locator('.practice-link[href="../bitkiste/"]').count() === 1);
 check("practice: MI.2.2 links to Schrittweise",
   await page.locator('.practice-link[href="../schrittweise/"]').count() === 1);
+check("practice: MI.2.3 links to Rechnerraum",
+  await page.locator('.practice-link[href="../rechnerraum/"]').count() === 1);
+await page.goto(URL + "#RZG");
+await page.waitForSelector(".competence");
+check("practice: RZG.4.1 links to Weltatlas",
+  await page.locator('.practice-link[href="../weltatlas/"]').count() === 1);
+check("practice: RZG.8.1 links to Demokratielabor",
+  await page.locator('.practice-link[href="../demokratielabor/"]').count() === 1);
+await page.goto(URL + "#NT");
+await page.waitForSelector(".competence");
+check("practice: NT.5.2 links to Stromkreis",
+  await page.locator('.practice-link[href="../stromkreis/"]').count() === 1);
+// RZG/NT sind reine Zyklus-3-Fächer; der Deep-Link hat den
+// gespeicherten Zyklus umgestellt. Für die folgenden Abschnitte
+// zurück auf Zyklus 1.
+await page.goto(URL);
+await page.waitForSelector(".subject-grid");
+await page.click('[data-cycle="1"]');
+await page.waitForSelector('[data-cycle="1"][aria-pressed="true"]');
 
 /* ── Checking and per-cycle persistence ───────────────────────────── */
 await page.goto(URL + "#MA");
