@@ -50,12 +50,17 @@ app's PRD).
 | [koerperatlas](koerperatlas/) | NMG.1.4 — Körper, Organe, Kreislauf |
 | [artenreich](artenreich/) | NMG.2.4 — Tiere und Pflanzen ordnen |
 | [wetterwarte](wetterwarte/) | NMG.4.4 — Wetter und Naturereignisse |
+| [weltatlas](weltatlas/) | RZG.4.1 — Kontinente, Länder, Gradnetz |
+| [demokratielabor](demokratielabor/) | RZG.8.1 — Schweizer Demokratie |
+| [stromkreis](stromkreis/) | NT.5.2 — Elektrik und Ohmsches Gesetz |
+| [rechnerraum](rechnerraum/) | MI.2.3 — Computer, Speicher, Netze |
 
 That covers all ten math competencies of the Operieren-und-Benennen
-aspect, both Informatik competencies MI.2.1 and MI.2.2, three German
-competencies, vocabulary, grammar and spelling for both French and
-English, and six NMG competencies. The older Wortwerkstatt remains
-standalone in the sibling
+aspect, all three Informatik competencies, three German competencies,
+vocabulary, grammar and spelling for both French and English, six NMG
+competencies, and first modules for RZG (Geografie, Demokratie) and
+NT (Elektrik). The older Wortwerkstatt remains standalone in the
+sibling
 repo [small-apps](https://github.com/LFDave/small-apps); its
 competency D.4.F.1 is now covered by Schreibprobe here.
 

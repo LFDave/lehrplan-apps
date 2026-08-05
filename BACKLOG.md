@@ -8,7 +8,7 @@ the official Kompetenzstufen, the Grundansprüche are the visible
 milestones, and untestable steps are translated openly or excluded
 honestly.
 
-Status: **23 of 363 competencies have a practice app**, plus the
+Status: **27 of 363 competencies have a practice app**, plus the
 Kompass covering all 363 for self-assessment.
 
 ## How to read this file
@@ -40,7 +40,9 @@ D.5.E.1 Buchstabenleiter, FS1F.5.B.1 Motschatz, FS1F.5.D.1 Motbau,
 FS1F.5.E.1 Ortho, FS2E.5.B.1 Wordschatz, FS2E.5.D.1 Wordbau,
 FS2E.5.E.1 Spellwerk, NMG.1.4 Körperatlas, NMG.2.4 Artenreich,
 NMG.4.4 Wetterwarte, NMG.4.5 Sternwarte, NMG.8.5 Nordpfeil,
-NMG.9.1 Zeitreise, MI.2.1 Bitkiste, MI.2.2 Schrittweise.
+NMG.9.1 Zeitreise, MI.2.1 Bitkiste, MI.2.2 Schrittweise, MI.2.3
+Rechnerraum, RZG.4.1 Weltatlas, RZG.8.1 Demokratielabor, NT.5.2
+Stromkreis.
 
 ---
 
@@ -48,15 +50,6 @@ NMG.9.1 Zeitreise, MI.2.1 Bitkiste, MI.2.2 Schrittweise.
 
 Ordered by suggested batches. Each is one app, one competency, built
 with the existing template and suite pattern.
-
-### Batch 6 — cycle-3 civics, science, informatics
-
-| Competency | Working title | Content sketch |
-| --- | --- | --- |
-| RZG.4.1 | Weltatlas | continents, oceans, countries and capitals (flagcdn allowed), Swiss cantons and Hauptorte |
-| RZG.8.1 | Demokratielabor | Gemeinde/Kanton/Bund, Parlament/Regierung/Gericht, Initiative and Referendum, elections |
-| NT.5.2 | Stromkreis | circuit closed/open, Leiter/Nichtleiter, series vs. parallel, U/I/R with computable tasks |
-| MI.2.3 | Rechnerraum | computer components (Eingabe/Verarbeitung/Speicher/Ausgabe), file sizes, networks and internet basics |
 
 ### Lower priority but ready
 
@@ -222,6 +215,35 @@ Infrastructure, quality, and process — independent of new apps.
    each with its oracle counterpart in the same change.
 8. **A11y sweep per release.** Keyboard walk, focus states, contrast,
    reduced motion across all apps once per batch, not only per new app.
+9. **Interactive 3D and rich visual elements (ideation).** Explore
+   where a manipulable model would teach better than text: a rotating
+   Earth globe for Weltatlas and Sternwarte (day/night, Gradnetz),
+   3D animal models for Artenreich, an orbit view of the solar
+   system, a buildable circuit for Stromkreis. Tension to resolve
+   first: the family rules say no frameworks, no CDNs, offline after
+   first load — a vendored, self-hosted three.js build would be a
+   deliberate exception that needs a PRODUCT.md decision; the lighter
+   path is hand-written SVG/CSS animation, which stays inside current
+   rules. Outcome of this item is a decision plus one prototype, not
+   a rollout.
+10. **Illustrations for complex concepts.** Self-hosted inline SVG
+    graphics where words fall short: water cycle and lightning
+    distance (Wetterwarte), blood circulation and skeleton
+    (Körperatlas), moon phases (Sternwarte), series vs. parallel
+    circuit diagrams (Stromkreis), Höhenkurven (Nordpfeil), Gradnetz
+    (Weltatlas). Fits current rules (inline SVG, offline, no external
+    requests); needs a small illustration style addition in DESIGN.md
+    (stroke width, allowed fills per accent) so drawings read as one
+    family.
+11. **Wiki / Nachschlagewerk.** A calm reference app with short,
+    child-friendly lookup pages for the concepts the practice apps
+    use: Mondphasen, Wasserkreislauf, Gradnetz, ABC- und
+    Konjugationstabellen, Massstab, Gewaltenteilung, Ohmsches Gesetz,
+    Speichereinheiten. One page per concept, German first, DESIGN.md
+    tokens, localStorage-free (pure reading), cross-linked from the
+    apps ("Nachschlagen") and from the Kompass. All content
+    own-authored — no copied encyclopedia or Lehrplan text; each page
+    names the competencies it supports.
 
 ## Definition of 100%
 
@@ -231,4 +253,5 @@ Infrastructure, quality, and process — independent of new apps.
   Kompass-only.
 - Every **Not app-testable** competency stays covered by the Kompass
   with its exclusion reason recorded here.
-- Platform items 1–5 done; 6–8 are standing practice.
+- Platform items 1–5 and 9–11 done (9 counts as done once the
+  decision plus one prototype exist); 6–8 are standing practice.

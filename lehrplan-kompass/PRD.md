@@ -93,8 +93,10 @@ Schreibprobe, D.5.D.1 Wortbau, D.5.E.1 Buchstabenleiter, FS1F.5.B.1
 Motschatz, FS1F.5.D.1 Motbau, FS1F.5.E.1 Ortho, FS2E.5.B.1
 Wordschatz, FS2E.5.D.1 Wordbau, FS2E.5.E.1 Spellwerk, NMG.1.4
 Körperatlas, NMG.2.4 Artenreich, NMG.4.4 Wetterwarte, NMG.4.5
-Sternwarte, NMG.8.5 Nordpfeil, NMG.9.1 Zeitreise, MI.2.1 Bitkiste
-und MI.2.2 Schrittweise. Neue Übungsmodule werden dort ergänzt.
+Sternwarte, NMG.8.5 Nordpfeil, NMG.9.1 Zeitreise, MI.2.1 Bitkiste,
+MI.2.2 Schrittweise, MI.2.3 Rechnerraum, RZG.4.1 Weltatlas, RZG.8.1
+Demokratielabor und NT.5.2 Stromkreis. Neue Übungsmodule werden dort
+ergänzt.
 
 ## Persistenz
 

@@ -264,6 +264,25 @@ check("practice: MI.2.1 links to Bitkiste",
   await page.locator('.practice-link[href="../bitkiste/"]').count() === 1);
 check("practice: MI.2.2 links to Schrittweise",
   await page.locator('.practice-link[href="../schrittweise/"]').count() === 1);
+check("practice: MI.2.3 links to Rechnerraum",
+  await page.locator('.practice-link[href="../rechnerraum/"]').count() === 1);
+await page.goto(URL + "#RZG");
+await page.waitForSelector(".competence");
+check("practice: RZG.4.1 links to Weltatlas",
+  await page.locator('.practice-link[href="../weltatlas/"]').count() === 1);
+check("practice: RZG.8.1 links to Demokratielabor",
+  await page.locator('.practice-link[href="../demokratielabor/"]').count() === 1);
+await page.goto(URL + "#NT");
+await page.waitForSelector(".competence");
+check("practice: NT.5.2 links to Stromkreis",
+  await page.locator('.practice-link[href="../stromkreis/"]').count() === 1);
+// RZG/NT sind reine Zyklus-3-Fächer; der Deep-Link hat den
+// gespeicherten Zyklus umgestellt. Für die folgenden Abschnitte
+// zurück auf Zyklus 1.
+await page.goto(URL);
+await page.waitForSelector(".subject-grid");
+await page.click('[data-cycle="1"]');
+await page.waitForSelector('[data-cycle="1"][aria-pressed="true"]');
 
 /* ── Checking and per-cycle persistence ───────────────────────────── */
 await page.goto(URL + "#MA");

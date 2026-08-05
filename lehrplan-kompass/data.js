@@ -741,4 +741,8 @@ export const PRACTICE_APPS = {
   'NMG.9.1': { name: 'Zeitreise', href: '../zeitreise/' },
   'MI.2.1': { name: 'Bitkiste', href: '../bitkiste/' },
   'MI.2.2': { name: 'Schrittweise', href: '../schrittweise/' },
+  'MI.2.3': { name: 'Rechnerraum', href: '../rechnerraum/' },
+  'RZG.4.1': { name: 'Weltatlas', href: '../weltatlas/' },
+  'RZG.8.1': { name: 'Demokratielabor', href: '../demokratielabor/' },
+  'NT.5.2': { name: 'Stromkreis', href: '../stromkreis/' },
 };

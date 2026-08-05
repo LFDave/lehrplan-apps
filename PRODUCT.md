@@ -283,6 +283,10 @@ Each app uses exactly one accent family from DESIGN.md. Before starting a new ap
 | koerperatlas | NMG.1.4 | coral | DE | baseline |
 | artenreich | NMG.2.4 | sage | DE | baseline |
 | wetterwarte | NMG.4.4 | violet | DE | baseline |
+| weltatlas | RZG.4.1 | blue | DE | baseline |
+| demokratielabor | RZG.8.1 | amber | DE | baseline |
+| stromkreis | NT.5.2 | sage | DE | baseline |
+| rechnerraum | MI.2.3 | blue | DE | baseline |
 
 D.4.F.1 is covered by Schreibprobe in this repo; the older
 Wortwerkstatt remains in the sibling repo small-apps as a standalone.
