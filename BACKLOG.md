@@ -215,26 +215,28 @@ Infrastructure, quality, and process — independent of new apps.
    each with its oracle counterpart in the same change.
 8. **A11y sweep per release.** Keyboard walk, focus states, contrast,
    reduced motion across all apps once per batch, not only per new app.
-9. **Interactive 3D and rich visual elements (ideation).** Explore
-   where a manipulable model would teach better than text: a rotating
-   Earth globe for Weltatlas and Sternwarte (day/night, Gradnetz),
-   3D animal models for Artenreich, an orbit view of the solar
-   system, a buildable circuit for Stromkreis. Tension to resolve
-   first: the family rules say no frameworks, no CDNs, offline after
-   first load — a vendored, self-hosted three.js build would be a
-   deliberate exception that needs a PRODUCT.md decision; the lighter
-   path is hand-written SVG/CSS animation, which stays inside current
-   rules. Outcome of this item is a decision plus one prototype, not
-   a rollout.
-10. **Illustrations for complex concepts.** Self-hosted inline SVG
-    graphics where words fall short: water cycle and lightning
-    distance (Wetterwarte), blood circulation and skeleton
-    (Körperatlas), moon phases (Sternwarte), series vs. parallel
-    circuit diagrams (Stromkreis), Höhenkurven (Nordpfeil), Gradnetz
-    (Weltatlas). Fits current rules (inline SVG, offline, no external
-    requests); needs a small illustration style addition in DESIGN.md
-    (stroke width, allowed fills per accent) so drawings read as one
-    family.
+9. **Interactive visuals — DECIDED, harvests remain.** The spike in
+   `spike-visuals/` settled the open questions (see its README):
+   SVG/CSS only, no 3D library (PRODUCT.md decision); interactive
+   visuals enter apps as optional "Anschauen" explainer panels per
+   Stufe, never as new task types. Remaining work, in order of
+   teaching value: circuit panel in Stromkreis (Stufe b), globe
+   panel in Weltatlas (Stufe c), orbit panel in Sternwarte (Stufe e).
+   Each harvest moves the prototype into the app, adds the panel UI,
+   extends the app's suite (panel opens, no console errors, motion
+   starts only on click) and updates the PRD. Delete `spike-visuals/`
+   after the last harvest.
+10. **Illustrations for complex concepts — style decided, wave 1
+    open.** DESIGN.md now has the `illustration` token group (stroke
+    2, soft 26-alpha fills, quiet labels, transform/opacity-only
+    motion); `spike-visuals/` shows the style on Wasserkreislauf and
+    Mondphasen. Wave 1: Wasserkreislauf into Wetterwarte (1g),
+    Mondphasen into Sternwarte (d), series/parallel diagram into
+    Stromkreis (b, part of the panel harvest). Wave 2 candidates:
+    blood circulation and skeleton (Körperatlas), Höhenkurven
+    (Nordpfeil), Gradnetz (Weltatlas). Every illustration is inline
+    SVG with `role="img"` and a German `aria-label`, and lands
+    together with its PRD note.
 11. **Wiki / Nachschlagewerk.** A calm reference app with short,
     child-friendly lookup pages for the concepts the practice apps
     use: Mondphasen, Wasserkreislauf, Gradnetz, ABC- und
@@ -253,5 +255,6 @@ Infrastructure, quality, and process — independent of new apps.
   Kompass-only.
 - Every **Not app-testable** competency stays covered by the Kompass
   with its exclusion reason recorded here.
-- Platform items 1–5 and 9–11 done (9 counts as done once the
-  decision plus one prototype exist); 6–8 are standing practice.
+- Platform items 1–5 and 9–11 done (9 and 10 count as done once
+  their listed harvests and wave 1 have landed in the apps); 6–8 are
+  standing practice.

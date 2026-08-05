@@ -298,6 +298,13 @@ platform work — lives in BACKLOG.md.
 ## Accepted decisions
 
 - Default theme: dark only.
+- Interactive visuals and in-app graphics: inline SVG and CSS only,
+  following the `illustration` tokens in DESIGN.md. No 3D or
+  charting libraries (three.js declined after the spike in
+  spike-visuals/). Interactive visuals ship as optional explainer
+  panels, never as new task types; animation is transform/opacity
+  only, paused by default, user-initiated, and respects reduced
+  motion.
 - Visual base: charcoal and navy, not pure black.
 - Accent usage: one restrained accent per app, recorded in the app registry.
 - Buttons: primary buttons usually near-white, not loud accent blocks.
