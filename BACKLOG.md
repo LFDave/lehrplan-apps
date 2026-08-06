@@ -277,6 +277,14 @@ Infrastructure, quality, and process — independent of new apps.
     real printed-PDF test (sections no longer split across page
     breaks). Remaining: family feedback, then one infographic per
     existing and future Merkblatt using the same `.ig-*` system.
+13. **Link-chip aesthetics polish.** The cross-links are now clearly
+    recognizable (chips with icon, underline, border): the
+    "Merkblatt: …" links in the six apps and the "Dazu üben" links
+    in the Merkheft. User verdict: well visible but "not so
+    beautiful". A design pass over both chip styles — weight,
+    spacing, icon size, underline treatment, hover — keeping the
+    affordance and the DESIGN.md tokens, applied consistently in
+    all seven surfaces in one change.
 
 ## Definition of 100%
 

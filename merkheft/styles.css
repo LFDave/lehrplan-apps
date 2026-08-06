@@ -2,13 +2,13 @@
 
 @font-face {
   font-family: 'Atkinson Hyperlegible';
-  src: url('fonts/atkinson-hyperlegible-400.woff2?v=2') format('woff2');
+  src: url('fonts/atkinson-hyperlegible-400.woff2?v=3') format('woff2');
   font-weight: 400;
   font-display: swap;
 }
 @font-face {
   font-family: 'Atkinson Hyperlegible';
-  src: url('fonts/atkinson-hyperlegible-700.woff2?v=2') format('woff2');
+  src: url('fonts/atkinson-hyperlegible-700.woff2?v=3') format('woff2');
   font-weight: 700;
   font-display: swap;
 }
@@ -179,10 +179,14 @@ svg text { font-family: var(--font-body); font-size: 0.85rem; fill: var(--color-
 .ueben-link {
   display: inline-flex; align-items: center; gap: var(--space-2);
   color: var(--color-accent); text-decoration: none; font-weight: 700;
-  min-height: 2.75rem; padding: var(--space-1) var(--space-2);
+  background: var(--color-background-surface-soft);
+  border: 1px solid var(--color-border-subtle);
+  min-height: 2.75rem; padding: var(--space-1) var(--space-3);
   border-radius: var(--radius-md);
 }
-.ueben-link:hover { background: var(--color-background-surface-raised); }
+.ueben-icon { width: 1.1rem; height: 1.1rem; flex: none; }
+.ueben-text { text-decoration: underline; text-underline-offset: 3px; }
+.ueben-link:hover { background: var(--color-background-surface-raised); border-color: var(--color-border-strong); }
 .ueben-link:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }
 .ueben-meta { color: var(--color-text-muted); font-weight: 400; font-size: 0.9rem; }
 
@@ -213,7 +217,7 @@ svg text { font-family: var(--font-body); font-size: 0.85rem; fill: var(--color-
   .fakten dt { color: #8A7A3E; }
   .illu-stage { background: #F7F8FA; border-color: #D4DAE1; }
   svg text { fill: #5C6B7C; }
-  .ueben-link { color: #8A7A3E; }
+  .ueben-link { color: #8A7A3E; background: #F7F8FA; border-color: #D4DAE1; }
   .ueben-meta, .code-line, .illu-status { color: #5C6B7C; }
   .blatt-page, .illu-stage { break-inside: avoid; }
   .ig-title, .ig-unit { fill: #1A2230; }

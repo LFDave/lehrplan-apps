@@ -159,8 +159,10 @@ for (const b of BLAETTER) {
     && (await page.textContent(".blatt-gruppe")).trim() === b.gruppe
     && (await page.locator(".illu-stage svg, .illu-stage .orbits").count()) >= 1
     && (await page.title()).includes("Merkheft"));
-  check(`page ${b.id}: Dazu-üben links present`,
-    await page.locator(".ueben-link").count() === b.ueben.length);
+  check(`page ${b.id}: Dazu-üben links present with icon and underlined name`,
+    await page.locator(".ueben-link").count() === b.ueben.length
+    && await page.locator(".ueben-link .ueben-icon").count() === b.ueben.length
+    && await page.locator(".ueben-link .ueben-text").count() === b.ueben.length);
   check(`page ${b.id}: back link to index`,
     await page.locator('.back[href="index.html"]').count() === 1);
 }

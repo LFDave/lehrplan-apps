@@ -102,7 +102,8 @@ sprachliche Form. Daraus folgt die Regel für jedes Merkblatt:
   `../merkheft/<id>.html`. Beide Links sind optional und nie eine
   Bedingung.
 - **Merkheft → Apps:** «Dazu üben» verlinkt die App-Startseite und
-  nennt die Stufe.
+  nennt die Stufe, als klar erkennbarer Link-Chip mit Stift-Symbol
+  und unterstrichenem App-Namen.
 
 ## Persistenz und Privatsphäre
 
@@ -114,7 +115,7 @@ von aussen.
 Einsprachig Deutsch (Schweizer Standarddeutsch). Tokens aus
 DESIGN.md, Akzentfamilie **amber**, Atkinson Hyperlegible selbst
 gehostet, Illustrationen als Inline-SVG mit `role="img"` und
-deutschem `aria-label`, Cache-Busting `?v=2`.
+deutschem `aria-label`, Cache-Busting `?v=3`.
 
 ## Tests
 
