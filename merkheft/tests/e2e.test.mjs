@@ -27,6 +27,15 @@ const BASE = `http://localhost:${PORT}/merkheft`;
 // Independent restatement of the wave-1 Merkheft contents: one HTML
 // page per concept, its group, title, practice links and codes.
 const BLAETTER = [
+  { id: "geld", gruppe: "Mathematik", title: "Das Geld",
+    ueben: [{ href: "../masswerk/", stufe: "b" }, { href: "../groessenwissen/", stufe: "b" }],
+    codes: ["MA.3.A.1.b", "MA.3.A.2.b"], interactive: false },
+  { id: "uhr", gruppe: "Mathematik", title: "Die Uhr",
+    ueben: [{ href: "../masswerk/", stufe: "b und d" }],
+    codes: ["MA.3.A.2.b", "MA.3.A.2.d"], interactive: false },
+  { id: "laengen", gruppe: "Mathematik", title: "Längen messen",
+    ueben: [{ href: "../masswerk/", stufe: "c" }, { href: "../groessenwissen/", stufe: "c" }],
+    codes: ["MA.3.A.1.c", "MA.3.A.2.c"], interactive: false },
   { id: "masseinheiten", gruppe: "Mathematik", title: "Masseinheiten",
     ueben: [{ href: "../masswerk/", stufe: "e" }, { href: "../groessenwissen/", stufe: "f" }],
     codes: ["MA.3.A.1.f", "MA.3.A.2.e"], interactive: false },
@@ -210,6 +219,23 @@ await page.screenshot({ path: join(SHOTS_DIR, "06-print-masseinheiten.png"), ful
 await page.emulateMedia({ media: "screen" });
 await page.screenshot({ path: join(SHOTS_DIR, "06-masseinheiten.png"), fullPage: true });
 
+/* ── Infographics: Zyklus-1 pages ─────────────────────────────────── */
+await page.goto(`${BASE}/uhr.html`);
+await page.waitForSelector("#ig-uhr");
+check("uhr: two clocks with hour and minute hands",
+  (await page.locator("#ig-uhr .ig-hand-h").count()) === 2
+  && (await page.locator("#ig-uhr .ig-hand-m").count()) === 2
+  && (await page.locator("#ig-uhr .ig-tick").count()) === 24);
+await page.goto(`${BASE}/geld.html`);
+await page.waitForSelector("#ig-geld");
+check("geld: seven coins and six notes",
+  (await page.locator("#ig-geld .ig-coin").count()) === 7
+  && (await page.locator("#ig-geld .ig-box").count()) === 6);
+await page.goto(`${BASE}/laengen.html`);
+await page.waitForSelector("#ig-laengen");
+check("laengen: ruler with major and minor ticks",
+  (await page.locator("#ig-laengen .ig-tick").count()) === 21);
+
 /* ── Back navigation ──────────────────────────────────────────────── */
 await page.click(".back");
 await page.waitForSelector(".blatt-list");
@@ -222,9 +248,14 @@ await page.emulateMedia({ media: "print" });
 const printState = await page.evaluate(() => ({
   bodyBg: getComputedStyle(document.body).backgroundColor,
   navHidden: getComputedStyle(document.querySelector(".page-nav")).display === "none",
+  faktenBreak: getComputedStyle(document.querySelector(".fakten div")).breakInside,
+  labelBreak: getComputedStyle(document.querySelector(".section-label")).breakAfter,
 }));
 check("print: white background, chrome hidden",
   printState.bodyBg === "rgb(255, 255, 255)" && printState.navHidden,
+  JSON.stringify(printState));
+check("print: sections keep together across page breaks",
+  printState.faktenBreak === "avoid" && printState.labelBreak === "avoid",
   JSON.stringify(printState));
 await page.screenshot({ path: join(SHOTS_DIR, "04-print-wasserkreislauf.png"), fullPage: true });
 await page.emulateMedia({ media: "screen" });
