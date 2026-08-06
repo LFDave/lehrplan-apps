@@ -57,7 +57,7 @@ role="status"-Region.
 Einsprachig Deutsch (Schweizer Standarddeutsch), Strings in
 `strings.js`. Tokens aus DESIGN.md, Akzentfamilie **sage**,
 Atkinson Hyperlegible selbst gehostet, Lucide-Icons inline,
-Cache-Busting `?v=3`.
+Cache-Busting `?v=4`.
 
 ## Merkheft-Verbindung
 
@@ -67,6 +67,11 @@ zeigt auf der Stufenkarte einen klar erkennbaren Link
 nach einer Runde mit Fehlern «Zum Nachlesen: …», beide auf
 `../merkheft/<id>.html` (schaltungen.html, «Serie- und Parallelschaltung»). Die Links sind optional und nie
 eine Bedingung; die Suite prüft sie.
+
+Deep-Links: `?stufe=<id>` startet die Stufe direkt, optional begrenzt
+`&thema=<art1,art2>` die Runde auf die Aufgabenarten des verlinkten
+Merkblatt-Themas. Unbekannte Filter fallen auf die ganze Stufe
+zurück; die Suite prüft den Einstieg.
 
 ## Tests
 

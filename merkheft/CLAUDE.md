@@ -39,6 +39,10 @@ spec-sync rules, cache-busting convention) applies as well.
   card and after rounds with mistakes), the app's suite check for
   the link, the BLAETTER entry in `tests/e2e.test.mjs`, and a cache
   bump in that app.
+- «Dazu üben» links deep-link into the Stufe: `?stufe=<id>`, plus
+  `&thema=<kind1,kind2>` on mixed Stufen so the linked round only
+  serves the Merkblatt's topic (one link per topic — never one link
+  for a mixed bag). Filtered kinds must generate ≥8 distinct tasks.
 - Tests: `cd tests && npm install && node e2e.test.mjs` — must pass
   before reporting back. `tests/node_modules` is a symlink to
   `../../masswerk/tests/node_modules` locally.

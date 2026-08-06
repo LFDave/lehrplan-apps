@@ -18,6 +18,7 @@ export const STRINGS = {
     'task.typed': 'Rechne aus.',
     'task.mc': 'Wähle die richtige Antwort.',
     'task.autocheck': 'Beim letzten Zeichen siehst du sofort, ob es stimmt. Mit Enter geht es auch früher.',
+    'task.timehint': 'Der Punkt zählt als Doppelpunkt: 10.30 ist 10:30.',
     'feedback.correct': 'Richtig.',
     'feedback.almost': 'Fast. Versuch es noch einmal.',
     'next': 'Weiter',

@@ -359,6 +359,12 @@ await page.waitForSelector(".stufen-list");
 check("layout: no horizontal scrolling at 320px",
   await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth));
 
+/* ── Deep link (Merkheft «Dazu üben») ─────────────────────────────── */
+await page.goto(`${URL}?stufe=1g`);
+await page.waitForSelector(".task-area");
+check("deep link: ?stufe=1g starts the Stufe directly",
+  (await page.textContent(".practice-meta")).includes("Stufe 1g"));
+
 check("console: no errors", consoleErrors.length === 0, consoleErrors.slice(0, 3).join(" | "));
 check("network: no external requests", externalRequests.length === 0, externalRequests.slice(0, 3).join(", "));
 

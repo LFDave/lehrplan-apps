@@ -26,29 +26,35 @@ const BASE = `http://localhost:${PORT}/merkheft`;
 
 // Independent restatement of the wave-1 Merkheft contents: one HTML
 // page per concept, its group, title, practice links and codes.
+// ueben hrefs deep-link into the Stufe (?stufe=), optionally focused
+// on the Merkblatt's topic (&thema=<kinds>) so linked rounds are
+// topic-pure. Written as they appear in the HTML source (&amp;).
 const BLAETTER = [
   { id: "geld", gruppe: "Mathematik", title: "Das Geld",
-    ueben: [{ href: "../masswerk/", stufe: "b" }, { href: "../groessenwissen/", stufe: "b" }],
+    ueben: [{ href: "../masswerk/?stufe=b&amp;thema=moneyAdd,moneySub", stufe: "b" },
+      { href: "../groessenwissen/?stufe=b&amp;thema=coinReal", stufe: "b" }],
     codes: ["MA.3.A.1.b", "MA.3.A.2.b"], interactive: false },
   { id: "uhr", gruppe: "Mathematik", title: "Die Uhr",
-    ueben: [{ href: "../masswerk/", stufe: "b und d" }],
+    ueben: [{ href: "../masswerk/?stufe=b&amp;thema=halfHour", stufe: "b" },
+      { href: "../masswerk/?stufe=d&amp;thema=duration", stufe: "d" }],
     codes: ["MA.3.A.2.b", "MA.3.A.2.d"], interactive: false },
   { id: "laengen", gruppe: "Mathematik", title: "Längen messen",
-    ueben: [{ href: "../masswerk/", stufe: "c" }, { href: "../groessenwissen/", stufe: "c" }],
+    ueben: [{ href: "../masswerk/?stufe=c&amp;thema=lenAdd,doubleLen,meterParts", stufe: "c" },
+      { href: "../groessenwissen/?stufe=c", stufe: "c" }],
     codes: ["MA.3.A.1.c", "MA.3.A.2.c"], interactive: false },
   { id: "masseinheiten", gruppe: "Mathematik", title: "Masseinheiten",
-    ueben: [{ href: "../masswerk/", stufe: "e" }, { href: "../groessenwissen/", stufe: "f" }],
+    ueben: [{ href: "../masswerk/?stufe=e", stufe: "e" }, { href: "../groessenwissen/?stufe=f", stufe: "f" }],
     codes: ["MA.3.A.1.f", "MA.3.A.2.e"], interactive: false },
   { id: "wasserkreislauf", gruppe: "Natur und Technik", title: "Der Wasserkreislauf",
-    ueben: [{ href: "../wetterwarte/", stufe: "1g" }], codes: ["NMG.4.4.1g"], interactive: false },
+    ueben: [{ href: "../wetterwarte/?stufe=1g", stufe: "1g" }], codes: ["NMG.4.4.1g"], interactive: false },
   { id: "schaltungen", gruppe: "Natur und Technik", title: "Serie- und Parallelschaltung",
-    ueben: [{ href: "../stromkreis/", stufe: "b" }], codes: ["NT.5.2.b"], interactive: true },
+    ueben: [{ href: "../stromkreis/?stufe=b", stufe: "b" }], codes: ["NT.5.2.b"], interactive: true },
   { id: "mondphasen", gruppe: "Himmel und Weltall", title: "Die Mondphasen",
-    ueben: [{ href: "../sternwarte/", stufe: "d" }], codes: ["NMG.4.5.d"], interactive: false },
+    ueben: [{ href: "../sternwarte/?stufe=d", stufe: "d" }], codes: ["NMG.4.5.d"], interactive: false },
   { id: "sonnensystem", gruppe: "Himmel und Weltall", title: "Das Sonnensystem",
-    ueben: [{ href: "../sternwarte/", stufe: "e" }], codes: ["NMG.4.5.e"], interactive: true },
+    ueben: [{ href: "../sternwarte/?stufe=e", stufe: "e" }], codes: ["NMG.4.5.e"], interactive: true },
   { id: "gradnetz", gruppe: "Raum und Erde", title: "Das Gradnetz der Erde",
-    ueben: [{ href: "../weltatlas/", stufe: "c" }], codes: ["RZG.4.1.c"], interactive: true },
+    ueben: [{ href: "../weltatlas/?stufe=c", stufe: "c" }], codes: ["RZG.4.1.c"], interactive: true },
 ];
 const GRUPPEN = ["Mathematik", "Natur und Technik", "Himmel und Weltall", "Raum und Erde"];
 
@@ -98,7 +104,7 @@ function check(name, condition, detail = "") {
     for (const c of b.codes) if (!text.includes(c)) issues.push(`${b.id}: code ${c} missing`);
     for (const u of b.ueben) {
       if (!text.includes(`href="${u.href}"`)) issues.push(`${b.id}: ueben link ${u.href} missing`);
-      if (!existsSync(join(ROOT_DIR, u.href.replace("../", ""), "index.html")))
+      if (!existsSync(join(ROOT_DIR, u.href.split("?")[0].replace("../", ""), "index.html")))
         issues.push(`${b.id}: ueben target missing ${u.href}`);
     }
   }
@@ -159,8 +165,10 @@ for (const b of BLAETTER) {
     && (await page.textContent(".blatt-gruppe")).trim() === b.gruppe
     && (await page.locator(".illu-stage svg, .illu-stage .orbits").count()) >= 1
     && (await page.title()).includes("Merkheft"));
-  check(`page ${b.id}: Dazu-üben links present`,
-    await page.locator(".ueben-link").count() === b.ueben.length);
+  check(`page ${b.id}: Dazu-üben links present with icon and underlined name`,
+    await page.locator(".ueben-link").count() === b.ueben.length
+    && await page.locator(".ueben-link .ueben-icon").count() === b.ueben.length
+    && await page.locator(".ueben-link .ueben-text").count() === b.ueben.length);
   check(`page ${b.id}: back link to index`,
     await page.locator('.back[href="index.html"]').count() === 1);
 }

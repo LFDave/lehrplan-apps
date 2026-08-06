@@ -111,7 +111,7 @@ stehen als "Zahl Einheit", das Ziel als "? Einheit".
   UI-Texte in `strings.js` mit stabilen IDs. Keine
   Einstellungen-Ansicht, solange es nichts zu konfigurieren gibt.
 - Tokens aus DESIGN.md, Akzentfamilie **sage**, Atkinson Hyperlegible
-  selbst gehostet, Lucide-Icons inline, Cache-Busting `?v=3`.
+  selbst gehostet, Lucide-Icons inline, Cache-Busting `?v=4`.
 - Schweizer Formate: Tausendertrennung mit Apostroph (2'000),
   Dezimalpunkt, Franken und Rappen, 24-Stunden-Uhrzeiten (09:40).
 
@@ -124,6 +124,16 @@ klar erkennbaren Link «Merkblatt: …» (Chip mit Buch-Symbol und
 unterstrichenem Text) und nach einer Runde mit Fehlern
 «Zum Nachlesen: …», beide auf `../merkheft/<id>.html`. Die Links
 sind optional und nie eine Bedingung; die Suite prüft sie.
+
+Deep-Links: `?stufe=<id>` startet die Stufe direkt, optional begrenzt
+`&thema=<art1,art2>` die Runde auf die Aufgabenarten des verlinkten
+Merkblatt-Themas. Unbekannte Filter fallen auf die ganze Stufe
+zurück; die Suite prüft den Einstieg.
+
+Uhrzeit-Antworten (`10:30`): Das Eingabefeld nutzt `inputmode`
+`decimal`, weil mobile Zahlentastaturen keinen Doppelpunkt haben.
+Punkt und Komma gelten bei Uhrzeit-Antworten als Doppelpunkt
+(10.30 = 10:30); ein sichtbarer Hinweis neben dem Feld sagt das.
 
 ## Tests
 
