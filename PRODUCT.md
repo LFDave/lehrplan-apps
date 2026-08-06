@@ -309,7 +309,12 @@ platform work — lives in BACKLOG.md.
   explanations, illustrations and interactive visuals live in the
   Merkheft reference app (merkheft/), which apps link to via quiet
   "Merkblatt" links on Stufe cards and after rounds with mistakes.
-  Links are optional and never gates.
+  Links are optional and never gates. One Merkblatt is one static
+  HTML page (`merkheft/<id>.html`) so each concept can grow
+  independently and prints as a light A4 sheet; content follows the
+  sourcing rule in merkheft/PRD.md (own wording always, facts
+  cross-checked against two independent references, no copied
+  encyclopedia or Lehrplan text).
 - Visual base: charcoal and navy, not pure black.
 - Accent usage: one restrained accent per app, recorded in the app registry.
 - Buttons: primary buttons usually near-white, not loud accent blocks.

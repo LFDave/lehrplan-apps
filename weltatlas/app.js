@@ -92,7 +92,7 @@ function renderHome() {
               </span>
               ${icon('chevron-right', 'subject-chevron')}
             </button>
-            ${s.merkblatt ? `<a class="merkblatt-link" href="../merkheft/#${s.merkblatt.id}">Merkblatt: ${esc(s.merkblatt.name)}</a>` : ''}
+            ${s.merkblatt ? `<a class="merkblatt-link" href="../merkheft/${s.merkblatt.id}.html">Merkblatt: ${esc(s.merkblatt.name)}</a>` : ''}
           </li>`;
         }).join('')}
       </ul>
@@ -309,7 +309,7 @@ function renderDone() {
     <section class="done">
       <h1 class="app-title">${icon(TITLE_ICON, 'title-icon')}${t('done.title')}</h1>
       <p class="done-summary" role="status">${t('done.tasks', { n: ROUND_LENGTH, stufe: stufe.id })}${res.clean ? ' ' + t('done.clean') : ''}</p>
-      ${!res.clean && stufe.merkblatt ? `<a class="merkblatt-link" href="../merkheft/#${stufe.merkblatt.id}">Zum Nachlesen: ${esc(stufe.merkblatt.name)}</a>` : ''}
+      ${!res.clean && stufe.merkblatt ? `<a class="merkblatt-link" href="../merkheft/${stufe.merkblatt.id}.html">Zum Nachlesen: ${esc(stufe.merkblatt.name)}</a>` : ''}
       <div class="reward-block">
         <p class="reward-xp">${t('done.xp', { xp: res.xp })}</p>
         <p>${res.levelUp ? t('done.levelup', { name: level.name }) : t('done.level', { name: level.name })} · ${p.xp} XP</p>

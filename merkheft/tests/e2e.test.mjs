@@ -4,9 +4,11 @@
 //   cd merkheft/tests && npm install && node e2e.test.mjs
 //
 // Spawns its own static server and drives the real flows in Chromium:
-// home list, every Merkblatt via hash deep link, the interactive
+// the index list, every Merkblatt as its own page, the interactive
 // visuals (circuit states, globe slider, orbit toggle), the Dazu-üben
-// links, back navigation, layout, console and network hygiene.
+// links, back navigation, print styles, layout, console and network
+// hygiene. The expectations are restated here independently of the
+// pages themselves.
 
 import { chromium } from "playwright";
 import { createServer } from "node:http";
@@ -14,14 +16,29 @@ import { readFile } from "node:fs/promises";
 import { mkdirSync, existsSync, readFileSync, readdirSync } from "node:fs";
 import { dirname, join, extname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { PAGES, GRUPPEN, pageById } from "../data.js?v=1";
 
 const TESTS_DIR = dirname(fileURLToPath(import.meta.url));
 const APP_DIR = join(TESTS_DIR, "..");
 const ROOT_DIR = join(APP_DIR, "..");
 const SHOTS_DIR = join(TESTS_DIR, "screenshots");
 const PORT = 8547;
-const URL = `http://localhost:${PORT}/merkheft/index.html`;
+const BASE = `http://localhost:${PORT}/merkheft`;
+
+// Independent restatement of the wave-1 Merkheft contents: one HTML
+// page per concept, its group, title, practice links and codes.
+const BLAETTER = [
+  { id: "wasserkreislauf", gruppe: "Natur und Technik", title: "Der Wasserkreislauf",
+    ueben: [{ href: "../wetterwarte/", stufe: "1g" }], codes: ["NMG.4.4.1g"], interactive: false },
+  { id: "schaltungen", gruppe: "Natur und Technik", title: "Serie- und Parallelschaltung",
+    ueben: [{ href: "../stromkreis/", stufe: "b" }], codes: ["NT.5.2.b"], interactive: true },
+  { id: "mondphasen", gruppe: "Himmel und Weltall", title: "Die Mondphasen",
+    ueben: [{ href: "../sternwarte/", stufe: "d" }], codes: ["NMG.4.5.d"], interactive: false },
+  { id: "sonnensystem", gruppe: "Himmel und Weltall", title: "Das Sonnensystem",
+    ueben: [{ href: "../sternwarte/", stufe: "e" }], codes: ["NMG.4.5.e"], interactive: true },
+  { id: "gradnetz", gruppe: "Raum und Erde", title: "Das Gradnetz der Erde",
+    ueben: [{ href: "../weltatlas/", stufe: "c" }], codes: ["RZG.4.1.c"], interactive: true },
+];
+const GRUPPEN = ["Natur und Technik", "Himmel und Weltall", "Raum und Erde"];
 
 const CHROMIUM = process.env.CHROMIUM_PATH
   || (existsSync("/opt/pw-browsers/chromium") ? "/opt/pw-browsers/chromium" : undefined);
@@ -33,12 +50,13 @@ function check(name, condition, detail = "") {
   if (!ok) failures++;
 }
 
-/* ── Cache-busting consistency ────────────────────────────────────── */
+/* ── Static checks on the source files ────────────────────────────── */
 {
+  // Cache-busting: every local asset ref in every HTML page and JS
+  // module carries the same ?v=N.
   const sources = [
-    ["index.html", readFileSync(join(APP_DIR, "index.html"), "utf8")],
     ["styles.css", readFileSync(join(APP_DIR, "styles.css"), "utf8")],
-    ...readdirSync(APP_DIR).filter((f) => f.endsWith(".js"))
+    ...readdirSync(APP_DIR).filter((f) => f.endsWith(".html") || f.endsWith(".js"))
       .map((f) => [f, readFileSync(join(APP_DIR, f), "utf8")]),
   ];
   const versions = new Set();
@@ -49,33 +67,35 @@ function check(name, condition, detail = "") {
     ];
     for (const m of refs) {
       const whole = m[0];
-      if (whole.includes("http") || whole.includes('"#') || whole.includes("${") || whole.includes("../")) continue;
+      if (whole.includes("http") || whole.includes('"#') || whole.includes("${")
+        || whole.includes("../") || /href="[a-z]+\.html"/.test(whole)) continue;
       if (m[2]) versions.add(m[2]);
       else unversioned.push(`${file}: ${whole}`);
     }
   }
   check("cache-busting: every local asset ref carries ?v=", unversioned.length === 0, unversioned.join("; "));
   check("cache-busting: one single version everywhere", versions.size === 1, [...versions].join(","));
-}
 
-/* ── Data sanity ──────────────────────────────────────────────────── */
-{
-  const ids = new Set();
+  // One file per Merkblatt, practice targets exist, no ß anywhere.
   const issues = [];
-  for (const p of PAGES) {
-    if (ids.has(p.id)) issues.push(`duplicate ${p.id}`);
-    ids.add(p.id);
-    if (!p.intro.length) issues.push(`${p.id}: no intro`);
-    if (!p.ueben.length) issues.push(`${p.id}: no ueben links`);
-    if (!p.codes.length) issues.push(`${p.id}: no codes`);
-    for (const u of p.ueben) {
-      const target = join(ROOT_DIR, u.href.replace("../", ""), "index.html");
-      if (!existsSync(target)) issues.push(`${p.id}: ueben target missing ${u.href}`);
+  for (const b of BLAETTER) {
+    const file = join(APP_DIR, `${b.id}.html`);
+    if (!existsSync(file)) { issues.push(`${b.id}.html missing`); continue; }
+    const text = readFileSync(file, "utf8");
+    if (text.includes("ß")) issues.push(`${b.id}: ß found`);
+    for (const c of b.codes) if (!text.includes(c)) issues.push(`${b.id}: code ${c} missing`);
+    for (const u of b.ueben) {
+      if (!text.includes(`href="${u.href}"`)) issues.push(`${b.id}: ueben link ${u.href} missing`);
+      if (!existsSync(join(ROOT_DIR, u.href.replace("../", ""), "index.html")))
+        issues.push(`${b.id}: ueben target missing ${u.href}`);
     }
-    for (const t of [...p.intro, p.title]) if (t.includes("ß")) issues.push(`${p.id}: ß found`);
   }
-  check("data: five wave-1 Merkblätter with valid links", PAGES.length === 5 && issues.length === 0, issues.join("; "));
-  check("data: pageById resolves every id", PAGES.every((p) => pageById(p.id) === p));
+  check("pages: one file per Merkblatt, codes, valid Dazu-üben targets", issues.length === 0, issues.join("; "));
+
+  // Print styles exist so every Merkblatt is printable as A4.
+  const css = readFileSync(join(APP_DIR, "styles.css"), "utf8");
+  check("print: @media print with light background and hidden chrome",
+    /@media print/.test(css) && /\.illu-controls[^{}]*\{\s*display:\s*none/s.test(css.replace(/\n/g, " ")));
 }
 
 /* ── Static server ────────────────────────────────────────────────── */
@@ -105,28 +125,36 @@ page.on("pageerror", (err) => consoleErrors.push(String(err)));
 const externalRequests = [];
 page.on("request", (req) => { if (!req.url().startsWith(`http://localhost:${PORT}`)) externalRequests.push(req.url()); });
 
-/* ── Home ─────────────────────────────────────────────────────────── */
-await page.goto(URL);
+/* ── Index ────────────────────────────────────────────────────────── */
+await page.goto(`${BASE}/index.html`);
 await page.waitForSelector(".blatt-list");
-check("home: title renders", (await page.textContent("h1")).includes("Merkheft"));
-check("home: all pages listed in groups",
-  await page.locator(".blatt").count() === PAGES.length
+check("index: title renders", (await page.textContent("h1")).includes("Merkheft"));
+check("index: all pages listed in groups",
+  await page.locator(".blatt").count() === BLAETTER.length
   && await page.locator(".gruppe").count() === GRUPPEN.length);
+for (const b of BLAETTER) {
+  check(`index: links ${b.id}.html`,
+    await page.locator(`.blatt[href="${b.id}.html"]`).count() === 1);
+}
 await page.screenshot({ path: join(SHOTS_DIR, "01-home.png"), fullPage: true });
 
-/* ── Every Merkblatt via hash ─────────────────────────────────────── */
-for (const p of PAGES) {
-  await page.goto(`${URL}#${p.id}`);
+/* ── Every Merkblatt page ─────────────────────────────────────────── */
+for (const b of BLAETTER) {
+  await page.goto(`${BASE}/${b.id}.html`);
   await page.waitForSelector(".blatt-page");
-  check(`page ${p.id}: title and visual render`,
-    (await page.textContent("h1")).trim() === p.title
-    && (await page.locator(".illu-stage svg, .illu-stage .orbits").count()) >= 1);
-  check(`page ${p.id}: Dazu-üben links present`,
-    await page.locator(".ueben-link").count() === p.ueben.length);
+  check(`page ${b.id}: title, group and visual render`,
+    (await page.textContent("h1")).trim() === b.title
+    && (await page.textContent(".blatt-gruppe")).trim() === b.gruppe
+    && (await page.locator(".illu-stage svg, .illu-stage .orbits").count()) >= 1
+    && (await page.title()).includes("Merkheft"));
+  check(`page ${b.id}: Dazu-üben links present`,
+    await page.locator(".ueben-link").count() === b.ueben.length);
+  check(`page ${b.id}: back link to index`,
+    await page.locator('.back[href="index.html"]').count() === 1);
 }
 
 /* ── Interactivity: circuit ───────────────────────────────────────── */
-await page.goto(`${URL}#schaltungen`);
+await page.goto(`${BASE}/schaltungen.html`);
 await page.waitForSelector("#illu-circuit");
 const stat = async () => (await page.textContent("#illu-circuit-status")).trim();
 check("circuit: open at start", (await stat()).includes("offen"));
@@ -139,31 +167,42 @@ check("circuit: parallel survives broken lamp", (await stat()).includes("leuchte
 await page.screenshot({ path: join(SHOTS_DIR, "02-schaltungen.png"), fullPage: true });
 
 /* ── Interactivity: globe and orbits ──────────────────────────────── */
-await page.goto(`${URL}#gradnetz`);
-await page.waitForSelector("#illu-globe");
+await page.goto(`${BASE}/gradnetz.html`);
+await page.waitForSelector("#illu-globe ellipse");
 const rxBefore = await page.getAttribute("#illu-meridians ellipse", "rx");
 await page.fill("#illu-spin", "90");
 const rxAfter = await page.getAttribute("#illu-meridians ellipse", "rx");
 check("globe: slider rotates meridians", rxBefore !== rxAfter);
 await page.screenshot({ path: join(SHOTS_DIR, "03-gradnetz.png"), fullPage: true });
 
-await page.goto(`${URL}#sonnensystem`);
+await page.goto(`${BASE}/sonnensystem.html`);
 await page.waitForSelector("#illu-orbits");
 check("orbits: paused by default", !(await page.locator("#illu-orbits.running").count()));
 await page.click("#illu-orbit-play");
 check("orbits: running after click", (await page.locator("#illu-orbits.running").count()) === 1);
 
-/* ── Back navigation and unknown hash ─────────────────────────────── */
+/* ── Back navigation ──────────────────────────────────────────────── */
 await page.click(".back");
 await page.waitForSelector(".blatt-list");
-check("nav: back returns to the list", (await page.locator(".blatt").count()) === PAGES.length);
-await page.goto(`${URL}#gibtsnicht`);
-await page.waitForSelector(".blatt-list");
-check("nav: unknown hash falls back to home", (await page.locator(".blatt").count()) === PAGES.length);
+check("nav: back returns to the list", (await page.locator(".blatt").count()) === BLAETTER.length);
+
+/* ── Print rendering ──────────────────────────────────────────────── */
+await page.goto(`${BASE}/wasserkreislauf.html`);
+await page.waitForSelector(".blatt-page");
+await page.emulateMedia({ media: "print" });
+const printState = await page.evaluate(() => ({
+  bodyBg: getComputedStyle(document.body).backgroundColor,
+  navHidden: getComputedStyle(document.querySelector(".page-nav")).display === "none",
+}));
+check("print: white background, chrome hidden",
+  printState.bodyBg === "rgb(255, 255, 255)" && printState.navHidden,
+  JSON.stringify(printState));
+await page.screenshot({ path: join(SHOTS_DIR, "04-print-wasserkreislauf.png"), fullPage: true });
+await page.emulateMedia({ media: "screen" });
 
 /* ── Layout, console, network ─────────────────────────────────────── */
 await page.setViewportSize({ width: 320, height: 700 });
-await page.goto(`${URL}#gradnetz`);
+await page.goto(`${BASE}/gradnetz.html`);
 await page.waitForSelector(".blatt-page");
 const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
 check("layout: no horizontal scrolling at 320px", overflow <= 0, `overflow ${overflow}px`);

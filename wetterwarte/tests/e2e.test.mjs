@@ -276,7 +276,7 @@ check("home: all Stufen with GA badges",
   await page.locator(".stufe").count() === 12 && await page.locator(".ga-badge").count() === 4);
 check("home: competency code visible", (await page.textContent('[data-stufe="1b"]')).includes("NMG.4.4.1b"));
 check("home: Merkblatt link on Stufe 1g",
-  await page.locator('.merkblatt-link[href="../merkheft/#wasserkreislauf"]').count() === 1);
+  await page.locator('.merkblatt-link[href="../merkheft/wasserkreislauf.html"]').count() === 1);
 await page.screenshot({ path: join(SHOTS_DIR, "01-home.png"), fullPage: true });
 
 await playRound("1b");

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Das Gradnetz der Erde · Merkheft</title>
+  <meta name="description" content="Merkblatt: Äquator, Breitengrade und Längengrade, mit drehbarem Globus.">
+  <link rel="icon" href="favicon.svg?v=1" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=1">
+</head>
+<body>
+<main id="app">
+  <nav class="page-nav">
+    <a class="back" href="index.html">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+      Alle Merkblätter
+    </a>
+  </nav>
+  <article class="blatt-page">
+    <header>
+      <p class="blatt-gruppe">Raum und Erde</p>
+      <h1>Das Gradnetz der Erde</h1>
+    </header>
+    <p class="intro">Damit man jeden Ort der Erde genau angeben kann, legt man
+    ein Netz aus gedachten Linien über den Globus.</p>
+    <ul class="steps">
+      <li>Die <strong>Breitengrade</strong> verlaufen parallel zum Äquator. Der
+      Äquator selbst teilt die Erde in Nord- und Südhalbkugel.</li>
+      <li>Die <strong>Längengrade</strong>, auch Meridiane genannt, verlaufen von
+      Pol zu Pol. Der Nullmeridian läuft durch Greenwich bei London.</li>
+      <li>Mit Breite und Länge zusammen lässt sich jeder Ort eindeutig angeben.</li>
+    </ul>
+    <p class="intro">Drehe den Globus:</p>
+    <div class="illu-stage">
+      <svg id="illu-globe" viewBox="-130 -130 260 260" class="illu illu-square" role="img"
+           aria-label="Drehbarer Globus mit Gradnetz: Äquator, Breitenkreise und Meridiane">
+        <circle r="110" fill="#13202E" stroke="#3A4B5F" stroke-width="2"/>
+        <g id="illu-meridians"></g>
+        <g stroke="#3A4B5F" stroke-width="1.5">
+          <line x1="-95.3" y1="-55" x2="95.3" y2="-55"/>
+          <line x1="-95.3" y1="55" x2="95.3" y2="55"/>
+          <line x1="-55" y1="-95.3" x2="55" y2="-95.3"/>
+          <line x1="-55" y1="95.3" x2="55" y2="95.3"/>
+        </g>
+        <line x1="-110" y1="0" x2="110" y2="0" stroke="#D8C47A" stroke-width="2.5"/>
+        <circle cx="0" cy="-110" r="3.5" fill="#C5D0DD"/>
+        <circle cx="0" cy="110" r="3.5" fill="#C5D0DD"/>
+        <text x="0" y="-118" text-anchor="middle">Nordpol</text>
+        <text x="0" y="126" text-anchor="middle">Südpol</text>
+        <text x="0" y="16" text-anchor="middle" fill="#D8C47A">Äquator</text>
+      </svg>
+      <div class="illu-controls">
+        <label for="illu-spin">Drehen</label>
+        <input type="range" id="illu-spin" min="0" max="360" value="20" step="1"
+               aria-label="Globus drehen in Grad">
+        <button id="illu-globe-play" aria-pressed="false">Abspielen</button>
+      </div>
+    </div>
+    <h2 class="section-label">Kurz gemerkt</h2>
+    <dl class="fakten">
+      <div><dt>Äquator</dt><dd>teilt die Erde in Nord- und Südhalbkugel</dd></div>
+      <div><dt>Breitengrade</dt><dd>verlaufen parallel zum Äquator</dd></div>
+      <div><dt>Längengrade</dt><dd>verlaufen von Pol zu Pol</dd></div>
+    </dl>
+    <h2 class="section-label">Dazu üben</h2>
+    <ul class="ueben-list">
+      <li><a class="ueben-link" href="../weltatlas/">Weltatlas<span class="ueben-meta">Stufe c</span></a></li>
+    </ul>
+    <p class="code-line">Lehrplan 21: RZG.4.1.c</p>
+  </article>
+</main>
+<script type="module">
+  import { init } from './illustrations.js?v=1';
+  init('gradnetz', document);
+</script>
+</body>
+</html>

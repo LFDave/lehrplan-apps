@@ -98,6 +98,11 @@ body {
 .blatt-gruppe { color: var(--color-accent); font-size: 0.9rem; font-weight: 700; }
 .blatt-page h1 { font-size: 1.4rem; }
 .intro { color: var(--color-text-secondary); max-width: 65ch; }
+.steps {
+  color: var(--color-text-secondary); max-width: 60ch;
+  padding-left: var(--space-6); display: grid; gap: var(--space-1);
+}
+.steps li::marker { color: var(--color-accent); font-weight: 700; }
 
 .illu-stage {
   background: var(--color-background-surface-soft);
@@ -171,4 +176,24 @@ svg text { font-family: var(--font-body); font-size: 0.85rem; fill: var(--color-
   .blatt-page { padding: var(--space-6); }
   .fakten { grid-template-columns: repeat(3, 1fr); }
   .fakten div { grid-template-rows: auto 1fr; }
+}
+
+/* Drucken: jedes Merkblatt ist ein A4-Blatt. Helle Fläche, dunkle
+   Schrift, keine Navigation und keine Bedienelemente. */
+@media print {
+  body { background: #fff; color: #1A2230; padding: 0; }
+  .page-nav, .illu-controls, .app-footer { display: none; }
+  .blatt-page {
+    background: #fff; border: none; padding: 0;
+  }
+  .blatt-gruppe { color: #8A7A3E; }
+  .intro, .steps, .fakten dd { color: #33404F; }
+  .section-label { color: #5C6B7C; }
+  .fakten div { background: #F4F1E4; }
+  .fakten dt { color: #8A7A3E; }
+  .illu-stage { background: #F7F8FA; border-color: #D4DAE1; }
+  svg text { fill: #5C6B7C; }
+  .ueben-link { color: #8A7A3E; }
+  .ueben-meta, .code-line, .illu-status { color: #5C6B7C; }
+  .blatt-page, .illu-stage { break-inside: avoid; }
 }

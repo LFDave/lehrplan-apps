@@ -227,7 +227,7 @@ check("home: all Stufen with GA badges",
   await page.locator(".stufe").count() === 5 && await page.locator(".ga-badge").count() === 1);
 check("home: competency code visible", (await page.textContent('[data-stufe="c"]')).includes("NT.5.2.c"));
 check("home: Merkblatt link on Stufe b",
-  await page.locator('.merkblatt-link[href="../merkheft/#schaltungen"]').count() === 1);
+  await page.locator('.merkblatt-link[href="../merkheft/schaltungen.html"]').count() === 1);
 await page.screenshot({ path: join(SHOTS_DIR, "01-home.png"), fullPage: true });
 
 await playRound("c");

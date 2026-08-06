@@ -1,6 +1,6 @@
 # PRD — Merkheft
 
-Version: 1.0. Dieses Dokument ist die massgebende Spezifikation der App.
+Version: 2.0. Dieses Dokument ist die massgebende Spezifikation der App.
 Verhalten und PRD werden immer in derselben Änderung angepasst.
 
 ## Zweck und Leitprinzip
@@ -15,6 +15,28 @@ offiziellen Lehrplan-21-Codes, die das Konzept stützt.
 
 Kein Quiz, keine Gamification, kein localStorage: reines Lesen.
 
+## Architektur: eine HTML-Seite pro Merkblatt
+
+Jedes Merkblatt ist eine eigene statische Seite
+(`wasserkreislauf.html`, `mondphasen.html`, …), `index.html` ist die
+gruppierte Liste. Kein Router, kein data.js: der Inhalt eines
+Merkblatts steht vollständig in seiner Datei und kann dort wachsen,
+ohne andere Merkblätter zu berühren. Ein Merkblatt darf sich von
+wenigen Sätzen zu mehreren Absätzen, Aufzählungen, Formeln und einer
+Infografik entwickeln.
+
+- **Formeln:** einfaches HTML (`<sub>`, `<sup>`, ×, ÷, gestylte
+  Spans). Keine Mathematik-Bibliotheken (kein KaTeX, kein MathJax);
+  Schulstoff braucht sie nicht.
+- **Statische Bilder** stehen als Inline-SVG direkt in der Seite.
+  Interaktive Modelle (Stromkreis, Globus, Orbits) haben ihr Markup
+  in der Seite und laden `illustrations.js`, das über
+  `init('<id>', document)` nur die Interaktivität verdrahtet.
+- **Drucken:** jedes Merkblatt ist über `@media print` in styles.css
+  direkt als helles A4-Blatt druckbar (Navigation und
+  Bedienelemente ausgeblendet). Der Browser-Druckdialog ist der
+  Export nach PDF; es gibt keinen eigenen Export-Knopf.
+
 ## Inhalte (Welle 1)
 
 - Wasserkreislauf (NMG.4.4.1g, Wetterwarte)
@@ -23,20 +45,41 @@ Kein Quiz, keine Gamification, kein localStorage: reines Lesen.
 - Gradnetz mit drehbarem Globus (RZG.4.1.c, Weltatlas)
 - Sonnensystem mit Orbit-Modell (NMG.4.5.e, Sternwarte)
 
-Alle Texte und Bilder sind eigene Erklärungen, keine übernommenen
-Texte. Bewegung ist transform/opacity, startet erst auf Klick und
+Bewegung ist transform/opacity, startet erst auf Klick und
 respektiert reduzierte Bewegung.
+
+## Woher die Wahrheit kommt (Quellenregel)
+
+Fakten sind urheberrechtsfrei; geschützt ist nur die konkrete
+sprachliche Form. Daraus folgt die Regel für jedes Merkblatt:
+
+1. **Eigene Formulierung, immer.** Kein Satz wird aus einer Quelle
+   übernommen, auch nicht umgestellt. Wikipedia-Text steht unter
+   CC BY-SA 4.0 (Namensnennung und Share-Alike wären Pflicht und
+   würden auf das Repo abfärben); darum dient Wikipedia nur zum
+   Gegenprüfen von Fakten, nie als Textquelle.
+2. **Nur kanonisches Schulwissen.** Ein Merkblatt enthält nur
+   Aussagen, die in jedem Schulbuch gleich stehen (der Mond umkreist
+   die Erde in rund 29,5 Tagen von Neumond zu Neumond; U = R × I).
+   Solches Wissen ist Allgemeingut ohne Schöpfungshöhe.
+3. **Zwei unabhängige Prüfungen.** Jede Zahl und jede Aussage wird
+   gegen mindestens zwei unabhängige Referenzen geprüft. Was
+   unsicher bleibt, kommt nicht ins Merkblatt. Das ist dieselbe
+   Messlatte wie bei den Übungs-Apps, deren Test-Orakel die Fakten
+   unabhängig noch einmal feststellen.
+4. **Kein Lehrplan-Text.** Die Codes werden genannt, der amtliche
+   Wortlaut nie übernommen.
 
 ## Navigation und Verbindungen
 
-- `location.hash` als Router: ohne Hash die Liste (gruppiert nach
-  Themen), mit Hash das Merkblatt (`#wasserkreislauf`). Unbekannte
-  Hashes fallen auf die Liste zurück. Browser-Zurück funktioniert.
+- `index.html` listet alle Merkblätter gruppiert nach Themen; jede
+  Merkblatt-Seite hat einen Zurück-Link zur Liste.
 - **Apps → Merkheft:** Stufen mit Merkblatt tragen in ihrer
   `data.js` ein `merkblatt: { id, name }`. Die App zeigt auf der
   Stufenkarte einen ruhigen Link «Merkblatt: …» und nach einer Runde
-  mit Fehlern auf dem Abschlussbildschirm «Zum Nachlesen: …». Beide
-  Links sind optional und nie eine Bedingung.
+  mit Fehlern auf dem Abschlussbildschirm «Zum Nachlesen: …», beide
+  auf `../merkheft/<id>.html`. Beide Links sind optional und nie
+  eine Bedingung.
 - **Merkheft → Apps:** «Dazu üben» verlinkt die App-Startseite und
   nennt die Stufe.
 
@@ -54,11 +97,13 @@ deutschem `aria-label`, Cache-Busting `?v=1`.
 
 ## Tests
 
-Playwright-Suite in `tests/e2e.test.mjs`: Cache-Busting-Konsistenz,
-Datenprüfung (fünf Merkblätter, gültige App-Links, kein ß), Liste,
-jedes Merkblatt per Deep-Link mit Bild und «Dazu üben», die
-Interaktivität (alle Stromkreis-Zustände, Globus-Drehung,
-Orbit-Start nur auf Klick), Zurück-Navigation, unbekannter Hash,
-Layout bei 320px, Konsole ohne Fehler, keine externen Requests. Die
-Suiten der vier verlinkenden Apps prüfen die Merkblatt-Links auf den
-Stufenkarten.
+Playwright-Suite in `tests/e2e.test.mjs` mit unabhängig
+festgehaltenen Erwartungen (Liste der Merkblätter, Gruppen, Links,
+Codes): Cache-Busting-Konsistenz, eine Datei pro Merkblatt mit
+gültigen App-Zielen und ohne ß, die Liste mit allen Links, jede
+Seite mit Titel, Gruppe, Bild und «Dazu üben», die Interaktivität
+(alle Stromkreis-Zustände, Globus-Drehung, Orbit-Start nur auf
+Klick), Zurück-Navigation, Druckdarstellung (heller Hintergrund,
+ausgeblendete Bedienelemente), Layout bei 320px, Konsole ohne
+Fehler, keine externen Requests. Die Suiten der vier verlinkenden
+Apps prüfen die Merkblatt-Links auf den Stufenkarten.

@@ -217,17 +217,27 @@ Infrastructure, quality, and process — independent of new apps.
    reduced motion across all apps once per batch, not only per new app.
 9.–11. **Merkheft: the family's explanation layer — SHIPPED with
     wave 1, waves remain.** The Merkheft app (merkheft/, amber) is
-    the wiki-style reference surface: one Merkblatt per concept with
-    own-authored text, an illustration or interactive visual in the
-    DESIGN.md `illustration` style, mini facts, "Dazu üben" links
-    and the supported competency codes; hash-navigable so apps can
-    deep-link. Wave 1 is live: Wasserkreislauf, Mondphasen,
-    Schaltungen (interactive circuit), Gradnetz (rotatable globe),
-    Sonnensystem (orbits). The four affected apps (Wetterwarte,
-    Sternwarte, Stromkreis, Weltatlas) link to their Merkblätter
-    from the Stufe card and, after rounds with mistakes, from the
-    done screen. The visuals spike folder is deleted; its decisions
-    live in PRODUCT.md.
+    the wiki-style reference surface: **one Merkblatt = one static
+    HTML page** (`merkheft/<id>.html`; index.html is the grouped
+    list — no router, no data.js), so each concept can grow
+    independently from a few sentences to paragraphs, lists,
+    formulas (plain HTML `sub`/`sup`, no math libraries) and an
+    infographic, and edits touch exactly one file. Own-authored
+    text under the sourcing rule in merkheft/PRD.md («Woher die
+    Wahrheit kommt»: facts are free, wording is not; Wikipedia is
+    CC BY-SA and used for fact cross-checks only; canonical
+    textbook knowledge, two independent references per fact), an
+    illustration or interactive visual in the DESIGN.md
+    `illustration` style, mini facts, "Dazu üben" links and the
+    supported competency codes. Every page prints as a light A4
+    sheet via `@media print` (browser print dialog = PDF export).
+    Wave 1 is live: Wasserkreislauf, Mondphasen, Schaltungen
+    (interactive circuit), Gradnetz (rotatable globe), Sonnensystem
+    (orbits). The four affected apps (Wetterwarte, Sternwarte,
+    Stromkreis, Weltatlas) link `../merkheft/<id>.html` from the
+    Stufe card and, after rounds with mistakes, from the done
+    screen. The visuals spike folder is deleted; its decisions live
+    in PRODUCT.md.
 
     Remaining:
     - **Wave 2 Merkblätter:** Blutkreislauf und Skelett
@@ -241,6 +251,27 @@ Infrastructure, quality, and process — independent of new apps.
       competencies with a Merkblatt.
     - **Deep-link to a Stufe** from "Dazu üben" (today it links to
       the app home).
+12. **Merkblatt infographics: one printable A4 overview per
+    concept.** Each Merkblatt grows a single dense overview graphic
+    that explains the whole concept on one sheet (example brief: a
+    unit-conversion flow poster with ml→l→hl steps, prefix ladder,
+    and worked examples). Two candidate production paths:
+    - *Token-styled SVG* (recommended first): hand-built inline SVG
+      in the DESIGN.md illustration style, printed via the existing
+      `@media print` path. On-brand, crisp at any size, editable in
+      place, versionable in git, no new tooling, no style break with
+      the rest of the family.
+    - *AI-generated raster* (like the provided Masseinheiten
+      example): richer, poster-like look, but breaks the family
+      style, needs German-label proofreading (AI images misspell),
+      and must be committed as a self-hosted PNG (no external
+      requests) — acceptable as an extra download, not as the
+      in-page visual.
+    Either way the infographic lives in the Merkblatt page and
+    prints with it; the raster path additionally needs an
+    `<img>`-with-alt block and a file-size budget. Start with one
+    pilot (Masseinheiten/Grössen for Masswerk plus a matching
+    Merkblatt) before scaling.
 
 ## Definition of 100%
 
@@ -250,6 +281,7 @@ Infrastructure, quality, and process — independent of new apps.
   Kompass-only.
 - Every **Not app-testable** competency stays covered by the Kompass
   with its exclusion reason recorded here.
-- Platform items 1–5 and 9–11 done (9–11 count as done once the
-  Merkheft app exists with wave 1 and the app-side links); 6–8 are
-  standing practice.
+- Platform items 1–5 and 9–12 done (9–11 count as done once the
+  Merkheft app exists with wave 1 and the app-side links; 12 once
+  every Merkblatt has its A4 infographic); 6–8 are standing
+  practice.

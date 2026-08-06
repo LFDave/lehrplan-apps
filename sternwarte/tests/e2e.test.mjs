@@ -228,9 +228,9 @@ check("home: all Stufen with GA badges",
   await page.locator(".stufe").count() === 6 && await page.locator(".ga-badge").count() === 2);
 check("home: competency code visible", (await page.textContent('[data-stufe="b"]')).includes("NMG.4.5.b"));
 check("home: Merkblatt link on Stufe d",
-  await page.locator('.merkblatt-link[href="../merkheft/#mondphasen"]').count() === 1);
+  await page.locator('.merkblatt-link[href="../merkheft/mondphasen.html"]').count() === 1);
 check("home: Merkblatt link on Stufe e",
-  await page.locator('.merkblatt-link[href="../merkheft/#sonnensystem"]').count() === 1);
+  await page.locator('.merkblatt-link[href="../merkheft/sonnensystem.html"]').count() === 1);
 await page.screenshot({ path: join(SHOTS_DIR, "01-home.png"), fullPage: true });
 
 await playRound("b");
