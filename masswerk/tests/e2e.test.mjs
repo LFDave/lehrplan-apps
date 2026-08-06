@@ -30,6 +30,7 @@ const CHROMIUM = process.env.CHROMIUM_PATH
   || (existsSync("/opt/pw-browsers/chromium") ? "/opt/pw-browsers/chromium" : undefined);
 
 let failures = 0;
+let timeTasksSeen = 0, timeDecimalSeen = 0;
 function check(name, condition, detail = "") {
   const ok = Boolean(condition);
   console.log(`${ok ? "PASS" : "FAIL"}  ${name}${ok || !detail ? "" : ` — ${detail}`}`);
@@ -241,7 +242,13 @@ async function solveTask() {
     const expr = (await page.textContent(".sequence .term")).trim();
     if (await page.locator(".typed-input").count()) {
       const answer = solveExpr(expr);
-      await page.fill(".typed-input", String(answer));
+      // Uhrzeit-Antworten absichtlich mit Punkt tippen: die App muss
+      // den Punkt als Doppelpunkt akzeptieren (mobile Tastaturen).
+      if (String(answer).includes(":")) {
+        timeTasksSeen++;
+        if (await page.getAttribute(".typed-input", "inputmode") === "decimal") timeDecimalSeen++;
+      }
+      await page.fill(".typed-input", String(answer).replace(":", "."));
       // Enter nur, wenn die Längen-Auto-Prüfung noch nicht ausgelöst hat
       // (sonst ist das Feld schon deaktiviert und der Tastendruck hängt).
       try {
@@ -369,6 +376,21 @@ await page.waitForSelector(".stufen-list");
 check("layout: no horizontal scrolling at 320px",
   await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth));
 
+/* ── Deep link with topic focus (Merkheft «Dazu üben») ────────────── */
+await page.goto(`${URL}?stufe=b&thema=halfHour`);
+await page.waitForSelector(".task-area");
+check("deep link: ?stufe=b&thema=halfHour starts Stufe b directly",
+  (await page.textContent(".practice-meta")).includes("Stufe b"));
+for (let i = 0; i < 8; i++) {
+  await page.waitForSelector(".task-area");
+  await solveTask();
+}
+await page.waitForSelector(".done");
+check("deep link: topic focus serves only halbe-Stunden tasks (8 of 8)",
+  timeTasksSeen >= 8, `time tasks seen ${timeTasksSeen}`);
+check("time input: dot accepted as colon on decimal keypad",
+  timeTasksSeen > 0 && timeDecimalSeen === timeTasksSeen,
+  `seen ${timeTasksSeen}, decimal ${timeDecimalSeen}`);
 check("console: no errors", consoleErrors.length === 0, consoleErrors.slice(0, 3).join(" | "));
 check("network: no external requests", externalRequests.length === 0, externalRequests.slice(0, 3).join(", "));
 

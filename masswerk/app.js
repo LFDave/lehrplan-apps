@@ -2,11 +2,11 @@
 // Abschluss, Medaillen. Eine Runde hat 8 Aufgaben; ausgewertet wird
 // immer die ganze Antwort, nie einzelne Zeichen.
 
-import { STUFEN, COMPETENCY, stufeById, nextStufe, cycleLabel } from './data.js?v=3';
-import { genRound } from './gen.js?v=3';
-import { roundXp, levelFor, nextLevel, earnedMedals, suggestsNextStufe, MEDALS } from './game.js?v=3';
-import { t } from './strings.js?v=3';
-import { icon } from './icons.js?v=3';
+import { STUFEN, COMPETENCY, stufeById, nextStufe, cycleLabel } from './data.js?v=4';
+import { genRound } from './gen.js?v=4';
+import { roundXp, levelFor, nextLevel, earnedMedals, suggestsNextStufe, MEDALS } from './game.js?v=4';
+import { t } from './strings.js?v=4';
+import { icon } from './icons.js?v=4';
 
 const STORE = 'masswerk.progress';
 const ROUND_LENGTH = 8;
@@ -136,11 +136,15 @@ function renderHome() {
 
 /* ── Übung ────────────────────────────────────────────────────── */
 
-function startRound(stufeId) {
+function startRound(stufeId, onlyKinds = []) {
   const stufe = stufeById(stufeId);
+  // Themen-Fokus aus dem Merkheft: die Runde auf die Aufgabenarten
+  // des verlinkten Themas begrenzen (?thema=...). Unbekannte oder
+  // leere Filter fallen auf die ganze Stufe zurück.
+  const kinds = stufe.kinds.filter((k) => onlyKinds.includes(k));
   state.round = {
     stufeId,
-    tasks: genRound(Math.random, stufe, ROUND_LENGTH),
+    tasks: genRound(Math.random, kinds.length ? { ...stufe, kinds } : stufe, ROUND_LENGTH),
     index: 0,
     mistakes: 0,
     taskDone: false,
@@ -166,9 +170,9 @@ function renderTask() {
       <p class="task-question">${isTyped ? t('task.typed') : t('task.mc')}</p>
       <p class="sequence"><span class="term">${task.expr}${showsEquals ? ' = ?' : ''}</span></p>
       ${isTyped ? `
-        <input class="typed-input" type="text" inputmode="${/[./-]/.test(task.answer) ? 'text' : 'numeric'}"
+        <input class="typed-input" type="text" inputmode="${task.answer.includes(':') ? 'decimal' : /[./-]/.test(task.answer) ? 'text' : 'numeric'}"
                autocomplete="off" aria-label="Antwort" maxlength="${task.answer.length + 2}">
-        <p class="advisory">${t('task.autocheck')}</p>
+        <p class="advisory">${t('task.autocheck')}${task.answer.includes(':') ? ' ' + t('task.timehint') : ''}</p>
       ` : `
         <div class="choices">
           ${task.options.map((x, i) => `<button class="choice" data-option="${i}">${x}</button>`).join('')}
@@ -211,7 +215,10 @@ function normalize(s) {
 function evaluateTyped(input, value, task) {
   if (state.round.taskDone) return;
   // Zahlwerte zählen auch ohne Endnullen als richtig (39.9 = 39.90);
-  // Uhrzeiten mit ':' werden immer als Text verglichen.
+  // Uhrzeiten mit ':' werden immer als Text verglichen. Mobile
+  // Zahlentastaturen haben keinen Doppelpunkt: Punkt und Komma
+  // gelten bei Uhrzeit-Antworten als Doppelpunkt (10.30 = 10:30).
+  if (task.answer.includes(':')) value = value.replace(/[.,]/g, ':');
   const a = normalize(value).replace(/'/g, '');
   const b = normalize(task.answer).replace(/'/g, '');
   const numericSame = !task.answer.includes(':')
@@ -373,3 +380,11 @@ function route() {
 window.addEventListener('hashchange', route);
 document.documentElement.lang = 'de-CH';
 route();
+
+// Deep-Link aus dem Merkheft: ?stufe=<id> startet die Stufe direkt,
+// optional auf ein Thema begrenzt (?thema=art1,art2).
+const deepParams = new URLSearchParams(location.search);
+const deepStufe = deepParams.get('stufe');
+if (deepStufe && STUFEN.some((s) => s.id === deepStufe)) {
+  startRound(deepStufe, (deepParams.get('thema') || '').split(',').filter(Boolean));
+}

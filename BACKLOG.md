@@ -251,8 +251,9 @@ Infrastructure, quality, and process — independent of new apps.
       app-side links and suite checks.
     - **Kompass → Merkheft links** next to "Üben mit …" for
       competencies with a Merkblatt.
-    - **Deep-link to a Stufe** from "Dazu üben" (today it links to
-      the app home).
+    - ~~Deep-link to a Stufe from "Dazu üben"~~ — shipped:
+      `?stufe=<id>` starts the Stufe directly, `&thema=<kinds>`
+      restricts the round to the Merkblatt's topic.
 12. **Merkblatt infographics: one printable A4 overview per
     concept — PILOT SHIPPED, scaling remains.** Each Merkblatt can
     grow a single dense overview graphic that explains the whole
@@ -281,10 +282,35 @@ Infrastructure, quality, and process — independent of new apps.
     recognizable (chips with icon, underline, border): the
     "Merkblatt: …" links in the six apps and the "Dazu üben" links
     in the Merkheft. User verdict: well visible but "not so
-    beautiful". A design pass over both chip styles — weight,
-    spacing, icon size, underline treatment, hover — keeping the
-    affordance and the DESIGN.md tokens, applied consistently in
-    all seven surfaces in one change.
+    beautiful". DESIGN.md currently has **no link styles at all** —
+    the polish pass starts by defining a token-only `link` group
+    there (inline link, link chip, icon size, underline treatment,
+    hover), then applies it consistently in all seven surfaces in
+    one change. Also reconsider the icon per link type: book-open
+    for "read the Merkblatt" reads well, the pencil for "practise
+    in the app" is questioned — candidates: Lucide `dumbbell`,
+    `play`, `target`, or the app's own title icon.
+14. **Mixed-concept Stufen (analysis 2026-08-06).** The official
+    Kompetenzstufen sometimes bundle concept families a child
+    experiences as unrelated, and our levels-are-Stufen principle
+    imports that bundling into single rounds. Strictly mixed today
+    (unrelated families in one round): Masswerk b (Franken +
+    halbe Stunden), c (Längen + halfMoney), d (Franken/Rappen +
+    Zeitdauern); Grössenwissen b (Münzen + Vergleiche), h
+    (Diagramme + Flächenmasse + Mittelwert), k (Häufigkeit +
+    Geschwindigkeit), l (Zins/Rabatt + kleine Vorsätze);
+    Buchstabenleiter c (Vokale + ABC-Gruppen); Schreibprobe c
+    (ie/ä-Schreibung + Kommas); Figurenmass j (Pyramide + Winkel +
+    Thales). That is 10 of ~150 shipped Stufen (~7%), 7 of them in
+    the two Grössen apps, because the MA.3.A Stufen sweep across
+    Grössenarten by design. Borderline but coherent under one
+    meta-concept: Masswerk g, Grössenwissen c, Zeitreise b,
+    Zahlenwissen g, Wertepfad i. Mitigation shipped: Merkheft
+    "Dazu üben" deep links use `&thema=` so linked rounds are
+    topic-pure. Proposed next step: quiet topic chips on mixed
+    Stufe cards (alle / Geld / Zeit …) using the same kinds
+    filter, with GA medals still requiring full-Stufe clean rounds
+    so the Grundanspruch stays honest. Decide before building.
 
 ## Definition of 100%
 

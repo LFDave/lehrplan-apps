@@ -101,9 +101,13 @@ sprachliche Form. Daraus folgt die Regel für jedes Merkblatt:
   Fehlern auf dem Abschlussbildschirm «Zum Nachlesen: …», beide auf
   `../merkheft/<id>.html`. Beide Links sind optional und nie eine
   Bedingung.
-- **Merkheft → Apps:** «Dazu üben» verlinkt die App-Startseite und
-  nennt die Stufe, als klar erkennbarer Link-Chip mit Stift-Symbol
-  und unterstrichenem App-Namen.
+- **Merkheft → Apps:** «Dazu üben» springt per Deep-Link direkt in
+  die Stufe (`?stufe=<id>`), bei gemischten Stufen zusätzlich auf
+  das Thema des Merkblatts begrenzt (`&thema=<arten>`), damit die
+  verlinkte Runde nur zum erklärten Konzept passt (Beispiel Uhr:
+  zwei Links auf Masswerk b «halbe Stunden» und d «Zeitdauern»).
+  Dargestellt als klar erkennbarer Link-Chip mit Stift-Symbol und
+  unterstrichenem App-Namen; die Meta-Zeile nennt Stufe und Thema.
 
 ## Persistenz und Privatsphäre
 
