@@ -53,6 +53,7 @@ export const STUFEN = [
     title: 'Wetter verstehen',
     desc: 'Verstehe Wasserkreislauf, Gewitter und Wetterlagen.',
     kinds: ['zusammenhang'],
+    merkblatt: { id: 'wasserkreislauf', name: 'Wasserkreislauf' },
   },
   {
     id: '2a', cycle: 1, ga: false,

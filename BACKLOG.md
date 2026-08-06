@@ -215,35 +215,62 @@ Infrastructure, quality, and process — independent of new apps.
    each with its oracle counterpart in the same change.
 8. **A11y sweep per release.** Keyboard walk, focus states, contrast,
    reduced motion across all apps once per batch, not only per new app.
-9. **Interactive 3D and rich visual elements (ideation).** Explore
-   where a manipulable model would teach better than text: a rotating
-   Earth globe for Weltatlas and Sternwarte (day/night, Gradnetz),
-   3D animal models for Artenreich, an orbit view of the solar
-   system, a buildable circuit for Stromkreis. Tension to resolve
-   first: the family rules say no frameworks, no CDNs, offline after
-   first load — a vendored, self-hosted three.js build would be a
-   deliberate exception that needs a PRODUCT.md decision; the lighter
-   path is hand-written SVG/CSS animation, which stays inside current
-   rules. Outcome of this item is a decision plus one prototype, not
-   a rollout.
-10. **Illustrations for complex concepts.** Self-hosted inline SVG
-    graphics where words fall short: water cycle and lightning
-    distance (Wetterwarte), blood circulation and skeleton
-    (Körperatlas), moon phases (Sternwarte), series vs. parallel
-    circuit diagrams (Stromkreis), Höhenkurven (Nordpfeil), Gradnetz
-    (Weltatlas). Fits current rules (inline SVG, offline, no external
-    requests); needs a small illustration style addition in DESIGN.md
-    (stroke width, allowed fills per accent) so drawings read as one
-    family.
-11. **Wiki / Nachschlagewerk.** A calm reference app with short,
-    child-friendly lookup pages for the concepts the practice apps
-    use: Mondphasen, Wasserkreislauf, Gradnetz, ABC- und
-    Konjugationstabellen, Massstab, Gewaltenteilung, Ohmsches Gesetz,
-    Speichereinheiten. One page per concept, German first, DESIGN.md
-    tokens, localStorage-free (pure reading), cross-linked from the
-    apps ("Nachschlagen") and from the Kompass. All content
-    own-authored — no copied encyclopedia or Lehrplan text; each page
-    names the competencies it supports.
+9.–11. **Merkheft: the family's explanation layer — SHIPPED with
+    wave 1, waves remain.** The Merkheft app (merkheft/, amber) is
+    the wiki-style reference surface: **one Merkblatt = one static
+    HTML page** (`merkheft/<id>.html`; index.html is the grouped
+    list — no router, no data.js), so each concept can grow
+    independently from a few sentences to paragraphs, lists,
+    formulas (plain HTML `sub`/`sup`, no math libraries) and an
+    infographic, and edits touch exactly one file. Own-authored
+    text under the sourcing rule in merkheft/PRD.md («Woher die
+    Wahrheit kommt»: facts are free, wording is not; Wikipedia is
+    CC BY-SA and used for fact cross-checks only; canonical
+    textbook knowledge, two independent references per fact), an
+    illustration or interactive visual in the DESIGN.md
+    `illustration` style, mini facts, "Dazu üben" links and the
+    supported competency codes. Every page prints as a light A4
+    sheet via `@media print` (browser print dialog = PDF export).
+    Wave 1 is live: Wasserkreislauf, Mondphasen, Schaltungen
+    (interactive circuit), Gradnetz (rotatable globe), Sonnensystem
+    (orbits). The four affected apps (Wetterwarte, Sternwarte,
+    Stromkreis, Weltatlas) link `../merkheft/<id>.html` from the
+    Stufe card and, after rounds with mistakes, from the done
+    screen. The visuals spike folder is deleted; its decisions live
+    in PRODUCT.md.
+
+    Remaining:
+    - **Wave 2 Merkblätter:** Blutkreislauf und Skelett
+      (Körperatlas), Höhenkurven und Himmelsrichtungen (Nordpfeil),
+      Ohmsches Gesetz (Stromkreis c), Konjugationstabellen
+      (Motbau/Wordbau), ABC-Tabelle (Buchstabenleiter),
+      Gewaltenteilung (Demokratielabor), Speichereinheiten
+      (Rechnerraum), Massstab (Nordpfeil). Each lands with its
+      app-side links and suite checks.
+    - **Kompass → Merkheft links** next to "Üben mit …" for
+      competencies with a Merkblatt.
+    - **Deep-link to a Stufe** from "Dazu üben" (today it links to
+      the app home).
+12. **Merkblatt infographics: one printable A4 overview per
+    concept — PILOT SHIPPED, scaling remains.** Each Merkblatt can
+    grow a single dense overview graphic that explains the whole
+    concept on one sheet. The pilot is live: the Masseinheiten
+    Merkblatt (merkheft/masseinheiten.html, new Mathematik group)
+    carries a token-styled SVG infographic (unit ladders for
+    length/weight/volume with ×10/×100/×1000 factors, the
+    multiply/divide rule, the time warning, six worked examples),
+    linked from Masswerk Stufe e and Grössenwissen Stufe f. The
+    chosen path is *token-styled SVG*: `.ig-*` classes in the
+    Merkheft stylesheet with light `@media print` counterparts, so
+    the same graphic is dark on screen and a crisp light A4 in
+    print — on-brand, editable in place, versionable, no new
+    tooling. The *AI-generated raster* path (poster look like the
+    provided Masseinheiten example) stays a possible extra-download
+    option but was not chosen for in-page visuals: style break,
+    German-label proofreading burden, committed-PNG weight.
+    Remaining: validate the pilot with the family, then one
+    infographic per existing and future Merkblatt using the same
+    `.ig-*` system.
 
 ## Definition of 100%
 
@@ -253,5 +280,7 @@ Infrastructure, quality, and process — independent of new apps.
   Kompass-only.
 - Every **Not app-testable** competency stays covered by the Kompass
   with its exclusion reason recorded here.
-- Platform items 1–5 and 9–11 done (9 counts as done once the
-  decision plus one prototype exist); 6–8 are standing practice.
+- Platform items 1–5 and 9–12 done (9–11 count as done once the
+  Merkheft app exists with wave 1 and the app-side links; 12 once
+  every Merkblatt has its A4 infographic); 6–8 are standing
+  practice.

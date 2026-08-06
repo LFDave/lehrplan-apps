@@ -304,6 +304,29 @@ icon:
     icon-tile-above-heading: false
     decorative-icon-stacks: false
 
+illustration:
+  delivery: inline-svg
+  external-graphics: false
+  three-d-libraries: false
+  stroke:
+    width: 2
+    color: color.text.secondary
+    linecap: round
+    linejoin: round
+  fill:
+    soft: color.accent.soft
+    surface: color.background.surface-raised
+    none-default: true
+  label:
+    font: typography.family
+    size: "0.85rem"
+    color: color.text.muted
+  motion:
+    properties: transform-opacity-only
+    autoplay: false
+    user-initiated: true
+    respects-reduced-motion: true
+
 flag:
   provider: flagcdn
   code-format: iso-3166-1-alpha-2-lowercase

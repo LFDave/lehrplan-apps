@@ -15,10 +15,10 @@ import { readFile } from "node:fs/promises";
 import { mkdirSync, existsSync, readFileSync, readdirSync } from "node:fs";
 import { dirname, join, extname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { STUFEN } from "../data.js?v=1";
-import { genRound } from "../gen.js?v=1";
-import { LEVELS, MEDALS, roundXp } from "../game.js?v=1";
-import { STRINGS } from "../strings.js?v=1";
+import { STUFEN } from "../data.js?v=2";
+import { genRound } from "../gen.js?v=2";
+import { LEVELS, MEDALS, roundXp } from "../game.js?v=2";
+import { STRINGS } from "../strings.js?v=2";
 
 const TESTS_DIR = dirname(fileURLToPath(import.meta.url));
 const APP_DIR = join(TESTS_DIR, "..");
@@ -290,6 +290,8 @@ check("home: title renders", (await page.textContent("h1")).trim() === "Grössen
 check("home: 12 Stufen with three GA badges",
   await page.locator(".stufe").count() === 12 && await page.locator(".ga-badge").count() === 3);
 check("home: competency code visible", (await page.textContent('[data-stufe="c"]')).includes("MA.3.A.1.c"));
+check("home: Merkblatt link on Stufe f",
+  await page.locator('.merkblatt-link[href="../merkheft/masseinheiten.html"]').count() === 1);
 await page.screenshot({ path: join(SHOTS_DIR, "01-home.png"), fullPage: true });
 
 await playRound("c");

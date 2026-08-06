@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Das Sonnensystem · Merkheft</title>
+  <meta name="description" content="Merkblatt: Die Sonne und ihre acht Planeten, mit Orbit-Modell.">
+  <link rel="icon" href="favicon.svg?v=1" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=1">
+</head>
+<body>
+<main id="app">
+  <nav class="page-nav">
+    <a class="back" href="index.html">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+      Alle Merkblätter
+    </a>
+  </nav>
+  <article class="blatt-page">
+    <header>
+      <p class="blatt-gruppe">Himmel und Weltall</p>
+      <h1>Das Sonnensystem</h1>
+    </header>
+    <p class="intro">Im Zentrum unseres Sonnensystems steht die Sonne. Sie ist
+    ein Stern und gibt Licht und Wärme.</p>
+    <p class="intro">Acht Planeten kreisen um die Sonne, von innen nach aussen:</p>
+    <ul class="steps">
+      <li>Merkur, Venus, <strong>Erde</strong>, Mars (die inneren, felsigen Planeten)</li>
+      <li>Jupiter, Saturn, Uranus, Neptun (die äusseren Riesenplaneten)</li>
+    </ul>
+    <p class="intro">Je weiter aussen ein Planet kreist, desto länger braucht er
+    für eine Runde: Merkur nur rund 88 Tage, die Erde ein Jahr, der ferne
+    Neptun etwa 165 Jahre.</p>
+    <p class="intro">Starte das Modell:</p>
+    <div class="illu-stage">
+      <div class="orbits" id="illu-orbits" role="img"
+           aria-label="Modell: Merkur, Venus, Erde und Mars kreisen unterschiedlich schnell um die Sonne">
+        <div class="sun"></div>
+        <div class="orbit" style="width:26%;height:26%"></div>
+        <div class="orbit" style="width:46%;height:46%"></div>
+        <div class="orbit" style="width:66%;height:66%"></div>
+        <div class="orbit" style="width:88%;height:88%"></div>
+        <div class="carrier" style="width:26%;height:26%;animation-duration:4s"><div class="planet" style="background:#C5D0DD"></div></div>
+        <div class="carrier" style="width:46%;height:46%;animation-duration:8s"><div class="planet" style="background:#D8C47A"></div></div>
+        <div class="carrier" style="width:66%;height:66%;animation-duration:13s"><div class="planet" style="background:#9FBBD7"></div></div>
+        <div class="carrier" style="width:88%;height:88%;animation-duration:24s"><div class="planet" style="background:#D99A8B"></div></div>
+      </div>
+      <div class="illu-controls">
+        <button id="illu-orbit-play" aria-pressed="false">Abspielen</button>
+        <span class="illu-status">Merkur (hell), Venus (gelblich), Erde (blau), Mars (rötlich)</span>
+      </div>
+    </div>
+    <h2 class="section-label">Kurz gemerkt</h2>
+    <dl class="fakten">
+      <div><dt>Die Sonne</dt><dd>ist ein Stern im Zentrum</dd></div>
+      <div><dt>Acht Planeten</dt><dd>kreisen um die Sonne</dd></div>
+      <div><dt>Weiter aussen</dt><dd>heisst langsamer unterwegs</dd></div>
+    </dl>
+    <h2 class="section-label">Dazu üben</h2>
+    <ul class="ueben-list">
+      <li><a class="ueben-link" href="../sternwarte/">Sternwarte<span class="ueben-meta">Stufe e</span></a></li>
+    </ul>
+    <p class="code-line">Lehrplan 21: NMG.4.5.e</p>
+  </article>
+</main>
+<script type="module">
+  import { init } from './illustrations.js?v=1';
+  init('sonnensystem', document);
+</script>
+</body>
+</html>

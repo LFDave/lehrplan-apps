@@ -54,6 +54,7 @@ app's PRD).
 | [demokratielabor](demokratielabor/) | RZG.8.1 — Schweizer Demokratie |
 | [stromkreis](stromkreis/) | NT.5.2 — Elektrik und Ohmsches Gesetz |
 | [rechnerraum](rechnerraum/) | MI.2.3 — Computer, Speicher, Netze |
+| [merkheft](merkheft/) | Nachschlagewerk: Merkblätter mit Illustrationen und interaktiven Modellen, verlinkt aus den Apps |
 
 That covers all ten math competencies of the Operieren-und-Benennen
 aspect, all three Informatik competencies, three German competencies,

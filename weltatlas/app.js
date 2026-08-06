@@ -2,11 +2,11 @@
 // Abschluss, Medaillen. Eine Runde hat 8 Aufgaben; ausgewertet wird
 // immer die ganze Antwort, nie einzelne Zeichen.
 
-import { STUFEN, COMPETENCY, stufeById, nextStufe, cycleLabel } from './data.js?v=1';
-import { genRound } from './gen.js?v=1';
-import { roundXp, levelFor, nextLevel, earnedMedals, suggestsNextStufe, MEDALS } from './game.js?v=1';
-import { t } from './strings.js?v=1';
-import { icon } from './icons.js?v=1';
+import { STUFEN, COMPETENCY, stufeById, nextStufe, cycleLabel } from './data.js?v=2';
+import { genRound } from './gen.js?v=2';
+import { roundXp, levelFor, nextLevel, earnedMedals, suggestsNextStufe, MEDALS } from './game.js?v=2';
+import { t } from './strings.js?v=2';
+import { icon } from './icons.js?v=2';
 
 const STORE = 'weltatlas.progress';
 const ROUND_LENGTH = 8;
@@ -92,6 +92,7 @@ function renderHome() {
               </span>
               ${icon('chevron-right', 'subject-chevron')}
             </button>
+            ${s.merkblatt ? `<a class="merkblatt-link" href="../merkheft/${s.merkblatt.id}.html">Merkblatt: ${esc(s.merkblatt.name)}</a>` : ''}
           </li>`;
         }).join('')}
       </ul>
@@ -308,6 +309,7 @@ function renderDone() {
     <section class="done">
       <h1 class="app-title">${icon(TITLE_ICON, 'title-icon')}${t('done.title')}</h1>
       <p class="done-summary" role="status">${t('done.tasks', { n: ROUND_LENGTH, stufe: stufe.id })}${res.clean ? ' ' + t('done.clean') : ''}</p>
+      ${!res.clean && stufe.merkblatt ? `<a class="merkblatt-link" href="../merkheft/${stufe.merkblatt.id}.html">Zum Nachlesen: ${esc(stufe.merkblatt.name)}</a>` : ''}
       <div class="reward-block">
         <p class="reward-xp">${t('done.xp', { xp: res.xp })}</p>
         <p>${res.levelUp ? t('done.levelup', { name: level.name }) : t('done.level', { name: level.name })} · ${p.xp} XP</p>

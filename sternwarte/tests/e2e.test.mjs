@@ -15,10 +15,10 @@ import { readFile } from "node:fs/promises";
 import { mkdirSync, existsSync, readFileSync, readdirSync } from "node:fs";
 import { dirname, join, extname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { STUFEN } from "../data.js?v=1";
-import { genRound } from "../gen.js?v=1";
-import { LEVELS, MEDALS, roundXp } from "../game.js?v=1";
-import { STRINGS } from "../strings.js?v=1";
+import { STUFEN } from "../data.js?v=2";
+import { genRound } from "../gen.js?v=2";
+import { LEVELS, MEDALS, roundXp } from "../game.js?v=2";
+import { STRINGS } from "../strings.js?v=2";
 
 const TESTS_DIR = dirname(fileURLToPath(import.meta.url));
 const APP_DIR = join(TESTS_DIR, "..");
@@ -227,6 +227,10 @@ check("home: title renders", (await page.textContent("h1")).trim() === "Sternwar
 check("home: all Stufen with GA badges",
   await page.locator(".stufe").count() === 6 && await page.locator(".ga-badge").count() === 2);
 check("home: competency code visible", (await page.textContent('[data-stufe="b"]')).includes("NMG.4.5.b"));
+check("home: Merkblatt link on Stufe d",
+  await page.locator('.merkblatt-link[href="../merkheft/mondphasen.html"]').count() === 1);
+check("home: Merkblatt link on Stufe e",
+  await page.locator('.merkblatt-link[href="../merkheft/sonnensystem.html"]').count() === 1);
 await page.screenshot({ path: join(SHOTS_DIR, "01-home.png"), fullPage: true });
 
 await playRound("b");

@@ -26,6 +26,7 @@ export const STUFEN = [
     title: 'Raster nutzen',
     desc: 'Nutze Gradnetz, Vegetationszonen und Plattengrenzen.',
     kinds: ['raster'],
+    merkblatt: { id: 'gradnetz', name: 'Gradnetz' },
   },
 ];
 

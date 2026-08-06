@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Serie- und Parallelschaltung · Merkheft</title>
+  <meta name="description" content="Merkblatt: Wie Lampen in Serie und parallel geschaltet sind, zum Ausprobieren.">
+  <link rel="icon" href="favicon.svg?v=1" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=1">
+</head>
+<body>
+<main id="app">
+  <nav class="page-nav">
+    <a class="back" href="index.html">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+      Alle Merkblätter
+    </a>
+  </nav>
+  <article class="blatt-page">
+    <header>
+      <p class="blatt-gruppe">Natur und Technik</p>
+      <h1>Serie- und Parallelschaltung</h1>
+    </header>
+    <p class="intro">Strom fliesst nur, wenn der Kreis geschlossen ist: von der
+    Stromquelle durch die Leitungen und wieder zurück. Ein offener Schalter
+    unterbricht den Kreis.</p>
+    <ul class="steps">
+      <li>In der <strong>Serieschaltung</strong> fliesst der Strom durch alle Lampen
+      nacheinander. Fällt eine aus, ist der Kreis unterbrochen und alle sind dunkel.</li>
+      <li>In der <strong>Parallelschaltung</strong> hat jede Lampe ihren eigenen
+      Zweig. Fällt eine aus, leuchten die anderen weiter.</li>
+      <li>Zu Hause sind die Lampen darum <strong>parallel</strong> geschaltet.</li>
+    </ul>
+    <p class="intro">Probiere es aus:</p>
+    <div class="illu-stage">
+      <svg id="illu-circuit" viewBox="0 0 320 190" class="illu" role="img"
+           aria-label="Schaltbild mit Batterie, Schalter und zwei Lampen">
+        <g id="illu-wires" stroke="#8FA1B4" stroke-width="2.5" fill="none"></g>
+        <g id="illu-parts"></g>
+      </svg>
+      <div class="illu-controls">
+        <button id="illu-sw" aria-pressed="false">Schalter schliessen</button>
+        <button id="illu-mode" aria-pressed="false">Parallel schalten</button>
+        <label><input type="checkbox" id="illu-broken"> Lampe 1 ist defekt</label>
+      </div>
+      <p class="illu-status" id="illu-circuit-status" role="status"></p>
+    </div>
+    <h2 class="section-label">Kurz gemerkt</h2>
+    <dl class="fakten">
+      <div><dt>Serie</dt><dd>Eine defekte Lampe unterbricht alles</dd></div>
+      <div><dt>Parallel</dt><dd>Jede Lampe hat ihren eigenen Zweig</dd></div>
+      <div><dt>Zu Hause</dt><dd>Lampen sind parallel geschaltet</dd></div>
+    </dl>
+    <h2 class="section-label">Dazu üben</h2>
+    <ul class="ueben-list">
+      <li><a class="ueben-link" href="../stromkreis/">Stromkreis<span class="ueben-meta">Stufe b</span></a></li>
+    </ul>
+    <p class="code-line">Lehrplan 21: NT.5.2.b</p>
+  </article>
+</main>
+<script type="module">
+  import { init } from './illustrations.js?v=1';
+  init('schaltungen', document);
+</script>
+</body>
+</html>

@@ -287,6 +287,7 @@ Each app uses exactly one accent family from DESIGN.md. Before starting a new ap
 | demokratielabor | RZG.8.1 | amber | DE | baseline |
 | stromkreis | NT.5.2 | sage | DE | baseline |
 | rechnerraum | MI.2.3 | blue | DE | baseline |
+| merkheft | reference (Nachschlagewerk) | amber | DE | baseline |
 
 D.4.F.1 is covered by Schreibprobe in this repo; the older
 Wortwerkstatt remains in the sibling repo small-apps as a standalone.
@@ -298,6 +299,22 @@ platform work — lives in BACKLOG.md.
 ## Accepted decisions
 
 - Default theme: dark only.
+- Interactive visuals and in-app graphics: inline SVG and CSS only,
+  following the `illustration` tokens in DESIGN.md. No 3D or
+  charting libraries (three.js declined after the 2026-08 visuals
+  spike). Animation is transform/opacity only, paused by default,
+  user-initiated, and respects reduced motion.
+- Explaining and practising are separate surfaces: practice apps
+  test and train knowledge and carry no explainer panels; all
+  explanations, illustrations and interactive visuals live in the
+  Merkheft reference app (merkheft/), which apps link to via quiet
+  "Merkblatt" links on Stufe cards and after rounds with mistakes.
+  Links are optional and never gates. One Merkblatt is one static
+  HTML page (`merkheft/<id>.html`) so each concept can grow
+  independently and prints as a light A4 sheet; content follows the
+  sourcing rule in merkheft/PRD.md (own wording always, facts
+  cross-checked against two independent references, no copied
+  encyclopedia or Lehrplan text).
 - Visual base: charcoal and navy, not pure black.
 - Accent usage: one restrained accent per app, recorded in the app registry.
 - Buttons: primary buttons usually near-white, not loud accent blocks.
