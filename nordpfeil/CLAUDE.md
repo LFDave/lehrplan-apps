@@ -10,6 +10,11 @@ spec-sync rules, cache-busting convention) applies as well.
   the app's levels ARE the official Kompetenzstufen; the
   Grundansprüche are the visible milestones.** Do not invent extra
   levels, do not reorder, do not hide any Stufe.
+- The official Stufen e and h are split into topic-pure cards
+  (`e-signaturen`/`e-massstab`, `h-karte`/`h-richtungen`). Split cards
+  carry the official letter in `code`; the `id` stays the storage and
+  deep-link key. The GA-Zyklus-2 medal needs clean runs on BOTH h
+  cards.
 - Generated tasks (Massstab, Planmass, Gegenrichtung, Vierteldrehung)
   keep their exact sentence formats — the suite parses them and
   recomputes with its own direction ring and scale conversion. Pool

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Das Ohmsche Gesetz · Merkheft</title>
+  <meta name="description" content="Merkblatt: Spannung, Stromstärke und Widerstand, das Ohmsche Gesetz U = R × I, mit URI-Dreieck und Beispielen.">
+  <link rel="icon" href="favicon.svg?v=5" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=5">
+</head>
+<body>
+<main id="app">
+  <nav class="page-nav">
+    <a class="back" href="index.html">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+      Alle Merkblätter
+    </a>
+  </nav>
+  <article class="blatt-page">
+    <header>
+      <p class="blatt-gruppe">Natur und Technik</p>
+      <h1>Das Ohmsche Gesetz</h1>
+    </header>
+    <p class="intro">Im Stromkreis hängen drei Grössen zusammen. Die Spannung U
+    treibt den Strom an, die Stromstärke I sagt, wie viel Strom fliesst, und
+    der Widerstand R bremst den Strom.</p>
+    <p class="intro">Jede Grösse hat ihre Einheit: die Spannung das Volt (V),
+    die Stromstärke das Ampere (A), der Widerstand das Ohm (Ω).</p>
+    <p class="intro">Das Ohmsche Gesetz verbindet die drei Grössen:
+    U = R × I. Kennst du zwei davon, kannst du die dritte ausrechnen.</p>
+    <ul class="steps">
+      <li><strong>Spannung gesucht:</strong> U = R × I. Rechne Widerstand
+      mal Stromstärke.</li>
+      <li><strong>Stromstärke gesucht:</strong> I = U : R. Rechne Spannung
+      durch Widerstand.</li>
+      <li><strong>Widerstand gesucht:</strong> R = U : I. Rechne Spannung
+      durch Stromstärke.</li>
+      <li>Bei gleicher Spannung gilt: Je grösser der Widerstand, desto
+      kleiner die Stromstärke.</li>
+    </ul>
+    <div class="illu-stage">
+      <svg viewBox="0 0 420 400" class="illu ig" role="img" id="ig-ohmsches-gesetz"
+           aria-label="Infografik Ohmsches Gesetz: Das URI-Dreieck mit U oben sowie R und I unten und den Einheiten Volt, Ohm und Ampere, daneben die drei Formeln U = R × I, I = U : R und R = U : I, dazu drei Beispiele mit Zahlen">
+        <text x="210" y="26" text-anchor="middle" class="ig-title">Spannung, Strom und Widerstand</text>
+        <text x="210" y="42" text-anchor="middle" class="ig-sub">Das Ohmsche Gesetz verbindet die drei Grössen: U = R × I.</text>
+
+        <text x="20" y="70" class="ig-h">Das URI-Dreieck</text>
+        <line x1="105" y1="78" x2="20" y2="246" class="ig-arrow"/>
+        <line x1="105" y1="78" x2="190" y2="246" class="ig-arrow"/>
+        <line x1="20" y1="246" x2="190" y2="246" class="ig-arrow"/>
+        <line x1="62" y1="162" x2="148" y2="162" class="ig-arrow"/>
+        <line x1="105" y1="162" x2="105" y2="246" class="ig-arrow"/>
+        <text x="105" y="132" text-anchor="middle" class="ig-unit">U</text>
+        <text x="105" y="154" text-anchor="middle" class="ig-word">Volt (V)</text>
+        <text x="78" y="198" text-anchor="middle" class="ig-unit">R</text>
+        <text x="78" y="224" text-anchor="middle" class="ig-word">Ohm (Ω)</text>
+        <text x="135" y="198" text-anchor="middle" class="ig-unit">I</text>
+        <text x="135" y="224" text-anchor="middle" class="ig-word">Ampere (A)</text>
+        <text x="105" y="272" text-anchor="middle" class="ig-word">Decke die gesuchte Grösse zu.</text>
+
+        <g class="ig-rule">
+          <rect x="210" y="86" width="190" height="160" rx="8" class="ig-panel"/>
+          <text x="226" y="112" class="ig-h">Die drei Formeln</text>
+          <text x="226" y="140" class="ig-ex">U = R × I</text>
+          <text x="300" y="140" class="ig-word">Spannung gesucht</text>
+          <text x="226" y="168" class="ig-ex">I = U : R</text>
+          <text x="300" y="168" class="ig-word">Stromstärke gesucht</text>
+          <text x="226" y="196" class="ig-ex">R = U : I</text>
+          <text x="300" y="196" class="ig-word">Widerstand gesucht</text>
+          <text x="226" y="222" class="ig-word">Mehr Widerstand bei gleicher</text>
+          <text x="226" y="236" class="ig-word">Spannung heisst weniger Strom.</text>
+        </g>
+
+        <text x="20" y="304" class="ig-h">Beispiele</text>
+        <text x="20" y="328" class="ig-ex">R = 6 Ω und I = 3 A: U = 6 × 3 = 18 V</text>
+        <text x="20" y="350" class="ig-ex">U = 12 V und R = 4 Ω: I = 12 : 4 = 3 A</text>
+        <text x="20" y="372" class="ig-ex">U = 20 V und I = 4 A: R = 20 : 4 = 5 Ω</text>
+      </svg>
+    </div>
+    <h2 class="section-label">Kurz gemerkt</h2>
+    <dl class="fakten">
+      <div><dt>U = R × I</dt><dd>Spannung = Widerstand mal Stromstärke</dd></div>
+      <div><dt>Einheiten</dt><dd>U in Volt (V), I in Ampere (A), R in Ohm (Ω)</dd></div>
+      <div><dt>Umgestellt</dt><dd>I = U : R und R = U : I</dd></div>
+    </dl>
+    <h2 class="section-label">Dazu üben</h2>
+    <ul class="ueben-list">
+      <li><a class="ueben-link" href="../stromkreis/?stufe=c"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Stromkreis</span><span class="ueben-meta">Stufe c</span></a></li>
+    </ul>
+    <p class="code-line">Lehrplan 21: NT.5.2.c</p>
+  </article>
+</main>
+</body>
+</html>

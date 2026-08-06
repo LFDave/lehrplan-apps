@@ -15,12 +15,14 @@ export const STUFEN = [
     title: 'ABC mit Hilfe',
     desc: 'Finde Nachbarn im ABC mit Auswahlhilfe.',
     kinds: ['abcNachbar'],
+    merkblatt: { id: 'abc-tabelle', name: 'ABC-Tabelle' },
   },
   {
     id: 'b', cycle: 1, ga: true,
     title: 'ABC auswendig',
     desc: 'Tippe ABC-Nachbarn, zähle Silben, kenne sp und st.',
     kinds: ['buchstabieren'],
+    merkblatt: { id: 'abc-tabelle', name: 'ABC-Tabelle' },
   },
   {
     id: 'c-vokale', code: 'c', cycle: 2, ga: false,

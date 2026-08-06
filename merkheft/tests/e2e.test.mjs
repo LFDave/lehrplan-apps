@@ -58,8 +58,32 @@ const BLAETTER = [
     ueben: [{ href: "../sternwarte/?stufe=e", stufe: "e" }], codes: ["NMG.4.5.e"], interactive: true },
   { id: "gradnetz", gruppe: "Raum und Erde", title: "Das Gradnetz der Erde",
     ueben: [{ href: "../weltatlas/?stufe=c", stufe: "c" }], codes: ["RZG.4.1.c"], interactive: true },
+  { id: "skelett", gruppe: "Mensch und Körper", title: "Das Skelett",
+    ueben: [{ href: "../koerperatlas/?stufe=a", stufe: "a" }], codes: ["NMG.1.4.a"], interactive: false },
+  { id: "blutkreislauf", gruppe: "Mensch und Körper", title: "Der Blutkreislauf",
+    ueben: [{ href: "../koerperatlas/?stufe=e", stufe: "e" }], codes: ["NMG.1.4.e"], interactive: false },
+  { id: "abc-tabelle", gruppe: "Sprache", title: "Die ABC-Tabelle",
+    ueben: [{ href: "../buchstabenleiter/?stufe=a", stufe: "a" }, { href: "../buchstabenleiter/?stufe=b", stufe: "b" }],
+    codes: ["D.5.E.1.a", "D.5.E.1.b"], interactive: false },
+  { id: "verben-fr", gruppe: "Sprache", title: "Französische Verben: être und avoir",
+    ueben: [{ href: "../motbau/?stufe=c", stufe: "c" }], codes: ["FS1F.5.D.1.b"], interactive: false },
+  { id: "verben-en", gruppe: "Sprache", title: "Englische Verben: to be und to have",
+    ueben: [{ href: "../wordbau/?stufe=b", stufe: "b" }], codes: ["FS2E.5.D.1.a"], interactive: false },
+  { id: "ohmsches-gesetz", gruppe: "Natur und Technik", title: "Das Ohmsche Gesetz",
+    ueben: [{ href: "../stromkreis/?stufe=c", stufe: "c" }], codes: ["NT.5.2.c"], interactive: false },
+  { id: "speichereinheiten", gruppe: "Informatik", title: "Speichereinheiten",
+    ueben: [{ href: "../rechnerraum/?stufe=f", stufe: "f" }], codes: ["MI.2.3.f"], interactive: false },
+  { id: "gewaltenteilung", gruppe: "Zusammenleben", title: "Die Gewaltenteilung",
+    ueben: [{ href: "../demokratielabor/?stufe=b", stufe: "b" }], codes: ["RZG.8.1.b"], interactive: false },
+  { id: "himmelsrichtungen", gruppe: "Raum und Erde", title: "Die Himmelsrichtungen",
+    ueben: [{ href: "../nordpfeil/?stufe=h-richtungen", stufe: "h" }], codes: ["NMG.8.5.h"], interactive: false },
+  { id: "massstab", gruppe: "Raum und Erde", title: "Der Massstab",
+    ueben: [{ href: "../nordpfeil/?stufe=e-massstab", stufe: "e" }, { href: "../nordpfeil/?stufe=f", stufe: "f" }],
+    codes: ["NMG.8.5.e", "NMG.8.5.f"], interactive: false },
+  { id: "hoehenkurven", gruppe: "Raum und Erde", title: "Höhenkurven",
+    ueben: [{ href: "../nordpfeil/?stufe=h-karte", stufe: "h" }], codes: ["NMG.8.5.h"], interactive: false },
 ];
-const GRUPPEN = ["Mathematik", "Natur und Technik", "Himmel und Weltall", "Raum und Erde"];
+const GRUPPEN = ["Mathematik", "Sprache", "Mensch und Körper", "Natur und Technik", "Informatik", "Himmel und Weltall", "Raum und Erde", "Zusammenleben"];
 
 const CHROMIUM = process.env.CHROMIUM_PATH
   || (existsSync("/opt/pw-browsers/chromium") ? "/opt/pw-browsers/chromium" : undefined);
@@ -89,7 +113,7 @@ function check(name, condition, detail = "") {
     for (const m of refs) {
       const whole = m[0];
       if (whole.includes("http") || whole.includes('"#') || whole.includes("${")
-        || whole.includes("../") || /href="[a-z]+\.html"/.test(whole)) continue;
+        || whole.includes("../") || /href="[a-z-]+\.html"/.test(whole)) continue;
       if (m[2]) versions.add(m[2]);
       else unversioned.push(`${file}: ${whole}`);
     }

@@ -45,6 +45,7 @@ export const STUFEN = [
     title: 'Speicher und Grössen',
     desc: 'Kenne Speicherarten und rechne mit Byte, MB und GB.',
     kinds: ['speicher'],
+    merkblatt: { id: 'speichereinheiten', name: 'Speichereinheiten' },
   },
   {
     id: 'g', cycle: 2, ga: false,

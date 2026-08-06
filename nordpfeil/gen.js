@@ -86,12 +86,15 @@ export const POOLS = {
     ['plan', 'mc', 'Dein Freund findet dank deiner Skizze den Weg. Wie war die Skizze?', 'klar und verständlich', ['möglichst kompliziert', 'ohne die wichtigen Dinge']],
     ['plan', 'mc', 'Ein runder Tisch sieht im Plan von oben aus wie ...?', 'ein Kreis', ['ein Dreieck', 'eine Linie']],
   ],
-  e: [
+  'e-signaturen': [
     ['signatur', 'mc', 'Auf der Karte ist ein See eingezeichnet. Welche Farbe hat er?', 'Blau', ['Rot', 'Braun']],
     ['signatur', 'mc', 'Was bedeutet Grün auf der Karte meistens?', 'Wald oder Wiese', ['Wasser', 'Strassen']],
     ['signatur', 'mc', 'Was zeigen die braunen Linien auf der Wanderkarte?', 'die Höhenkurven', ['die Flüsse', 'die Zugstrecken']],
     ['signatur', 'mc', 'Was ist eine Signatur auf der Karte?', 'ein Zeichen für ein Objekt', ['eine Unterschrift', 'ein Foto']],
     ['signatur', 'mc', 'Wo erfährst du, was die Zeichen auf der Karte bedeuten?', 'in der Legende', ['im Wörterbuch', 'auf der Rückseite']],
+    ['signatur', 'mc', 'Eine blaue Fläche auf der Karte zeigt ...?', 'einen See', ['einen Wald', 'einen Parkplatz']],
+    ['signatur', 'mc', 'Was zeigt eine blaue Linie auf der Karte?', 'einen Fluss oder Bach', ['eine Strasse', 'eine Höhenkurve']],
+    ['signatur', 'mc', 'Was bedeuten die schwarzen Linien auf der Karte meistens?', 'Wege und Strassen', ['Flüsse und Bäche', 'Wälder']],
   ],
   f: [
     ['planmass', 'mc', 'Was heisst «massstabsgetreu zeichnen»?', 'alle Längen im gleichen Verhältnis verkleinern', ['alles beliebig gross zeichnen', 'nur die Farben übernehmen']],
@@ -109,7 +112,7 @@ export const POOLS = {
     ['oev', 'mc', 'Was ist im Bus während der Fahrt am sichersten?', 'sitzen oder sich gut festhalten', ['herumrennen', 'auf dem Sitz stehen']],
     ['oev', 'mc', 'Wo wartest du auf den Bus?', 'an der Haltestelle hinter der weissen Linie', ['auf der Strasse', 'zwischen den Autos']],
   ],
-  h: [
+  'h-karte': [
     ['karte', 'mc', 'Du suchst eine Strasse in der Stadt. Welches Hilfsmittel passt?', 'der Ortsplan', ['der Fahrplan', 'das Wörterbuch']],
     ['karte', 'mc', 'Auf der topographischen Karte liegen die Höhenkurven eng beieinander. Was heisst das?', 'das Gelände ist steil', ['das Gelände ist flach', 'dort hat es einen See']],
     ['karte', 'mc', 'Die Höhenkurven liegen weit auseinander. Was heisst das?', 'das Gelände ist flach', ['das Gelände ist steil', 'dort hat es viele Häuser']],
@@ -127,10 +130,11 @@ export const POOLS = {
   ],
 };
 
-// Massstab (e), Planmass (f), Richtung (h) und Kompass (i) werden
-// generiert.
+// Massstab (e-massstab), Planmass (f), Richtung (h-richtungen) und
+// Kompass (i) werden generiert; die themenreinen Teilstufen
+// e-massstab und h-richtungen bestehen nur aus generierten Aufgaben.
 export function genTask(rng, stufe) {
-  if (stufe.id === 'e' && rng() < 0.45) {
+  if (stufe.id === 'e-massstab') {
     const [label, perCm] = pick(rng, MASSSTAEBE);
     const cm = perCm === 250 ? randInt(rng, 2, 3) : randInt(rng, 2, 9);
     return {
@@ -150,7 +154,7 @@ export function genTask(rng, stufe) {
       answer: String(perM * L),
     };
   }
-  if (stufe.id === 'h' && rng() < 0.35) {
+  if (stufe.id === 'h-richtungen') {
     const dir = pick(rng, HAUPT);
     const gegen = RICHTUNGEN[(RICHTUNGEN.indexOf(dir) + 4) % 8];
     const wrong = shuffled(rng, RICHTUNGEN.filter((r) => r !== dir && r !== gegen)).slice(0, 2);

@@ -241,14 +241,16 @@ Infrastructure, quality, and process — independent of new apps.
     after rounds with mistakes, from the done screen. The visuals
     spike folder is deleted; its decisions live in PRODUCT.md.
 
+    Wave 2 SHIPPED (2026-08-06): eleven pages with own
+    infographics — Skelett, Blutkreislauf, ABC-Tabelle,
+    französische und englische Verben, Ohmsches Gesetz,
+    Speichereinheiten, Gewaltenteilung, Himmelsrichtungen,
+    Massstab, Höhenkurven — each with app-side links, deep links
+    and suite checks; Nordpfeil e and h split topic-pure on the
+    way (e-signaturen/e-massstab, h-karte/h-richtungen, GA h both
+    cards). Thirteen apps now link the Merkheft.
+
     Remaining:
-    - **Wave 2 Merkblätter:** Blutkreislauf und Skelett
-      (Körperatlas), Höhenkurven und Himmelsrichtungen (Nordpfeil),
-      Ohmsches Gesetz (Stromkreis c), Konjugationstabellen
-      (Motbau/Wordbau), ABC-Tabelle (Buchstabenleiter),
-      Gewaltenteilung (Demokratielabor), Speichereinheiten
-      (Rechnerraum), Massstab (Nordpfeil). Each lands with its
-      app-side links and suite checks.
     - **Kompass → Merkheft links** next to "Üben mit …" for
       competencies with a Merkblatt.
     - ~~Deep-link to a Stufe from "Dazu üben"~~ — shipped:

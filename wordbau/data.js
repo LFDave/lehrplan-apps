@@ -21,6 +21,7 @@ export const STUFEN = [
     title: 'be, have und Fragen',
     desc: 'Setze be und have, Pronomen und Fragewörter richtig ein.',
     kinds: ['verbform'],
+    merkblatt: { id: 'verben-en', name: 'to be und to have' },
   },
   {
     id: 'c', cycle: 3, ga: true,

@@ -2,11 +2,11 @@
 // Abschluss, Medaillen. Eine Runde hat 8 Aufgaben; ausgewertet wird
 // immer die ganze Antwort, nie einzelne Zeichen.
 
-import { STUFEN, COMPETENCY, stufeById, nextStufe, cycleLabel } from './data.js?v=1';
-import { genRound } from './gen.js?v=1';
-import { roundXp, levelFor, nextLevel, earnedMedals, suggestsNextStufe, MEDALS } from './game.js?v=1';
-import { t } from './strings.js?v=1';
-import { icon } from './icons.js?v=1';
+import { STUFEN, COMPETENCY, stufeById, nextStufe, cycleLabel } from './data.js?v=2';
+import { genRound } from './gen.js?v=2';
+import { roundXp, levelFor, nextLevel, earnedMedals, suggestsNextStufe, MEDALS } from './game.js?v=2';
+import { t } from './strings.js?v=2';
+import { icon } from './icons.js?v=2';
 
 const STORE = 'demokratielabor.progress';
 const ROUND_LENGTH = 8;
@@ -92,6 +92,7 @@ function renderHome() {
               </span>
               ${icon('chevron-right', 'subject-chevron')}
             </button>
+            ${s.merkblatt ? `<a class="merkblatt-link" href="../merkheft/${s.merkblatt.id}.html"><svg class="merkblatt-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg><span>Merkblatt: ${esc(s.merkblatt.name)}</span></a>` : ''}
           </li>`;
         }).join('')}
       </ul>
@@ -308,6 +309,7 @@ function renderDone() {
     <section class="done">
       <h1 class="app-title">${icon(TITLE_ICON, 'title-icon')}${t('done.title')}</h1>
       <p class="done-summary" role="status">${t('done.tasks', { n: ROUND_LENGTH, stufe: stufe.id })}${res.clean ? ' ' + t('done.clean') : ''}</p>
+      ${!res.clean && stufe.merkblatt ? `<a class="merkblatt-link" href="../merkheft/${stufe.merkblatt.id}.html"><svg class="merkblatt-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg><span>Zum Nachlesen: ${esc(stufe.merkblatt.name)}</span></a>` : ''}
       <div class="reward-block">
         <p class="reward-xp">${t('done.xp', { xp: res.xp })}</p>
         <p>${res.levelUp ? t('done.levelup', { name: level.name }) : t('done.level', { name: level.name })} · ${p.xp} XP</p>
@@ -371,3 +373,12 @@ function route() {
 window.addEventListener('hashchange', route);
 document.documentElement.lang = 'de-CH';
 route();
+
+// Deep-Link aus dem Merkheft: ?stufe=<id> startet die Stufe direkt.
+// Die Query wird sofort aus der Adresse entfernt, damit sie beim
+// Neuladen oder Weitergeben nicht kleben bleibt.
+const deepStufe = new URLSearchParams(location.search).get('stufe');
+if (deepStufe) {
+  history.replaceState(null, '', location.pathname + location.hash);
+  if (STUFEN.some((s) => s.id === deepStufe)) startRound(deepStufe);
+}

@@ -58,7 +58,19 @@ role="status"-Region.
 Einsprachig Deutsch (Schweizer Standarddeutsch), Strings in
 `strings.js`. Tokens aus DESIGN.md, Akzentfamilie **amber**,
 Atkinson Hyperlegible selbst gehostet, Lucide-Icons inline,
-Cache-Busting `?v=1`.
+Cache-Busting `?v=2`.
+
+## Merkheft-Verbindung und Deep-Links
+
+Stufe b (gewaltenteilung.html) trägt in `data.js` ein `merkblatt: { id, name }`: Die App zeigt
+auf der Stufenkarte einen klar erkennbaren Link «Merkblatt: …» (Chip
+mit Buch-Symbol und unterstrichenem Text) und nach einer Runde mit
+Fehlern «Zum Nachlesen: …», beide auf `../merkheft/<id>.html`. Die
+Links sind optional und nie eine Bedingung; die Suite prüft sie.
+
+Deep-Links: `?stufe=<id>` startet die Stufe direkt. Die Query wird
+nach dem Einstieg sofort aus der Adresse entfernt; die Suite prüft
+Einstieg und bereinigte Adresse.
 
 ## Tests
 

@@ -6,6 +6,12 @@
 // die offiziellen Kompetenzstufen. Arbeit im Gelände und eigenes
 // Zeichnen von Plänen ist als Erkennen, Lesen und Berechnen am
 // Bildschirm umgesetzt.
+//
+// Die offiziellen Stufen e und h mischen je zwei Konzepte; für
+// Kinder sind das getrennte Themen, darum stehen sie als je zwei
+// themenreine Karten in der Leiter. Gesplittete Teilstufen tragen
+// den offiziellen Buchstaben im Feld `code`; die `id` bleibt der
+// Speicher- und Link-Schlüssel.
 
 export const COMPETENCY = 'NMG.8.5';
 
@@ -35,16 +41,24 @@ export const STUFEN = [
     kinds: ['plan'],
   },
   {
-    id: 'e', cycle: 2, ga: false,
-    title: 'Karten lesen',
-    desc: 'Lies Signaturen und rechne mit dem Massstab.',
-    kinds: ['signatur', 'massstab'],
+    id: 'e-signaturen', code: 'e', cycle: 2, ga: false,
+    title: 'Signaturen',
+    desc: 'Lies die Signaturen und Farben der Karte.',
+    kinds: ['signatur'],
+  },
+  {
+    id: 'e-massstab', code: 'e', cycle: 2, ga: false,
+    title: 'Massstab umrechnen',
+    desc: 'Rechne Kartenstrecken mit dem Massstab um.',
+    kinds: ['massstab'],
+    merkblatt: { id: 'massstab', name: 'Der Massstab' },
   },
   {
     id: 'f', cycle: 2, ga: false,
     title: 'Massstabsgetreu',
     desc: 'Rechne Längen für den Plan um.',
     kinds: ['planmass'],
+    merkblatt: { id: 'massstab', name: 'Der Massstab' },
   },
   {
     id: 'g', cycle: 2, ga: false,
@@ -53,10 +67,18 @@ export const STUFEN = [
     kinds: ['oev'],
   },
   {
-    id: 'h', cycle: 2, ga: true,
-    title: 'Ortsplan und Karte',
-    desc: 'Orientiere dich mit Ortsplan und topographischer Karte.',
-    kinds: ['karte', 'richtung'],
+    id: 'h-karte', code: 'h', cycle: 2, ga: true,
+    title: 'Karte und Höhenkurven',
+    desc: 'Orientiere dich mit Ortsplan, Karte und Höhenkurven.',
+    kinds: ['karte'],
+    merkblatt: { id: 'hoehenkurven', name: 'Höhenkurven' },
+  },
+  {
+    id: 'h-richtungen', code: 'h', cycle: 2, ga: true,
+    title: 'Himmelsrichtungen',
+    desc: 'Bestimme die Himmelsrichtungen und die Gegenrichtung.',
+    kinds: ['richtung'],
+    merkblatt: { id: 'himmelsrichtungen', name: 'Himmelsrichtungen' },
   },
   {
     id: 'i', cycle: [2, 3], ga: false,
