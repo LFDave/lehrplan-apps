@@ -50,13 +50,11 @@ export const POOLS = {
     ['buchstabieren', 'mc', 'Am Wortanfang hörst du «scht» wie in «Stein». Wie schreibst du?', 'st', ['scht', 'sd']],
     ['buchstabieren', 'mc', 'Wozu hilft dir das ABC im Wörterbuch?', 'Wörter schneller zu finden', ['schöner zu schreiben', 'lauter zu lesen']],
   ],
-  c: [
-    ['vokal', 'mc', 'Was ist der Stamm von «fahren, Fahrer, Abfahrt»?', 'fahr', ['fahren', 'ab']],
-    ['vokal', 'mc', 'Was ist der Stamm von «spielen, Spieler, verspielt»?', 'spiel', ['spielen', 'ver']],
-    ['vokal', 'mc', 'Du willst «lief» im Wörterbuch nachschlagen. Unter welchem Wort suchst du?', 'unter «laufen»', ['unter «lief»', 'unter «gelaufen»']],
-    ['vokal', 'mc', 'Du willst «ass» im Wörterbuch nachschlagen. Unter welchem Wort suchst du?', 'unter «essen»', ['unter «ass»', 'unter «gegessen»']],
-  ],
   d: [
+    ['abcOrdnung', 'mc', 'Was ist der Stamm von «fahren, Fahrer, Abfahrt»?', 'fahr', ['fahren', 'ab']],
+    ['abcOrdnung', 'mc', 'Was ist der Stamm von «spielen, Spieler, verspielt»?', 'spiel', ['spielen', 'ver']],
+    ['abcOrdnung', 'mc', 'Du willst «lief» im Wörterbuch nachschlagen. Unter welchem Wort suchst du?', 'unter «laufen»', ['unter «lief»', 'unter «gelaufen»']],
+    ['abcOrdnung', 'mc', 'Du willst «ass» im Wörterbuch nachschlagen. Unter welchem Wort suchst du?', 'unter «essen»', ['unter «ass»', 'unter «gegessen»']],
     ['abcOrdnung', 'mc', 'Warum schreibt man «Bäume» mit äu?', 'wegen des Stamms «Baum»', ['weil es schöner aussieht', 'wegen der Endung -e']],
     ['abcOrdnung', 'mc', 'Warum schreibt man «Häuser» mit äu?', 'wegen des Stamms «Haus»', ['weil es viele sind', 'wegen des s am Ende']],
     ['abcOrdnung', 'mc', 'Am Ende von «Hund» hörst du ein t. Wie prüfst du die Schreibung?', 'verlängern: die Hun-de', ['lauter sprechen', 'das Wort auswendig lernen']],
@@ -125,7 +123,7 @@ export function genTask(rng, stufe) {
       answer: nach ? ABC[i + 1] : ABC[i - 1],
     };
   }
-  if (stufe.id === 'c' && rng() < 0.6) {
+  if (stufe.id === 'c-vokale') {
     if (rng() < 0.5) {
       const letter = ABC[randInt(rng, 0, 25)];
       const correct = VOKALE.includes(letter) ? 'ein Vokal' : 'ein Konsonant';
@@ -135,13 +133,33 @@ export function genTask(rng, stufe) {
         ...buildMc(rng, correct, [correct === 'ein Vokal' ? 'ein Konsonant' : 'ein Vokal']),
       };
     }
-    const letter = ABC[randInt(rng, 0, 25)];
-    const gruppen = ['vorne (A bis H)', 'in der Mitte (I bis Q)', 'hinten (R bis Z)'];
-    const idx = ABC.indexOf(letter) <= 7 ? 0 : ABC.indexOf(letter) <= 16 ? 1 : 2;
+    const vokal = VOKALE[randInt(rng, 0, VOKALE.length - 1)];
+    const kons = shuffled(rng, [...ABC].filter((ch) => !VOKALE.includes(ch))).slice(0, 2);
     return {
-      kind: 'abcGruppe', type: 'mc',
-      expr: `Wo steht das ${letter} im ABC: vorne (A bis H), in der Mitte (I bis Q) oder hinten (R bis Z)?`,
-      ...buildMc(rng, gruppen[idx], gruppen.filter((_, g) => g !== idx)),
+      kind: 'vokal', type: 'mc',
+      expr: 'Welcher dieser Buchstaben ist ein Vokal?',
+      ...buildMc(rng, vokal, kons),
+    };
+  }
+  if (stufe.id === 'c-gruppen') {
+    if (rng() < 0.5) {
+      const letter = ABC[randInt(rng, 0, 25)];
+      const gruppen = ['vorne (A bis H)', 'in der Mitte (I bis Q)', 'hinten (R bis Z)'];
+      const idx = ABC.indexOf(letter) <= 7 ? 0 : ABC.indexOf(letter) <= 16 ? 1 : 2;
+      return {
+        kind: 'abcGruppe', type: 'mc',
+        expr: `Wo steht das ${letter} im ABC: vorne (A bis H), in der Mitte (I bis Q) oder hinten (R bis Z)?`,
+        ...buildMc(rng, gruppen[idx], gruppen.filter((_, g) => g !== idx)),
+      };
+    }
+    const i = randInt(rng, 0, 24);
+    const j = randInt(rng, i + 1, 25);
+    const [x, y] = rng() < 0.5 ? [ABC[i], ABC[j]] : [ABC[j], ABC[i]];
+    const correct = ABC.indexOf(x) < ABC.indexOf(y) ? 'vor' : 'nach';
+    return {
+      kind: 'vorNach', type: 'mc',
+      expr: `Steht das ${x} im ABC vor oder nach dem ${y}?`,
+      ...buildMc(rng, correct, [correct === 'vor' ? 'nach' : 'vor']),
     };
   }
   if (stufe.id === 'd' && rng() < 0.5) {

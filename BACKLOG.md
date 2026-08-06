@@ -314,11 +314,20 @@ Infrastructure, quality, and process — independent of new apps.
     and d are split into b-geld/b-zeit/d-geld/d-zeit — separate
     cards, own progress, official letter and code shown via the
     `code` field. GA Stufen stay unsplit so the Grundanspruch
-    medal keeps meaning the full official Stufe. Remaining
-    candidates for the same split, pending kid feedback:
-    Grössenwissen b/h/k/l, Buchstabenleiter c, Schreibprobe c,
-    Figurenmass j (and Masswerk c, which is GA and would need the
-    full-Stufe rule thought through first).
+    medal keeps meaning the full official Stufe. All user-validated
+    candidates are split (2026-08-06): Masswerk c (Längen / Geld,
+    GA), Grössenwissen b (Münzen / Vergleiche), h (Diagramme /
+    Flächenmasse, GA), k (Häufigkeit / Einheiten / Koordinaten),
+    l (Zins-Rabatt / Vorsätze, GA), Buchstabenleiter c (Vokale /
+    ABC-Gruppen), Schreibprobe c (ie-ä / Kommas), Figurenmass j
+    (Pyramide / Winkel) — each with enriched pools or new
+    generators so the topic can be trained properly, and oracle
+    extensions in the same change. GA rule decided by the user:
+    the Grundanspruch medal requires a clean round on every card
+    of the official Stufe; the badge shows on all its cards.
+    Still open for later validation (borderline, currently judged
+    coherent under one meta-concept): Masswerk g, Grössenwissen c,
+    Zeitreise b, Zahlenwissen g, Wertepfad i.
 
 ## Definition of 100%
 

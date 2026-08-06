@@ -90,6 +90,10 @@ const QA = {
   "Ein Dreieck hat seine Spitze auf dem Halbkreis über dem Durchmesser. Wie gross ist der Winkel an der Spitze (Satz von Thales)?": "90°",
   "Wie gross ist die Winkelsumme im Dreieck?": "180°",
   "Wie gross ist die Winkelsumme im Viereck?": "360°",
+  "Wie nennt man einen Winkel von genau 90°?": "rechter Winkel",
+  "Wie nennt man einen Winkel, der kleiner als 90° ist?": "spitzer Winkel",
+  "Wie nennt man einen Winkel zwischen 90° und 180°?": "stumpfer Winkel",
+  "Wie gross ist jeder Winkel im gleichseitigen Dreieck?": "60°",
 };
 
 function solveTyped(expr, svg = "") {
@@ -143,6 +147,9 @@ function solveTyped(expr, svg = "") {
   }
   if ((m = expr.match(/^(?:Prisma|Zylinder): Grundfläche (\d+) cm², Höhe (\d+) cm\. Volumen = \? cm³$/))) {
     return String(num(m[1]) * num(m[2]));
+  }
+  if ((m = expr.match(/^Pyramide: Volumen (\d+) cm³, Grundfläche (\d+) cm²\. Höhe = \? cm \(3 · V : G\)$/))) {
+    return String((3 * Number(m[1])) / Number(m[2]));
   }
   if ((m = expr.match(/^Pyramide: Grundfläche (\d+) cm², Höhe (\d+) cm\. Volumen = \? cm³ \(G · h : 3\)$/))) {
     return String((num(m[1]) * num(m[2])) / 3);
@@ -208,7 +215,8 @@ function chooseOption(expr, options, svg = "") {
 
 /* ── Data and copy sanity ─────────────────────────────────────────── */
 {
-  check("data: 11 Stufen a-k", STUFEN.length === 11 && STUFEN.map((s) => s.id).join("") === "abcdefghijk");
+  check("data: 12 Stufen cards (j split by topic)",
+    STUFEN.length === 12 && STUFEN.map((s) => s.code || s.id).join(",") === "a,b,c,d,e,f,g,h,i,j,j,k");
   check("data: GA marks on b, e and i",
     STUFEN.filter((s) => s.ga).map((s) => s.id).join(",") === "b,e,i");
   const eszett = [];
@@ -302,8 +310,11 @@ async function playRound(stufeId) {
 await page.goto(URL);
 await page.waitForSelector(".stufen-list");
 check("home: title renders", (await page.textContent("h1")).trim() === "Figurenmass");
-check("home: 11 Stufen with three GA badges",
-  await page.locator(".stufe").count() === 11 && await page.locator(".ga-badge").count() === 3);
+check("home: 12 Stufen cards with three GA badges",
+  await page.locator(".stufe").count() === 12 && await page.locator(".ga-badge").count() === 3);
+check("home: split cards show the official letter",
+  (await page.textContent('[data-stufe="j-koerper"]')).includes("MA.2.A.3.j")
+  && (await page.textContent('[data-stufe="j-winkel"]')).includes("MA.2.A.3.j"));
 check("home: competency code visible", (await page.textContent('[data-stufe="b"]')).includes("MA.2.A.3.b"));
 await page.screenshot({ path: join(SHOTS_DIR, "01-home.png"), fullPage: true });
 
@@ -366,6 +377,13 @@ await page.goto(URL);
 await page.waitForSelector(".stufen-list");
 check("layout: no horizontal scrolling at 320px",
   await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth));
+
+/* ── Deep link (split sub-Stufe) ──────────────────────────────────── */
+await page.goto(`${URL}?stufe=j-winkel`);
+await page.waitForSelector(".task-area");
+check("deep link: ?stufe=j-winkel starts the Stufe directly, query cleaned",
+  (await page.textContent(".practice-meta")).includes("Stufe j")
+  && (await page.evaluate(() => location.search)) === "");
 
 check("console: no errors", consoleErrors.length === 0, consoleErrors.slice(0, 3).join(" | "));
 check("network: no external requests", externalRequests.length === 0, externalRequests.slice(0, 3).join(", "));

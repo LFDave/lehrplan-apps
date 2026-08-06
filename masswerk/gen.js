@@ -64,6 +64,14 @@ const KINDS = {
     const a = randInt(rng, 2, 10) * 2;
     return typed(`Die Hälfte von ${a} Fr. = ? Fr.`, String(a / 2));
   },
+  doubleMoney(rng) {
+    const a = randInt(rng, 3, 45);
+    return typed(`Das Doppelte von ${a} Fr. = ? Fr.`, String(2 * a));
+  },
+  halfLen(rng) {
+    const a = randInt(rng, 6, 48) * 2;
+    return typed(`Die Hälfte von ${a} cm = ? cm`, String(a / 2));
+  },
   meterParts(rng) {
     const parts = pick(rng, [2, 5, 10]);
     return typed(`1 m in ${parts} gleiche Teile = ? cm`, String(100 / parts));

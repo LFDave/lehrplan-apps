@@ -38,8 +38,8 @@ export const MEDALS = [
   { key: 'aufgaben-200', icon: 'zap', threshold: (s) => s.tasks >= 200, name: 'Einheitenblitz', desc: '200 Aufgaben gelöst.' },
   { key: 'aufgaben-800', icon: 'gem', threshold: (s) => s.tasks >= 800, name: 'Grössenschatz', desc: '800 Aufgaben gelöst.' },
   { key: 'ga-z1', icon: 'target', threshold: (s) => cleanRuns(s, 'c') >= 1, name: 'Grundanspruch Zyklus 1', desc: 'Stufe c ohne Fehler geschafft.' },
-  { key: 'ga-z2', icon: 'target', threshold: (s) => cleanRuns(s, 'h') >= 1, name: 'Grundanspruch Zyklus 2', desc: 'Stufe h ohne Fehler geschafft.' },
-  { key: 'ga-z3', icon: 'target', threshold: (s) => cleanRuns(s, 'l') >= 1, name: 'Grundanspruch Zyklus 3', desc: 'Stufe l ohne Fehler geschafft.' },
+  { key: 'ga-z2', icon: 'target', threshold: (s) => cleanRuns(s, 'h-daten') >= 1 && cleanRuns(s, 'h-flaechen') >= 1, name: 'Grundanspruch Zyklus 2', desc: 'Beide Karten der Stufe h ohne Fehler geschafft.' },
+  { key: 'ga-z3', icon: 'target', threshold: (s) => cleanRuns(s, 'l-geld') >= 1 && cleanRuns(s, 'l-vorsaetze') >= 1, name: 'Grundanspruch Zyklus 3', desc: 'Beide Karten der Stufe l ohne Fehler geschafft.' },
   { key: 'alle-stufen', icon: 'compass', threshold: (s) => STUFEN.every((st) => rounds(s, st.id) >= 1), name: 'Alle Stufen entdeckt', desc: 'In jeder Stufe eine Runde abgeschlossen.' },
 ];
 

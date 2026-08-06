@@ -29,11 +29,18 @@ export const STUFEN = [
     merkblatt: { id: 'uhr', name: 'Die Uhr' },
   },
   {
-    id: 'c', cycle: 1, ga: true,
+    id: 'c-laengen', code: 'c', cycle: 1, ga: true,
     title: 'Längen bis 1 Meter',
-    desc: 'Rechne mit Zentimetern, teile den Meter und halbiere Geldbeträge.',
-    kinds: ['lenAdd', 'doubleLen', 'halfMoney', 'meterParts'],
+    desc: 'Rechne mit Zentimetern, teile den Meter, verdopple und halbiere Längen.',
+    kinds: ['lenAdd', 'doubleLen', 'halfLen', 'meterParts'],
     merkblatt: { id: 'laengen', name: 'Längen messen' },
+  },
+  {
+    id: 'c-geld', code: 'c', cycle: 1, ga: true,
+    title: 'Geld verdoppeln und halbieren',
+    desc: 'Verdopple und halbiere Geldbeträge.',
+    kinds: ['halfMoney', 'doubleMoney'],
+    merkblatt: { id: 'geld', name: 'Geld' },
   },
   {
     id: 'd-geld', code: 'd', cycle: [1, 2], ga: false,

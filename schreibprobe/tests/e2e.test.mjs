@@ -58,8 +58,11 @@ const WRONG = new Set([
   "Wirgehen nachHause.", "Ichspiele mitdem Ball.",
   "Schtern", "Rink", "lank", "Kommst du mit.", "Wie spät ist es.",
   "die angst", "der mut",
-  "Wise", "Brif", "Beume", "Reder",
+  "Wise", "Brif", "Libe", "Beume", "Reder",
   "Ich kaufe Äpfel Birnen und Brot.", "Im Zoo leben Löwen Affen und Zebras.",
+  "Ich packe Hose Pullover und Schuhe ein.", "Wir sehen Kühe Pferde und Schafe.",
+  "Anna malt mit Rot Blau und Grün.", "Im Garten wachsen Rüebli Salat und Bohnen.",
+  "Zum Zmorge gibt es Brot Butter und Honig.", "Auf dem Pult liegen Stifte Hefte und Bücher.",
   "Hunt", "Berk", "Walt", "komen", "Somer", "das glück", "die freude",
   "die freiheit", "die entdeckung", "das ergebnis", "die übung",
   "Ich weiss dass du kommst.", "Er sagt dass es regnet.", "Sie hofft dass wir gewinnen.",
@@ -76,10 +79,13 @@ const QA = {
   "Schreibe richtig: Schtrasse": "Strasse",
   "Schreibe richtig: Spil": "Spiel",
   "Schreibe richtig: Zil": "Ziel",
+  "Schreibe richtig: Papir": "Papier",
+  "Schreibe richtig: Negel": "Nägel",
   "Schreibe richtig: Hunt": "Hund",
   "Schreibe richtig: schwimen": "schwimmen",
   "Schreibe richtig: renen": "rennen",
   "Warum schreibt man «Bäume» mit ä?": "wegen «Baum»",
+  "Warum schreibt man «Räder» mit ä?": "wegen «Rad»",
   "Du bist unsicher: «Hunt» oder «Hund»? Was hilft?": "das Wort verlängern: Hunde",
   "Du kennst die Schreibung eines Wortes nicht. Wo schaust du nach?": "im Wörterbuch",
   "Wie prüfst du die Schreibung von «Fahrrad»?": "den Stamm suchen: fahren",
@@ -135,7 +141,8 @@ function chooseOption(expr, options) {
 
 /* ── Data and copy sanity ─────────────────────────────────────────── */
 {
-  check("data: 7 Stufen a-g", STUFEN.length === 7 && STUFEN.map((s) => s.id).join("") === "abcdefg");
+  check("data: 8 Stufen cards (c split by topic)",
+    STUFEN.length === 8 && STUFEN.map((s) => s.code || s.id).join(",") === "a,b,c,c,d,e,f,g");
   check("data: GA marks on a and d and f",
     STUFEN.filter((s) => s.ga).map((s) => s.id).join(",") === "a,d,f");
   const eszett = [];
@@ -223,8 +230,11 @@ async function playRound(stufeId) {
 await page.goto(URL);
 await page.waitForSelector(".stufen-list");
 check("home: title renders", (await page.textContent("h1")).trim() === "Schreibprobe");
-check("home: all Stufen with GA badges",
-  await page.locator(".stufe").count() === 7 && await page.locator(".ga-badge").count() === 3);
+check("home: all Stufen cards with GA badges",
+  await page.locator(".stufe").count() === 8 && await page.locator(".ga-badge").count() === 3);
+check("home: split cards show the official letter",
+  (await page.textContent('[data-stufe="c-schreibung"]')).includes("D.4.F.1.c")
+  && (await page.textContent('[data-stufe="c-kommas"]')).includes("D.4.F.1.c"));
 check("home: competency code visible", (await page.textContent('[data-stufe="a"]')).includes("D.4.F.1.a"));
 await page.screenshot({ path: join(SHOTS_DIR, "01-home.png"), fullPage: true });
 
@@ -301,6 +311,13 @@ await page.goto(URL);
 await page.waitForSelector(".stufen-list");
 check("layout: no horizontal scrolling at 320px",
   await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth));
+
+/* ── Deep link (split sub-Stufe) ──────────────────────────────────── */
+await page.goto(`${URL}?stufe=c-kommas`);
+await page.waitForSelector(".task-area");
+check("deep link: ?stufe=c-kommas starts the Stufe directly, query cleaned",
+  (await page.textContent(".practice-meta")).includes("Stufe c")
+  && (await page.evaluate(() => location.search)) === "");
 
 check("console: no errors", consoleErrors.length === 0, consoleErrors.slice(0, 3).join(" | "));
 check("network: no external requests", externalRequests.length === 0, externalRequests.slice(0, 3).join(", "));

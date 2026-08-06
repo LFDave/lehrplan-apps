@@ -47,8 +47,11 @@ stehen als "Zahl Einheit", das Ziel als "? Einheit".
   übt jede Karte nur eines. Beide zeigen den Buchstaben b und den
   Code MA.3.A.2.b (Feld `code` in `data.js`; die `id` bleibt der
   Speicher- und Link-Schlüssel).
-- **c** (Z1, GA): Zentimeter bis 1 m, Meter teilen, Längen verdoppeln,
-  Geldbeträge halbieren.
+- **c** (Z1, GA), als zwei Karten: **c-laengen** «Längen bis 1 Meter»
+  (Zentimeter addieren, Meter teilen, Längen verdoppeln und neu auch
+  halbieren) und **c-geld** «Geld verdoppeln und halbieren» (neu auch
+  verdoppeln). Die Grundanspruch-Medaille Zyklus 1 verlangt beide
+  Karten fehlerfrei; beide tragen das GA-Abzeichen.
 - **d** (Z1+Z2), als zwei Karten: **d-geld** «Franken und Rappen»
   (z. B. "25 Fr. 60 Rp. + 14 Fr. 30 Rp. = ? Fr.") und **d-zeit**
   «Zeitdauern» ("Von 09:40 bis 10:15 = ? min"). Gleiche Regel wie

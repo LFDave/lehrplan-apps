@@ -14,6 +14,10 @@ const TITLE_ICON = 'scale';
 
 const app = document.getElementById('app');
 
+// Anzeige-Buchstabe der offiziellen Stufe: gesplittete Teilstufen
+// (b-geld, h-daten) tragen ihn im Feld code.
+const stufeCode = (s) => s.code || s.id;
+
 function freshState() {
   return { xp: 0, rounds: 0, tasks: 0, stufen: {} };
 }
@@ -81,14 +85,14 @@ function renderHome() {
           return `
           <li>
             <button class="stufe" data-stufe="${s.id}">
-              <span class="stufe-letter" aria-hidden="true">${s.id}</span>
+              <span class="stufe-letter" aria-hidden="true">${stufeCode(s)}</span>
               <span class="stufe-body">
                 <span class="stufe-title">${esc(s.title)}
                   ${s.ga ? `<span class="ga-badge">${icon('target')}${t('stufe.ga', { cycle: s.cycle })}</span>` : ''}
                   ${s.erweiterung ? `<span class="stufe-tag">${t('stufe.erweiterung')}</span>` : ''}
                 </span>
                 <span class="stufe-desc">${esc(s.desc)}</span>
-                <span class="stufe-meta">${esc(cycleLabel(s.cycle))} · ${COMPETENCY}.${s.id}${ps.rounds ? ` · ${t('home.rounds', { n: ps.rounds })}` : ''}</span>
+                <span class="stufe-meta">${esc(cycleLabel(s.cycle))} · ${COMPETENCY}.${stufeCode(s)}${ps.rounds ? ` · ${t('home.rounds', { n: ps.rounds })}` : ''}</span>
               </span>
               ${icon('chevron-right', 'subject-chevron')}
             </button>
@@ -159,7 +163,7 @@ function renderTask() {
   app.innerHTML = `
     <header class="practice-header">
       <button class="btn secondary back-btn" data-action="abort">${icon('arrow-left')}${t('practice.abort')}</button>
-      <p class="practice-meta">${esc(stufe.title)} · Stufe ${stufe.id} · ${t('practice.progress', { i: r.index + 1, n: r.tasks.length })}</p>
+      <p class="practice-meta">${esc(stufe.title)} · Stufe ${stufeCode(stufe)} · ${t('practice.progress', { i: r.index + 1, n: r.tasks.length })}</p>
       <div class="progress-track wide"><div class="progress-fill" style="width:${Math.round((r.index / r.tasks.length) * 100)}%"></div></div>
     </header>
     <section class="task-area">
@@ -308,7 +312,7 @@ function renderDone() {
   app.innerHTML = `
     <section class="done">
       <h1 class="app-title">${icon(TITLE_ICON, 'title-icon')}${t('done.title')}</h1>
-      <p class="done-summary" role="status">${t('done.tasks', { n: ROUND_LENGTH, stufe: stufe.id })}${res.clean ? ' ' + t('done.clean') : ''}</p>
+      <p class="done-summary" role="status">${t('done.tasks', { n: ROUND_LENGTH, stufe: stufeCode(stufe) })}${res.clean ? ' ' + t('done.clean') : ''}</p>
       ${!res.clean && stufe.merkblatt ? `<a class="merkblatt-link" href="../merkheft/${stufe.merkblatt.id}.html"><svg class="merkblatt-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg><span>Zum Nachlesen: ${esc(stufe.merkblatt.name)}</span></a>` : ''}
       <div class="reward-block">
         <p class="reward-xp">${t('done.xp', { xp: res.xp })}</p>
@@ -318,8 +322,8 @@ function renderDone() {
       </div>
       ${res.suggestion ? `
         <div class="suggest">
-          <p>${t('done.suggest', { stufe: res.suggestion.id })}</p>
-          <button class="btn primary" data-action="suggest">${t('done.suggestGo', { stufe: res.suggestion.id })}</button>
+          <p>${t('done.suggest', { stufe: `${stufeCode(res.suggestion)} (${esc(res.suggestion.title)})` })}</p>
+          <button class="btn primary" data-action="suggest">${t('done.suggestGo', { stufe: stufeCode(res.suggestion) })} · ${esc(res.suggestion.title)}</button>
         </div>
       ` : ''}
       <div class="done-actions">

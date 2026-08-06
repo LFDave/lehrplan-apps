@@ -61,7 +61,24 @@ role="status"-Region.
 Einsprachig Deutsch (Schweizer Standarddeutsch), Strings in
 `strings.js`. Tokens aus DESIGN.md, Akzentfamilie **amber**,
 Atkinson Hyperlegible selbst gehostet, Lucide-Icons inline,
-Cache-Busting `?v=1`.
+Cache-Busting `?v=2`.
+
+**Gesplittete Stufe c.** Die offizielle Stufe c mischt Vokale und
+ABC-Gruppen; für Kinder sind das zwei Konzepte. Die App zeigt darum
+zwei Karten: **c-vokale** «Vokale und Konsonanten» (mit neuer
+Frageform «Welcher dieser Buchstaben ist ein Vokal?») und
+**c-gruppen** «ABC-Gruppen» (mit neuer Frageform «Steht das B im ABC
+vor oder nach dem K?»). Beide zeigen Buchstabe und Code der
+offiziellen Stufe c (Feld `code` in `data.js`; die `id` bleibt der
+Speicher- und Link-Schlüssel). Die Stamm- und Nachschlage-Fragen der
+alten c-Karte gehören thematisch zu Stufe d und sind dorthin
+gezogen.
+
+## Merkheft-Verbindung und Deep-Links
+
+Deep-Links: `?stufe=<id>` startet die Stufe direkt (auch Teilstufen
+wie `c-vokale`). Die Query wird nach dem Einstieg sofort aus der
+Adresse entfernt; die Suite prüft Einstieg und bereinigte Adresse.
 
 ## Tests
 

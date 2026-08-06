@@ -68,10 +68,16 @@ export const STUFEN = [
     kinds: ['circleCalc', 'prismVolume'],
   },
   {
-    id: 'j', cycle: 3, ga: false,
-    title: 'Pyramide und Winkel',
-    desc: 'Berechne Pyramiden-Volumen, Winkelsummen und kenne den Satz von Thales.',
-    kinds: ['pyramidVolume', 'angleSum', 'thalesMc'],
+    id: 'j-koerper', code: 'j', cycle: 3, ga: false,
+    title: 'Pyramide',
+    desc: 'Berechne Volumen und Höhe von Pyramiden.',
+    kinds: ['pyramidVolume', 'pyramidHeight'],
+  },
+  {
+    id: 'j-winkel', code: 'j', cycle: 3, ga: false,
+    title: 'Winkel und Thales',
+    desc: 'Berechne Winkelsummen und kenne die Winkelarten und den Satz von Thales.',
+    kinds: ['angleSum', 'thalesMc'],
   },
   {
     id: 'k', cycle: 3, ga: false,

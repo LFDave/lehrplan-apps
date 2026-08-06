@@ -24,10 +24,16 @@ export const STUFEN = [
     kinds: ['spSt', 'ngSchreibung', 'schlusszeichen', 'abstraktGross'],
   },
   {
-    id: 'c', cycle: 2, ga: false,
-    title: 'ie, ä und Kommas',
-    desc: 'Schreibe ie- und ä-Wörter richtig und setze Kommas bei Aufzählungen.',
-    kinds: ['ieSchreibung', 'aeSchreibung', 'kommaAufzaehlung'],
+    id: 'c-schreibung', code: 'c', cycle: 2, ga: false,
+    title: 'ie und ä',
+    desc: 'Schreibe ie- und ä-Wörter richtig.',
+    kinds: ['ieSchreibung', 'aeSchreibung'],
+  },
+  {
+    id: 'c-kommas', code: 'c', cycle: 2, ga: false,
+    title: 'Kommas bei Aufzählungen',
+    desc: 'Setze die Kommas in Aufzählungen richtig.',
+    kinds: ['kommaAufzaehlung'],
   },
   {
     id: 'd', cycle: 2, ga: true,

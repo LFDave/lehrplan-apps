@@ -2,17 +2,21 @@
 // Abschluss, Medaillen. Eine Runde hat 8 Aufgaben; ausgewertet wird
 // immer die ganze Antwort, nie einzelne Zeichen.
 
-import { STUFEN, COMPETENCY, stufeById, nextStufe, cycleLabel } from './data.js?v=1';
-import { genRound } from './gen.js?v=1';
-import { roundXp, levelFor, nextLevel, earnedMedals, suggestsNextStufe, MEDALS } from './game.js?v=1';
-import { t } from './strings.js?v=1';
-import { icon } from './icons.js?v=1';
+import { STUFEN, COMPETENCY, stufeById, nextStufe, cycleLabel } from './data.js?v=2';
+import { genRound } from './gen.js?v=2';
+import { roundXp, levelFor, nextLevel, earnedMedals, suggestsNextStufe, MEDALS } from './game.js?v=2';
+import { t } from './strings.js?v=2';
+import { icon } from './icons.js?v=2';
 
 const STORE = 'figurenmass.progress';
 const ROUND_LENGTH = 8;
 const TITLE_ICON = 'pentagon';
 
 const app = document.getElementById('app');
+
+// Anzeige-Buchstabe der offiziellen Stufe: gesplittete Teilstufen
+// tragen ihn im Feld code.
+const stufeCode = (s) => s.code || s.id;
 
 function freshState() {
   return { xp: 0, rounds: 0, tasks: 0, stufen: {} };
@@ -81,14 +85,14 @@ function renderHome() {
           return `
           <li>
             <button class="stufe" data-stufe="${s.id}">
-              <span class="stufe-letter" aria-hidden="true">${s.id}</span>
+              <span class="stufe-letter" aria-hidden="true">${stufeCode(s)}</span>
               <span class="stufe-body">
                 <span class="stufe-title">${esc(s.title)}
                   ${s.ga ? `<span class="ga-badge">${icon('target')}${t('stufe.ga', { cycle: s.cycle })}</span>` : ''}
                   ${s.erweiterung ? `<span class="stufe-tag">${t('stufe.erweiterung')}</span>` : ''}
                 </span>
                 <span class="stufe-desc">${esc(s.desc)}</span>
-                <span class="stufe-meta">${esc(cycleLabel(s.cycle))} · ${COMPETENCY}.${s.id}${ps.rounds ? ` · ${t('home.rounds', { n: ps.rounds })}` : ''}</span>
+                <span class="stufe-meta">${esc(cycleLabel(s.cycle))} · ${COMPETENCY}.${stufeCode(s)}${ps.rounds ? ` · ${t('home.rounds', { n: ps.rounds })}` : ''}</span>
               </span>
               ${icon('chevron-right', 'subject-chevron')}
             </button>
@@ -158,7 +162,7 @@ function renderTask() {
   app.innerHTML = `
     <header class="practice-header">
       <button class="btn secondary back-btn" data-action="abort">${icon('arrow-left')}${t('practice.abort')}</button>
-      <p class="practice-meta">${esc(stufe.title)} · Stufe ${stufe.id} · ${t('practice.progress', { i: r.index + 1, n: r.tasks.length })}</p>
+      <p class="practice-meta">${esc(stufe.title)} · Stufe ${stufeCode(stufe)} · ${t('practice.progress', { i: r.index + 1, n: r.tasks.length })}</p>
       <div class="progress-track wide"><div class="progress-fill" style="width:${Math.round((r.index / r.tasks.length) * 100)}%"></div></div>
     </header>
     <section class="task-area">
@@ -308,7 +312,7 @@ function renderDone() {
   app.innerHTML = `
     <section class="done">
       <h1 class="app-title">${icon(TITLE_ICON, 'title-icon')}${t('done.title')}</h1>
-      <p class="done-summary" role="status">${t('done.tasks', { n: ROUND_LENGTH, stufe: stufe.id })}${res.clean ? ' ' + t('done.clean') : ''}</p>
+      <p class="done-summary" role="status">${t('done.tasks', { n: ROUND_LENGTH, stufe: stufeCode(stufe) })}${res.clean ? ' ' + t('done.clean') : ''}</p>
       <div class="reward-block">
         <p class="reward-xp">${t('done.xp', { xp: res.xp })}</p>
         <p>${res.levelUp ? t('done.levelup', { name: level.name }) : t('done.level', { name: level.name })} · ${p.xp} XP</p>
@@ -317,8 +321,8 @@ function renderDone() {
       </div>
       ${res.suggestion ? `
         <div class="suggest">
-          <p>${t('done.suggest', { stufe: res.suggestion.id })}</p>
-          <button class="btn primary" data-action="suggest">${t('done.suggestGo', { stufe: res.suggestion.id })}</button>
+          <p>${t('done.suggest', { stufe: `${stufeCode(res.suggestion)} (${esc(res.suggestion.title)})` })}</p>
+          <button class="btn primary" data-action="suggest">${t('done.suggestGo', { stufe: stufeCode(res.suggestion) })} · ${esc(res.suggestion.title)}</button>
         </div>
       ` : ''}
       <div class="done-actions">
@@ -372,3 +376,12 @@ function route() {
 window.addEventListener('hashchange', route);
 document.documentElement.lang = 'de-CH';
 route();
+
+// Deep-Link aus dem Merkheft: ?stufe=<id> startet die Stufe direkt.
+// Die Query wird sofort aus der Adresse entfernt, damit sie beim
+// Neuladen oder Weitergeben nicht kleben bleibt.
+const deepStufe = new URLSearchParams(location.search).get('stufe');
+if (deepStufe) {
+  history.replaceState(null, '', location.pathname + location.hash);
+  if (STUFEN.some((s) => s.id === deepStufe)) startRound(deepStufe);
+}

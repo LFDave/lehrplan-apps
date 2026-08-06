@@ -23,10 +23,16 @@ export const STUFEN = [
     kinds: ['buchstabieren'],
   },
   {
-    id: 'c', cycle: 2, ga: false,
-    title: 'Vokal, Stamm und Gruppen',
-    desc: 'Kenne Vokale, Wortstämme und ABC-Gruppen.',
-    kinds: ['vokal', 'abcGruppe'],
+    id: 'c-vokale', code: 'c', cycle: 2, ga: false,
+    title: 'Vokale und Konsonanten',
+    desc: 'Erkenne Vokale und Konsonanten im ABC.',
+    kinds: ['vokal'],
+  },
+  {
+    id: 'c-gruppen', code: 'c', cycle: 2, ga: false,
+    title: 'ABC-Gruppen',
+    desc: 'Wo steht ein Buchstabe im ABC: vorne, in der Mitte oder hinten?',
+    kinds: ['abcGruppe', 'vorNach'],
   },
   {
     id: 'd', cycle: 2, ga: true,
