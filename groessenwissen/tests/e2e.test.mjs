@@ -362,8 +362,9 @@ check("layout: no horizontal scrolling at 320px",
 /* ── Deep link (Merkheft «Dazu üben») ─────────────────────────────── */
 await page.goto(`${URL}?stufe=f`);
 await page.waitForSelector(".task-area");
-check("deep link: ?stufe=f starts the Stufe directly",
-  (await page.textContent(".practice-meta")).includes("Stufe f"));
+check("deep link: ?stufe=f starts the Stufe directly, query cleaned",
+  (await page.textContent(".practice-meta")).includes("Stufe f")
+  && (await page.evaluate(() => location.search)) === "");
 
 check("console: no errors", consoleErrors.length === 0, consoleErrors.slice(0, 3).join(" | "));
 check("network: no external requests", externalRequests.length === 0, externalRequests.slice(0, 3).join(", "));

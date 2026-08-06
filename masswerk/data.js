@@ -15,11 +15,18 @@ export const COMPETENCY = 'MA.3.A.2';
 
 export const STUFEN = [
   {
-    id: 'b', cycle: 1, ga: false,
-    title: 'Franken und halbe Stunden',
-    desc: 'Rechne mit ganzen Franken bis 20 und mit halben Stunden.',
-    kinds: ['moneyAdd', 'moneySub', 'halfHour'],
+    id: 'b-geld', code: 'b', cycle: 1, ga: false,
+    title: 'Franken',
+    desc: 'Rechne mit ganzen Franken bis 20.',
+    kinds: ['moneyAdd', 'moneySub'],
     merkblatt: { id: 'geld', name: 'Geld' },
+  },
+  {
+    id: 'b-zeit', code: 'b', cycle: 1, ga: false,
+    title: 'Halbe Stunden',
+    desc: 'Rechne mit halben Stunden auf der Uhr.',
+    kinds: ['halfHour'],
+    merkblatt: { id: 'uhr', name: 'Die Uhr' },
   },
   {
     id: 'c', cycle: 1, ga: true,
@@ -29,10 +36,17 @@ export const STUFEN = [
     merkblatt: { id: 'laengen', name: 'Längen messen' },
   },
   {
-    id: 'd', cycle: [1, 2], ga: false,
-    title: 'Franken und Rappen, Uhrzeiten',
-    desc: 'Rechne mit Franken und Rappen und bestimme Zeitdauern.',
-    kinds: ['moneyRp', 'duration'],
+    id: 'd-geld', code: 'd', cycle: [1, 2], ga: false,
+    title: 'Franken und Rappen',
+    desc: 'Rechne mit Franken und Rappen.',
+    kinds: ['moneyRp'],
+    merkblatt: { id: 'geld', name: 'Geld' },
+  },
+  {
+    id: 'd-zeit', code: 'd', cycle: [1, 2], ga: false,
+    title: 'Zeitdauern',
+    desc: 'Bestimme Zeitdauern in Minuten.',
+    kinds: ['duration'],
     merkblatt: { id: 'uhr', name: 'Die Uhr' },
   },
   {

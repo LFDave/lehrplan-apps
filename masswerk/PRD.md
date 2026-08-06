@@ -41,11 +41,18 @@ Alle Generatoren leben in `gen.js` (rein, ohne DOM, injizierbarer
 Zufall). Aufgaben sind getippt (`typed`) oder Auswahl (`mc`). Grössen
 stehen als "Zahl Einheit", das Ziel als "? Einheit".
 
-- **b** (Z1): ganze Franken bis 20, halbe Stunden.
+- **b** (Z1), als zwei Karten: **b-geld** «Franken» (ganze Franken
+  bis 20) und **b-zeit** «Halbe Stunden». Die offizielle Stufe
+  mischt Geld und Zeit; für Kinder sind das zwei Konzepte, darum
+  übt jede Karte nur eines. Beide zeigen den Buchstaben b und den
+  Code MA.3.A.2.b (Feld `code` in `data.js`; die `id` bleibt der
+  Speicher- und Link-Schlüssel).
 - **c** (Z1, GA): Zentimeter bis 1 m, Meter teilen, Längen verdoppeln,
   Geldbeträge halbieren.
-- **d** (Z1+Z2): Franken und Rappen (z. B. "25 Fr. 60 Rp. + 14 Fr.
-  30 Rp. = ? Fr."), Zeitdauern ("Von 09:40 bis 10:15 = ? min").
+- **d** (Z1+Z2), als zwei Karten: **d-geld** «Franken und Rappen»
+  (z. B. "25 Fr. 60 Rp. + 14 Fr. 30 Rp. = ? Fr.") und **d-zeit**
+  «Zeitdauern» ("Von 09:40 bis 10:15 = ? min"). Gleiche Regel wie
+  bei b.
 - **e** (Z2): benachbarte Einheiten umwandeln (g/kg, mm/cm/m, dl/l),
   Meter und Zentimeter zusammenzählen.
 - **g** (Z2): über Einheitsgrenzen rechnen (1 kg − 300 g), Stunden in
@@ -111,7 +118,7 @@ stehen als "Zahl Einheit", das Ziel als "? Einheit".
   UI-Texte in `strings.js` mit stabilen IDs. Keine
   Einstellungen-Ansicht, solange es nichts zu konfigurieren gibt.
 - Tokens aus DESIGN.md, Akzentfamilie **sage**, Atkinson Hyperlegible
-  selbst gehostet, Lucide-Icons inline, Cache-Busting `?v=4`.
+  selbst gehostet, Lucide-Icons inline, Cache-Busting `?v=5`.
 - Schweizer Formate: Tausendertrennung mit Apostroph (2'000),
   Dezimalpunkt, Franken und Rappen, 24-Stunden-Uhrzeiten (09:40).
 
@@ -125,10 +132,10 @@ unterstrichenem Text) und nach einer Runde mit Fehlern
 «Zum Nachlesen: …», beide auf `../merkheft/<id>.html`. Die Links
 sind optional und nie eine Bedingung; die Suite prüft sie.
 
-Deep-Links: `?stufe=<id>` startet die Stufe direkt, optional begrenzt
-`&thema=<art1,art2>` die Runde auf die Aufgabenarten des verlinkten
-Merkblatt-Themas. Unbekannte Filter fallen auf die ganze Stufe
-zurück; die Suite prüft den Einstieg.
+Deep-Links: `?stufe=<id>` startet die Stufe direkt (auch Teilstufen
+wie `b-zeit`). Die Query wird nach dem Einstieg sofort aus der
+Adresse entfernt, damit sie beim Neuladen oder Weitergeben nicht
+kleben bleibt; die Suite prüft Einstieg und bereinigte Adresse.
 
 Uhrzeit-Antworten (`10:30`): Das Eingabefeld nutzt `inputmode`
 `decimal`, weil mobile Zahlentastaturen keinen Doppelpunkt haben.

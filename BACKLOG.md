@@ -252,8 +252,9 @@ Infrastructure, quality, and process — independent of new apps.
     - **Kompass → Merkheft links** next to "Üben mit …" for
       competencies with a Merkblatt.
     - ~~Deep-link to a Stufe from "Dazu üben"~~ — shipped:
-      `?stufe=<id>` starts the Stufe directly, `&thema=<kinds>`
-      restricts the round to the Merkblatt's topic.
+      `?stufe=<id>` starts the Stufe (or split sub-Stufe)
+      directly; the app removes the query from the address after
+      entry.
 12. **Merkblatt infographics: one printable A4 overview per
     concept — PILOT SHIPPED, scaling remains.** Each Merkblatt can
     grow a single dense overview graphic that explains the whole
@@ -305,12 +306,19 @@ Infrastructure, quality, and process — independent of new apps.
     the two Grössen apps, because the MA.3.A Stufen sweep across
     Grössenarten by design. Borderline but coherent under one
     meta-concept: Masswerk g, Grössenwissen c, Zeitreise b,
-    Zahlenwissen g, Wertepfad i. Mitigation shipped: Merkheft
-    "Dazu üben" deep links use `&thema=` so linked rounds are
-    topic-pure. Proposed next step: quiet topic chips on mixed
-    Stufe cards (alle / Geld / Zeit …) using the same kinds
-    filter, with GA medals still requiring full-Stufe clean rounds
-    so the Grundanspruch stays honest. Decide before building.
+    Zahlenwissen g, Wertepfad i. Decision (2026-08-06):
+    mixed Stufen are **split into topic-pure sub-Stufen in the
+    app** rather than filtered via URL parameter (the `&thema=`
+    approach was tried and rejected: the query stuck around in the
+    address, and the in-app card still mixed topics). Masswerk b
+    and d are split into b-geld/b-zeit/d-geld/d-zeit — separate
+    cards, own progress, official letter and code shown via the
+    `code` field. GA Stufen stay unsplit so the Grundanspruch
+    medal keeps meaning the full official Stufe. Remaining
+    candidates for the same split, pending kid feedback:
+    Grössenwissen b/h/k/l, Buchstabenleiter c, Schreibprobe c,
+    Figurenmass j (and Masswerk c, which is GA and would need the
+    full-Stufe rule thought through first).
 
 ## Definition of 100%
 

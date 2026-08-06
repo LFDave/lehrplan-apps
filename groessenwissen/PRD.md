@@ -77,7 +77,7 @@ und zusätzlich mit Enter.
 Einsprachig Deutsch (Schweizer Standarddeutsch), Strings in
 `strings.js`. Tokens aus DESIGN.md, Akzentfamilie **amber**, Atkinson
 Hyperlegible selbst gehostet, Lucide-Icons inline, Cache-Busting
-`?v=4`.
+`?v=5`.
 
 ## Merkheft-Verbindung
 
@@ -89,10 +89,10 @@ unterstrichenem Text) und nach einer Runde mit Fehlern
 «Zum Nachlesen: …», beide auf `../merkheft/<id>.html`. Die Links
 sind optional und nie eine Bedingung; die Suite prüft sie.
 
-Deep-Links: `?stufe=<id>` startet die Stufe direkt, optional begrenzt
-`&thema=<art1,art2>` die Runde auf die Aufgabenarten des verlinkten
-Merkblatt-Themas. Unbekannte Filter fallen auf die ganze Stufe
-zurück; die Suite prüft den Einstieg.
+Deep-Links: `?stufe=<id>` startet die Stufe direkt. Die Query wird
+nach dem Einstieg sofort aus der Adresse entfernt, damit sie beim
+Neuladen oder Weitergeben nicht kleben bleibt; die Suite prüft
+Einstieg und bereinigte Adresse.
 
 ## Tests
 

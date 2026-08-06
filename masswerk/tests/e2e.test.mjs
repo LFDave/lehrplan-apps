@@ -174,9 +174,13 @@ function solveMc(task) {
 
 /* ── Data and copy sanity ─────────────────────────────────────────── */
 {
-  check("data: 9 app Stufen, a and f documented as real-world only",
-    STUFEN.length === 9 && SKIPPED.join(",") === "a,f"
-    && !STUFEN.some((s) => SKIPPED.includes(s.id)));
+  check("data: 11 Stufen cards (b and d split by topic), a and f real-world only",
+    STUFEN.length === 11 && SKIPPED.join(",") === "a,f"
+    && !STUFEN.some((s) => SKIPPED.includes(s.id))
+    && STUFEN.filter((s) => s.code === "b").length === 2
+    && STUFEN.filter((s) => s.code === "d").length === 2
+    && STUFEN.filter((s) => (s.code || s.id) === "b").every((s) => s.kinds.length)
+    );
   check("data: GA marks on c, h, j with cycles 1, 2, 3",
     STUFEN.filter((s) => s.ga).map((s) => `${s.id}${s.cycle}`).join(",") === "c1,h2,j3");
   const eszett = [];
@@ -184,7 +188,7 @@ function solveMc(task) {
   for (const s of STUFEN) if ((s.title + s.desc).includes("ß")) eszett.push(s.id);
   for (const m of MEDALS) if ((m.name + m.desc).includes("ß")) eszett.push(m.key);
   check("copy: Swiss standard German, no ß anywhere", eszett.length === 0, eszett.join(","));
-  check("game: second level reachable within a first session", LEVELS[1].xp <= 3 * roundXp("b", 8));
+  check("game: second level reachable within a first session", LEVELS[1].xp <= 3 * roundXp("b-geld", 8));
 }
 
 /* ── Generator sanity against the oracle (seeded) ─────────────────── */
@@ -287,19 +291,24 @@ async function playRound(stufeId) {
 await page.goto(URL);
 await page.waitForSelector(".stufen-list");
 check("home: title renders", (await page.textContent("h1")).trim() === "Masswerk");
-check("home: 9 Stufen with three GA badges",
-  await page.locator(".stufe").count() === 9 && await page.locator(".ga-badge").count() === 3);
+check("home: 11 Stufen cards (b and d split by topic) with three GA badges",
+  await page.locator(".stufe").count() === 11 && await page.locator(".ga-badge").count() === 3);
 check("home: real-world note for skipped Stufen a and f",
   (await page.textContent(".stufen-section")).includes("Stufen a und f"));
 check("home: competency code visible", (await page.textContent('[data-stufe="c"]')).includes("MA.3.A.2.c"));
 check("home: Merkblatt link on Stufe e",
   await page.locator('.merkblatt-link[href="../merkheft/masseinheiten.html"]').count() === 1);
-check("home: Merkblatt link on Stufe b",
-  await page.locator('.merkblatt-link[href="../merkheft/geld.html"]').count() === 1);
+check("home: Geld Merkblatt on b-geld and d-geld",
+  await page.locator('.merkblatt-link[href="../merkheft/geld.html"]').count() === 2);
+check("home: Uhr Merkblatt on b-zeit and d-zeit",
+  await page.locator('.merkblatt-link[href="../merkheft/uhr.html"]').count() === 2);
+check("home: split cards show the official letter",
+  (await page.textContent('[data-stufe="b-geld"]')).includes("MA.3.A.2.b")
+  && (await page.textContent('[data-stufe="b-zeit"]')).includes("MA.3.A.2.b")
+  && (await page.textContent('[data-stufe="d-zeit"]')).includes("MA.3.A.2.d"));
 check("home: Merkblatt link on Stufe c",
   await page.locator('.merkblatt-link[href="../merkheft/laengen.html"]').count() === 1);
-check("home: Merkblatt link on Stufe d",
-  await page.locator('.merkblatt-link[href="../merkheft/uhr.html"]').count() === 1);
+
 await page.screenshot({ path: join(SHOTS_DIR, "01-home.png"), fullPage: true });
 
 await playRound("c");
@@ -328,7 +337,7 @@ await page.reload();
 await page.waitForSelector(".stats-strip");
 check("persistence: XP survives reload", (await page.textContent(".stats-strip")).includes(`${expectedXp} XP`));
 
-await page.click('[data-stufe="b"]');
+await page.click('[data-stufe="b-geld"]');
 await page.waitForSelector(".task-area");
 {
   // eine falsche getippte Antwort erzwingen (nur bei Tipp-Aufgaben möglich)
@@ -377,16 +386,17 @@ check("layout: no horizontal scrolling at 320px",
   await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth));
 
 /* ── Deep link with topic focus (Merkheft «Dazu üben») ────────────── */
-await page.goto(`${URL}?stufe=b&thema=halfHour`);
+await page.goto(`${URL}?stufe=b-zeit`);
 await page.waitForSelector(".task-area");
-check("deep link: ?stufe=b&thema=halfHour starts Stufe b directly",
-  (await page.textContent(".practice-meta")).includes("Stufe b"));
+check("deep link: ?stufe=b-zeit starts the time Stufe, query cleaned",
+  (await page.textContent(".practice-meta")).includes("Stufe b")
+  && (await page.evaluate(() => location.search)) === "");
 for (let i = 0; i < 8; i++) {
   await page.waitForSelector(".task-area");
   await solveTask();
 }
 await page.waitForSelector(".done");
-check("deep link: topic focus serves only halbe-Stunden tasks (8 of 8)",
+check("split Stufe: b-zeit serves only halbe-Stunden tasks (8 of 8)",
   timeTasksSeen >= 8, `time tasks seen ${timeTasksSeen}`);
 check("time input: dot accepted as colon on decimal keypad",
   timeTasksSeen > 0 && timeDecimalSeen === timeTasksSeen,

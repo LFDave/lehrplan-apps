@@ -2,11 +2,11 @@
 // Abschluss, Medaillen. Eine Runde hat 8 Aufgaben; ausgewertet wird
 // immer die ganze Antwort, nie einzelne Zeichen.
 
-import { STUFEN, COMPETENCY, stufeById, nextStufe, cycleLabel } from './data.js?v=4';
-import { genRound } from './gen.js?v=4';
-import { roundXp, levelFor, nextLevel, earnedMedals, suggestsNextStufe, MEDALS } from './game.js?v=4';
-import { t } from './strings.js?v=4';
-import { icon } from './icons.js?v=4';
+import { STUFEN, COMPETENCY, stufeById, nextStufe, cycleLabel } from './data.js?v=5';
+import { genRound } from './gen.js?v=5';
+import { roundXp, levelFor, nextLevel, earnedMedals, suggestsNextStufe, MEDALS } from './game.js?v=5';
+import { t } from './strings.js?v=5';
+import { icon } from './icons.js?v=5';
 
 const STORE = 'weltatlas.progress';
 const ROUND_LENGTH = 8;
@@ -135,15 +135,11 @@ function renderHome() {
 
 /* ── Übung ────────────────────────────────────────────────────── */
 
-function startRound(stufeId, onlyKinds = []) {
+function startRound(stufeId) {
   const stufe = stufeById(stufeId);
-  // Themen-Fokus aus dem Merkheft: die Runde auf die Aufgabenarten
-  // des verlinkten Themas begrenzen (?thema=...). Unbekannte oder
-  // leere Filter fallen auf die ganze Stufe zurück.
-  const kinds = stufe.kinds.filter((k) => onlyKinds.includes(k));
   state.round = {
     stufeId,
-    tasks: genRound(Math.random, kinds.length ? { ...stufe, kinds } : stufe, ROUND_LENGTH),
+    tasks: genRound(Math.random, stufe, ROUND_LENGTH),
     index: 0,
     mistakes: 0,
     taskDone: false,
@@ -378,10 +374,11 @@ window.addEventListener('hashchange', route);
 document.documentElement.lang = 'de-CH';
 route();
 
-// Deep-Link aus dem Merkheft: ?stufe=<id> startet die Stufe direkt,
-// optional auf ein Thema begrenzt (?thema=art1,art2).
-const deepParams = new URLSearchParams(location.search);
-const deepStufe = deepParams.get('stufe');
-if (deepStufe && STUFEN.some((s) => s.id === deepStufe)) {
-  startRound(deepStufe, (deepParams.get('thema') || '').split(',').filter(Boolean));
+// Deep-Link aus dem Merkheft: ?stufe=<id> startet die Stufe direkt.
+// Die Query wird sofort aus der Adresse entfernt, damit sie beim
+// Neuladen oder Weitergeben nicht kleben bleibt.
+const deepStufe = new URLSearchParams(location.search).get('stufe');
+if (deepStufe) {
+  history.replaceState(null, '', location.pathname + location.hash);
+  if (STUFEN.some((s) => s.id === deepStufe)) startRound(deepStufe);
 }

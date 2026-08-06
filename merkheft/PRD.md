@@ -102,10 +102,11 @@ sprachliche Form. Daraus folgt die Regel für jedes Merkblatt:
   `../merkheft/<id>.html`. Beide Links sind optional und nie eine
   Bedingung.
 - **Merkheft → Apps:** «Dazu üben» springt per Deep-Link direkt in
-  die Stufe (`?stufe=<id>`), bei gemischten Stufen zusätzlich auf
-  das Thema des Merkblatts begrenzt (`&thema=<arten>`), damit die
-  verlinkte Runde nur zum erklärten Konzept passt (Beispiel Uhr:
-  zwei Links auf Masswerk b «halbe Stunden» und d «Zeitdauern»).
+  die Stufe (`?stufe=<id>`). Gemischte offizielle Stufen sind in der
+  App in themenreine Teilstufen gesplittet (Masswerk b-geld, b-zeit,
+  d-geld, d-zeit), darum braucht es keinen Themen-Parameter, und die
+  App entfernt die Query nach dem Einstieg aus der Adresse (Beispiel
+  Uhr: zwei Links auf Masswerk b «Halbe Stunden» und d «Zeitdauern»).
   Dargestellt als klar erkennbarer Link-Chip mit Stift-Symbol und
   unterstrichenem App-Namen; die Meta-Zeile nennt Stufe und Thema.
 
@@ -119,7 +120,7 @@ von aussen.
 Einsprachig Deutsch (Schweizer Standarddeutsch). Tokens aus
 DESIGN.md, Akzentfamilie **amber**, Atkinson Hyperlegible selbst
 gehostet, Illustrationen als Inline-SVG mit `role="img"` und
-deutschem `aria-label`, Cache-Busting `?v=3`.
+deutschem `aria-label`, Cache-Busting `?v=4`.
 
 ## Tests
 
