@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Höhenkurven · Merkheft</title>
+  <meta name="description" content="Merkblatt: Höhenkurven auf der Wanderkarte lesen, eng beieinander heisst steil, weit auseinander heisst flach, mit Infografik.">
+  <link rel="icon" href="favicon.svg?v=5" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=5">
+</head>
+<body>
+<main id="app">
+  <nav class="page-nav">
+    <a class="back" href="index.html">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+      Alle Merkblätter
+    </a>
+  </nav>
+  <article class="blatt-page">
+    <header>
+      <p class="blatt-gruppe">Raum und Erde</p>
+      <h1>Höhenkurven</h1>
+    </header>
+    <p class="intro">Höhenkurven sind die braunen Linien auf der Wanderkarte.
+    Jede Höhenkurve verbindet Punkte, die gleich hoch liegen.</p>
+    <p class="intro">Die Zahl auf der Kurve nennt die Höhe in Metern über
+    Meer. Von einer Kurve zur nächsten ist der Höhenunterschied auf derselben
+    Karte immer gleich gross.</p>
+    <p class="intro">So verrät dir die Karte die Form des Geländes. Für eine
+    Wanderung schaust du deshalb auf die topographische Karte: Sie zeigt dir,
+    wo der Weg steil wird.</p>
+    <ul class="steps">
+      <li>Liegen die Höhenkurven <strong>eng beieinander</strong>, ist das
+      Gelände <strong>steil</strong>.</li>
+      <li>Liegen die Höhenkurven <strong>weit auseinander</strong>, ist das
+      Gelände <strong>flach</strong>.</li>
+      <li>Bei einem Hügel liegen die Kurven ineinander. Die
+      <strong>innerste Kurve</strong> ist die höchste.</li>
+      <li>Zähle die Kurven, die dein Weg kreuzt: Viele Kurven auf kurzer
+      Strecke bedeuten einen steilen Aufstieg.</li>
+    </ul>
+    <div class="illu-stage">
+      <svg viewBox="0 0 420 410" class="illu ig" role="img" id="ig-hoehenkurven"
+           aria-label="Infografik Höhenkurven: Links ein Hügel von oben als Karte mit drei Höhenkurven bei 500, 520 und 540 Metern über Meer, auf der linken Seite liegen die Kurven eng beieinander, auf der rechten weit auseinander. Rechts derselbe Hügel von der Seite: Wo die Kurven eng liegen, ist der Hang steil, wo sie weit auseinander liegen, ist er flach. Unten die Merkregel: eng beieinander gleich steil, weit auseinander gleich flach">
+        <text x="210" y="26" text-anchor="middle" class="ig-title">Höhenkurven lesen</text>
+        <text x="210" y="42" text-anchor="middle" class="ig-sub">Jede Kurve verbindet Punkte gleicher Höhe.</text>
+
+        <ellipse cx="108" cy="148" rx="78" ry="68" fill="none" class="ig-tick"/>
+        <ellipse cx="92" cy="148" rx="52" ry="44" fill="none" class="ig-tick"/>
+        <ellipse cx="82" cy="148" rx="29" ry="24" fill="none" class="ig-tick"/>
+        <text x="82" y="167" text-anchor="middle" class="ig-word">540</text>
+        <text x="92" y="189" text-anchor="middle" class="ig-word">520</text>
+        <text x="108" y="212" text-anchor="middle" class="ig-word">500</text>
+
+        <path d="M 248 216 C 262 168 276 116 292 98 C 297 93 301 93 306 98 C 330 120 372 186 398 216" fill="none" class="ig-arrow"/>
+        <line x1="244" y1="216" x2="400" y2="216" class="ig-tick"/>
+        <text x="260" y="153" text-anchor="end" class="ig-factor">steil</text>
+        <text x="355" y="132" text-anchor="middle" class="ig-factor">flach</text>
+        <text x="272" y="232" text-anchor="middle" class="ig-word">Kurven eng</text>
+        <text x="356" y="232" text-anchor="middle" class="ig-word">Kurven weit</text>
+
+        <text x="108" y="262" text-anchor="middle" class="ig-h">Von oben: die Karte</text>
+        <text x="108" y="278" text-anchor="middle" class="ig-word">Zahlen: Meter über Meer</text>
+        <text x="322" y="262" text-anchor="middle" class="ig-h">Von der Seite</text>
+        <text x="322" y="278" text-anchor="middle" class="ig-word">Derselbe Hügel wie auf der Karte</text>
+
+        <g class="ig-rule">
+          <rect x="20" y="300" width="380" height="84" rx="8" class="ig-panel"/>
+          <text x="40" y="324" class="ig-h">Merke</text>
+          <text x="40" y="346" class="ig-ex">eng beieinander = das Gelände ist steil</text>
+          <text x="40" y="366" class="ig-ex">weit auseinander = das Gelände ist flach</text>
+        </g>
+      </svg>
+    </div>
+    <h2 class="section-label">Kurz gemerkt</h2>
+    <dl class="fakten">
+      <div><dt>braune Linien</dt><dd>die Höhenkurven der Wanderkarte</dd></div>
+      <div><dt>eng beieinander</dt><dd>das Gelände ist steil</dd></div>
+      <div><dt>weit auseinander</dt><dd>das Gelände ist flach</dd></div>
+    </dl>
+    <h2 class="section-label">Dazu üben</h2>
+    <ul class="ueben-list">
+      <li><a class="ueben-link" href="../nordpfeil/?stufe=h-karte"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Nordpfeil</span><span class="ueben-meta">Stufe h · Karte lesen</span></a></li>
+    </ul>
+    <p class="code-line">Lehrplan 21: NMG.8.5.h</p>
+  </article>
+</main>
+</body>
+</html>

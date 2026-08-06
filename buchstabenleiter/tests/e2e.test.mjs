@@ -258,6 +258,8 @@ check("home: split cards show the official letter",
   (await page.textContent('[data-stufe="c-vokale"]')).includes("D.5.E.1.c")
   && (await page.textContent('[data-stufe="c-gruppen"]')).includes("D.5.E.1.c"));
 check("home: competency code visible", (await page.textContent('[data-stufe="b"]')).includes("D.5.E.1.b"));
+check("home: Merkblatt link Stufen a und b",
+  await page.locator('.merkblatt-link[href="../merkheft/abc-tabelle.html"]').count() === 2);
 await page.screenshot({ path: join(SHOTS_DIR, "01-home.png"), fullPage: true });
 
 await playRound("b");

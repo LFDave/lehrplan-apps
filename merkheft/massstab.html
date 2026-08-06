@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Der Massstab · Merkheft</title>
+  <meta name="description" content="Merkblatt: Der Massstab auf Karte und Plan, von Zentimetern auf der Karte zu Metern in Wirklichkeit, mit Beispielen.">
+  <link rel="icon" href="favicon.svg?v=5" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=5">
+</head>
+<body>
+<main id="app">
+  <nav class="page-nav">
+    <a class="back" href="index.html">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+      Alle Merkblätter
+    </a>
+  </nav>
+  <article class="blatt-page">
+    <header>
+      <p class="blatt-gruppe">Raum und Erde</p>
+      <h1>Der Massstab</h1>
+    </header>
+    <p class="intro">Eine Karte zeigt ein grosses Stück Land auf einem kleinen
+    Blatt. Der Massstab sagt, wie stark die Karte die Welt verkleinert. Er
+    steht auf jeder Karte, zum Beispiel 1:25'000.</p>
+    <p class="intro">1:1'000 heisst: 1 Zentimeter auf der Karte sind 1'000
+    Zentimeter in Wirklichkeit, also 10 Meter.</p>
+    <p class="intro">Je grösser die Zahl im Massstab, desto stärker
+    verkleinert die Karte: Es passt mehr Land aufs Blatt, aber du siehst
+    weniger Details. Die Schweizer Wanderkarte hat oft den Massstab 1:25'000.
+    Dort entspricht 1 Zentimeter 250 Metern.</p>
+    <ul class="steps">
+      <li>Miss die Strecke auf der Karte in <strong>Zentimetern</strong>.</li>
+      <li>Rechne <strong>mal</strong> die Meter pro Zentimeter: Auf der
+      Wanderkarte 1:25'000 sind 3 cm gleich 3 × 250 m, also 750 m.</li>
+      <li><strong>Massstabsgetreu</strong> zeichnen heisst: alle Längen im
+      gleichen Verhältnis verkleinern. Im Plan 1:100 wird aus 1 Meter im
+      Zimmer 1 Zentimeter im Plan.</li>
+    </ul>
+    <div class="illu-stage">
+      <svg viewBox="0 0 420 512" class="illu ig" role="img" id="ig-massstab"
+           aria-label="Infografik Massstab: Zwei Rechenstreifen zeigen die Umrechnung, bei 1 zu 25'000 wird aus 1 Zentimeter auf der Karte 250 Meter in Wirklichkeit, bei 1 zu 1'000 werden daraus 10 Meter, darunter ein Lineal mit Zentimeter-Strichen, 3 gemessene Zentimeter sind 750 Meter, und drei Beispiele">
+        <text x="210" y="26" text-anchor="middle" class="ig-title">Den Massstab lesen</text>
+        <text x="210" y="42" text-anchor="middle" class="ig-sub">Die Karte verkleinert die Welt. Der Massstab sagt, wie stark.</text>
+
+        <g>
+          <rect x="20" y="62" width="380" height="104" rx="8" class="ig-panel"/>
+          <text x="40" y="88" class="ig-h">1 : 25'000</text>
+          <text x="384" y="88" text-anchor="end" class="ig-word">oft die Wanderkarte</text>
+          <rect x="40" y="102" width="100" height="32" rx="6" class="ig-box"/>
+          <text x="90" y="123" text-anchor="middle" class="ig-unit">1 cm</text>
+          <text x="90" y="150" text-anchor="middle" class="ig-word">auf der Karte</text>
+          <line x1="150" y1="118" x2="252" y2="118" class="ig-arrow"/>
+          <path d="M 252 114 L 260 118 L 252 122 Z" class="ig-arrowhead"/>
+          <text x="205" y="110" text-anchor="middle" class="ig-factor">× 25'000</text>
+          <rect x="270" y="102" width="100" height="32" rx="6" class="ig-box"/>
+          <text x="320" y="123" text-anchor="middle" class="ig-unit">250 m</text>
+          <text x="320" y="150" text-anchor="middle" class="ig-word">in Wirklichkeit</text>
+        </g>
+
+        <g>
+          <rect x="20" y="178" width="380" height="104" rx="8" class="ig-panel"/>
+          <text x="40" y="204" class="ig-h">1 : 1'000</text>
+          <text x="384" y="204" text-anchor="end" class="ig-word">1'000 cm sind 10 m</text>
+          <rect x="40" y="218" width="100" height="32" rx="6" class="ig-box"/>
+          <text x="90" y="239" text-anchor="middle" class="ig-unit">1 cm</text>
+          <text x="90" y="266" text-anchor="middle" class="ig-word">auf der Karte</text>
+          <line x1="150" y1="234" x2="252" y2="234" class="ig-arrow"/>
+          <path d="M 252 230 L 260 234 L 252 238 Z" class="ig-arrowhead"/>
+          <text x="205" y="226" text-anchor="middle" class="ig-factor">× 1'000</text>
+          <rect x="270" y="218" width="100" height="32" rx="6" class="ig-box"/>
+          <text x="320" y="239" text-anchor="middle" class="ig-unit">10 m</text>
+          <text x="320" y="266" text-anchor="middle" class="ig-word">in Wirklichkeit</text>
+        </g>
+
+        <text x="20" y="312" class="ig-h">So misst du auf der Wanderkarte</text>
+        <text x="142" y="330" text-anchor="middle" class="ig-factor">3 cm = 750 m</text>
+        <line x1="40" y1="340" x2="236" y2="340" class="ig-arrow"/>
+        <path d="M 236 336 L 244 340 L 236 344 Z" class="ig-arrowhead"/>
+        <line x1="40" y1="358" x2="380" y2="358" class="ig-tick"/>
+        <line x1="40" y1="348" x2="40" y2="358" class="ig-tick"/>
+        <line x1="108" y1="348" x2="108" y2="358" class="ig-tick"/>
+        <line x1="176" y1="348" x2="176" y2="358" class="ig-tick"/>
+        <line x1="244" y1="348" x2="244" y2="358" class="ig-tick"/>
+        <line x1="312" y1="348" x2="312" y2="358" class="ig-tick"/>
+        <line x1="380" y1="348" x2="380" y2="358" class="ig-tick"/>
+        <text x="40" y="376" text-anchor="middle" class="ig-word">0</text>
+        <text x="108" y="376" text-anchor="middle" class="ig-word">1</text>
+        <text x="176" y="376" text-anchor="middle" class="ig-word">2</text>
+        <text x="244" y="376" text-anchor="middle" class="ig-word">3</text>
+        <text x="312" y="376" text-anchor="middle" class="ig-word">4</text>
+        <text x="380" y="376" text-anchor="middle" class="ig-word">5</text>
+        <text x="210" y="396" text-anchor="middle" class="ig-word">Jeder Zentimeter auf der Karte 1:25'000 entspricht 250 Metern.</text>
+
+        <text x="20" y="430" class="ig-h">Beispiele</text>
+        <text x="20" y="452" class="ig-ex">Karte 1:25'000: 3 cm = 750 m</text>
+        <text x="20" y="474" class="ig-ex">Karte 1:10'000: 4 cm = 400 m</text>
+        <text x="20" y="496" class="ig-ex">Plan 1:100: Zimmer 5 m lang = 5 cm im Plan</text>
+      </svg>
+    </div>
+    <h2 class="section-label">Kurz gemerkt</h2>
+    <dl class="fakten">
+      <div><dt>1:1'000</dt><dd>1 cm auf der Karte = 1'000 cm = 10 m in Wirklichkeit</dd></div>
+      <div><dt>1:25'000</dt><dd>1 cm auf der Karte = 250 m, oft auf Wanderkarten</dd></div>
+      <div><dt>Grosse Zahl</dt><dd>viel Land auf der Karte, wenig Details</dd></div>
+    </dl>
+    <h2 class="section-label">Dazu üben</h2>
+    <ul class="ueben-list">
+      <li><a class="ueben-link" href="../nordpfeil/?stufe=e-massstab"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Nordpfeil</span><span class="ueben-meta">Stufe e · Massstab</span></a></li>
+      <li><a class="ueben-link" href="../nordpfeil/?stufe=f"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Nordpfeil</span><span class="ueben-meta">Stufe f · massstabsgetreu</span></a></li>
+    </ul>
+    <p class="code-line">Lehrplan 21: NMG.8.5.e, NMG.8.5.f</p>
+  </article>
+</main>
+</body>
+</html>

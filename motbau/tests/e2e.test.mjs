@@ -243,6 +243,8 @@ check("home: title renders", (await page.textContent("h1")).trim() === "Motbau")
 check("home: all Stufen with GA badges",
   await page.locator(".stufe").count() === 4 && await page.locator(".ga-badge").count() === 2);
 check("home: competency code visible", (await page.textContent('[data-stufe="b"]')).includes("FS1F.5.D.1.b"));
+check("home: Merkblatt link Stufe c",
+  await page.locator('.merkblatt-link[href="../merkheft/verben-fr.html"]').count() === 1);
 await page.screenshot({ path: join(SHOTS_DIR, "01-home.png"), fullPage: true });
 
 await playRound("b");
@@ -312,6 +314,13 @@ await page.goto(URL);
 await page.waitForSelector(".stufen-list");
 check("layout: no horizontal scrolling at 320px",
   await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth));
+
+/* ── Deep link (Merkheft «Dazu üben») ─────────────────────────────── */
+await page.goto(`${URL}?stufe=c`);
+await page.waitForSelector(".task-area");
+check("deep link: ?stufe=c starts the Stufe directly, query cleaned",
+  (await page.textContent(".practice-meta")).includes("Stufe c")
+  && (await page.evaluate(() => location.search)) === "");
 
 check("console: no errors", consoleErrors.length === 0, consoleErrors.slice(0, 3).join(" | "));
 check("network: no external requests", externalRequests.length === 0, externalRequests.slice(0, 3).join(", "));

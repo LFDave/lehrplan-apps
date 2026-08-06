@@ -1,6 +1,6 @@
 # PRD — Merkheft
 
-Version: 2.1. Dieses Dokument ist die massgebende Spezifikation der App.
+Version: 3.0. Dieses Dokument ist die massgebende Spezifikation der App.
 Verhalten und PRD werden immer in derselben Änderung angepasst.
 
 ## Zweck und Leitprinzip
@@ -37,7 +37,7 @@ Infografik entwickeln.
   Bedienelemente ausgeblendet). Der Browser-Druckdialog ist der
   Export nach PDF; es gibt keinen eigenen Export-Knopf.
 
-## Inhalte (Welle 1)
+## Inhalte
 
 - Das Geld: Franken und Rappen, Münzen und Noten, mit Infografik
   (MA.3.A.1.b Grössenwissen, MA.3.A.2.b Masswerk) — Zyklus 1
@@ -52,6 +52,24 @@ Infografik entwickeln.
 - Serie- und Parallelschaltung, interaktiv (NT.5.2.b, Stromkreis)
 - Gradnetz mit drehbarem Globus (RZG.4.1.c, Weltatlas)
 - Sonnensystem mit Orbit-Modell (NMG.4.5.e, Sternwarte)
+
+Welle 2 (je mit eigener Infografik):
+
+- Das Skelett (NMG.1.4.a, Körperatlas a)
+- Der Blutkreislauf (NMG.1.4.e, Körperatlas e)
+- Die ABC-Tabelle (D.5.E.1.a/b, Buchstabenleiter a und b)
+- Französische Verben: être und avoir (FS1F.5.D.1.b, Motbau b)
+- Englische Verben: to be und to have (FS2E.5.D.1.a, Wordbau a)
+- Das Ohmsche Gesetz (NT.5.2.c, Stromkreis c)
+- Speichereinheiten (MI.2.3.f, Rechnerraum f)
+- Die Gewaltenteilung (RZG.8.1.b, Demokratielabor b)
+- Die Himmelsrichtungen (NMG.8.5.h, Nordpfeil h-richtungen)
+- Der Massstab (NMG.8.5.e/f, Nordpfeil e-massstab und f)
+- Höhenkurven (NMG.8.5.h, Nordpfeil h-karte)
+
+Die Liste hat acht Themengruppen: Mathematik, Sprache, Mensch und
+Körper, Natur und Technik, Informatik, Himmel und Weltall, Raum und
+Erde, Zusammenleben.
 
 Bewegung ist transform/opacity, startet erst auf Klick und
 respektiert reduzierte Bewegung.
@@ -120,7 +138,7 @@ von aussen.
 Einsprachig Deutsch (Schweizer Standarddeutsch). Tokens aus
 DESIGN.md, Akzentfamilie **amber**, Atkinson Hyperlegible selbst
 gehostet, Illustrationen als Inline-SVG mit `role="img"` und
-deutschem `aria-label`, Cache-Busting `?v=4`.
+deutschem `aria-label`, Cache-Busting `?v=5`.
 
 ## Tests
 
@@ -133,5 +151,5 @@ Seite mit Titel, Gruppe, Bild und «Dazu üben», die Interaktivität
 Klick), Zurück-Navigation, Druckdarstellung (heller Hintergrund,
 ausgeblendete Bedienelemente, Abschnitte ohne Seitenumbruch
 mittendrin), Layout bei 320px, Konsole ohne Fehler, keine externen
-Requests. Die Suiten der sechs verlinkenden Apps prüfen die
-Merkblatt-Links auf den Stufenkarten.
+Requests. Die Suiten der dreizehn verlinkenden Apps prüfen die
+Merkblatt-Links auf den Stufenkarten und den Deep-Link-Einstieg.

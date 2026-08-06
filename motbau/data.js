@@ -27,6 +27,7 @@ export const STUFEN = [
     title: 'Sätze und Ausnahmen',
     desc: 'Nutze être und avoir, besondere Mehrzahl und Präpositionen.',
     kinds: ['satzform'],
+    merkblatt: { id: 'verben-fr', name: 'être und avoir' },
   },
   {
     id: 'd', cycle: 3, ga: false,

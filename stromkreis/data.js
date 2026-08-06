@@ -28,6 +28,7 @@ export const STUFEN = [
     title: 'Das Ohmsche Gesetz',
     desc: 'Rechne mit Spannung, Stromstärke und Widerstand.',
     kinds: ['ohm'],
+    merkblatt: { id: 'ohmsches-gesetz', name: 'Ohmsches Gesetz' },
   },
   {
     id: 'd', cycle: 3, ga: false,

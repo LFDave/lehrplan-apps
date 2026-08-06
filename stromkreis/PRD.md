@@ -57,11 +57,12 @@ role="status"-Region.
 Einsprachig Deutsch (Schweizer Standarddeutsch), Strings in
 `strings.js`. Tokens aus DESIGN.md, Akzentfamilie **sage**,
 Atkinson Hyperlegible selbst gehostet, Lucide-Icons inline,
-Cache-Busting `?v=5`.
+Cache-Busting `?v=6`.
 
 ## Merkheft-Verbindung
 
-Stufe b trägt in `data.js` ein `merkblatt: { id, name }`: Die App
+Die Stufen b (schaltungen.html) und c (ohmsches-gesetz.html)
+tragen in `data.js` ein `merkblatt: { id, name }`: Die App
 zeigt auf der Stufenkarte einen klar erkennbaren Link
 «Merkblatt: …» (Chip mit Buch-Symbol und unterstrichenem Text) und
 nach einer Runde mit Fehlern «Zum Nachlesen: …», beide auf

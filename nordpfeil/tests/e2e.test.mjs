@@ -15,10 +15,10 @@ import { readFile } from "node:fs/promises";
 import { mkdirSync, existsSync, readFileSync, readdirSync } from "node:fs";
 import { dirname, join, extname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { STUFEN } from "../data.js?v=1";
-import { genRound } from "../gen.js?v=1";
-import { LEVELS, MEDALS, roundXp } from "../game.js?v=1";
-import { STRINGS } from "../strings.js?v=1";
+import { STUFEN } from "../data.js?v=2";
+import { genRound } from "../gen.js?v=2";
+import { LEVELS, MEDALS, roundXp } from "../game.js?v=2";
+import { STRINGS } from "../strings.js?v=2";
 
 const TESTS_DIR = dirname(fileURLToPath(import.meta.url));
 const APP_DIR = join(TESTS_DIR, "..");
@@ -96,6 +96,9 @@ const QA = {
   "Was zeigen die braunen Linien auf der Wanderkarte?": "die Höhenkurven",
   "Was ist eine Signatur auf der Karte?": "ein Zeichen für ein Objekt",
   "Wo erfährst du, was die Zeichen auf der Karte bedeuten?": "in der Legende",
+  "Eine blaue Fläche auf der Karte zeigt ...?": "einen See",
+  "Was zeigt eine blaue Linie auf der Karte?": "einen Fluss oder Bach",
+  "Was bedeuten die schwarzen Linien auf der Karte meistens?": "Wege und Strassen",
   "Was heisst «massstabsgetreu zeichnen»?": "alle Längen im gleichen Verhältnis verkleinern",
   "Im Plan ist der Tisch grösser als das Zimmer. Was stimmt nicht?": "die Grössenverhältnisse",
   "Das grössere Zimmer erscheint im massstabsgetreuen Plan ...?": "auch grösser",
@@ -173,9 +176,14 @@ function chooseOption(expr, options) {
 
 /* ── Data and copy sanity ─────────────────────────────────────────── */
 {
-  check("data: 9 Stufen a-i", STUFEN.length === 9 && STUFEN.map((s) => s.id).join("") === "abcdefghi");
-  check("data: GA marks on c and h",
-    STUFEN.filter((s) => s.ga).map((s) => s.id).join(",") === "c,h");
+  check("data: 11 Stufen cards (e and h split by topic)",
+    STUFEN.length === 11
+    && STUFEN.map((s) => s.code || s.id).join("") === "abcdeefghhi"
+    && STUFEN.filter((s) => s.code === "e").length === 2
+    && STUFEN.filter((s) => s.code === "h").length === 2
+    && STUFEN.every((s) => s.kinds.length === 1));
+  check("data: GA marks on c and both h cards",
+    STUFEN.filter((s) => s.ga).map((s) => `${s.code || s.id}${s.cycle}`).join(",") === "c1,h2,h2");
   const eszett = [];
   for (const [id, v] of Object.entries(STRINGS.de)) if (v.includes("ß")) eszett.push(id);
   for (const s of STUFEN) if ((s.title + s.desc).includes("ß")) eszett.push(s.id);
@@ -261,9 +269,20 @@ async function playRound(stufeId) {
 await page.goto(URL);
 await page.waitForSelector(".stufen-list");
 check("home: title renders", (await page.textContent("h1")).trim() === "Nordpfeil");
-check("home: all Stufen with GA badges",
-  await page.locator(".stufe").count() === 9 && await page.locator(".ga-badge").count() === 2);
+check("home: 11 Stufen cards with GA badges on c and both h cards",
+  await page.locator(".stufe").count() === 11 && await page.locator(".ga-badge").count() === 3);
 check("home: competency code visible", (await page.textContent('[data-stufe="c"]')).includes("NMG.8.5.c"));
+check("home: split cards show the official letter",
+  (await page.textContent('[data-stufe="e-signaturen"]')).includes("NMG.8.5.e")
+  && (await page.textContent('[data-stufe="e-massstab"]')).includes("NMG.8.5.e")
+  && (await page.textContent('[data-stufe="h-karte"]')).includes("NMG.8.5.h")
+  && (await page.textContent('[data-stufe="h-richtungen"]')).includes("NMG.8.5.h"));
+check("home: Massstab Merkblatt on e-massstab and f",
+  await page.locator('.merkblatt-link[href="../merkheft/massstab.html"]').count() === 2);
+check("home: Höhenkurven Merkblatt on h-karte",
+  await page.locator('.merkblatt-link[href="../merkheft/hoehenkurven.html"]').count() === 1);
+check("home: Himmelsrichtungen Merkblatt on h-richtungen",
+  await page.locator('.merkblatt-link[href="../merkheft/himmelsrichtungen.html"]').count() === 1);
 await page.screenshot({ path: join(SHOTS_DIR, "01-home.png"), fullPage: true });
 
 await playRound("c");
@@ -274,15 +293,21 @@ await page.screenshot({ path: join(SHOTS_DIR, "02-done.png"), fullPage: true });
 await page.click('[data-action="home"]');
 await page.waitForSelector(".stufen-list");
 
-await playRound("h");
-check("round h: completion shows XP", (await page.textContent(".reward-xp")).includes(`+${roundXp("h", 8)} XP`));
-check("round h: GA medal for Zyklus 2", (await page.textContent(".done")).includes("Grundanspruch Zyklus 2"));
+await playRound("h-karte");
+check("round h-karte: completion shows XP", (await page.textContent(".reward-xp")).includes(`+${roundXp("h-karte", 8)} XP`));
+check("round h-karte: no GA medal yet (needs both h cards clean)",
+  !(await page.textContent(".done")).includes("Grundanspruch Zyklus 2"));
+await page.click('[data-action="home"]');
+await page.waitForSelector(".stufen-list");
+await playRound("h-richtungen");
+check("round h-richtungen: GA medal once both h cards are clean",
+  (await page.textContent(".done")).includes("Grundanspruch Zyklus 2"));
 await page.click('[data-action="home"]');
 await page.waitForSelector(".stufen-list");
 
 /* ── Persistence, mistake flow, reset ─────────────────────────────── */
 await page.waitForSelector(".stats-strip");
-const expectedXp = roundXp("c", 8) + roundXp("h", 8);
+const expectedXp = roundXp("c", 8) + roundXp("h-karte", 8) + roundXp("h-richtungen", 8);
 check("home: stats strip shows accumulated XP", (await page.textContent(".stats-strip")).includes(`${expectedXp} XP`));
 await page.reload();
 await page.waitForSelector(".stats-strip");
@@ -333,6 +358,13 @@ await page.goto(URL);
 await page.waitForSelector(".stufen-list");
 check("layout: no horizontal scrolling at 320px",
   await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth));
+
+/* ── Deep link with topic focus (Merkheft «Dazu üben») ────────────── */
+await page.goto(`${URL}?stufe=h-richtungen`);
+await page.waitForSelector(".task-area");
+check("deep link: ?stufe=h-richtungen starts Stufe h, query cleaned",
+  (await page.textContent(".practice-meta")).includes("Stufe h")
+  && (await page.evaluate(() => location.search)) === "");
 
 check("console: no errors", consoleErrors.length === 0, consoleErrors.slice(0, 3).join(" | "));
 check("network: no external requests", externalRequests.length === 0, externalRequests.slice(0, 3).join(", "));

@@ -61,7 +61,7 @@ role="status"-Region.
 Einsprachig Deutsch (Schweizer Standarddeutsch), Strings in
 `strings.js`. Tokens aus DESIGN.md, Akzentfamilie **amber**,
 Atkinson Hyperlegible selbst gehostet, Lucide-Icons inline,
-Cache-Busting `?v=2`.
+Cache-Busting `?v=3`.
 
 **Gesplittete Stufe c.** Die offizielle Stufe c mischt Vokale und
 ABC-Gruppen; für Kinder sind das zwei Konzepte. Die App zeigt darum
@@ -75,6 +75,12 @@ alten c-Karte gehören thematisch zu Stufe d und sind dorthin
 gezogen.
 
 ## Merkheft-Verbindung und Deep-Links
+
+Die Stufen a und b tragen in `data.js` ein
+`merkblatt: { id: 'abc-tabelle', … }`: Die App zeigt auf der
+Stufenkarte einen Link «Merkblatt: …» und nach einer Runde mit
+Fehlern «Zum Nachlesen: …», beide auf `../merkheft/abc-tabelle.html`.
+Die Suite prüft die Links.
 
 Deep-Links: `?stufe=<id>` startet die Stufe direkt (auch Teilstufen
 wie `c-vokale`). Die Query wird nach dem Einstieg sofort aus der

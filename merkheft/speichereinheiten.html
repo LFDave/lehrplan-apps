@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Speichereinheiten · Merkheft</title>
+  <meta name="description" content="Merkblatt: Bit, Byte, Kilobyte, Megabyte, Gigabyte und Terabyte, mit Einheiten-Treppe und Umrechnungen.">
+  <link rel="icon" href="favicon.svg?v=5" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=5">
+</head>
+<body>
+<main id="app">
+  <nav class="page-nav">
+    <a class="back" href="index.html">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+      Alle Merkblätter
+    </a>
+  </nav>
+  <article class="blatt-page">
+    <header>
+      <p class="blatt-gruppe">Informatik</p>
+      <h1>Speichereinheiten</h1>
+    </header>
+    <p class="intro">Computer speichern alles als Nullen und Einsen: Texte,
+    Bilder, Musik und Filme. Wie viel Platz etwas braucht, sagen die
+    Speichereinheiten.</p>
+    <p class="intro">Die kleinste Einheit heisst Bit. Grössere Einheiten
+    fassen viele Bits zusammen, so wie ein Kilometer viele Meter
+    zusammenfasst.</p>
+    <ul class="steps">
+      <li>Ein <strong>Bit</strong> ist die kleinste Einheit. Es kann genau
+      zwei Werte haben: 0 oder 1.</li>
+      <li><strong>8 Bit</strong> zusammen sind <strong>1 Byte</strong>. Ein
+      Byte reicht zum Beispiel für einen Buchstaben.</li>
+      <li>Ab dem Byte geht es in Tausenderschritten weiter: 1 kB = 1000 Byte,
+      1 MB = 1000 kB, 1 GB = 1000 MB, 1 TB = 1000 GB.</li>
+      <li>Von klein nach gross heisst die Reihe: Byte, Kilobyte, Megabyte,
+      Gigabyte, Terabyte. Das Terabyte ist die grösste dieser Einheiten.</li>
+    </ul>
+    <div class="illu-stage">
+      <svg viewBox="0 0 420 330" class="illu ig" role="img" id="ig-speichereinheiten"
+           aria-label="Infografik Speichereinheiten: Die Einheiten-Treppe Bit, Byte, Kilobyte, Megabyte, Gigabyte und Terabyte mit den Faktoren mal 8 und mal 1000, die Umrechnungen 1 Byte gleich 8 Bit, 1 Kilobyte gleich 1000 Byte, 1 Megabyte gleich 1000 Kilobyte, 1 Gigabyte gleich 1000 Megabyte und 1 Terabyte gleich 1000 Gigabyte, dazu drei Beispiele">
+        <text x="210" y="26" text-anchor="middle" class="ig-title">Vom Bit zum Terabyte</text>
+        <text x="210" y="42" text-anchor="middle" class="ig-sub">Nach rechts wird die Einheit grösser: einmal ×8, dann immer ×1000.</text>
+
+        <text x="74" y="74" text-anchor="middle" class="ig-factor">×8</text>
+        <text x="140" y="74" text-anchor="middle" class="ig-factor">×1000</text>
+        <text x="208" y="74" text-anchor="middle" class="ig-factor">×1000</text>
+        <text x="274" y="74" text-anchor="middle" class="ig-factor">×1000</text>
+        <text x="342" y="74" text-anchor="middle" class="ig-factor">×1000</text>
+
+        <rect x="20" y="82" width="40" height="30" rx="6" class="ig-box"/>
+        <text x="40" y="102" text-anchor="middle" class="ig-unit">Bit</text>
+        <text x="40" y="124" text-anchor="middle" class="ig-word">0 oder 1</text>
+        <line x1="62" y1="97" x2="77" y2="97" class="ig-arrow"/>
+        <path d="M 77 93 L 85 97 L 77 101 Z" class="ig-arrowhead"/>
+        <rect x="87" y="82" width="40" height="30" rx="6" class="ig-box"/>
+        <text x="107" y="102" text-anchor="middle" class="ig-unit">Byte</text>
+        <text x="107" y="124" text-anchor="middle" class="ig-word">8 Bit</text>
+        <line x1="129" y1="97" x2="144" y2="97" class="ig-arrow"/>
+        <path d="M 144 93 L 152 97 L 144 101 Z" class="ig-arrowhead"/>
+        <rect x="154" y="82" width="40" height="30" rx="6" class="ig-box"/>
+        <text x="174" y="102" text-anchor="middle" class="ig-unit">kB</text>
+        <text x="174" y="124" text-anchor="middle" class="ig-word">Kilobyte</text>
+        <line x1="196" y1="97" x2="211" y2="97" class="ig-arrow"/>
+        <path d="M 211 93 L 219 97 L 211 101 Z" class="ig-arrowhead"/>
+        <rect x="221" y="82" width="40" height="30" rx="6" class="ig-box"/>
+        <text x="241" y="102" text-anchor="middle" class="ig-unit">MB</text>
+        <text x="241" y="124" text-anchor="middle" class="ig-word">Megabyte</text>
+        <line x1="263" y1="97" x2="278" y2="97" class="ig-arrow"/>
+        <path d="M 278 93 L 286 97 L 278 101 Z" class="ig-arrowhead"/>
+        <rect x="288" y="82" width="40" height="30" rx="6" class="ig-box"/>
+        <text x="308" y="102" text-anchor="middle" class="ig-unit">GB</text>
+        <text x="308" y="124" text-anchor="middle" class="ig-word">Gigabyte</text>
+        <line x1="330" y1="97" x2="345" y2="97" class="ig-arrow"/>
+        <path d="M 345 93 L 353 97 L 345 101 Z" class="ig-arrowhead"/>
+        <rect x="355" y="82" width="40" height="30" rx="6" class="ig-box"/>
+        <text x="375" y="102" text-anchor="middle" class="ig-unit">TB</text>
+        <text x="375" y="124" text-anchor="middle" class="ig-word">Terabyte</text>
+
+        <text x="20" y="164" class="ig-h">So rechnest du um</text>
+        <rect x="20" y="176" width="380" height="72" rx="8" class="ig-panel"/>
+        <text x="40" y="206" class="ig-ex">1 Byte = 8 Bit</text>
+        <text x="168" y="206" class="ig-ex">1 kB = 1000 Byte</text>
+        <text x="296" y="206" class="ig-ex">1 MB = 1000 kB</text>
+        <text x="40" y="232" class="ig-ex">1 GB = 1000 MB</text>
+        <text x="168" y="232" class="ig-ex">1 TB = 1000 GB</text>
+
+        <text x="20" y="282" class="ig-h">Beispiele</text>
+        <text x="20" y="304" class="ig-ex">2 MB = 2000 kB</text>
+        <text x="160" y="304" class="ig-ex">3 GB = 3000 MB</text>
+        <text x="300" y="304" class="ig-ex">5 TB = 5000 GB</text>
+      </svg>
+    </div>
+    <h2 class="section-label">Kurz gemerkt</h2>
+    <dl class="fakten">
+      <div><dt>Bit</dt><dd>die kleinste Einheit: 0 oder 1</dd></div>
+      <div><dt>1 Byte</dt><dd>= 8 Bit</dd></div>
+      <div><dt>Tausenderschritte</dt><dd>ab dem Byte ist jede Stufe 1000-mal grösser: kB, MB, GB, TB</dd></div>
+    </dl>
+    <h2 class="section-label">Dazu üben</h2>
+    <ul class="ueben-list">
+      <li><a class="ueben-link" href="../rechnerraum/?stufe=f"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Rechnerraum</span><span class="ueben-meta">Stufe f</span></a></li>
+    </ul>
+    <p class="code-line">Lehrplan 21: MI.2.3.f</p>
+  </article>
+</main>
+</body>
+</html>

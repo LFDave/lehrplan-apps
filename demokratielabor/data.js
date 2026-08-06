@@ -22,6 +22,7 @@ export const STUFEN = [
     title: 'Die drei Gewalten',
     desc: 'Unterscheide Parlament, Regierung und Gerichte.',
     kinds: ['gewalt'],
+    merkblatt: { id: 'gewaltenteilung', name: 'Gewaltenteilung' },
   },
   {
     id: 'c', cycle: 3, ga: true,

@@ -15,6 +15,7 @@ export const STUFEN = [
     title: 'Körperteile kennen',
     desc: 'Kenne Körperteile, ihre Lage und ihre Aufgabe.',
     kinds: ['koerperteil'],
+    merkblatt: { id: 'skelett', name: 'Das Skelett' },
   },
   {
     id: 'b', cycle: 1, ga: true,
@@ -39,6 +40,7 @@ export const STUFEN = [
     title: 'Bau und Funktion',
     desc: 'Erkläre Skelett, Muskeln und den Blutkreislauf.',
     kinds: ['kreislauf'],
+    merkblatt: { id: 'blutkreislauf', name: 'Blutkreislauf' },
   },
   {
     id: 'f', cycle: [2, 3], ga: false,
