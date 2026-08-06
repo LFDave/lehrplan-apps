@@ -2,13 +2,13 @@
 
 @font-face {
   font-family: 'Atkinson Hyperlegible';
-  src: url('fonts/atkinson-hyperlegible-400.woff2?v=1') format('woff2');
+  src: url('fonts/atkinson-hyperlegible-400.woff2?v=2') format('woff2');
   font-weight: 400;
   font-display: swap;
 }
 @font-face {
   font-family: 'Atkinson Hyperlegible';
-  src: url('fonts/atkinson-hyperlegible-700.woff2?v=1') format('woff2');
+  src: url('fonts/atkinson-hyperlegible-700.woff2?v=2') format('woff2');
   font-weight: 700;
   font-display: swap;
 }
@@ -499,3 +499,18 @@ body {
 @media (prefers-reduced-motion: reduce) {
   * { transition-duration: 0.01ms !important; }
 }
+
+/* Merkblatt-Verweise: ruhige Links zum Merkheft (Nachschlagewerk). */
+.merkblatt-link {
+  display: inline-flex;
+  align-items: center;
+  margin: var(--space-1) 0 var(--space-2) var(--space-4);
+  min-height: 2.25rem;
+  padding: 0 var(--space-3);
+  color: var(--color-accent);
+  text-decoration: none;
+  font-size: 0.9rem;
+  border-radius: 0.5rem;
+}
+.merkblatt-link:hover { background: var(--color-background-surface-raised); }
+.merkblatt-link:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }

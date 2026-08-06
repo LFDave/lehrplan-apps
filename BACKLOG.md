@@ -215,58 +215,32 @@ Infrastructure, quality, and process — independent of new apps.
    each with its oracle counterpart in the same change.
 8. **A11y sweep per release.** Keyboard walk, focus states, contrast,
    reduced motion across all apps once per batch, not only per new app.
-9.–11. **Merkheft: the family's explanation layer (visuals + wiki,
-    integrated plan).** The spike in `spike-visuals/` settled the
-    technical questions (SVG/CSS only, no 3D library; illustration
-    tokens in DESIGN.md). The integration question is settled too:
-    the practice apps are for testing and practising knowledge and
-    stay free of explainer panels; **all explaining — text,
-    illustrations and interactive visuals — lives in one wiki-style
-    reference app, working title Merkheft.** One page per concept
-    ("Merkblatt"), read before jumping into an app's quiz mode.
+9.–11. **Merkheft: the family's explanation layer — SHIPPED with
+    wave 1, waves remain.** The Merkheft app (merkheft/, amber) is
+    the wiki-style reference surface: one Merkblatt per concept with
+    own-authored text, an illustration or interactive visual in the
+    DESIGN.md `illustration` style, mini facts, "Dazu üben" links
+    and the supported competency codes; hash-navigable so apps can
+    deep-link. Wave 1 is live: Wasserkreislauf, Mondphasen,
+    Schaltungen (interactive circuit), Gradnetz (rotatable globe),
+    Sonnensystem (orbits). The four affected apps (Wetterwarte,
+    Sternwarte, Stromkreis, Weltatlas) link to their Merkblätter
+    from the Stufe card and, after rounds with mistakes, from the
+    done screen. The visuals spike folder is deleted; its decisions
+    live in PRODUCT.md.
 
-    Shape of the Merkheft app:
-    - Static app like the others (own folder, tokens, own accent,
-      favicon, e2e suite), but no gamification and no progress
-      storage: pure reading.
-    - One Merkblatt per concept: title, a few short child-friendly
-      sentences, one illustration or interactive visual from the
-      spike style, optional mini fact table, then two link groups:
-      "Dazu üben" (the app Stufen that practice this concept) and
-      the official competency codes it supports.
-    - Pages in `data.js` with stable ids; illustrations as inline
-      SVG modules; hash navigation (`#wasserkreislauf`) so apps can
-      deep-link a single Merkblatt.
-
-    Integration points (each quiet, optional, never a gate):
-    - **App → Merkheft, before practising:** Stufen with a matching
-      Merkblatt show a small "Merkblatt: …" link on their Stufe card
-      (mirrors the Kompass practice-link pattern). Mapping lives in
-      the app's `data.js` (`stufe.merkblatt`), so apps stay
-      self-contained.
-    - **App → Merkheft, after mistakes:** the done screen of a round
-      with mistakes adds a supportive "Zum Nachlesen: …" link to the
-      same Merkblatt. Reward stays quiet; the link is help, not
-      punishment.
-    - **Merkheft → apps:** every Merkblatt links back to the app(s)
-      that practice it. v1 links to the app home; deep-linking a
-      specific Stufe is a later enhancement.
-    - **Kompass → Merkheft (later wave):** competencies with a
-      Merkblatt get a second quiet link next to "Üben mit …".
-
-    Merkblatt wave 1 (harvesting the spike, then delete
-    `spike-visuals/`): Wasserkreislauf (Wetterwarte 1g), Mondphasen
-    (Sternwarte d), Schaltungen mit dem interaktiven Stromkreis
-    (Stromkreis b), Gradnetz mit dem drehbaren Globus (Weltatlas c),
-    Sonnensystem mit den Orbits (Sternwarte e). Wave 2 candidates:
-    Blutkreislauf und Skelett (Körperatlas), Höhenkurven und
-    Himmelsrichtungen (Nordpfeil), Ohmsches Gesetz (Stromkreis c),
-    Konjugationstabellen (Motbau/Wordbau), ABC-Tabelle
-    (Buchstabenleiter), Gewaltenteilung (Demokratielabor),
-    Speichereinheiten (Rechnerraum), Massstab (Nordpfeil). All
-    content own-authored; every page is inline SVG with `role="img"`
-    and a German `aria-label`; each Merkblatt lands together with
-    the app-side links and the suite checks for both.
+    Remaining:
+    - **Wave 2 Merkblätter:** Blutkreislauf und Skelett
+      (Körperatlas), Höhenkurven und Himmelsrichtungen (Nordpfeil),
+      Ohmsches Gesetz (Stromkreis c), Konjugationstabellen
+      (Motbau/Wordbau), ABC-Tabelle (Buchstabenleiter),
+      Gewaltenteilung (Demokratielabor), Speichereinheiten
+      (Rechnerraum), Massstab (Nordpfeil). Each lands with its
+      app-side links and suite checks.
+    - **Kompass → Merkheft links** next to "Üben mit …" for
+      competencies with a Merkblatt.
+    - **Deep-link to a Stufe** from "Dazu üben" (today it links to
+      the app home).
 
 ## Definition of 100%
 

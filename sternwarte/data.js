@@ -33,12 +33,14 @@ export const STUFEN = [
     title: 'Beobachten über Zeit',
     desc: 'Ordne Mondphasen, Jahreszeiten und Schattenlauf.',
     kinds: ['beobachtung'],
+    merkblatt: { id: 'mondphasen', name: 'Mondphasen' },
   },
   {
     id: 'e', cycle: 2, ga: true,
     title: 'Das Sonnensystem',
     desc: 'Kenne die Sonne, die Planeten und ihre Bewegungen.',
     kinds: ['sonnensystem'],
+    merkblatt: { id: 'sonnensystem', name: 'Sonnensystem' },
   },
   {
     id: 'f', cycle: [2, 3], ga: false,

@@ -21,6 +21,7 @@ export const STUFEN = [
     title: 'Serie und parallel',
     desc: 'Sage voraus, was in Serie- und Parallelschaltungen passiert.',
     kinds: ['schaltung'],
+    merkblatt: { id: 'schaltungen', name: 'Schaltungen' },
   },
   {
     id: 'c', cycle: 3, ga: true,
