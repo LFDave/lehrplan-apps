@@ -19,18 +19,21 @@ export const STUFEN = [
     title: 'Franken und halbe Stunden',
     desc: 'Rechne mit ganzen Franken bis 20 und mit halben Stunden.',
     kinds: ['moneyAdd', 'moneySub', 'halfHour'],
+    merkblatt: { id: 'geld', name: 'Geld' },
   },
   {
     id: 'c', cycle: 1, ga: true,
     title: 'Längen bis 1 Meter',
     desc: 'Rechne mit Zentimetern, teile den Meter und halbiere Geldbeträge.',
     kinds: ['lenAdd', 'doubleLen', 'halfMoney', 'meterParts'],
+    merkblatt: { id: 'laengen', name: 'Längen messen' },
   },
   {
     id: 'd', cycle: [1, 2], ga: false,
     title: 'Franken und Rappen, Uhrzeiten',
     desc: 'Rechne mit Franken und Rappen und bestimme Zeitdauern.',
     kinds: ['moneyRp', 'duration'],
+    merkblatt: { id: 'uhr', name: 'Die Uhr' },
   },
   {
     id: 'e', cycle: 2, ga: false,

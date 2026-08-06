@@ -231,13 +231,15 @@ Infrastructure, quality, and process — independent of new apps.
     `illustration` style, mini facts, "Dazu üben" links and the
     supported competency codes. Every page prints as a light A4
     sheet via `@media print` (browser print dialog = PDF export).
-    Wave 1 is live: Wasserkreislauf, Mondphasen, Schaltungen
-    (interactive circuit), Gradnetz (rotatable globe), Sonnensystem
-    (orbits). The four affected apps (Wetterwarte, Sternwarte,
-    Stromkreis, Weltatlas) link `../merkheft/<id>.html` from the
-    Stufe card and, after rounds with mistakes, from the done
-    screen. The visuals spike folder is deleted; its decisions live
-    in PRODUCT.md.
+    Wave 1 is live: Geld, Uhr, Längen (Zyklus 1),
+    Masseinheiten (with A4 infographic), Wasserkreislauf,
+    Mondphasen, Schaltungen (interactive circuit), Gradnetz
+    (rotatable globe), Sonnensystem (orbits). Six apps (Wetterwarte,
+    Sternwarte, Stromkreis, Weltatlas, Masswerk, Grössenwissen)
+    link `../merkheft/<id>.html` from the Stufe card — as a clearly
+    recognizable chip with book icon and underlined text — and,
+    after rounds with mistakes, from the done screen. The visuals
+    spike folder is deleted; its decisions live in PRODUCT.md.
 
     Remaining:
     - **Wave 2 Merkblätter:** Blutkreislauf und Skelett
@@ -268,9 +270,13 @@ Infrastructure, quality, and process — independent of new apps.
     provided Masseinheiten example) stays a possible extra-download
     option but was not chosen for in-page visuals: style break,
     German-label proofreading burden, committed-PNG weight.
-    Remaining: validate the pilot with the family, then one
-    infographic per existing and future Merkblatt using the same
-    `.ig-*` system.
+    Second validation round: three Zyklus-1 Merkblätter (Geld with
+    coin/note infographic, Uhr with two clock faces, Längen with a
+    measuring-tape graphic) for kid testing, linked from Masswerk
+    b/c/d and Grössenwissen b/c. Print pagination fixed after a
+    real printed-PDF test (sections no longer split across page
+    breaks). Remaining: family feedback, then one infographic per
+    existing and future Merkblatt using the same `.ig-*` system.
 
 ## Definition of 100%
 

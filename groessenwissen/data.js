@@ -21,12 +21,14 @@ export const STUFEN = [
     title: 'Münzen und Vergleiche',
     desc: 'Kenne die echten Münzen und Noten und vergleiche mit am meisten und am schwersten.',
     kinds: ['coinReal', 'superlative'],
+    merkblatt: { id: 'geld', name: 'Geld' },
   },
   {
     id: 'c', cycle: 1, ga: true,
     title: 'Meter, Minuten, Franken',
     desc: 'Kenne die Einheiten und Abkürzungen für Länge, Zeit und Geld.',
     kinds: ['abbrevMc', 'unitFact'],
+    merkblatt: { id: 'laengen', name: 'Längen messen' },
   },
   {
     id: 'd', cycle: [1, 2], ga: false,

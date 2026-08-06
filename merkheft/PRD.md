@@ -1,6 +1,6 @@
 # PRD — Merkheft
 
-Version: 2.0. Dieses Dokument ist die massgebende Spezifikation der App.
+Version: 2.1. Dieses Dokument ist die massgebende Spezifikation der App.
 Verhalten und PRD werden immer in derselben Änderung angepasst.
 
 ## Zweck und Leitprinzip
@@ -39,6 +39,12 @@ Infografik entwickeln.
 
 ## Inhalte (Welle 1)
 
+- Das Geld: Franken und Rappen, Münzen und Noten, mit Infografik
+  (MA.3.A.1.b Grössenwissen, MA.3.A.2.b Masswerk) — Zyklus 1
+- Die Uhr: volle und halbe Stunden, mit zwei Zifferblättern
+  (MA.3.A.2.b und .d, Masswerk) — Zyklus 1
+- Längen messen: Meter, Zentimeter, Millimeter, mit Messband
+  (MA.3.A.1.c Grössenwissen, MA.3.A.2.c Masswerk) — Zyklus 1
 - Masseinheiten mit A4-Infografik (MA.3.A.1.f Grössenwissen,
   MA.3.A.2.e Masswerk) — Pilot für Infografiken
 - Wasserkreislauf (NMG.4.4.1g, Wetterwarte)
@@ -90,10 +96,11 @@ sprachliche Form. Daraus folgt die Regel für jedes Merkblatt:
   Merkblatt-Seite hat einen Zurück-Link zur Liste.
 - **Apps → Merkheft:** Stufen mit Merkblatt tragen in ihrer
   `data.js` ein `merkblatt: { id, name }`. Die App zeigt auf der
-  Stufenkarte einen ruhigen Link «Merkblatt: …» und nach einer Runde
-  mit Fehlern auf dem Abschlussbildschirm «Zum Nachlesen: …», beide
-  auf `../merkheft/<id>.html`. Beide Links sind optional und nie
-  eine Bedingung.
+  Stufenkarte einen klar erkennbaren Link «Merkblatt: …» (Chip mit
+  Buch-Symbol und unterstrichenem Text) und nach einer Runde mit
+  Fehlern auf dem Abschlussbildschirm «Zum Nachlesen: …», beide auf
+  `../merkheft/<id>.html`. Beide Links sind optional und nie eine
+  Bedingung.
 - **Merkheft → Apps:** «Dazu üben» verlinkt die App-Startseite und
   nennt die Stufe.
 
@@ -107,7 +114,7 @@ von aussen.
 Einsprachig Deutsch (Schweizer Standarddeutsch). Tokens aus
 DESIGN.md, Akzentfamilie **amber**, Atkinson Hyperlegible selbst
 gehostet, Illustrationen als Inline-SVG mit `role="img"` und
-deutschem `aria-label`, Cache-Busting `?v=1`.
+deutschem `aria-label`, Cache-Busting `?v=2`.
 
 ## Tests
 
@@ -118,6 +125,7 @@ gültigen App-Zielen und ohne ß, die Liste mit allen Links, jede
 Seite mit Titel, Gruppe, Bild und «Dazu üben», die Interaktivität
 (alle Stromkreis-Zustände, Globus-Drehung, Orbit-Start nur auf
 Klick), Zurück-Navigation, Druckdarstellung (heller Hintergrund,
-ausgeblendete Bedienelemente), Layout bei 320px, Konsole ohne
-Fehler, keine externen Requests. Die Suiten der vier verlinkenden
-Apps prüfen die Merkblatt-Links auf den Stufenkarten.
+ausgeblendete Bedienelemente, Abschnitte ohne Seitenumbruch
+mittendrin), Layout bei 320px, Konsole ohne Fehler, keine externen
+Requests. Die Suiten der sechs verlinkenden Apps prüfen die
+Merkblatt-Links auf den Stufenkarten.

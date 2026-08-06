@@ -2,13 +2,13 @@
 
 @font-face {
   font-family: 'Atkinson Hyperlegible';
-  src: url('fonts/atkinson-hyperlegible-400.woff2?v=1') format('woff2');
+  src: url('fonts/atkinson-hyperlegible-400.woff2?v=2') format('woff2');
   font-weight: 400;
   font-display: swap;
 }
 @font-face {
   font-family: 'Atkinson Hyperlegible';
-  src: url('fonts/atkinson-hyperlegible-700.woff2?v=1') format('woff2');
+  src: url('fonts/atkinson-hyperlegible-700.woff2?v=2') format('woff2');
   font-weight: 700;
   font-display: swap;
 }
@@ -145,6 +145,11 @@ svg text { font-family: var(--font-body); font-size: 0.85rem; fill: var(--color-
 .ig-arrowhead { fill: var(--color-text-secondary); }
 .ig-panel { fill: var(--color-background-surface-soft); stroke: var(--color-border-subtle); stroke-width: 1; }
 .ig-ex { fill: var(--color-text-secondary); font-size: 0.78rem; }
+.ig-tick { stroke: var(--color-border-strong); stroke-width: 1.5; }
+.ig-hand-h { stroke: var(--color-accent); stroke-width: 4; stroke-linecap: round; }
+.ig-hand-m { stroke: var(--color-text-primary); stroke-width: 2.5; stroke-linecap: round; }
+.ig-dot { fill: var(--color-accent); }
+.ig-coin { fill: var(--color-accent-soft); stroke: var(--color-accent-muted); stroke-width: 1.5; }
 
 .orbits { position: relative; width: min(260px, 76vw); aspect-ratio: 1; }
 .orbit { position: absolute; inset: 0; margin: auto; border: 1px dashed var(--color-border-strong); border-radius: 50%; }
@@ -219,4 +224,15 @@ svg text { font-family: var(--font-body); font-size: 0.85rem; fill: var(--color-
   .ig-arrowhead { fill: #33404F; }
   .ig-panel { fill: #F7F8FA; stroke: #D4DAE1; }
   .ig-ex { fill: #33404F; }
+  .ig-tick { stroke: #A9B4BF; }
+  .ig-hand-h { stroke: #8A7A3E; }
+  .ig-hand-m { stroke: #1A2230; }
+  .ig-dot { fill: #8A7A3E; }
+  .ig-coin { fill: #F7F4E6; stroke: #C9BD8F; }
+  /* Seitenumbrüche: Abschnitte bleiben beisammen, Titel kleben am
+     folgenden Inhalt, kompaktere Abstände für ein A4-Blatt. */
+  .blatt-page { gap: var(--space-2); }
+  .illu-stage { padding: var(--space-2); }
+  .section-label { break-after: avoid; }
+  .fakten, .fakten div, .ueben-list, .steps, .intro { break-inside: avoid; }
 }

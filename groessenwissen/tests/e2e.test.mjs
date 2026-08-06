@@ -292,6 +292,10 @@ check("home: 12 Stufen with three GA badges",
 check("home: competency code visible", (await page.textContent('[data-stufe="c"]')).includes("MA.3.A.1.c"));
 check("home: Merkblatt link on Stufe f",
   await page.locator('.merkblatt-link[href="../merkheft/masseinheiten.html"]').count() === 1);
+check("home: Merkblatt link on Stufe b",
+  await page.locator('.merkblatt-link[href="../merkheft/geld.html"]').count() === 1);
+check("home: Merkblatt link on Stufe c",
+  await page.locator('.merkblatt-link[href="../merkheft/laengen.html"]').count() === 1);
 await page.screenshot({ path: join(SHOTS_DIR, "01-home.png"), fullPage: true });
 
 await playRound("c");

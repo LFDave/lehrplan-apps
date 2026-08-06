@@ -57,13 +57,14 @@ role="status"-Region.
 Einsprachig Deutsch (Schweizer Standarddeutsch), Strings in
 `strings.js`. Tokens aus DESIGN.md, Akzentfamilie **blue**,
 Atkinson Hyperlegible selbst gehostet, Lucide-Icons inline,
-Cache-Busting `?v=2`.
+Cache-Busting `?v=3`.
 
 ## Merkheft-Verbindung
 
 Die Stufen d und e tragen in `data.js` ein `merkblatt: { id, name }`: Die App
-zeigt auf der Stufenkarte einen ruhigen Link «Merkblatt: …» und nach
-einer Runde mit Fehlern «Zum Nachlesen: …», beide auf
+zeigt auf der Stufenkarte einen klar erkennbaren Link
+«Merkblatt: …» (Chip mit Buch-Symbol und unterstrichenem Text) und
+nach einer Runde mit Fehlern «Zum Nachlesen: …», beide auf
 `../merkheft/<id>.html` (mondphasen.html und sonnensystem.html). Die Links sind optional und nie
 eine Bedingung; die Suite prüft sie.
 
