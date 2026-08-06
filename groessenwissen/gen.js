@@ -98,6 +98,9 @@ export const GW_QA = {
     ['Welches Diagramm zeigt eine Entwicklung über die Zeit?', 'Liniendiagramm', ['Kreisdiagramm', 'Säulendiagramm']],
     ['Welches Diagramm vergleicht Werte nebeneinander?', 'Säulendiagramm', ['Kreisdiagramm', 'Liniendiagramm']],
     ['Wie nennt man die Zahl, die angibt, wie oft etwas vorkommt?', 'Häufigkeit', ['Mittelwert', 'Zufall']],
+    ['Wie nennt man ein Diagramm aus kleinen Bildzeichen?', 'Piktogramm', ['Liniendiagramm', 'Kreisdiagramm']],
+    ['Wie berechnet man den Mittelwert?', 'Summe durch Anzahl teilen', ['grösster minus kleinster Wert', 'den häufigsten Wert nehmen']],
+    ['Wie heisst eine Liste mit Strichen zum Zählen?', 'Strichliste', ['Kreisdiagramm', 'Wertetabelle']],
   ],
   bigPrefixMc: [
     ['Was ist das Tausendfache von Kilo?', 'Mega', ['Giga', 'Milli']],
@@ -114,11 +117,22 @@ export const GW_QA = {
     ['Welche Währung gilt in der Schweiz?', 'der Franken', ['der Euro', 'der Dollar']],
     ['Welches Zeichen steht für das britische Pfund?', '£', ['€', '$']],
   ],
-  unitPickMc: [
+  speedUnitMc: [
     ['Welche Einheit misst Geschwindigkeit?', 'km/h', ['kg', 'm²']],
     ['Welche Einheit misst die Datenrate?', 'kB/s', ['km/h', 'cm²']],
+    ['Welche Einheit hat die Dichte?', 'kg/dm³', ['km/h', 'm²']],
+    ['Was bedeutet 80 km/h?', '80 Kilometer in einer Stunde', ['80 Kilometer in einer Minute', '80 Meter in einer Stunde']],
+    ['Was bedeutet 5 kB/s?', '5 Kilobyte pro Sekunde', ['5 Kilobyte pro Stunde', '5 Kilogramm pro Sekunde']],
+    ['Welche zwei Grössen stecken in km/h?', 'Weg und Zeit', ['Gewicht und Zeit', 'Weg und Fläche']],
+    ['Welche zwei Grössen stecken in kg/dm³?', 'Masse und Volumen', ['Gewicht und Zeit', 'Länge und Breite']],
+    ['Ein Läufer schafft 100 m in 10 s. Welche Einheit passt zu seinem Tempo?', 'm/s', ['kg', 'm²']],
+  ],
+  axisMc: [
     ['Wie heisst die waagrechte Achse im Koordinatensystem?', 'x-Achse', ['y-Achse', 'Einheitsstrecke']],
     ['Wie heisst die senkrechte Achse im Koordinatensystem?', 'y-Achse', ['x-Achse', 'Nullachse']],
+    ['Wie heisst der Punkt (0|0)?', 'Nullpunkt', ['Einheitspunkt', 'Mittelpunkt']],
+    ['Was gibt der erste Wert im Zahlenpaar (3|5) an?', 'den Wert auf der x-Achse', ['den Wert auf der y-Achse', 'den Nullpunkt']],
+    ['Was gibt der zweite Wert im Zahlenpaar (3|5) an?', 'den Wert auf der y-Achse', ['den Wert auf der x-Achse', 'den Nullpunkt']],
   ],
   finTermMc: [
     ['Wie heisst das Geld, das du bei der Bank anlegst?', 'Kapital', ['Zins', 'Rabatt']],
@@ -131,13 +145,18 @@ export const GW_QA = {
   microPrefixMc: [
     ['Was bedeutet der Vorsatz Mikro?', 'ein Millionstel', ['ein Tausendstel', 'ein Milliardstel']],
     ['Was bedeutet der Vorsatz Nano?', 'ein Milliardstel', ['ein Millionstel', 'ein Hundertstel']],
-    ['Welche Einheit hat die Dichte?', 'kg/dm³', ['km/h', 'm²']],
+    ['Welche Abkürzung hat der Vorsatz Mikro?', 'µ', ['n', 'M']],
+    ['Welche Abkürzung hat der Vorsatz Nano?', 'n', ['µ', 'N']],
+    ['Was ist kleiner: ein Mikrometer oder ein Nanometer?', 'ein Nanometer', ['ein Mikrometer']],
+    ['1 Millimeter = wie viele Mikrometer?', "1'000", ['100', "1'000'000"]],
+    ['1 Mikrometer = wie viele Nanometer?', "1'000", ['100', "10'000"]],
+    ['Was ist ein Tausendstel von einem Millimeter?', 'ein Mikrometer', ['ein Nanometer', 'ein Zentimeter']],
   ],
 };
 
 // Echte Schweizer Münzen und Noten (für coinReal, auch fürs Orakel).
-export const REAL_MONEY = ['5 Rappen', '10 Rappen', '20 Rappen', '50 Rappen', '1 Franken', '2 Franken', '5 Franken', '10 Franken (Note)', '20 Franken (Note)'];
-const FAKE_MONEY = ['3 Franken', '4 Franken', '6 Franken', '7 Franken', '15 Rappen', '25 Rappen', '30 Rappen', '75 Rappen'];
+export const REAL_MONEY = ['5 Rappen', '10 Rappen', '20 Rappen', '50 Rappen', '1 Franken', '2 Franken', '5 Franken', '10 Franken (Note)', '20 Franken (Note)', '50 Franken (Note)', '100 Franken (Note)', '200 Franken (Note)', '1000 Franken (Note)'];
+const FAKE_MONEY = ['3 Franken', '4 Franken', '6 Franken', '7 Franken', '15 Rappen', '25 Rappen', '30 Rappen', '75 Rappen', '3 Rappen', '40 Rappen', '500 Franken (Note)'];
 
 // Einheiten-Fakten: [Ausdruck, Antwort] — die Orakel-Tabelle ist eine
 // unabhängige zweite Aufschreibung in der Test-Suite.
@@ -153,6 +172,7 @@ const UNIT_FACTS = {
     ['1 l = ? dl', '10'],
     ['1 dm = ? cm', '10'],
     ['1 cm = ? mm', '10'],
+    ['1 d = ? h', '24'],
   ],
   smallUnitFact: [
     ['1 l = ? cl', '100'],
@@ -166,8 +186,16 @@ const UNIT_FACTS = {
     ['1 m² = ? dm²', '100'],
     ['1 cm² = ? mm²', '100'],
     ['1 km² = ? m²', "1'000'000"],
+    ['1 m² = ? cm²', "10'000"],
+    ['1 dm² = ? mm²', "10'000"],
+    ['1 m² = ? mm²', "1'000'000"],
+    ['1 km² = ? ha', '100'],
+  ],
+  dataFact: [
     ['1 kB = ? Byte', "1'000"],
-    ['1 d = ? h', '24'],
+    ['1 MB = ? kB', "1'000"],
+    ['1 GB = ? MB', "1'000"],
+    ['1 TB = ? GB', "1'000"],
   ],
   volumeFact: [
     ['1 m³ = ? dm³', "1'000"],
@@ -201,7 +229,7 @@ const KINDS = {
     return mc(rng, 'Welches Geldstück gibt es wirklich?', correct, wrongs);
   },
   superlative(rng) {
-    const [comp, sup] = pick(rng, [['schwerer', 'schwersten'], ['länger', 'längsten'], ['teurer', 'teuersten'], ['schneller', 'schnellsten']]);
+    const [comp, sup] = pick(rng, [['schwerer', 'schwersten'], ['länger', 'längsten'], ['teurer', 'teuersten'], ['schneller', 'schnellsten'], ['älter', 'ältesten'], ['leichter', 'leichtesten'], ['kürzer', 'kürzesten'], ['höher', 'höchsten'], ['langsamer', 'langsamsten']]);
     const [x1, x2, x3] = shuffled(rng, ['A', 'B', 'C']);
     return mc(rng, `${x1} ist ${comp} als ${x2}. ${x3} ist ${comp} als ${x1}. Was ist am ${sup}?`, x3, [x1, x2]);
   },
@@ -243,13 +271,21 @@ const KINDS = {
   haFact(rng) { return factTask(rng, 'haFact'); },
 
   relFreq(rng) {
-    const whole = pick(rng, [20, 25, 50, 100]);
+    const whole = pick(rng, [20, 25, 40, 50, 100]);
     const p = pick(rng, [4, 5, 10, 20, 25, 40, 50, 60, 75]);
     const part = (whole * p) / 100;
     if (!Number.isInteger(part) || part < 1 || part >= whole) return KINDS.relFreq(rng);
     return typed(`Von ${whole} Würfen sind ${part} Treffer. Relative Häufigkeit = ? %`, String(p));
   },
-  unitPickMc(rng) { return qaTask(rng, 'unitPickMc'); },
+  speedUnitMc(rng) { return qaTask(rng, 'speedUnitMc'); },
+  axisMc(rng) { return qaTask(rng, 'axisMc'); },
+  dataFact(rng) { return factTask(rng, 'dataFact'); },
+  pointPair(rng) {
+    const x = randInt(rng, 1, 9);
+    let y = randInt(rng, 1, 9);
+    if (y === x) y = (y % 9) + 1;
+    return mc(rng, `${x} nach rechts, ${y} nach oben. Welches Zahlenpaar ist das?`, `(${x}|${y})`, [`(${y}|${x})`, `(${x}|${x})`]);
+  },
 
   finTermMc(rng) { return qaTask(rng, 'finTermMc'); },
   microPrefixMc(rng) { return qaTask(rng, 'microPrefixMc'); },

@@ -26,20 +26,23 @@ const BASE = `http://localhost:${PORT}/merkheft`;
 
 // Independent restatement of the wave-1 Merkheft contents: one HTML
 // page per concept, its group, title, practice links and codes.
-// ueben hrefs deep-link into the Stufe (?stufe=), optionally focused
-// on the Merkblatt's topic (&thema=<kinds>) so linked rounds are
-// topic-pure. Written as they appear in the HTML source (&amp;).
+// ueben hrefs deep-link into the Stufe (?stufe=<id>). Mixed official
+// Stufen are split in the app into topic-pure sub-Stufen (masswerk
+// b-geld/b-zeit/d-geld/d-zeit), so no topic parameter is needed and
+// the app cleans the query from the address after entry.
 const BLAETTER = [
   { id: "geld", gruppe: "Mathematik", title: "Das Geld",
-    ueben: [{ href: "../masswerk/?stufe=b&amp;thema=moneyAdd,moneySub", stufe: "b" },
-      { href: "../groessenwissen/?stufe=b&amp;thema=coinReal", stufe: "b" }],
+    ueben: [{ href: "../masswerk/?stufe=b-geld", stufe: "b" },
+      { href: "../masswerk/?stufe=c-geld", stufe: "c" },
+      { href: "../masswerk/?stufe=d-geld", stufe: "d" },
+      { href: "../groessenwissen/?stufe=b-geld", stufe: "b" }],
     codes: ["MA.3.A.1.b", "MA.3.A.2.b"], interactive: false },
   { id: "uhr", gruppe: "Mathematik", title: "Die Uhr",
-    ueben: [{ href: "../masswerk/?stufe=b&amp;thema=halfHour", stufe: "b" },
-      { href: "../masswerk/?stufe=d&amp;thema=duration", stufe: "d" }],
+    ueben: [{ href: "../masswerk/?stufe=b-zeit", stufe: "b" },
+      { href: "../masswerk/?stufe=d-zeit", stufe: "d" }],
     codes: ["MA.3.A.2.b", "MA.3.A.2.d"], interactive: false },
   { id: "laengen", gruppe: "Mathematik", title: "Längen messen",
-    ueben: [{ href: "../masswerk/?stufe=c&amp;thema=lenAdd,doubleLen,meterParts", stufe: "c" },
+    ueben: [{ href: "../masswerk/?stufe=c-laengen", stufe: "c" },
       { href: "../groessenwissen/?stufe=c", stufe: "c" }],
     codes: ["MA.3.A.1.c", "MA.3.A.2.c"], interactive: false },
   { id: "masseinheiten", gruppe: "Mathematik", title: "Masseinheiten",

@@ -57,7 +57,8 @@ const FACTORS = {
   "kg>g": 1000, "km>m": 1000, "l>dl": 10, "dm>cm": 10, "cm>mm": 10,
   "l>cl": 100, "l>ml": 1000, "t>kg": 1000, "min>s": 60, "g>mg": 1000,
   "dm²>cm²": 100, "m²>dm²": 100, "cm²>mm²": 100, "km²>m²": 1000000,
-  "kB>Byte": 1000, "d>h": 24,
+  "kB>Byte": 1000, "d>h": 24, "MB>kB": 1000, "GB>MB": 1000, "TB>GB": 1000,
+  "m²>cm²": 10000, "dm²>mm²": 10000, "m²>mm²": 1000000,
   "m³>dm³": 1000, "dm³>cm³": 1000, "m³>l": 1000,
   "ha>a": 100, "a>m²": 100, "ha>m²": 10000, "km²>ha": 100,
 };
@@ -65,7 +66,8 @@ const FACTORS = {
 // Offizielle Schweizer Münzen und Noten bis 20 Franken (unabhängig
 // aufgeschrieben; Quelle: Schweizerische Nationalbank / Swissmint).
 const REAL = new Set(["5 Rappen", "10 Rappen", "20 Rappen", "50 Rappen",
-  "1 Franken", "2 Franken", "5 Franken", "10 Franken (Note)", "20 Franken (Note)"]);
+  "1 Franken", "2 Franken", "5 Franken", "10 Franken (Note)", "20 Franken (Note)",
+  "50 Franken (Note)", "100 Franken (Note)", "200 Franken (Note)", "1000 Franken (Note)"]);
 
 // Neu aufgeschriebene Frage-Tabelle (Frage → richtige Antwort).
 const QA = {
@@ -114,6 +116,9 @@ const QA = {
   "Welches Diagramm zeigt eine Entwicklung über die Zeit?": "Liniendiagramm",
   "Welches Diagramm vergleicht Werte nebeneinander?": "Säulendiagramm",
   "Wie nennt man die Zahl, die angibt, wie oft etwas vorkommt?": "Häufigkeit",
+  "Wie nennt man ein Diagramm aus kleinen Bildzeichen?": "Piktogramm",
+  "Wie berechnet man den Mittelwert?": "Summe durch Anzahl teilen",
+  "Wie heisst eine Liste mit Strichen zum Zählen?": "Strichliste",
   "Was ist das Tausendfache von Kilo?": "Mega",
   "Was ist das Tausendfache von Mega?": "Giga",
   "Was ist das Tausendfache von Giga?": "Tera",
@@ -129,6 +134,14 @@ const QA = {
   "Welche Einheit misst die Datenrate?": "kB/s",
   "Wie heisst die waagrechte Achse im Koordinatensystem?": "x-Achse",
   "Wie heisst die senkrechte Achse im Koordinatensystem?": "y-Achse",
+  "Wie heisst der Punkt (0|0)?": "Nullpunkt",
+  "Was gibt der erste Wert im Zahlenpaar (3|5) an?": "den Wert auf der x-Achse",
+  "Was gibt der zweite Wert im Zahlenpaar (3|5) an?": "den Wert auf der y-Achse",
+  "Was bedeutet 80 km/h?": "80 Kilometer in einer Stunde",
+  "Was bedeutet 5 kB/s?": "5 Kilobyte pro Sekunde",
+  "Welche zwei Grössen stecken in km/h?": "Weg und Zeit",
+  "Welche zwei Grössen stecken in kg/dm³?": "Masse und Volumen",
+  "Ein Läufer schafft 100 m in 10 s. Welche Einheit passt zu seinem Tempo?": "m/s",
   "Wie heisst das Geld, das du bei der Bank anlegst?": "Kapital",
   "Wie heisst die jährliche Vergütung der Bank?": "Zins",
   "Wie heisst der Prozentsatz, mit dem verzinst wird?": "Zinssatz",
@@ -137,6 +150,12 @@ const QA = {
   "Was bedeutet 10 % Rabatt?": "10 % günstiger",
   "Was bedeutet der Vorsatz Mikro?": "ein Millionstel",
   "Was bedeutet der Vorsatz Nano?": "ein Milliardstel",
+  "Welche Abkürzung hat der Vorsatz Mikro?": "µ",
+  "Welche Abkürzung hat der Vorsatz Nano?": "n",
+  "Was ist kleiner: ein Mikrometer oder ein Nanometer?": "ein Nanometer",
+  "1 Millimeter = wie viele Mikrometer?": "1'000",
+  "1 Mikrometer = wie viele Nanometer?": "1'000",
+  "Was ist ein Tausendstel von einem Millimeter?": "ein Mikrometer",
   "Welche Einheit hat die Dichte?": "kg/dm³",
 };
 
@@ -166,6 +185,9 @@ function chooseOption(expr, options) {
   if (expr in QA) return options.indexOf(QA[expr]);
   if (expr === "Welches Geldstück gibt es wirklich?") {
     return options.findIndex((o) => REAL.has(o));
+  }
+  if ((m = expr.match(/^(\d) nach rechts, (\d) nach oben\. Welches Zahlenpaar ist das\?$/))) {
+    return options.indexOf(`(${m[1]}|${m[2]})`);
   }
   if ((m = expr.match(/^(\w) ist (\S+) als (\w)\. (\w) ist \2 als (\w)\. Was ist am [^?]+\?$/))) {
     // Kette: m1 > m3 und m4 > m5(=m1) → m4 ist am grössten.
@@ -199,9 +221,11 @@ function chooseOption(expr, options) {
 
 /* ── Data and copy sanity ─────────────────────────────────────────── */
 {
-  check("data: 12 Stufen a-l", STUFEN.length === 12 && STUFEN.map((s) => s.id).join("") === "abcdefghijkl");
-  check("data: GA marks on c, h and l",
-    STUFEN.filter((s) => s.ga).map((s) => s.id).join(",") === "c,h,l");
+  check("data: 17 Stufen cards (b, h, k, l split by topic)",
+    STUFEN.length === 17
+    && STUFEN.map((s) => s.code || s.id).join(",") === "a,b,b,c,d,e,f,g,h,h,i,j,k,k,k,l,l");
+  check("data: GA marks on c and both h and l cards",
+    STUFEN.filter((s) => s.ga).map((s) => s.id).join(",") === "c,h-daten,h-flaechen,l-geld,l-vorsaetze");
   const eszett = [];
   for (const [id, v] of Object.entries(STRINGS.de)) if (v.includes("ß")) eszett.push(id);
   for (const s of STUFEN) if ((s.title + s.desc).includes("ß")) eszett.push(s.id);
@@ -287,8 +311,12 @@ async function playRound(stufeId) {
 await page.goto(URL);
 await page.waitForSelector(".stufen-list");
 check("home: title renders", (await page.textContent("h1")).trim() === "Grössenwissen");
-check("home: 12 Stufen with three GA badges",
-  await page.locator(".stufe").count() === 12 && await page.locator(".ga-badge").count() === 3);
+check("home: 17 Stufen cards with GA badges on c and both h and l cards",
+  await page.locator(".stufe").count() === 17 && await page.locator(".ga-badge").count() === 5);
+check("home: split cards show the official letter",
+  (await page.textContent('[data-stufe="b-geld"]')).includes("MA.3.A.1.b")
+  && (await page.textContent('[data-stufe="h-flaechen"]')).includes("MA.3.A.1.h")
+  && (await page.textContent('[data-stufe="k-koordinaten"]')).includes("MA.3.A.1.k"));
 check("home: competency code visible", (await page.textContent('[data-stufe="c"]')).includes("MA.3.A.1.c"));
 check("home: Merkblatt link on Stufe f",
   await page.locator('.merkblatt-link[href="../merkheft/masseinheiten.html"]').count() === 1);
@@ -306,17 +334,27 @@ await page.screenshot({ path: join(SHOTS_DIR, "02-done.png"), fullPage: true });
 await page.click('[data-action="home"]');
 
 await page.waitForSelector(".stufen-list");
-await playRound("h");
-check("round h: GA medal for Zyklus 2", (await page.textContent(".done")).includes("Grundanspruch Zyklus 2"));
+await playRound("h-daten");
+check("round h-daten: no GA medal yet (needs both h cards clean)",
+  !(await page.textContent(".done")).includes("Grundanspruch Zyklus 2"));
 await page.click('[data-action="home"]');
 await page.waitForSelector(".stufen-list");
-await playRound("l");
-check("round l: GA medal for Zyklus 3", (await page.textContent(".done")).includes("Grundanspruch Zyklus 3"));
+await playRound("h-flaechen");
+check("round h-flaechen: GA medal once both h cards are clean",
+  (await page.textContent(".done")).includes("Grundanspruch Zyklus 2"));
+await page.click('[data-action="home"]');
+await page.waitForSelector(".stufen-list");
+await playRound("l-geld");
+await page.click('[data-action="home"]');
+await page.waitForSelector(".stufen-list");
+await playRound("l-vorsaetze");
+check("round l-vorsaetze: GA medal once both l cards are clean",
+  (await page.textContent(".done")).includes("Grundanspruch Zyklus 3"));
 await page.click('[data-action="home"]');
 
 /* ── Persistence, mistake flow, reset ─────────────────────────────── */
 await page.waitForSelector(".stats-strip");
-const expectedXp = roundXp("c", 8) + roundXp("h", 8) + roundXp("l", 8);
+const expectedXp = roundXp("c", 8) + roundXp("h-daten", 8) + roundXp("h-flaechen", 8) + roundXp("l-geld", 8) + roundXp("l-vorsaetze", 8);
 check("home: stats strip shows accumulated XP", (await page.textContent(".stats-strip")).includes(`${expectedXp} XP`));
 await page.reload();
 await page.waitForSelector(".stats-strip");
@@ -362,8 +400,9 @@ check("layout: no horizontal scrolling at 320px",
 /* ── Deep link (Merkheft «Dazu üben») ─────────────────────────────── */
 await page.goto(`${URL}?stufe=f`);
 await page.waitForSelector(".task-area");
-check("deep link: ?stufe=f starts the Stufe directly",
-  (await page.textContent(".practice-meta")).includes("Stufe f"));
+check("deep link: ?stufe=f starts the Stufe directly, query cleaned",
+  (await page.textContent(".practice-meta")).includes("Stufe f")
+  && (await page.evaluate(() => location.search)) === "");
 
 check("console: no errors", consoleErrors.length === 0, consoleErrors.slice(0, 3).join(" | "));
 check("network: no external requests", externalRequests.length === 0, externalRequests.slice(0, 3).join(", "));

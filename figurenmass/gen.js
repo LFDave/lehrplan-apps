@@ -294,6 +294,12 @@ const KINDS = {
     if (total % 3 !== 0) return KINDS.pyramidVolume(rng);
     return typed(`Pyramide: Grundfläche ${G} cm², Höhe ${hh} cm. Volumen = ? cm³ (G · h : 3)`, String(total / 3));
   },
+  pyramidHeight(rng) {
+    const G = randInt(rng, 1, 5) * 3;
+    const hh = randInt(rng, 2, 9);
+    const V = (G * hh) / 3;
+    return typed(`Pyramide: Volumen ${V} cm³, Grundfläche ${G} cm². Höhe = ? cm (3 · V : G)`, String(hh));
+  },
   angleSum(rng) {
     const a = randInt(rng, 3, 11) * 10;
     const b = randInt(rng, 2, Math.min(11, 16 - a / 10)) * 10;
@@ -304,6 +310,10 @@ const KINDS = {
       ['Ein Dreieck hat seine Spitze auf dem Halbkreis über dem Durchmesser. Wie gross ist der Winkel an der Spitze (Satz von Thales)?', '90°', ['60°', '45°']],
       ['Wie gross ist die Winkelsumme im Dreieck?', '180°', ['90°', '360°']],
       ['Wie gross ist die Winkelsumme im Viereck?', '360°', ['180°', '270°']],
+      ['Wie nennt man einen Winkel von genau 90°?', 'rechter Winkel', ['spitzer Winkel', 'stumpfer Winkel']],
+      ['Wie nennt man einen Winkel, der kleiner als 90° ist?', 'spitzer Winkel', ['rechter Winkel', 'stumpfer Winkel']],
+      ['Wie nennt man einen Winkel zwischen 90° und 180°?', 'stumpfer Winkel', ['spitzer Winkel', 'gestreckter Winkel']],
+      ['Wie gross ist jeder Winkel im gleichseitigen Dreieck?', '60°', ['90°', '45°']],
     ];
     const [q, correct, wrongs] = pick(rng, QA);
     return mc(rng, q, correct, wrongs);

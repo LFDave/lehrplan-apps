@@ -62,7 +62,20 @@ role="status"-Region.
 Einsprachig Deutsch (Schweizer Standarddeutsch), Strings in
 `strings.js`. Tokens aus DESIGN.md, Akzentfamilie **coral**,
 Atkinson Hyperlegible selbst gehostet, Lucide-Icons inline,
-Cache-Busting `?v=1`.
+Cache-Busting `?v=2`.
+
+**Gesplittete Stufe c.** Die offizielle Stufe c mischt
+Rechtschreibung (ie, ä) und Zeichensetzung (Kommas); die App zeigt
+zwei Karten: **c-schreibung** «ie und ä» und **c-kommas** «Kommas bei
+Aufzählungen», beide mit erweiterten Aufgabenpools (elf Schreibungs-
+und acht Komma-Einträge). Beide zeigen Buchstabe und Code der
+offiziellen Stufe c (Feld `code`).
+
+## Merkheft-Verbindung und Deep-Links
+
+Deep-Links: `?stufe=<id>` startet die Stufe direkt (auch Teilstufen
+wie `c-kommas`). Die Query wird nach dem Einstieg sofort aus der
+Adresse entfernt; die Suite prüft Einstieg und bereinigte Adresse.
 
 ## Tests
 

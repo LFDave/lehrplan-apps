@@ -120,6 +120,12 @@ function chooseOption(expr, options) {
   if ((m = expr.match(/^Ist der Buchstabe ([A-Z]) ein Vokal oder ein Konsonant\?$/))) {
     return options.indexOf(VOKALE.includes(m[1]) ? "ein Vokal" : "ein Konsonant");
   }
+  if (expr === "Welcher dieser Buchstaben ist ein Vokal?") {
+    return options.findIndex((o) => VOKALE.includes(o));
+  }
+  if ((m = expr.match(/^Steht das ([A-Z]) im ABC vor oder nach dem ([A-Z])\?$/))) {
+    return options.indexOf(ABC.indexOf(m[1]) < ABC.indexOf(m[2]) ? "vor" : "nach");
+  }
   if ((m = expr.match(/^Wo steht das ([A-Z]) im ABC: vorne \(A bis H\), in der Mitte \(I bis Q\) oder hinten \(R bis Z\)\?$/))) {
     const i = ABC.indexOf(m[1]);
     const correct = i <= 7 ? "vorne (A bis H)" : i <= 16 ? "in der Mitte (I bis Q)" : "hinten (R bis Z)";
@@ -157,7 +163,8 @@ function chooseOption(expr, options) {
 
 /* ── Data and copy sanity ─────────────────────────────────────────── */
 {
-  check("data: 7 Stufen a-g", STUFEN.length === 7 && STUFEN.map((s) => s.id).join("") === "abcdefg");
+  check("data: 8 Stufen cards (c split by topic)",
+    STUFEN.length === 8 && STUFEN.map((s) => s.code || s.id).join(",") === "a,b,c,c,d,e,f,g");
   check("data: GA marks on b and d and f",
     STUFEN.filter((s) => s.ga).map((s) => s.id).join(",") === "b,d,f");
   const eszett = [];
@@ -245,8 +252,11 @@ async function playRound(stufeId) {
 await page.goto(URL);
 await page.waitForSelector(".stufen-list");
 check("home: title renders", (await page.textContent("h1")).trim() === "Buchstabenleiter");
-check("home: all Stufen with GA badges",
-  await page.locator(".stufe").count() === 7 && await page.locator(".ga-badge").count() === 3);
+check("home: all Stufen cards with GA badges",
+  await page.locator(".stufe").count() === 8 && await page.locator(".ga-badge").count() === 3);
+check("home: split cards show the official letter",
+  (await page.textContent('[data-stufe="c-vokale"]')).includes("D.5.E.1.c")
+  && (await page.textContent('[data-stufe="c-gruppen"]')).includes("D.5.E.1.c"));
 check("home: competency code visible", (await page.textContent('[data-stufe="b"]')).includes("D.5.E.1.b"));
 await page.screenshot({ path: join(SHOTS_DIR, "01-home.png"), fullPage: true });
 
@@ -323,6 +333,13 @@ await page.goto(URL);
 await page.waitForSelector(".stufen-list");
 check("layout: no horizontal scrolling at 320px",
   await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth));
+
+/* ── Deep link (split sub-Stufe) ──────────────────────────────────── */
+await page.goto(`${URL}?stufe=c-vokale`);
+await page.waitForSelector(".task-area");
+check("deep link: ?stufe=c-vokale starts the Stufe directly, query cleaned",
+  (await page.textContent(".practice-meta")).includes("Stufe c")
+  && (await page.evaluate(() => location.search)) === "");
 
 check("console: no errors", consoleErrors.length === 0, consoleErrors.slice(0, 3).join(" | "));
 check("network: no external requests", externalRequests.length === 0, externalRequests.slice(0, 3).join(", "));

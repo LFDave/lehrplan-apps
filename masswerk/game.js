@@ -2,7 +2,7 @@
 // über dem gespeicherten Zustand, kein DOM. Medaillen sind reine
 // Funktionen der Zähler, nie Ereignis-Flags (GAMIFICATION.md).
 
-import { STUFEN, stufeIndex } from './data.js?v=4';
+import { STUFEN, stufeIndex } from './data.js?v=5';
 
 // XP pro abgeschlossener Runde: Grundwert plus Stufentiefe. Fehler
 // kosten nichts, Tempo zählt nie.
@@ -37,7 +37,7 @@ export const MEDALS = [
   { key: 'aufgaben-50', icon: 'pencil', threshold: (s) => s.tasks >= 50, name: 'Fleissige Hände', desc: '50 Aufgaben gelöst.' },
   { key: 'aufgaben-200', icon: 'zap', threshold: (s) => s.tasks >= 200, name: 'Messblitz', desc: '200 Aufgaben gelöst.' },
   { key: 'aufgaben-800', icon: 'gem', threshold: (s) => s.tasks >= 800, name: 'Schatzkiste', desc: '800 Aufgaben gelöst.' },
-  { key: 'ga-z1', icon: 'target', threshold: (s) => cleanRuns(s, 'c') >= 1, name: 'Grundanspruch Zyklus 1', desc: 'Stufe c ohne Fehler geschafft.' },
+  { key: 'ga-z1', icon: 'target', threshold: (s) => cleanRuns(s, 'c-laengen') >= 1 && cleanRuns(s, 'c-geld') >= 1, name: 'Grundanspruch Zyklus 1', desc: 'Beide Karten der Stufe c ohne Fehler geschafft.' },
   { key: 'ga-z2', icon: 'target', threshold: (s) => cleanRuns(s, 'h') >= 1, name: 'Grundanspruch Zyklus 2', desc: 'Stufe h ohne Fehler geschafft.' },
   { key: 'ga-z3', icon: 'target', threshold: (s) => cleanRuns(s, 'j') >= 1, name: 'Grundanspruch Zyklus 3', desc: 'Stufe j ohne Fehler geschafft.' },
   { key: 'alle-stufen', icon: 'compass', threshold: (s) => STUFEN.every((st) => rounds(s, st.id) >= 1), name: 'Alle Stufen entdeckt', desc: 'In jeder Stufe eine Runde abgeschlossen.' },

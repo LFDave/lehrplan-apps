@@ -82,7 +82,20 @@ prüfen sich bei erwarteter Länge selbst und zusätzlich mit Enter.
 Einsprachig Deutsch (Schweizer Standarddeutsch), Strings in
 `strings.js`. Tokens aus DESIGN.md, Akzentfamilie **blue**, Atkinson
 Hyperlegible selbst gehostet, Lucide-Icons inline, SVG-Figuren nutzen
-die Farb-Tokens über CSS-Klassen, Cache-Busting `?v=1`.
+die Farb-Tokens über CSS-Klassen, Cache-Busting `?v=2`.
+
+**Gesplittete Stufe j.** Die offizielle Stufe j mischt
+Körperberechnung und Winkel; die App zeigt zwei Karten:
+**j-koerper** «Pyramide» (Volumen und neu auch Höhe berechnen) und
+**j-winkel** «Winkel und Thales» (Winkelsummen, neu die Winkelarten
+spitz, recht, stumpf). Beide zeigen Buchstabe und Code der
+offiziellen Stufe j (Feld `code`).
+
+## Merkheft-Verbindung und Deep-Links
+
+Deep-Links: `?stufe=<id>` startet die Stufe direkt (auch Teilstufen
+wie `j-winkel`). Die Query wird nach dem Einstieg sofort aus der
+Adresse entfernt; die Suite prüft Einstieg und bereinigte Adresse.
 
 ## Tests
 
