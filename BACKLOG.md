@@ -252,26 +252,25 @@ Infrastructure, quality, and process — independent of new apps.
     - **Deep-link to a Stufe** from "Dazu üben" (today it links to
       the app home).
 12. **Merkblatt infographics: one printable A4 overview per
-    concept.** Each Merkblatt grows a single dense overview graphic
-    that explains the whole concept on one sheet (example brief: a
-    unit-conversion flow poster with ml→l→hl steps, prefix ladder,
-    and worked examples). Two candidate production paths:
-    - *Token-styled SVG* (recommended first): hand-built inline SVG
-      in the DESIGN.md illustration style, printed via the existing
-      `@media print` path. On-brand, crisp at any size, editable in
-      place, versionable in git, no new tooling, no style break with
-      the rest of the family.
-    - *AI-generated raster* (like the provided Masseinheiten
-      example): richer, poster-like look, but breaks the family
-      style, needs German-label proofreading (AI images misspell),
-      and must be committed as a self-hosted PNG (no external
-      requests) — acceptable as an extra download, not as the
-      in-page visual.
-    Either way the infographic lives in the Merkblatt page and
-    prints with it; the raster path additionally needs an
-    `<img>`-with-alt block and a file-size budget. Start with one
-    pilot (Masseinheiten/Grössen for Masswerk plus a matching
-    Merkblatt) before scaling.
+    concept — PILOT SHIPPED, scaling remains.** Each Merkblatt can
+    grow a single dense overview graphic that explains the whole
+    concept on one sheet. The pilot is live: the Masseinheiten
+    Merkblatt (merkheft/masseinheiten.html, new Mathematik group)
+    carries a token-styled SVG infographic (unit ladders for
+    length/weight/volume with ×10/×100/×1000 factors, the
+    multiply/divide rule, the time warning, six worked examples),
+    linked from Masswerk Stufe e and Grössenwissen Stufe f. The
+    chosen path is *token-styled SVG*: `.ig-*` classes in the
+    Merkheft stylesheet with light `@media print` counterparts, so
+    the same graphic is dark on screen and a crisp light A4 in
+    print — on-brand, editable in place, versionable, no new
+    tooling. The *AI-generated raster* path (poster look like the
+    provided Masseinheiten example) stays a possible extra-download
+    option but was not chosen for in-page visuals: style break,
+    German-label proofreading burden, committed-PNG weight.
+    Remaining: validate the pilot with the family, then one
+    infographic per existing and future Merkblatt using the same
+    `.ig-*` system.
 
 ## Definition of 100%
 

@@ -111,9 +111,17 @@ stehen als "Zahl Einheit", das Ziel als "? Einheit".
   UI-Texte in `strings.js` mit stabilen IDs. Keine
   Einstellungen-Ansicht, solange es nichts zu konfigurieren gibt.
 - Tokens aus DESIGN.md, Akzentfamilie **sage**, Atkinson Hyperlegible
-  selbst gehostet, Lucide-Icons inline, Cache-Busting `?v=1`.
+  selbst gehostet, Lucide-Icons inline, Cache-Busting `?v=2`.
 - Schweizer Formate: Tausendertrennung mit Apostroph (2'000),
   Dezimalpunkt, Franken und Rappen, 24-Stunden-Uhrzeiten (09:40).
+
+## Merkheft-Verbindung
+
+Stufe e trägt in `data.js` ein `merkblatt: { id, name }`: Die App
+zeigt auf der Stufenkarte einen ruhigen Link «Merkblatt: …» und nach
+einer Runde mit Fehlern «Zum Nachlesen: …», beide auf
+`../merkheft/<id>.html` (masseinheiten.html, «Masseinheiten»). Die Links sind optional und nie
+eine Bedingung; die Suite prüft sie.
 
 ## Tests
 

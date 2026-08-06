@@ -131,6 +131,21 @@ svg text { font-family: var(--font-body); font-size: 0.85rem; fill: var(--color-
 .illu-controls label { color: var(--color-text-secondary); display: inline-flex; gap: var(--space-2); align-items: center; }
 .illu-status { color: var(--color-text-muted); font-size: 0.9rem; text-align: center; }
 
+/* Infografik-Klassen: Einheitentreppen, Regelkasten, Beispiele.
+   Farben pro Klasse, damit der Druck sie hell überschreiben kann. */
+.ig { width: min(460px, 100%); }
+.ig-title { fill: var(--color-text-primary); font-size: 1rem; font-weight: 700; }
+.ig-sub { fill: var(--color-text-muted); font-size: 0.72rem; }
+.ig-h { fill: var(--color-accent); font-size: 0.85rem; font-weight: 700; }
+.ig-box { fill: var(--color-background-surface-raised); stroke: var(--color-border-strong); stroke-width: 1.5; }
+.ig-unit { fill: var(--color-text-primary); font-size: 0.85rem; font-weight: 700; }
+.ig-word { fill: var(--color-text-muted); font-size: 0.6rem; }
+.ig-factor { fill: var(--color-accent); font-size: 0.7rem; font-weight: 700; }
+.ig-arrow { stroke: var(--color-text-secondary); stroke-width: 2; stroke-linecap: round; }
+.ig-arrowhead { fill: var(--color-text-secondary); }
+.ig-panel { fill: var(--color-background-surface-soft); stroke: var(--color-border-subtle); stroke-width: 1; }
+.ig-ex { fill: var(--color-text-secondary); font-size: 0.78rem; }
+
 .orbits { position: relative; width: min(260px, 76vw); aspect-ratio: 1; }
 .orbit { position: absolute; inset: 0; margin: auto; border: 1px dashed var(--color-border-strong); border-radius: 50%; }
 .carrier { position: absolute; inset: 0; margin: auto; }
@@ -196,4 +211,12 @@ svg text { font-family: var(--font-body); font-size: 0.85rem; fill: var(--color-
   .ueben-link { color: #8A7A3E; }
   .ueben-meta, .code-line, .illu-status { color: #5C6B7C; }
   .blatt-page, .illu-stage { break-inside: avoid; }
+  .ig-title, .ig-unit { fill: #1A2230; }
+  .ig-sub, .ig-word { fill: #5C6B7C; }
+  .ig-h, .ig-factor { fill: #8A7A3E; }
+  .ig-box { fill: #F7F4E6; stroke: #C9BD8F; }
+  .ig-arrow { stroke: #33404F; }
+  .ig-arrowhead { fill: #33404F; }
+  .ig-panel { fill: #F7F8FA; stroke: #D4DAE1; }
+  .ig-ex { fill: #33404F; }
 }

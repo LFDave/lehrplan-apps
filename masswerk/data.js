@@ -37,6 +37,7 @@ export const STUFEN = [
     title: 'Einheiten umwandeln',
     desc: 'Wandle benachbarte Einheiten um: Meter, Liter, Kilogramm.',
     kinds: ['convertNeighbor', 'addUnits'],
+    merkblatt: { id: 'masseinheiten', name: 'Masseinheiten' },
   },
   {
     id: 'g', cycle: 2, ga: false,

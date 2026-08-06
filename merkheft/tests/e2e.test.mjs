@@ -27,6 +27,9 @@ const BASE = `http://localhost:${PORT}/merkheft`;
 // Independent restatement of the wave-1 Merkheft contents: one HTML
 // page per concept, its group, title, practice links and codes.
 const BLAETTER = [
+  { id: "masseinheiten", gruppe: "Mathematik", title: "Masseinheiten",
+    ueben: [{ href: "../masswerk/", stufe: "e" }, { href: "../groessenwissen/", stufe: "f" }],
+    codes: ["MA.3.A.1.f", "MA.3.A.2.e"], interactive: false },
   { id: "wasserkreislauf", gruppe: "Natur und Technik", title: "Der Wasserkreislauf",
     ueben: [{ href: "../wetterwarte/", stufe: "1g" }], codes: ["NMG.4.4.1g"], interactive: false },
   { id: "schaltungen", gruppe: "Natur und Technik", title: "Serie- und Parallelschaltung",
@@ -38,7 +41,7 @@ const BLAETTER = [
   { id: "gradnetz", gruppe: "Raum und Erde", title: "Das Gradnetz der Erde",
     ueben: [{ href: "../weltatlas/", stufe: "c" }], codes: ["RZG.4.1.c"], interactive: true },
 ];
-const GRUPPEN = ["Natur und Technik", "Himmel und Weltall", "Raum und Erde"];
+const GRUPPEN = ["Mathematik", "Natur und Technik", "Himmel und Weltall", "Raum und Erde"];
 
 const CHROMIUM = process.env.CHROMIUM_PATH
   || (existsSync("/opt/pw-browsers/chromium") ? "/opt/pw-browsers/chromium" : undefined);
@@ -180,6 +183,32 @@ await page.waitForSelector("#illu-orbits");
 check("orbits: paused by default", !(await page.locator("#illu-orbits.running").count()));
 await page.click("#illu-orbit-play");
 check("orbits: running after click", (await page.locator("#illu-orbits.running").count()) === 1);
+
+/* ── Infographic: Masseinheiten ───────────────────────────────────── */
+await page.goto(`${BASE}/masseinheiten.html`);
+await page.waitForSelector("#ig-masseinheiten");
+check("infographic: four unit ladders with 20 boxes and 16 factors",
+  (await page.locator("#ig-masseinheiten .ig-box").count()) === 20
+  && (await page.locator("#ig-masseinheiten .ig-factor").count()) === 16);
+const igFactors = await page.locator("#ig-masseinheiten .ig-lane .ig-factor").allTextContents();
+check("infographic: canonical conversion factors",
+  JSON.stringify(igFactors) === JSON.stringify([
+    "×1000", "×10", "×10", "×10",          // km m dm cm mm
+    "×1000", "×1000", "×1000",             // t kg g mg
+    "×100", "×10", "×10", "×10",           // hl l dl cl ml
+    "×24", "×60", "×60",                   // Tag h min s
+  ]), igFactors.join(" "));
+await page.emulateMedia({ media: "print" });
+const igPrint = await page.evaluate(() => ({
+  box: getComputedStyle(document.querySelector(".ig-box")).fill,
+  title: getComputedStyle(document.querySelector(".ig-title")).fill,
+}));
+check("infographic: print restyles boxes and text light",
+  igPrint.box === "rgb(247, 244, 230)" && igPrint.title === "rgb(26, 34, 48)",
+  JSON.stringify(igPrint));
+await page.screenshot({ path: join(SHOTS_DIR, "06-print-masseinheiten.png"), fullPage: true });
+await page.emulateMedia({ media: "screen" });
+await page.screenshot({ path: join(SHOTS_DIR, "06-masseinheiten.png"), fullPage: true });
 
 /* ── Back navigation ──────────────────────────────────────────────── */
 await page.click(".back");

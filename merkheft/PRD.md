@@ -39,6 +39,8 @@ Infografik entwickeln.
 
 ## Inhalte (Welle 1)
 
+- Masseinheiten mit A4-Infografik (MA.3.A.1.f Grössenwissen,
+  MA.3.A.2.e Masswerk) — Pilot für Infografiken
 - Wasserkreislauf (NMG.4.4.1g, Wetterwarte)
 - Mondphasen (NMG.4.5.d, Sternwarte)
 - Serie- und Parallelschaltung, interaktiv (NT.5.2.b, Stromkreis)
@@ -47,6 +49,18 @@ Infografik entwickeln.
 
 Bewegung ist transform/opacity, startet erst auf Klick und
 respektiert reduzierte Bewegung.
+
+## Infografiken
+
+Ein Merkblatt kann eine Übersichts-Infografik tragen: ein dichtes
+Inline-SVG, das das ganze Konzept auf einem Blatt zeigt (Pilot:
+Masseinheiten mit Einheitentreppen, Umrechnungsregel, Zeit-Warnung
+und Beispielen). Infografiken sind token-gestylte SVGs über die
+`.ig-*`-Klassen in styles.css; jede Klasse hat im `@media print`
+Block ein helles Gegenstück, damit die Grafik auf dem A4-Ausdruck
+hell und kontrastreich erscheint. Kein Raster, keine externen
+Bilder; die Grafik ist eigene Zeichnung nach den
+illustration-Tokens aus DESIGN.md.
 
 ## Woher die Wahrheit kommt (Quellenregel)
 

@@ -28,6 +28,11 @@ spec-sync rules, cache-busting convention) applies as well.
   Only canonical textbook-invariant knowledge; every fact checked
   against at least two independent references; uncertain facts stay
   out. Never copy Lehrplan wording.
+- Infographics (A4 overview per concept) are token-styled inline
+  SVGs using the `.ig-*` classes in styles.css; every class has a
+  light counterpart in the `@media print` block. Never embed raster
+  images or trace provided examples — redraw the information
+  structure in this system (see the Masseinheiten pilot).
 - Adding a Merkblatt means, in the same change: the page here, the
   index.html list entry, the `merkblatt: { id, name }` entry on the
   mapped Stufe(n) in the app's `data.js` (link renders on the Stufe

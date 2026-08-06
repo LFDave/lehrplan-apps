@@ -63,7 +63,15 @@ role="status"-Region.
 Einsprachig Deutsch (Schweizer Standarddeutsch), Strings in
 `strings.js`. Tokens aus DESIGN.md, Akzentfamilie **violet**,
 Atkinson Hyperlegible selbst gehostet, Lucide-Icons inline,
-Cache-Busting `?v=1`.
+Cache-Busting `?v=2`.
+
+## Merkheft-Verbindung
+
+Stufe 1g trägt in `data.js` ein `merkblatt: { id, name }`: Die App
+zeigt auf der Stufenkarte einen ruhigen Link «Merkblatt: …» und nach
+einer Runde mit Fehlern «Zum Nachlesen: …», beide auf
+`../merkheft/<id>.html` (wasserkreislauf.html, «Wasserkreislauf»). Die Links sind optional und nie
+eine Bedingung; die Suite prüft sie.
 
 ## Tests
 

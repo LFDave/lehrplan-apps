@@ -45,6 +45,7 @@ export const STUFEN = [
     title: 'Vorsätze',
     desc: 'Verstehe Kilo, Dezi, Centi und Milli und die kleinen Einheiten.',
     kinds: ['prefixMc', 'smallUnitFact'],
+    merkblatt: { id: 'masseinheiten', name: 'Masseinheiten' },
   },
   {
     id: 'g', cycle: 2, ga: false,

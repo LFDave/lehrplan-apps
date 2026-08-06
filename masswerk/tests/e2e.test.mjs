@@ -15,10 +15,10 @@ import { readFile } from "node:fs/promises";
 import { mkdirSync, existsSync, readFileSync, readdirSync } from "node:fs";
 import { dirname, join, extname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { STUFEN, SKIPPED } from "../data.js?v=1";
-import { genRound } from "../gen.js?v=1";
-import { LEVELS, MEDALS, roundXp } from "../game.js?v=1";
-import { STRINGS } from "../strings.js?v=1";
+import { STUFEN, SKIPPED } from "../data.js?v=2";
+import { genRound } from "../gen.js?v=2";
+import { LEVELS, MEDALS, roundXp } from "../game.js?v=2";
+import { STRINGS } from "../strings.js?v=2";
 
 const TESTS_DIR = dirname(fileURLToPath(import.meta.url));
 const APP_DIR = join(TESTS_DIR, "..");
@@ -285,6 +285,8 @@ check("home: 9 Stufen with three GA badges",
 check("home: real-world note for skipped Stufen a and f",
   (await page.textContent(".stufen-section")).includes("Stufen a und f"));
 check("home: competency code visible", (await page.textContent('[data-stufe="c"]')).includes("MA.3.A.2.c"));
+check("home: Merkblatt link on Stufe e",
+  await page.locator('.merkblatt-link[href="../merkheft/masseinheiten.html"]').count() === 1);
 await page.screenshot({ path: join(SHOTS_DIR, "01-home.png"), fullPage: true });
 
 await playRound("c");

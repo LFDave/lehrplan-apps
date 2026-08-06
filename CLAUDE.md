@@ -223,6 +223,31 @@ For country data, store the flag code as data, not as rendered emoji.
 - Keep answer validation transparent and easy to review.
 - For geography apps, store country code, names, capital, continent, region, and tags separately.
 
+## Content sourcing rules
+
+First principle: facts are free, wording is not. Copyright protects the
+concrete expression, never the fact, method, or exercise idea behind it.
+
+- Own wording, always. Never copy a sentence from any source, not even
+  restructured. This includes Wikipedia (CC BY-SA: attribution and
+  Share-Alike would attach to copied text), schoolbooks, and the
+  official Lehrplan text. Sources are for cross-checking facts only.
+- Only canonical, textbook-invariant knowledge goes into learning
+  content. Verify every fact against at least two independent
+  references; whatever stays uncertain stays out.
+- When given a photo or scan of a schoolbook page, worksheet, or
+  exercise: never transcribe or reproduce it 1:1. Extract the exercise
+  type, the concept it trains, its difficulty and parameter ranges,
+  then generate own tasks of that type with own numbers, own items,
+  and own wording. The layout, illustrations, item selection, and
+  phrasing of the original are protected; the idea of the exercise is
+  not.
+- The same applies to attached example graphics: take the concept and
+  information structure, redraw in the DESIGN.md style, never trace or
+  embed the original.
+- Cite Lehrplan 21 competency codes; never commit official Lehrplan
+  wording or extracted grounding data to the repo.
+
 ## Accessibility rules
 
 - Use semantic HTML.
