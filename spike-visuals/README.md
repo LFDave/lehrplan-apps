@@ -64,13 +64,16 @@ libraries, zero external requests.
 - **D2 — Illustration style is a token group.** DESIGN.md gained an
   `illustration` group (stroke, fills, labels, motion). All future
   in-app graphics follow it.
-- **D3 — Explainer panels, not new task types.** Interactive visuals
-  enter apps as an optional "Anschauen" panel per Stufe (opened from
-  the Stufe card), leaving rounds and input rules unchanged. First
-  harvests, in order of teaching value: circuit panel in Stromkreis
-  (Stufe b), globe panel in Weltatlas (Stufe c), orbit panel in
-  Sternwarte (Stufe e), Wasserkreislauf and Mondphasen illustrations
-  in Wetterwarte (1g) and Sternwarte (d).
+- **D3 — Visuals live in the Merkheft, apps stay pure.** (Revised
+  after review: the first idea was optional explainer panels inside
+  the apps; that mixes explaining into surfaces that are for testing
+  and practising.) All explaining — text, illustrations, interactive
+  visuals — lives in a wiki-style reference app (working title
+  Merkheft, one Merkblatt per concept). Apps link to the matching
+  Merkblatt from the Stufe card and, supportively, from the done
+  screen after a round with mistakes; the Merkblatt links back
+  ("Dazu üben"). The integrated plan, including Merkblatt wave 1
+  harvesting these prototypes, is in BACKLOG.md items 9–11.
 
 ## Try it
 
@@ -79,4 +82,5 @@ cd spike-visuals && python3 -m http.server 8000
 # http://localhost:8000
 ```
 
-Once the harvests above have landed, this folder can be deleted.
+Once Merkblatt wave 1 has landed in the Merkheft app, this folder
+can be deleted.

@@ -301,10 +301,14 @@ platform work — lives in BACKLOG.md.
 - Interactive visuals and in-app graphics: inline SVG and CSS only,
   following the `illustration` tokens in DESIGN.md. No 3D or
   charting libraries (three.js declined after the spike in
-  spike-visuals/). Interactive visuals ship as optional explainer
-  panels, never as new task types; animation is transform/opacity
-  only, paused by default, user-initiated, and respects reduced
-  motion.
+  spike-visuals/). Animation is transform/opacity only, paused by
+  default, user-initiated, and respects reduced motion.
+- Explaining and practising are separate surfaces: practice apps
+  test and train knowledge and carry no explainer panels; all
+  explanations, illustrations and interactive visuals live in the
+  Merkheft reference app (see BACKLOG), which apps link to via quiet
+  "Merkblatt" links on Stufe cards and after rounds with mistakes.
+  Links are optional and never gates.
 - Visual base: charcoal and navy, not pure black.
 - Accent usage: one restrained accent per app, recorded in the app registry.
 - Buttons: primary buttons usually near-white, not loud accent blocks.
