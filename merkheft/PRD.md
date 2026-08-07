@@ -1,6 +1,6 @@
 # PRD — Merkheft
 
-Version: 3.0. Dieses Dokument ist die massgebende Spezifikation der App.
+Version: 4.0. Dieses Dokument ist die massgebende Spezifikation der App.
 Verhalten und PRD werden immer in derselben Änderung angepasst.
 
 ## Zweck und Leitprinzip
@@ -37,39 +37,37 @@ Infografik entwickeln.
   Bedienelemente ausgeblendet). Der Browser-Druckdialog ist der
   Export nach PDF; es gibt keinen eigenen Export-Knopf.
 
-## Inhalte
+## Inhalte und Abdeckung
 
-- Das Geld: Franken und Rappen, Münzen und Noten, mit Infografik
-  (MA.3.A.1.b Grössenwissen, MA.3.A.2.b Masswerk) — Zyklus 1
-- Die Uhr: volle und halbe Stunden, mit zwei Zifferblättern
-  (MA.3.A.2.b und .d, Masswerk) — Zyklus 1
-- Längen messen: Meter, Zentimeter, Millimeter, mit Messband
-  (MA.3.A.1.c Grössenwissen, MA.3.A.2.c Masswerk) — Zyklus 1
-- Masseinheiten mit A4-Infografik (MA.3.A.1.f Grössenwissen,
-  MA.3.A.2.e Masswerk) — Pilot für Infografiken
-- Wasserkreislauf (NMG.4.4.1g, Wetterwarte)
-- Mondphasen (NMG.4.5.d, Sternwarte)
-- Serie- und Parallelschaltung, interaktiv (NT.5.2.b, Stromkreis)
-- Gradnetz mit drehbarem Globus (RZG.4.1.c, Weltatlas)
-- Sonnensystem mit Orbit-Modell (NMG.4.5.e, Sternwarte)
+Seit Welle 3 gilt volle Abdeckung: **Jede Stufe jeder Übungs-App
+verlinkt genau ein Merkblatt**, und jedes Merkblatt verlinkt unter
+«Dazu üben» alle Stufen, die es stützt. Es gibt 94 Merkblätter
+in 16 Themengruppen; jedes trägt eine eigene Infografik oder ein
+interaktives Modell. Die kanonische Liste (Titel, Gruppe, Links,
+Codes) ist unabhängig festgehalten in `tests/e2e.test.mjs`
+(BLAETTER); die Gruppen sind:
 
-Welle 2 (je mit eigener Infografik):
+- **Zahlen und Rechnen:** Der Zahlenstrahl, Die Stellenwerttafel, Die Rechenwörter, Plus und minus im Kopf, Das Einmaleins, Schriftlich rechnen, Geschickt rechnen, Rechnen mit Dezimalzahlen, Brüche, Dezimalzahlen, Prozente, Prozente berechnen, Runden und Überschlagen, Teilbarkeit und Primzahlen, Punkt vor Strich, Potenzen und Wurzeln, Gleichungen lösen
+- **Grössen und Masse:** Das Geld, Die Uhr, Längen messen, Masseinheiten, Referenzgrössen, Flächen- und Raummasse, Die SI-Vorsätze, Die Geschwindigkeit
+- **Form und Raum:** Formen und Körper, Die Lagewörter, Die Vierecke, Kreis und Geraden, Das Koordinatensystem, Symmetrie und Muster, Drehen, Spiegeln, Verschieben, Umfang und Fläche, Flächen- und Volumenformeln, Der Satz des Pythagoras, Die Winkel
+- **Daten und Funktionen:** Diagramme und Mittelwert, Sicher oder unmöglich, Zahlenfolgen, Proportional rechnen, Funktionen und Graphen
+- **Deutsch:** Die ABC-Tabelle, Satzanfang und Satzzeichen, Die Rechtschreib-Regeln, Die Wortarten, Die Zeitformen, Satzglieder und Fälle
+- **Französisch:** Französisch: die ersten Wörter, Französisch: Sätze bauen, Französisch: richtig schreiben, Französische Verben: être und avoir
+- **Englisch:** Englisch: die ersten Wörter, Englisch: Sätze bauen, Englische Verben: to be und to have, Englisch: richtig schreiben
+- **Mensch und Körper:** Das Skelett, Der Blutkreislauf, Die Organe, Die fünf Sinne, Gesund bleiben
+- **Tiere und Pflanzen:** Die Tiergruppen, Unsere Bäume, Lebensräume, Bestimmen Schritt für Schritt
+- **Wetter und Natur:** Der Wasserkreislauf, Wetter beobachten und messen, Der Wetterbericht, Naturgefahren
+- **Natur und Technik:** Serie- und Parallelschaltung, Das Ohmsche Gesetz, Wirkungen des Stroms
+- **Informatik:** Speichereinheiten, Daten ordnen, Codes und Geheimschriften, Dateien: Text, Bild, Ton, Suchen mit und, oder, nicht, Die Programm-Bausteine, Schritt für Schritt, Daten schützen und sichern, Die Teile des Computers, Den Computer bedienen
+- **Himmel und Weltall:** Tag und Nacht, Die Mondphasen, Das Sonnensystem
+- **Zeit und Geschichte:** Der Kalender, Zeitstrahl und Epochen
+- **Raum und Erde:** Das Gradnetz der Erde, Die Himmelsrichtungen, Der Massstab, Höhenkurven, Kartenzeichen und Pläne, Sicher unterwegs, Kontinente und Ozeane
+- **Zusammenleben:** Die Gewaltenteilung, Abstimmen und Wählen, Eine Meinung begründen
 
-- Das Skelett (NMG.1.4.a, Körperatlas a)
-- Der Blutkreislauf (NMG.1.4.e, Körperatlas e)
-- Die ABC-Tabelle (D.5.E.1.a/b, Buchstabenleiter a und b)
-- Französische Verben: être und avoir (FS1F.5.D.1.b, Motbau b)
-- Englische Verben: to be und to have (FS2E.5.D.1.a, Wordbau a)
-- Das Ohmsche Gesetz (NT.5.2.c, Stromkreis c)
-- Speichereinheiten (MI.2.3.f, Rechnerraum f)
-- Die Gewaltenteilung (RZG.8.1.b, Demokratielabor b)
-- Die Himmelsrichtungen (NMG.8.5.h, Nordpfeil h-richtungen)
-- Der Massstab (NMG.8.5.e/f, Nordpfeil e-massstab und f)
-- Höhenkurven (NMG.8.5.h, Nordpfeil h-karte)
-
-Die Liste hat acht Themengruppen: Mathematik, Sprache, Mensch und
-Körper, Natur und Technik, Informatik, Himmel und Weltall, Raum und
-Erde, Zusammenleben.
+Welle 1 brachte die ersten neun Blätter mit drei interaktiven
+Modellen (Stromkreis, Globus, Orbits) und dem Infografik-Piloten
+Masseinheiten, Welle 2 elf weitere Blätter, Welle 3 die restlichen
+74 für die volle Abdeckung.
 
 Bewegung ist transform/opacity, startet erst auf Klick und
 respektiert reduzierte Bewegung.
@@ -138,7 +136,7 @@ von aussen.
 Einsprachig Deutsch (Schweizer Standarddeutsch). Tokens aus
 DESIGN.md, Akzentfamilie **amber**, Atkinson Hyperlegible selbst
 gehostet, Illustrationen als Inline-SVG mit `role="img"` und
-deutschem `aria-label`, Cache-Busting `?v=5`.
+deutschem `aria-label`, Cache-Busting `?v=6`.
 
 ## Tests
 
@@ -151,5 +149,5 @@ Seite mit Titel, Gruppe, Bild und «Dazu üben», die Interaktivität
 Klick), Zurück-Navigation, Druckdarstellung (heller Hintergrund,
 ausgeblendete Bedienelemente, Abschnitte ohne Seitenumbruch
 mittendrin), Layout bei 320px, Konsole ohne Fehler, keine externen
-Requests. Die Suiten der dreizehn verlinkenden Apps prüfen die
-Merkblatt-Links auf den Stufenkarten und den Deep-Link-Einstieg.
+Requests. Die Suiten aller 31 Übungs-Apps prüfen, dass jede Stufenkarte
+ihren Merkblatt-Link trägt, und den Deep-Link-Einstieg.

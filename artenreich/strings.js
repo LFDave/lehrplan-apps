@@ -6,6 +6,7 @@ export const STRINGS = {
     'app.title': 'Artenreich',
     'app.tagline': 'Tiere und Pflanzen ordnen, Stufe für Stufe.',
     'app.source': 'Setzt die Kompetenz NMG.2.4 des Lehrplans 21 um (Kanton Bern, Stand 01.08.2022). Die Stufen a bis f sind die offiziellen Kompetenzstufen. Untersuchen im Gelände ist als Erkennen und Zuordnen von Merkmalen umgesetzt.',
+    'nav.overview': 'Zur App-Übersicht',
     'home.stufen': 'Wähle deine Stufe',
     'home.level': 'Level {name}',
     'home.medals': '{n} Medaillen',

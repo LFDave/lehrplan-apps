@@ -6,6 +6,7 @@ export const STRINGS = {
     'app.title': 'Zahlenwissen',
     'app.tagline': 'Zahlen lesen, schreiben und ihre Namen kennen.',
     'app.source': 'Setzt die Kompetenz MA.1.A.1 des Lehrplans 21 um (Kanton Bern). Die Stufen a bis l sind die offiziellen Kompetenzstufen.',
+    'nav.overview': 'Zur App-Übersicht',
     'home.stufen': 'Wähle deine Stufe',
     'home.level': 'Level {name}',
     'home.medals': '{n} Medaillen',

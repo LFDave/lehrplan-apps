@@ -2,13 +2,13 @@
 
 @font-face {
   font-family: 'Atkinson Hyperlegible';
-  src: url('fonts/atkinson-hyperlegible-400.woff2?v=1') format('woff2');
+  src: url('fonts/atkinson-hyperlegible-400.woff2?v=3') format('woff2');
   font-weight: 400;
   font-display: swap;
 }
 @font-face {
   font-family: 'Atkinson Hyperlegible';
-  src: url('fonts/atkinson-hyperlegible-700.woff2?v=1') format('woff2');
+  src: url('fonts/atkinson-hyperlegible-700.woff2?v=3') format('woff2');
   font-weight: 700;
   font-display: swap;
 }
@@ -357,8 +357,9 @@ body {
   padding: var(--space-2) var(--space-4);
   background: var(--color-background-surface-raised);
   color: var(--color-text-primary);
-  border: 1px solid var(--color-border-subtle);
+  border: 1.5px solid var(--color-border-strong);
   border-radius: var(--radius-md);
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.25);
   font-family: inherit;
   font-size: var(--font-size-lg);
   font-weight: 700;
@@ -551,3 +552,36 @@ body {
   font-size: 12px;
   font-family: inherit;
 }
+
+.merkblatt-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: var(--space-1) 0 var(--space-2) var(--space-4);
+  min-height: 2.75rem;
+  padding: 0 var(--space-3);
+  color: var(--color-accent);
+  background: var(--color-background-surface);
+  border: 1px solid var(--color-border-subtle);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-size: 0.9rem;
+  border-radius: 0.5rem;
+}
+.merkblatt-icon { width: 1.1rem; height: 1.1rem; flex: none; }
+.merkblatt-link:hover { background: var(--color-background-surface-raised); border-color: var(--color-border-strong); }
+.merkblatt-link:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }
+
+.overview-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  align-self: start;
+  min-height: 2.75rem;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+.overview-icon { width: 1.1rem; height: 1.1rem; flex: none; }
+.overview-link:hover { color: var(--color-text-primary); }
+.overview-link:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }

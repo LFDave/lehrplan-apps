@@ -141,7 +141,7 @@ function chooseOption(expr, options) {
   for (const [file, text] of sources) {
     const refs = [...text.matchAll(/(?:href="[^"]+?|src="[^"]+?|from '\.\/[^']+?|url\('fonts\/[^']+?)(\?v=(\d+))?["')]/g)];
     for (const m of refs) {
-      if (m[0].includes("http") || m[0].includes('"#') || m[0].includes("${")) continue;
+      if (m[0].includes("http") || m[0].includes('"#') || m[0].includes("${") || m[0].includes("../")) continue;
       if (m[2]) versions.add(m[2]);
       else unversioned.push(`${file}: ${m[0]}`);
     }
@@ -245,6 +245,8 @@ check("home: all Stufen with GA badges",
 check("home: competency code visible", (await page.textContent('[data-stufe="b"]')).includes("FS1F.5.D.1.b"));
 check("home: Merkblatt link Stufe c",
   await page.locator('.merkblatt-link[href="../merkheft/verben-fr.html"]').count() === 1);
+check("home: every Stufe links a Merkblatt",
+  (await page.locator(".merkblatt-link").count()) === (await page.locator(".stufe").count()));
 await page.screenshot({ path: join(SHOTS_DIR, "01-home.png"), fullPage: true });
 
 await playRound("b");

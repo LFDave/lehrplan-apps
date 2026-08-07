@@ -6,7 +6,9 @@ Lehrplan-Übungs-Apps, mit Illustrationen und interaktiven Modellen.
 Jedes Merkblatt ist eine eigene Seite. Sie erklärt ein Konzept in
 kurzen Absätzen, zeigt ein Bild oder ein Modell zum Ausprobieren
 (Globus drehen, Stromkreis schalten, Planeten kreisen lassen) und
-verlinkt die passende Übungs-App («Dazu üben»). Die Codes verweisen
+verlinkt die passenden Übungs-Stufen («Dazu üben»). 94 Merkblätter
+in 16 Themengruppen decken jede Stufe jeder Übungs-App ab;
+umgekehrt trägt jede Stufenkarte in den Apps ihren Merkblatt-Link. Die Codes verweisen
 auf den Lehrplan 21 (Ausgabe Kanton Bern, Stand 01.08.2022).
 
 Jedes Merkblatt lässt sich direkt drucken (oder als PDF sichern):

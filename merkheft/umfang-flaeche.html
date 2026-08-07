@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Umfang und Fläche · Merkheft</title>
+  <meta name="description" content="Merkblatt: Umfang und Fläche auf dem Raster zählen und beim Rechteck mit Formeln berechnen, dazu das Volumen mit Einheitswürfeln.">
+  <link rel="icon" href="favicon.svg?v=6" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=6">
+</head>
+<body>
+<main id="app">
+  <nav class="page-nav">
+    <a class="back" href="index.html">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+      Alle Merkblätter
+    </a>
+  </nav>
+  <article class="blatt-page">
+    <header>
+      <p class="blatt-gruppe">Form und Raum</p>
+      <h1>Umfang und Fläche</h1>
+    </header>
+    <p class="intro">Stell dir einen Garten vor. Der Umfang ist der Zaun:
+    der Weg aussen um die Figur herum. Die Fläche ist der Rasen: alles,
+    was innen drin liegt.</p>
+    <p class="intro">Auf dem Raster kannst du beides zählen. Für den Umfang
+    zählst du die Kanten aussen herum, für die Fläche die Kästchen innen
+    drin.</p>
+    <p class="intro">Beim Rechteck geht es schneller mit Formeln. Und für
+    das Volumen zählst du, wie viele Würfel in einen Körper passen.</p>
+    <ul class="steps">
+      <li>Der <strong>Umfang</strong> ist der Weg aussen herum, wie der
+      Zaun um den Garten. Du misst ihn in cm.</li>
+      <li>Die <strong>Fläche</strong> ist alles innen drin, wie der Rasen.
+      Du misst sie in cm², das sind Quadratzentimeter.</li>
+      <li>Rechteck: <strong>U = 2 · (a + b)</strong> und
+      <strong>A = a · b</strong>. Beim Quadrat gilt A = s · s.</li>
+      <li>Ein gebogener Draht bleibt <strong>gleich lang</strong>. Die Form
+      ändert die Länge nicht.</li>
+      <li>Das <strong>Volumen</strong> zählst du mit Einheitswürfeln. Beim
+      Quader: V = a · b · c, gemessen in cm³.</li>
+    </ul>
+    <div class="illu-stage">
+      <svg viewBox="0 0 420 368" class="illu ig" role="img" id="ig-umfang-flaeche"
+           aria-label="Infografik Umfang und Fläche: Links eine Rasterfigur aus 4 auf 3 Kästchen. Der Umfang aussen herum hat 14 Kanten, die Fläche innen hat 12 Kästchen. Rechts ein Rechteck mit Seite a gleich 5 cm und Seite b gleich 3 cm. Umfang U = 2 · (a + b) = 16 cm, Fläche A = a · b = 15 cm². Darunter das Volumen: Ein Quader aus 3 · 2 · 4 Würfeln braucht 24 Würfel, ein Quader mit 4 cm auf 3 cm auf 2 cm hat das Volumen 24 cm³">
+        <text x="210" y="26" text-anchor="middle" class="ig-title">Umfang und Fläche</text>
+        <text x="210" y="42" text-anchor="middle" class="ig-sub">Der Zaun aussen herum, der Rasen innen drin.</text>
+
+        <g>
+          <rect x="20" y="58" width="185" height="218" rx="8" class="ig-panel"/>
+          <text x="112" y="84" text-anchor="middle" class="ig-h">Auf dem Raster zählen</text>
+          <line x1="36" y1="96" x2="189" y2="96" class="ig-tick"/>
+          <rect x="64" y="108" width="24" height="24" class="ig-box"/>
+          <rect x="88" y="108" width="24" height="24" class="ig-box"/>
+          <rect x="112" y="108" width="24" height="24" class="ig-box"/>
+          <rect x="136" y="108" width="24" height="24" class="ig-box"/>
+          <rect x="64" y="132" width="24" height="24" class="ig-box"/>
+          <rect x="88" y="132" width="24" height="24" class="ig-box"/>
+          <rect x="112" y="132" width="24" height="24" class="ig-box"/>
+          <rect x="136" y="132" width="24" height="24" class="ig-box"/>
+          <rect x="64" y="156" width="24" height="24" class="ig-box"/>
+          <rect x="88" y="156" width="24" height="24" class="ig-box"/>
+          <rect x="112" y="156" width="24" height="24" class="ig-box"/>
+          <rect x="136" y="156" width="24" height="24" class="ig-box"/>
+          <line x1="64" y1="108" x2="160" y2="108" class="ig-arrow"/>
+          <line x1="160" y1="108" x2="160" y2="180" class="ig-arrow"/>
+          <line x1="160" y1="180" x2="64" y2="180" class="ig-arrow"/>
+          <line x1="64" y1="180" x2="64" y2="108" class="ig-arrow"/>
+          <text x="112" y="204" text-anchor="middle" class="ig-ex">Umfang: 14 Kanten</text>
+          <text x="112" y="226" text-anchor="middle" class="ig-ex">Fläche: 12 Kästchen</text>
+          <text x="112" y="250" text-anchor="middle" class="ig-word">Kanten aussen, Kästchen innen</text>
+        </g>
+
+        <g>
+          <rect x="215" y="58" width="185" height="218" rx="8" class="ig-panel"/>
+          <text x="307" y="84" text-anchor="middle" class="ig-h">Mit Formeln rechnen</text>
+          <line x1="231" y1="96" x2="384" y2="96" class="ig-tick"/>
+          <rect x="235" y="104" width="100" height="60" rx="6" class="ig-box"/>
+          <text x="285" y="182" text-anchor="middle" class="ig-factor">a = 5 cm</text>
+          <text x="343" y="138" class="ig-factor">b = 3 cm</text>
+          <text x="307" y="208" text-anchor="middle" class="ig-unit">U = 2 · (a + b)</text>
+          <text x="307" y="224" text-anchor="middle" class="ig-word">2 · (5 + 3) = 16 cm</text>
+          <text x="307" y="246" text-anchor="middle" class="ig-unit">A = a · b</text>
+          <text x="307" y="262" text-anchor="middle" class="ig-word">5 · 3 = 15 cm²</text>
+        </g>
+
+        <text x="20" y="304" class="ig-h">Volumen: Würfel zählen</text>
+        <text x="20" y="326" class="ig-ex">Ein Quader aus 3 · 2 · 4 Würfeln braucht 24 Würfel.</text>
+        <text x="20" y="348" class="ig-ex">Quader: 4 cm auf 3 cm auf 2 cm: V = 4 · 3 · 2 = 24 cm³</text>
+      </svg>
+    </div>
+    <h2 class="section-label">Kurz gemerkt</h2>
+    <dl class="fakten">
+      <div><dt>Umfang</dt><dd>der Weg aussen herum, beim Rechteck U = 2 · (a + b), gemessen in cm</dd></div>
+      <div><dt>Fläche</dt><dd>alles innen drin, beim Rechteck A = a · b, gemessen in cm²</dd></div>
+      <div><dt>Volumen</dt><dd>wie viele Würfel hineinpassen, beim Quader V = a · b · c, gemessen in cm³</dd></div>
+    </dl>
+    <h2 class="section-label">Dazu üben</h2>
+    <ul class="ueben-list">
+      <li><a class="ueben-link" href="../figurenmass/?stufe=a"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Figurenmass</span><span class="ueben-meta">Stufe a · Wege vergleichen</span></a></li>
+      <li><a class="ueben-link" href="../figurenmass/?stufe=b"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Figurenmass</span><span class="ueben-meta">Stufe b · Messen auf dem Raster</span></a></li>
+      <li><a class="ueben-link" href="../figurenmass/?stufe=c"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Figurenmass</span><span class="ueben-meta">Stufe c · Flächen und Bauten vergleichen</span></a></li>
+      <li><a class="ueben-link" href="../figurenmass/?stufe=d"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Figurenmass</span><span class="ueben-meta">Stufe d · Quadrate auszählen</span></a></li>
+      <li><a class="ueben-link" href="../figurenmass/?stufe=e"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Figurenmass</span><span class="ueben-meta">Stufe e · Umfang und Fläche</span></a></li>
+      <li><a class="ueben-link" href="../figurenmass/?stufe=f"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Figurenmass</span><span class="ueben-meta">Stufe f · Volumen und krumme Flächen</span></a></li>
+    </ul>
+    <p class="code-line">Lehrplan 21: MA.2.A.3.a, MA.2.A.3.b, MA.2.A.3.c, MA.2.A.3.d, MA.2.A.3.e, MA.2.A.3.f</p>
+  </article>
+</main>
+</body>
+</html>

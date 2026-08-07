@@ -15,36 +15,42 @@ export const STUFEN = [
     title: 'Merkmale kennen',
     desc: 'Kenne Merkmale von Vögeln, Fischen und Säugetieren.',
     kinds: ['merkmal'],
+    merkblatt: { id: 'tiergruppen', name: 'Tiergruppen' },
   },
   {
     id: 'b', cycle: 1, ga: true,
     title: 'Bäume und Tiere zuordnen',
     desc: 'Ordne zu: Laub- oder Nadelbaum, Wild-, Nutz- oder Heimtier.',
     kinds: ['zuordnung'],
+    merkblatt: { id: 'baeume', name: 'Bäume' },
   },
   {
     id: 'c', cycle: [1, 2], ga: false,
     title: 'Vögel unterscheiden',
     desc: 'Unterscheide Sing-, Wasser- und Greifvögel, Zug- und Standvögel.',
     kinds: ['vogel'],
+    merkblatt: { id: 'tiergruppen', name: 'Tiergruppen' },
   },
   {
     id: 'd', cycle: 2, ga: false,
     title: 'Angepasst leben',
     desc: 'Erkenne, wie Tiere an ihren Lebensraum angepasst sind.',
     kinds: ['anpassung'],
+    merkblatt: { id: 'lebensraeume', name: 'Lebensräume' },
   },
   {
     id: 'e', cycle: 2, ga: true,
     title: 'Ordnen mit Kriterien',
     desc: 'Ordne mit Kriterien wie Blattform und Körperbau.',
     kinds: ['kriterium'],
+    merkblatt: { id: 'bestimmen', name: 'Bestimmen' },
   },
   {
     id: 'f', cycle: [2, 3], ga: false,
     title: 'Ordnungssysteme nutzen',
     desc: 'Nutze Gruppen wie Käfer, Schmetterlinge, krautig und holzig.',
     kinds: ['system'],
+    merkblatt: { id: 'bestimmen', name: 'Bestimmen' },
   },
 ];
 

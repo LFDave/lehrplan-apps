@@ -62,19 +62,21 @@ role="status"-Region.
 UI einsprachig Deutsch (Schweizer Standarddeutsch), Lerninhalt
 Französisch. Strings in `strings.js`. Tokens aus DESIGN.md,
 Akzentfamilie **coral**, Atkinson Hyperlegible selbst gehostet,
-Lucide-Icons inline, Cache-Busting `?v=2`.
+Lucide-Icons inline, Cache-Busting `?v=4`.
 
 ## Merkheft-Verbindung und Deep-Links
 
-Stufe b (verben-fr.html) trägt in `data.js` ein `merkblatt: { id, name }`: Die App zeigt
-auf der Stufenkarte einen klar erkennbaren Link «Merkblatt: …» (Chip
-mit Buch-Symbol und unterstrichenem Text) und nach einer Runde mit
-Fehlern «Zum Nachlesen: …», beide auf `../merkheft/<id>.html`. Die
-Links sind optional und nie eine Bedingung; die Suite prüft sie.
+Jede Stufe trägt in `data.js` ein `merkblatt: { id, name }`: Die
+App zeigt auf der Stufenkarte einen klar erkennbaren Link
+«Merkblatt: …» (Chip mit Buch-Symbol und unterstrichenem Text) und
+nach einer Runde mit Fehlern «Zum Nachlesen: …», beide auf
+`../merkheft/<id>.html`. Die Links sind optional und nie eine
+Bedingung; die Suite prüft, dass jede Stufenkarte einen trägt.
+Zuordnung: a, b, d → franzoesisch-saetze; c → verben-fr.
 
 Deep-Links: `?stufe=<id>` startet die Stufe direkt. Die Query wird
-nach dem Einstieg sofort aus der Adresse entfernt; die Suite prüft
-Einstieg und bereinigte Adresse.
+nach dem Einstieg sofort aus der Adresse entfernt, damit sie beim
+Neuladen oder Weitergeben nicht kleben bleibt.
 
 ## Tests
 

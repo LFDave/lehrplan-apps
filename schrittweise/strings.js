@@ -6,6 +6,7 @@ export const STRINGS = {
     'app.title': 'Schrittweise',
     'app.tagline': 'Anleitungen folgen, Schleifen lesen, Programme verstehen.',
     'app.source': 'Setzt die Kompetenz MI.2.2 des Lehrplans 21 um (Kanton Bern, Stand 01.08.2022). Die Stufen a bis i sind die offiziellen Kompetenzstufen. Programmieren am Gerät ist als Lesen, Nachvollziehen und Auswählen von Abläufen umgesetzt.',
+    'nav.overview': 'Zur App-Übersicht',
     'home.stufen': 'Wähle deine Stufe',
     'home.level': 'Level {name}',
     'home.medals': '{n} Medaillen',

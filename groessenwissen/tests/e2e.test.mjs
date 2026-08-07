@@ -93,7 +93,7 @@ const QA = {
   "Welche Einheit misst die Länge?": "Meter",
   "Was wiegt etwa 1 kg?": "eine Packung Mehl",
   "Was wiegt etwa 100 g?": "eine Tafel Schokolade",
-  "Was ist etwa 1 km lang?": "ein Spaziergang von 12 Minuten ist länger",
+  "Was ist etwa 1 km lang?": "ein Spaziergang von 12 Minuten",
   "Was fasst etwa 1 l?": "eine grosse Milchpackung",
   "Was fasst etwa 1 dl?": "ein kleines Glas",
   "Wie lang ist etwa 1 dm?": "eine Handbreite",
@@ -210,7 +210,7 @@ function chooseOption(expr, options) {
   for (const [file, text] of sources) {
     const refs = [...text.matchAll(/(?:href="[^"]+?|src="[^"]+?|from '\.\/[^']+?|url\('fonts\/[^']+?)(\?v=(\d+))?["')]/g)];
     for (const m of refs) {
-      if (m[0].includes("http") || m[0].includes('"#') || m[0].includes("${")) continue;
+      if (m[0].includes("http") || m[0].includes('"#') || m[0].includes("${") || m[0].includes("../")) continue;
       if (m[2]) versions.add(m[2]);
       else unversioned.push(`${file}: ${m[0]}`);
     }
@@ -321,9 +321,11 @@ check("home: competency code visible", (await page.textContent('[data-stufe="c"]
 check("home: Merkblatt link on Stufe f",
   await page.locator('.merkblatt-link[href="../merkheft/masseinheiten.html"]').count() === 1);
 check("home: Merkblatt link on Stufe b",
-  await page.locator('.merkblatt-link[href="../merkheft/geld.html"]').count() === 1);
+  await page.locator('.merkblatt-link[href="../merkheft/geld.html"]').count() === 2);
 check("home: Merkblatt link on Stufe c",
-  await page.locator('.merkblatt-link[href="../merkheft/laengen.html"]').count() === 1);
+  await page.locator('.merkblatt-link[href="../merkheft/laengen.html"]').count() === 3);
+check("home: every Stufe links a Merkblatt",
+  (await page.locator(".merkblatt-link").count()) === (await page.locator(".stufe").count()));
 await page.screenshot({ path: join(SHOTS_DIR, "01-home.png"), fullPage: true });
 
 await playRound("c");

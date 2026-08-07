@@ -165,7 +165,7 @@ function chooseOption(expr, options) {
   for (const [file, text] of sources) {
     const refs = [...text.matchAll(/(?:href="[^"]+?|src="[^"]+?|from '\.\/[^']+?|url\('fonts\/[^']+?)(\?v=(\d+))?["')]/g)];
     for (const m of refs) {
-      if (m[0].includes("http") || m[0].includes('"#') || m[0].includes("${")) continue;
+      if (m[0].includes("http") || m[0].includes('"#') || m[0].includes("${") || m[0].includes("../")) continue;
       if (m[2]) versions.add(m[2]);
       else unversioned.push(`${file}: ${m[0]}`);
     }
@@ -282,7 +282,9 @@ check("home: Massstab Merkblatt on e-massstab and f",
 check("home: Höhenkurven Merkblatt on h-karte",
   await page.locator('.merkblatt-link[href="../merkheft/hoehenkurven.html"]').count() === 1);
 check("home: Himmelsrichtungen Merkblatt on h-richtungen",
-  await page.locator('.merkblatt-link[href="../merkheft/himmelsrichtungen.html"]').count() === 1);
+  await page.locator('.merkblatt-link[href="../merkheft/himmelsrichtungen.html"]').count() === 2);
+check("home: every Stufe links a Merkblatt",
+  (await page.locator(".merkblatt-link").count()) === (await page.locator(".stufe").count()));
 await page.screenshot({ path: join(SHOTS_DIR, "01-home.png"), fullPage: true });
 
 await playRound("c");

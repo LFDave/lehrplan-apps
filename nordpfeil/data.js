@@ -21,30 +21,35 @@ export const STUFEN = [
     title: 'Wege beschreiben',
     desc: 'Beschreibe Wege mit Merkpunkten und Richtungen.',
     kinds: ['weg'],
+    merkblatt: { id: 'unterwegs', name: 'Unterwegs' },
   },
   {
     id: 'b', cycle: 1, ga: false,
     title: 'Sicher unterwegs',
     desc: 'Erkenne sichere und unsichere Stellen im Verkehr.',
     kinds: ['verkehr'],
+    merkblatt: { id: 'unterwegs', name: 'Unterwegs' },
   },
   {
     id: 'c', cycle: 1, ga: true,
     title: 'Pläne und Lagebezüge',
     desc: 'Finde Orte mit einfachen Plänen und Lageangaben.',
     kinds: ['lagebezug'],
+    merkblatt: { id: 'kartenzeichen', name: 'Kartenzeichen' },
   },
   {
     id: 'd', cycle: [1, 2], ga: false,
     title: 'Skizzen verstehen',
     desc: 'Verstehe Skizzen und Pläne aus der Vogelperspektive.',
     kinds: ['plan'],
+    merkblatt: { id: 'kartenzeichen', name: 'Kartenzeichen' },
   },
   {
     id: 'e-signaturen', code: 'e', cycle: 2, ga: false,
     title: 'Signaturen',
     desc: 'Lies die Signaturen und Farben der Karte.',
     kinds: ['signatur'],
+    merkblatt: { id: 'kartenzeichen', name: 'Kartenzeichen' },
   },
   {
     id: 'e-massstab', code: 'e', cycle: 2, ga: false,
@@ -65,6 +70,7 @@ export const STUFEN = [
     title: 'Velo und ÖV',
     desc: 'Sei mit Velo und öffentlichem Verkehr sicher unterwegs.',
     kinds: ['oev'],
+    merkblatt: { id: 'unterwegs', name: 'Unterwegs' },
   },
   {
     id: 'h-karte', code: 'h', cycle: 2, ga: true,
@@ -85,6 +91,7 @@ export const STUFEN = [
     title: 'Kompass und GPS',
     desc: 'Nutze Himmelsrichtungen, Kompass, GPS und Legende.',
     kinds: ['kompass'],
+    merkblatt: { id: 'himmelsrichtungen', name: 'Himmelsrichtungen' },
   },
 ];
 

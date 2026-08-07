@@ -15,6 +15,7 @@ export const STUFEN = [
     title: 'Wirkungen des Stroms',
     desc: 'Kenne Licht-, Wärme-, magnetische und chemische Wirkung.',
     kinds: ['wirkung'],
+    merkblatt: { id: 'strom-wirkungen', name: 'Strom-Wirkungen' },
   },
   {
     id: 'b', cycle: 3, ga: false,
@@ -35,12 +36,14 @@ export const STUFEN = [
     title: 'Verzweigte Kreise',
     desc: 'Wende Knoten- und Maschenregel an.',
     kinds: ['knoten'],
+    merkblatt: { id: 'schaltungen', name: 'Schaltungen' },
   },
   {
     id: 'e', cycle: 3, ga: false,
     title: 'Motor und Generator',
     desc: 'Verstehe, wie Elektromotor und Generator arbeiten.',
     kinds: ['maschine'],
+    merkblatt: { id: 'strom-wirkungen', name: 'Strom-Wirkungen' },
   },
 ];
 

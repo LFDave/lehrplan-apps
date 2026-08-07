@@ -7,6 +7,7 @@ export const STRINGS = {
     'app.title': 'Lehrplan-Kompass',
     'app.tagline': 'Entdecke, was du in der Schule lernst, und hake ab, was du schon kannst.',
     'app.source': 'Nach Lehrplan 21, Kanton Bern. Die Texte sind kindgerechte Umschreibungen.',
+    'nav.overview': 'Zur App-Übersicht',
     'cycle.label': 'Wähle deinen Zyklus',
     'cycle.1.title': 'Zyklus 1',
     'cycle.1.range': 'Kindergarten bis 2. Klasse',

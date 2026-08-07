@@ -68,30 +68,35 @@ export const STUFEN = [
     title: 'Mit Grössen rechnen',
     desc: 'Rechne mit Längen, Gewichten und Zeiten über Einheitsgrenzen.',
     kinds: ['calcUnits', 'timeToMin', 'minToH'],
+    merkblatt: { id: 'masseinheiten', name: 'Masseinheiten' },
   },
   {
     id: 'h', cycle: 2, ga: true,
     title: 'Vergleichen und runden',
     desc: 'Vergleiche Grössen, runde sie und wandle zweifach benannte um.',
     kinds: ['compare', 'twoUnit', 'roundUnit'],
+    merkblatt: { id: 'runden', name: 'Runden' },
   },
   {
     id: 'i', cycle: 3, ga: false,
     title: 'Flächen und Volumen',
     desc: 'Wandle Flächen und Volumen um und vergleiche relativ in Prozent.',
     kinds: ['areaVol', 'relPercent'],
+    merkblatt: { id: 'flaechenmasse', name: 'Flächenmasse' },
   },
   {
     id: 'j', cycle: 3, ga: true,
     title: 'SI-Vorsätze',
     desc: 'Ordne Mega, Kilo, Dezi, Centi und Milli den Zehnerpotenzen zu.',
     kinds: ['prefix'],
+    merkblatt: { id: 'si-vorsaetze', name: 'SI-Vorsätze' },
   },
   {
     id: 'k', cycle: 3, ga: false,
     title: 'Geschwindigkeiten',
     desc: 'Rechne mit zusammengesetzten Grössen wie Metern pro Sekunde.',
     kinds: ['speedToKmh', 'speedToMs'],
+    merkblatt: { id: 'geschwindigkeit', name: 'Geschwindigkeit' },
   },
 ];
 

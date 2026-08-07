@@ -16,24 +16,28 @@ export const STUFEN = [
     title: 'First Words',
     desc: 'Begrüssen, danken, ja und nein, erste Zahlen und Farben.',
     kinds: ['vokabel'],
+    merkblatt: { id: 'englisch-woerter', name: 'Erste Wörter' },
   },
   {
     id: 'b', cycle: 2, ga: true,
     title: 'Everyday Words',
     desc: 'Familie, Schule, Essen, Wochentage und mehr Zahlen.',
     kinds: ['vokabel'],
+    merkblatt: { id: 'englisch-woerter', name: 'Erste Wörter' },
   },
   {
     id: 'c', cycle: 3, ga: true,
     title: 'Phrases und Themen',
     desc: 'Wetter, Zeit, häufige Verben und kurze Wendungen.',
     kinds: ['vokabel', 'wendung'],
+    merkblatt: { id: 'englisch-woerter', name: 'Erste Wörter' },
   },
   {
     id: 'd', cycle: 3, ga: false,
     title: 'My World',
     desc: 'Über Vorlieben, Ferien und den Alltag sprechen.',
     kinds: ['vokabel', 'wendung'],
+    merkblatt: { id: 'englisch-woerter', name: 'Erste Wörter' },
   },
 ];
 

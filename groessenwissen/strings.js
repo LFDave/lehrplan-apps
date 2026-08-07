@@ -6,6 +6,7 @@ export const STRINGS = {
     'app.title': 'Grössenwissen',
     'app.tagline': 'Einheiten, Referenzen und Fachwörter rund um Grössen.',
     'app.source': 'Setzt die Kompetenz MA.3.A.1 des Lehrplans 21 um (Kanton Bern). Die Stufen a bis l sind die offiziellen Kompetenzstufen.',
+    'nav.overview': 'Zur App-Übersicht',
     'home.stufen': 'Wähle deine Stufe',
     'home.level': 'Level {name}',
     'home.medals': '{n} Medaillen',

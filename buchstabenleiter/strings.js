@@ -6,6 +6,7 @@ export const STRINGS = {
     'app.title': 'Buchstabenleiter',
     'app.tagline': 'Das ABC nutzen und im Wörterbuch nachschlagen.',
     'app.source': 'Setzt die Kompetenz D.5.E.1 des Lehrplans 21 um (Kanton Bern, Stand 01.08.2022). Die Stufen a bis g sind die offiziellen Kompetenzstufen. Nachschlagen im echten Wörterbuch ist als ABC- und Regelwissen umgesetzt.',
+    'nav.overview': 'Zur App-Übersicht',
     'home.stufen': 'Wähle deine Stufe',
     'home.level': 'Level {name}',
     'home.medals': '{n} Medaillen',

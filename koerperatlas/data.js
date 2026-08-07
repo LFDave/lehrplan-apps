@@ -22,18 +22,21 @@ export const STUFEN = [
     title: 'Eigenschaften zuordnen',
     desc: 'Ordne Eigenschaften zu: Gelenke bewegen, Knochen schützen.',
     kinds: ['eigenschaft'],
+    merkblatt: { id: 'skelett', name: 'Skelett' },
   },
   {
     id: 'c', cycle: [1, 2], ga: false,
     title: 'Organsysteme',
     desc: 'Verstehe Bewegung, Atmung und Verdauung im Zusammenhang.',
     kinds: ['organsystem'],
+    merkblatt: { id: 'organe', name: 'Organe' },
   },
   {
     id: 'd', cycle: 2, ga: false,
     title: 'Die Haut reagiert',
     desc: 'Erkläre Schwitzen, Erröten und Schutz vor der Sonne.',
     kinds: ['hautreaktion'],
+    merkblatt: { id: 'sinne', name: 'Sinne' },
   },
   {
     id: 'e', cycle: 2, ga: true,
@@ -47,6 +50,7 @@ export const STUFEN = [
     title: 'Gesund bleiben',
     desc: 'Kenne Grundlagen für einen gesunden Körper.',
     kinds: ['gesundheit'],
+    merkblatt: { id: 'gesund-bleiben', name: 'Gesund bleiben' },
   },
 ];
 

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Der Wetterbericht · Merkheft</title>
+  <meta name="description" content="Merkblatt: Der Wetterbericht sagt das Wetter voraus, mit Symbolen, Temperatur und Regenwahrscheinlichkeit für drei Tage.">
+  <link rel="icon" href="favicon.svg?v=6" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=6">
+</head>
+<body>
+<main id="app">
+  <nav class="page-nav">
+    <a class="back" href="index.html">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+      Alle Merkblätter
+    </a>
+  </nav>
+  <article class="blatt-page">
+    <header>
+      <p class="blatt-gruppe">Wetter und Natur</p>
+      <h1>Der Wetterbericht</h1>
+    </header>
+    <p class="intro">Der Wetterbericht sagt voraus, wie das Wetter wird. So
+    eine Vorhersage heisst Prognose. Du findest sie in der Wetter-App, im
+    Radio und in der Zeitung.</p>
+    <p class="intro">Viele Menschen planen mit der Prognose: Bäuerinnen und
+    Bauern brauchen trockenes, sonniges Wetter für die Heuernte. Pilotinnen
+    und Bergführer prüfen das Wetter vor jedem Flug und jeder Tour. Und du
+    planst damit deinen Ausflug.</p>
+    <p class="intro">Das Wetter passt zur Jahreszeit: An heissen Sommertagen
+    gibt es oft Gewitter. Schnee fällt, wenn es etwa 0 Grad oder kälter ist,
+    also meist im Winter.</p>
+    <ul class="steps">
+      <li>Schau auf das <strong>Symbol</strong>: Sonne, Wolke, Regentropfen,
+      Schneeflocke und Blitz zeigen das Wetter auf einen Blick.</li>
+      <li>Eine Sonne hinter einer Wolke heisst: <strong>teilweise
+      sonnig</strong>, teilweise bewölkt.</li>
+      <li>Lies die <strong>Temperatur</strong>: Sie hilft dir bei der Wahl
+      der Kleidung.</li>
+      <li>Beachte die <strong>Regenwahrscheinlichkeit</strong>: 90 Prozent
+      heisst, Regen ist sehr wahrscheinlich.</li>
+      <li>Eine Prognose ist eine <strong>gute Schätzung</strong>, keine
+      Garantie. Ist Gewitter gemeldet, hältst du einen Plan für drinnen
+      bereit.</li>
+    </ul>
+    <div class="illu-stage">
+      <svg viewBox="0 0 420 468" class="illu ig" role="img" id="ig-wetterbericht"
+           aria-label="Infografik Wetterbericht: Eine Prognose für drei Tage. Freitag: Sonne, 25 Grad, sonnig, 10 Prozent Regen. Samstag: Wolke mit Blitz, 23 Grad, Gewitter, 70 Prozent Regen. Sonntag: Wolke mit Regen, 17 Grad, 90 Prozent Regen. Darunter die fünf Wettersymbole Sonne, Wolke, Regen, Schnee und Blitz sowie drei Tipps: Am Freitag Sonnenhut und Wasserflasche einpacken, am Samstag einen Plan für drinnen bereithalten, am Sonntag die Regenjacke mitnehmen">
+        <text x="210" y="26" text-anchor="middle" class="ig-title">Den Wetterbericht lesen</text>
+        <text x="210" y="42" text-anchor="middle" class="ig-sub">Eine Prognose für drei Tage mit Symbol und Temperatur.</text>
+
+        <g>
+          <rect x="20" y="58" width="120" height="178" rx="8" class="ig-panel"/>
+          <text x="80" y="82" text-anchor="middle" class="ig-h">Freitag</text>
+          <circle cx="80" cy="126" r="13" class="ig-dot"/>
+          <line x1="97" y1="126" x2="103" y2="126" class="ig-arrow"/>
+          <line x1="63" y1="126" x2="57" y2="126" class="ig-arrow"/>
+          <line x1="80" y1="109" x2="80" y2="103" class="ig-arrow"/>
+          <line x1="80" y1="143" x2="80" y2="149" class="ig-arrow"/>
+          <line x1="92" y1="114" x2="96" y2="110" class="ig-arrow"/>
+          <line x1="68" y1="114" x2="64" y2="110" class="ig-arrow"/>
+          <line x1="92" y1="138" x2="96" y2="142" class="ig-arrow"/>
+          <line x1="68" y1="138" x2="64" y2="142" class="ig-arrow"/>
+          <text x="80" y="184" text-anchor="middle" class="ig-unit">25°</text>
+          <text x="80" y="202" text-anchor="middle" class="ig-word">sonnig</text>
+          <text x="80" y="220" text-anchor="middle" class="ig-factor">Regen 10 %</text>
+        </g>
+
+        <g>
+          <rect x="150" y="58" width="120" height="178" rx="8" class="ig-panel"/>
+          <text x="210" y="82" text-anchor="middle" class="ig-h">Samstag</text>
+          <path d="M 184 140 a 13 13 0 0 1 4 -25 a 16 16 0 0 1 30 -6 a 13 13 0 0 1 22 11 a 11 11 0 0 1 -2 20 z" class="ig-box"/>
+          <polygon points="213,138 206,148 210,148 208,156 216,145 211,145 215,138" class="ig-dot"/>
+          <text x="210" y="184" text-anchor="middle" class="ig-unit">23°</text>
+          <text x="210" y="202" text-anchor="middle" class="ig-word">Gewitter</text>
+          <text x="210" y="220" text-anchor="middle" class="ig-factor">Regen 70 %</text>
+        </g>
+
+        <g>
+          <rect x="280" y="58" width="120" height="178" rx="8" class="ig-panel"/>
+          <text x="340" y="82" text-anchor="middle" class="ig-h">Sonntag</text>
+          <path d="M 314 140 a 13 13 0 0 1 4 -25 a 16 16 0 0 1 30 -6 a 13 13 0 0 1 22 11 a 11 11 0 0 1 -2 20 z" class="ig-box"/>
+          <line x1="332" y1="146" x2="326" y2="158" class="ig-tick"/>
+          <line x1="344" y1="146" x2="338" y2="158" class="ig-tick"/>
+          <line x1="356" y1="146" x2="350" y2="158" class="ig-tick"/>
+          <text x="340" y="184" text-anchor="middle" class="ig-unit">17°</text>
+          <text x="340" y="202" text-anchor="middle" class="ig-word">Regen</text>
+          <text x="340" y="220" text-anchor="middle" class="ig-factor">Regen 90 %</text>
+        </g>
+
+        <g>
+          <rect x="20" y="252" width="380" height="100" rx="8" class="ig-panel"/>
+          <text x="40" y="278" class="ig-h">Die Symbole</text>
+          <circle cx="66" cy="306" r="8" class="ig-dot"/>
+          <line x1="77" y1="306" x2="82" y2="306" class="ig-arrow"/>
+          <line x1="55" y1="306" x2="50" y2="306" class="ig-arrow"/>
+          <line x1="66" y1="295" x2="66" y2="290" class="ig-arrow"/>
+          <line x1="66" y1="317" x2="66" y2="322" class="ig-arrow"/>
+          <line x1="74" y1="298" x2="77" y2="295" class="ig-arrow"/>
+          <line x1="58" y1="298" x2="55" y2="295" class="ig-arrow"/>
+          <line x1="74" y1="314" x2="77" y2="317" class="ig-arrow"/>
+          <line x1="58" y1="314" x2="55" y2="317" class="ig-arrow"/>
+          <path d="M 120 318 a 9 9 0 0 1 3 -17 a 11 11 0 0 1 21 -4 a 9 9 0 0 1 15 8 a 8 8 0 0 1 -1 13 z" class="ig-box"/>
+          <circle cx="200" cy="296" r="2.5" class="ig-dot"/>
+          <circle cx="210" cy="292" r="2.5" class="ig-dot"/>
+          <circle cx="220" cy="297" r="2.5" class="ig-dot"/>
+          <line x1="204" y1="306" x2="200" y2="316" class="ig-tick"/>
+          <line x1="212" y1="304" x2="208" y2="314" class="ig-tick"/>
+          <line x1="220" y1="306" x2="216" y2="316" class="ig-tick"/>
+          <line x1="282" y1="297" x2="282" y2="315" class="ig-arrow"/>
+          <line x1="274" y1="301" x2="290" y2="311" class="ig-arrow"/>
+          <line x1="290" y1="301" x2="274" y2="311" class="ig-arrow"/>
+          <polygon points="356,297 349,307 353,307 351,315 359,304 354,304 358,297" class="ig-dot"/>
+          <text x="66" y="338" text-anchor="middle" class="ig-word">Sonne</text>
+          <text x="139" y="338" text-anchor="middle" class="ig-word">Wolke</text>
+          <text x="210" y="338" text-anchor="middle" class="ig-word">Regen</text>
+          <text x="282" y="338" text-anchor="middle" class="ig-word">Schnee</text>
+          <text x="354" y="338" text-anchor="middle" class="ig-word">Blitz</text>
+        </g>
+
+        <text x="20" y="386" class="ig-h">So planst du</text>
+        <text x="20" y="408" class="ig-ex">Freitag Sonne: Sonnenhut und Wasserflasche einpacken.</text>
+        <text x="20" y="430" class="ig-ex">Samstag Gewitter: einen Plan für drinnen bereithalten.</text>
+        <text x="20" y="452" class="ig-ex">Sonntag 90 % Regen: Regenjacke mitnehmen.</text>
+      </svg>
+    </div>
+    <h2 class="section-label">Kurz gemerkt</h2>
+    <dl class="fakten">
+      <div><dt>Prognose</dt><dd>die Wettervorhersage: eine gute Schätzung, keine Garantie</dd></div>
+      <div><dt>90 % Regen</dt><dd>Regen ist sehr wahrscheinlich, nimm die Regenjacke mit</dd></div>
+      <div><dt>Jahreszeit</dt><dd>Sommer bringt Hitze und Gewitter, Winter Kälte und Schnee</dd></div>
+    </dl>
+    <h2 class="section-label">Dazu üben</h2>
+    <ul class="ueben-list">
+      <li><a class="ueben-link" href="../wetterwarte/?stufe=1b"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Wetterwarte</span><span class="ueben-meta">Stufe 1b · Wetter ist wichtig</span></a></li>
+      <li><a class="ueben-link" href="../wetterwarte/?stufe=1d"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Wetterwarte</span><span class="ueben-meta">Stufe 1d · Wetter und Jahreszeiten</span></a></li>
+      <li><a class="ueben-link" href="../wetterwarte/?stufe=1f"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Wetterwarte</span><span class="ueben-meta">Stufe 1f · Prognosen nutzen</span></a></li>
+    </ul>
+    <p class="code-line">Lehrplan 21: NMG.4.4.1b, NMG.4.4.1d, NMG.4.4.1f</p>
+  </article>
+</main>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suchen mit und, oder, nicht · Merkheft</title>
+  <meta name="description" content="Merkblatt: Suchen mit UND, ODER und NICHT, Datenbanken als grosse Tabellen filtern und Treffer von Suchmaschinen kritisch prüfen.">
+  <link rel="icon" href="favicon.svg?v=6" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=6">
+</head>
+<body>
+<main id="app">
+  <nav class="page-nav">
+    <a class="back" href="index.html">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+      Alle Merkblätter
+    </a>
+  </nav>
+  <article class="blatt-page">
+    <header>
+      <p class="blatt-gruppe">Informatik</p>
+      <h1>Suchen mit und, oder, nicht</h1>
+    </header>
+    <p class="intro">Ob im Internet, in der Bibliothek oder in einer grossen
+    Tabelle: Mit guten Suchwörtern findest du schneller. Die Wörter UND,
+    ODER und NICHT sagen dem Computer genau, was du finden willst.</p>
+    <p class="intro">Eine Datenbank ist wie eine grosse Tabelle. Jede Zeile
+    ist ein Datensatz, zum Beispiel ein Kind der Klasse. Jede Spalte ist ein
+    Merkmal, zum Beispiel der Name oder der Geburtstag. So kann der Computer
+    blitzschnell filtern und sortieren.</p>
+    <p class="intro">Auch eine Suchmaschine filtert für dich. Programme,
+    sogenannte Crawler, bauen dafür laufend einen Index auf: ein riesiges
+    Verzeichnis von Webseiten. Deine Suchwörter fragen diesen Index ab.</p>
+    <ul class="steps">
+      <li><strong>UND</strong> engt ein: Du findest nur, was beide Wörter
+      enthält. A UND B ist nur wahr, wenn beides wahr ist.</li>
+      <li><strong>ODER</strong> erweitert: Ein Wort genügt. A ODER B ist
+      wahr, wenn mindestens eines wahr ist.</li>
+      <li><strong>NICHT</strong> schliesst aus: Treffer mit diesem Wort
+      fallen weg. NICHT A dreht wahr und falsch um.</li>
+      <li>Eine <strong>Abfrage</strong> filtert die Datenbank: Sie sucht alle
+      passenden Datensätze heraus, zum Beispiel alle Kinder mit Geburtstag
+      im Mai.</li>
+      <li>Wähle <strong>kurze, treffende Suchwörter</strong>: Mehrere Wörter
+      engen die Treffer ein. Prüfe die Treffer kritisch und vergleiche
+      mehrere Quellen.</li>
+    </ul>
+    <div class="illu-stage">
+      <svg viewBox="0 0 420 340" class="illu ig" role="img" id="ig-suchen"
+           aria-label="Infografik UND, ODER, NICHT: Drei Mengenbilder mit je zwei überlappenden Kreisen für die Suchwörter Hund und Katze. Bei UND ist nur die Überlappung markiert: Die Suche findet nur Seiten mit beiden Wörtern und engt so ein. Bei ODER sind beide Kreise markiert: Ein Wort genügt, die Suche wird erweitert. Bei NICHT ist der Kreis Hund ohne die Überlappung markiert: Seiten mit Katze fallen weg. Darunter drei Beispiele: Hund UND Katze findet nur Seiten mit beiden Wörtern, Hund ODER Katze findet Seiten mit mindestens einem Wort, Hund NICHT Katze findet Seiten mit Hund, aber ohne Katze">
+        <text x="210" y="26" text-anchor="middle" class="ig-title">UND, ODER, NICHT</text>
+        <text x="210" y="42" text-anchor="middle" class="ig-sub">Mit diesen Wörtern steuerst du deine Suche.</text>
+
+        <g>
+          <rect x="20" y="58" width="120" height="170" rx="8" class="ig-panel"/>
+          <text x="80" y="84" text-anchor="middle" class="ig-h">UND</text>
+          <circle cx="66" cy="130" r="26" fill="none" class="ig-tick"/>
+          <circle cx="94" cy="130" r="26" fill="none" class="ig-tick"/>
+          <circle cx="80" cy="112" r="2.5" class="ig-dot"/>
+          <circle cx="74" cy="124" r="2.5" class="ig-dot"/>
+          <circle cx="86" cy="124" r="2.5" class="ig-dot"/>
+          <circle cx="74" cy="136" r="2.5" class="ig-dot"/>
+          <circle cx="86" cy="136" r="2.5" class="ig-dot"/>
+          <circle cx="80" cy="148" r="2.5" class="ig-dot"/>
+          <text x="62" y="174" text-anchor="middle" class="ig-word">Hund</text>
+          <text x="98" y="174" text-anchor="middle" class="ig-word">Katze</text>
+          <text x="80" y="196" text-anchor="middle" class="ig-unit">nur beides</text>
+          <text x="80" y="214" text-anchor="middle" class="ig-word">engt die Suche ein</text>
+        </g>
+
+        <g>
+          <rect x="150" y="58" width="120" height="170" rx="8" class="ig-panel"/>
+          <text x="210" y="84" text-anchor="middle" class="ig-h">ODER</text>
+          <circle cx="186" cy="130" r="26" fill="none" class="ig-tick"/>
+          <circle cx="214" cy="130" r="26" fill="none" class="ig-tick"/>
+          <circle cx="172" cy="130" r="2.5" class="ig-dot"/>
+          <circle cx="182" cy="118" r="2.5" class="ig-dot"/>
+          <circle cx="182" cy="142" r="2.5" class="ig-dot"/>
+          <circle cx="200" cy="130" r="2.5" class="ig-dot"/>
+          <circle cx="218" cy="118" r="2.5" class="ig-dot"/>
+          <circle cx="218" cy="142" r="2.5" class="ig-dot"/>
+          <circle cx="228" cy="130" r="2.5" class="ig-dot"/>
+          <text x="182" y="174" text-anchor="middle" class="ig-word">Hund</text>
+          <text x="218" y="174" text-anchor="middle" class="ig-word">Katze</text>
+          <text x="210" y="196" text-anchor="middle" class="ig-unit">eines genügt</text>
+          <text x="210" y="214" text-anchor="middle" class="ig-word">erweitert die Suche</text>
+        </g>
+
+        <g>
+          <rect x="280" y="58" width="120" height="170" rx="8" class="ig-panel"/>
+          <text x="340" y="84" text-anchor="middle" class="ig-h">NICHT</text>
+          <circle cx="326" cy="130" r="26" fill="none" class="ig-tick"/>
+          <circle cx="354" cy="130" r="26" fill="none" class="ig-tick"/>
+          <circle cx="310" cy="130" r="2.5" class="ig-dot"/>
+          <circle cx="317" cy="117" r="2.5" class="ig-dot"/>
+          <circle cx="317" cy="143" r="2.5" class="ig-dot"/>
+          <circle cx="325" cy="110" r="2.5" class="ig-dot"/>
+          <circle cx="325" cy="150" r="2.5" class="ig-dot"/>
+          <circle cx="324" cy="130" r="2.5" class="ig-dot"/>
+          <text x="322" y="174" text-anchor="middle" class="ig-word">Hund</text>
+          <text x="358" y="174" text-anchor="middle" class="ig-word">Katze</text>
+          <text x="340" y="196" text-anchor="middle" class="ig-unit">ohne Katze</text>
+          <text x="340" y="214" text-anchor="middle" class="ig-word">schliesst Treffer aus</text>
+        </g>
+
+        <text x="20" y="258" class="ig-h">Beispiele</text>
+        <text x="20" y="280" class="ig-ex">Hund UND Katze: nur Seiten mit beiden Wörtern</text>
+        <text x="20" y="302" class="ig-ex">Hund ODER Katze: Seiten mit mindestens einem Wort</text>
+        <text x="20" y="324" class="ig-ex">Hund NICHT Katze: Seiten mit Hund, aber ohne Katze</text>
+      </svg>
+    </div>
+    <h2 class="section-label">Kurz gemerkt</h2>
+    <dl class="fakten">
+      <div><dt>UND · ODER · NICHT</dt><dd>UND engt ein, ODER erweitert, NICHT schliesst aus</dd></div>
+      <div><dt>Datenbank</dt><dd>eine grosse Tabelle: jede Zeile ein Datensatz, jede Spalte ein Merkmal</dd></div>
+      <div><dt>Treffer prüfen</dt><dd>der oberste Treffer ist nicht automatisch der beste, als Werbung markierte Treffer sind bezahlt</dd></div>
+    </dl>
+    <h2 class="section-label">Dazu üben</h2>
+    <ul class="ueben-list">
+      <li><a class="ueben-link" href="../bitkiste/?stufe=i"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Bitkiste</span><span class="ueben-meta">Stufe i · Und, oder, nicht</span></a></li>
+      <li><a class="ueben-link" href="../bitkiste/?stufe=j"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Bitkiste</span><span class="ueben-meta">Stufe j · Datenbanken</span></a></li>
+      <li><a class="ueben-link" href="../rechnerraum/?stufe=i"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Rechnerraum</span><span class="ueben-meta">Stufe i · Suchmaschinen</span></a></li>
+    </ul>
+    <p class="code-line">Lehrplan 21: MI.2.1.i, MI.2.1.j, MI.2.3.i</p>
+  </article>
+</main>
+</body>
+</html>

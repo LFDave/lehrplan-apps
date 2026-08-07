@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Das Einmaleins · Merkheft</title>
+  <meta name="description" content="Merkblatt: Das Einmaleins mit den Kernaufgaben mal 1, mal 2, mal 5 und mal 10, Nachbaraufgaben und Geteilt als Umkehrung von mal.">
+  <link rel="icon" href="favicon.svg?v=6" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=6">
+</head>
+<body>
+<main id="app">
+  <nav class="page-nav">
+    <a class="back" href="index.html">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+      Alle Merkblätter
+    </a>
+  </nav>
+  <article class="blatt-page">
+    <header>
+      <p class="blatt-gruppe">Zahlen und Rechnen</p>
+      <h1>Das Einmaleins</h1>
+    </header>
+    <p class="intro">Das Einmaleins enthält alle Malaufgaben von 1 · 1 bis
+    10 · 10, also 100 Aufgaben. Wenn du sie kennst, rechnest du schnell
+    und sicher.</p>
+    <p class="intro">Du musst nicht alle 100 Aufgaben einzeln auswendig
+    lernen. Beginne mit den Kernaufgaben: mal 1, mal 2, mal 5 und mal 10.
+    Sie sind leicht, und von ihnen aus findest du alle anderen
+    Aufgaben.</p>
+    <p class="intro">Auch geteilt steckt im Einmaleins. Jede
+    Geteilt-Aufgabe ist eine Malaufgabe rückwärts: 42 : 7 = 6, weil
+    6 · 7 = 42.</p>
+    <ul class="steps">
+      <li><strong>Kernaufgaben</strong> zuerst: Mal 2 ist das Doppelte,
+      mal 10 hängt eine Null an, mal 5 ist die Hälfte von mal 10.</li>
+      <li><strong>Nachbaraufgabe</strong>: Rechne von einer Kernaufgabe
+      aus weiter. 6 · 7 = 5 · 7 + 7, also 35 + 7 = 42.</li>
+      <li><strong>Tauschen</strong> ist erlaubt: 7 · 6 gibt gleich viel
+      wie 6 · 7. So kennst du jede Aufgabe doppelt.</li>
+      <li><strong>Geteilt</strong> ist mal rückwärts: 42 : 7 = 6, weil
+      6 · 7 = 42.</li>
+      <li><strong>Mit Zehnern</strong> geht es gleich weiter:
+      3 · 4 = 12, also 30 · 4 = 120.</li>
+    </ul>
+    <div class="illu-stage">
+      <svg viewBox="0 0 420 540" class="illu ig" role="img" id="ig-einmaleins"
+           aria-label="Infografik Einmaleins: Die Kernaufgaben der 7er-Reihe: 1 mal 7 ist 7, 2 mal 7 ist 14, 5 mal 7 ist 35, 10 mal 7 ist 70. Von der Kernaufgabe zur Nachbaraufgabe: 5 mal 7 ist 35, plus 7 gibt 6 mal 7 ist 42. Geteilt ist die Umkehrung von mal: Von 6 führt mal 7 zu 42, von 42 führt geteilt durch 7 zurück zu 6. Beispiele: 7 mal 6 ist gleich 6 mal 7, und aus 3 mal 4 ist 12 folgt 30 mal 4 ist 120">
+        <text x="210" y="26" text-anchor="middle" class="ig-title">Das Einmaleins</text>
+        <text x="210" y="42" text-anchor="middle" class="ig-sub">Von den Kernaufgaben aus findest du jede Aufgabe.</text>
+
+        <g>
+          <rect x="20" y="58" width="380" height="152" rx="8" class="ig-panel"/>
+          <text x="40" y="84" class="ig-h">Kernaufgaben</text>
+          <text x="384" y="84" text-anchor="end" class="ig-word">Beispiel: die 7er-Reihe</text>
+          <line x1="36" y1="96" x2="384" y2="96" class="ig-tick"/>
+          <text x="104" y="120" text-anchor="end" class="ig-word">mal 1</text>
+          <text x="120" y="120" class="ig-unit">1 · 7 = 7</text>
+          <text x="384" y="120" text-anchor="end" class="ig-word">einmal die Zahl</text>
+          <text x="104" y="146" text-anchor="end" class="ig-word">mal 2</text>
+          <text x="120" y="146" class="ig-unit">2 · 7 = 14</text>
+          <text x="384" y="146" text-anchor="end" class="ig-word">das Doppelte</text>
+          <text x="104" y="172" text-anchor="end" class="ig-word">mal 5</text>
+          <text x="120" y="172" class="ig-unit">5 · 7 = 35</text>
+          <text x="384" y="172" text-anchor="end" class="ig-word">die Hälfte von mal 10</text>
+          <text x="104" y="198" text-anchor="end" class="ig-word">mal 10</text>
+          <text x="120" y="198" class="ig-unit">10 · 7 = 70</text>
+          <text x="384" y="198" text-anchor="end" class="ig-word">eine Null anhängen</text>
+        </g>
+
+        <g>
+          <rect x="20" y="222" width="380" height="110" rx="8" class="ig-panel"/>
+          <text x="40" y="248" class="ig-h">Zur Nachbaraufgabe</text>
+          <text x="384" y="248" text-anchor="end" class="ig-word">35 + 7 = 42</text>
+          <rect x="40" y="262" width="124" height="32" rx="6" class="ig-box"/>
+          <text x="102" y="283" text-anchor="middle" class="ig-unit">5 · 7 = 35</text>
+          <text x="102" y="312" text-anchor="middle" class="ig-word">Kernaufgabe</text>
+          <line x1="174" y1="278" x2="262" y2="278" class="ig-arrow"/>
+          <path d="M 262 274 L 270 278 L 262 282 Z" class="ig-arrowhead"/>
+          <text x="222" y="270" text-anchor="middle" class="ig-factor">+ 7</text>
+          <rect x="280" y="262" width="100" height="32" rx="6" class="ig-box"/>
+          <text x="330" y="283" text-anchor="middle" class="ig-unit">6 · 7 = 42</text>
+          <text x="330" y="312" text-anchor="middle" class="ig-word">Nachbaraufgabe</text>
+        </g>
+
+        <g>
+          <rect x="20" y="348" width="380" height="118" rx="8" class="ig-panel"/>
+          <text x="40" y="374" class="ig-h">Geteilt ist die Umkehrung</text>
+          <rect x="56" y="392" width="64" height="32" rx="6" class="ig-box"/>
+          <text x="88" y="413" text-anchor="middle" class="ig-unit">6</text>
+          <rect x="300" y="392" width="64" height="32" rx="6" class="ig-box"/>
+          <text x="332" y="413" text-anchor="middle" class="ig-unit">42</text>
+          <line x1="130" y1="402" x2="282" y2="402" class="ig-arrow"/>
+          <path d="M 282 398 L 290 402 L 282 406 Z" class="ig-arrowhead"/>
+          <text x="210" y="394" text-anchor="middle" class="ig-factor">· 7</text>
+          <line x1="290" y1="414" x2="138" y2="414" class="ig-arrow"/>
+          <path d="M 138 410 L 130 414 L 138 418 Z" class="ig-arrowhead"/>
+          <text x="210" y="436" text-anchor="middle" class="ig-factor">: 7</text>
+          <text x="210" y="458" text-anchor="middle" class="ig-word">42 : 7 = 6, weil 6 · 7 = 42.</text>
+        </g>
+
+        <text x="20" y="492" class="ig-h">Beispiele</text>
+        <text x="20" y="514" class="ig-ex">7 · 6 = 6 · 7. Du darfst die Zahlen tauschen.</text>
+        <text x="20" y="534" class="ig-ex">3 · 4 = 12, also 30 · 4 = 120.</text>
+      </svg>
+    </div>
+    <h2 class="section-label">Kurz gemerkt</h2>
+    <dl class="fakten">
+      <div><dt>Kernaufgaben</dt><dd>mal 1, mal 2, mal 5 und mal 10: von ihnen aus findest du alle anderen Aufgaben</dd></div>
+      <div><dt>Nachbaraufgabe</dt><dd>von der Kernaufgabe aus weiterrechnen: 6 · 7 = 5 · 7 + 7 = 42</dd></div>
+      <div><dt>Geteilt</dt><dd>die Umkehrung von mal: 42 : 7 = 6, weil 6 · 7 = 42</dd></div>
+    </dl>
+    <h2 class="section-label">Dazu üben</h2>
+    <ul class="ueben-list">
+      <li><a class="ueben-link" href="../rechenturm/?stufe=c"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Rechenturm</span><span class="ueben-meta">Stufe c · Bis 100 mit Einmaleins</span></a></li>
+      <li><a class="ueben-link" href="../rechenkniff/?stufe=d"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Rechenkniff</span><span class="ueben-meta">Stufe d · Nachbar-Produkte</span></a></li>
+      <li><a class="ueben-link" href="../rechenkniff/?stufe=e"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Rechenkniff</span><span class="ueben-meta">Stufe e · Geteilt als Umkehrung</span></a></li>
+    </ul>
+    <p class="code-line">Lehrplan 21: MA.1.A.3.c, MA.1.A.4.d, MA.1.A.4.e</p>
+  </article>
+</main>
+</body>
+</html>

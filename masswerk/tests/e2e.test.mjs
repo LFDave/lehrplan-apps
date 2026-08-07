@@ -163,7 +163,7 @@ function solveMc(task) {
   for (const [file, text] of sources) {
     const refs = [...text.matchAll(/(?:href="[^"]+?|src="[^"]+?|from '\.\/[^']+?|url\('fonts\/[^']+?)(\?v=(\d+))?["')]/g)];
     for (const m of refs) {
-      if (m[0].includes("http") || m[0].includes('"#') || m[0].includes("${")) continue;
+      if (m[0].includes("http") || m[0].includes('"#') || m[0].includes("${") || m[0].includes("../")) continue;
       if (m[2]) versions.add(m[2]);
       else unversioned.push(`${file}: ${m[0]}`);
     }
@@ -298,7 +298,7 @@ check("home: real-world note for skipped Stufen a and f",
   (await page.textContent(".stufen-section")).includes("Stufen a und f"));
 check("home: competency code visible", (await page.textContent('[data-stufe="c-laengen"]')).includes("MA.3.A.2.c"));
 check("home: Merkblatt link on Stufe e",
-  await page.locator('.merkblatt-link[href="../merkheft/masseinheiten.html"]').count() === 1);
+  await page.locator('.merkblatt-link[href="../merkheft/masseinheiten.html"]').count() === 2);
 check("home: Geld Merkblatt on b-geld, c-geld and d-geld",
   await page.locator('.merkblatt-link[href="../merkheft/geld.html"]').count() === 3);
 check("home: Uhr Merkblatt on b-zeit and d-zeit",
@@ -310,6 +310,8 @@ check("home: split cards show the official letter",
 check("home: Merkblatt link on Stufe c",
   await page.locator('.merkblatt-link[href="../merkheft/laengen.html"]').count() === 1);
 
+check("home: every Stufe links a Merkblatt",
+  (await page.locator(".merkblatt-link").count()) === (await page.locator(".stufe").count()));
 await page.screenshot({ path: join(SHOTS_DIR, "01-home.png"), fullPage: true });
 
 await playRound("c-laengen");

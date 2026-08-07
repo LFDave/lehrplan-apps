@@ -17,24 +17,28 @@ export const STUFEN = [
     title: 'Wörter abschreiben',
     desc: 'Schreibe englische Wörter genau ab.',
     kinds: ['abschreiben'],
+    merkblatt: { id: 'englisch-schreiben', name: 'Richtig schreiben' },
   },
   {
     id: 'b', cycle: 2, ga: true,
     title: 'Sätze abschreiben',
     desc: 'Schreibe kurze Sätze ab und setze Satzzeichen.',
     kinds: ['satzschrift'],
+    merkblatt: { id: 'englisch-schreiben', name: 'Richtig schreiben' },
   },
   {
     id: 'c', cycle: 3, ga: true,
     title: 'Häufige Formen',
     desc: 'Schreibe häufige Formen wie I am und they are korrekt.',
     kinds: ['hochform'],
+    merkblatt: { id: 'englisch-schreiben', name: 'Richtig schreiben' },
   },
   {
     id: 'd', cycle: 3, ga: false,
     title: 'Fehler finden',
     desc: 'Finde Schreibfehler und meistere schwierige Wörter.',
     kinds: ['fehlerjagd'],
+    merkblatt: { id: 'englisch-schreiben', name: 'Richtig schreiben' },
   },
 ];
 

@@ -309,7 +309,9 @@ platform work — lives in BACKLOG.md.
   explanations, illustrations and interactive visuals live in the
   Merkheft reference app (merkheft/), which apps link to via quiet
   "Merkblatt" links on Stufe cards and after rounds with mistakes.
-  Links are optional and never gates. One Merkblatt is one static
+  Links are optional and never gates. Coverage is complete: every
+  Stufe of every practice app links exactly one Merkblatt
+  (94 sheets in 16 groups), and app suites enforce it. One Merkblatt is one static
   HTML page (`merkheft/<id>.html`) so each concept can grow
   independently and prints as a light A4 sheet; content follows the
   sourcing rule in merkheft/PRD.md (own wording always, facts

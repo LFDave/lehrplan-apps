@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Die Programm-Bausteine · Merkheft</title>
+  <meta name="description" content="Merkblatt: Die Bausteine eines Programms, Befehl, Abfolge, Schleife, Verzweigung, Variable und Unterprogramm, mit einem Ablaufbild zu einer Schleife mit Zähler.">
+  <link rel="icon" href="favicon.svg?v=6" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=6">
+</head>
+<body>
+<main id="app">
+  <nav class="page-nav">
+    <a class="back" href="index.html">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+      Alle Merkblätter
+    </a>
+  </nav>
+  <article class="blatt-page">
+    <header>
+      <p class="blatt-gruppe">Informatik</p>
+      <h1>Die Programm-Bausteine</h1>
+    </header>
+    <p class="intro">Ein Programm ist eine Abfolge von Anweisungen für den
+    Computer. Er führt sie Schritt für Schritt aus, eine nach der
+    anderen.</p>
+    <p class="intro">Alle Programme bestehen aus wenigen Bausteinen. Wenn du
+    die Bausteine kennst, kannst du ein kleines Programm lesen und im Kopf
+    ausführen, genau wie der Computer.</p>
+    <p class="intro">Wichtig: Der Computer führt genau aus, was im Programm
+    steht. Nicht, was gemeint war. Auch ein Fehler wird genau so ausgeführt,
+    wie er dasteht.</p>
+    <ul class="steps">
+      <li>Ein <strong>Befehl</strong> ist ein einzelner Schritt. Eine
+      <strong>Abfolge</strong> reiht Befehle der Reihe nach: zuerst rühren,
+      dann backen.</li>
+      <li>Eine <strong>Schleife</strong> wiederholt Schritte: Hüpfe 10-mal.
+      Oder: Rühre, bis der Teig glatt ist.</li>
+      <li>Eine <strong>Verzweigung</strong> entscheidet zwischen zwei Wegen:
+      Wenn es regnet, nimm den Schirm, sonst die Sonnenbrille.</li>
+      <li>Eine <strong>Variable</strong> ist eine Merkbox mit Namen und
+      Wert: x = 3. Nach dem Befehl x = x + 5 steht 8 in der Box.</li>
+      <li>Ein <strong>Unterprogramm</strong> ist eine Schrittfolge mit
+      eigenem Namen: HÜPF heisst 2 vor und 1 zurück. Du rufst sie mit dem
+      Namen auf, so oft du willst.</li>
+    </ul>
+    <div class="illu-stage">
+      <svg viewBox="0 0 420 476" class="illu ig" role="img" id="ig-programm-bausteine"
+           aria-label="Infografik Programm-Bausteine: Sechs Blöcke zeigen die Bausteine eines Programms. Befehl: ein einzelner Schritt, zum Beispiel gehe 2 Schritte. Abfolge: Schritte der Reihe nach, zum Beispiel rühren, dann backen. Schleife: wiederholt Schritte, zum Beispiel wiederhole 4-mal. Verzweigung: es gibt ein Entweder-oder, wenn, dann, sonst. Variable: Merkbox mit Namen und Wert, zum Beispiel x = 3. Unterprogramm: benannte Schrittfolge, zum Beispiel HÜPF: 2 vor, 1 zurück. Darunter ein Ablaufbild: Das Programm x = 2, wiederhole 3-mal x = x + 5 läuft durch die Werte 2, 7, 12 und 17, mit dem Zähler 1. Mal, 2. Mal, 3. Mal. Am Ende ist x = 17. Der Computer führt genau aus, was im Programm steht">
+        <text x="210" y="26" text-anchor="middle" class="ig-title">Die Bausteine eines Programms</text>
+        <text x="210" y="42" text-anchor="middle" class="ig-sub">Aus wenigen Bausteinen ist jedes Programm gebaut.</text>
+
+        <rect x="20" y="58" width="185" height="78" rx="8" class="ig-panel"/>
+        <text x="36" y="82" class="ig-h">Befehl</text>
+        <text x="36" y="100" class="ig-word">ein einzelner Schritt</text>
+        <text x="36" y="122" class="ig-unit">gehe 2 Schritte</text>
+
+        <rect x="215" y="58" width="185" height="78" rx="8" class="ig-panel"/>
+        <text x="231" y="82" class="ig-h">Abfolge</text>
+        <text x="231" y="100" class="ig-word">Schritte der Reihe nach</text>
+        <text x="231" y="122" class="ig-unit">rühren, dann backen</text>
+
+        <rect x="20" y="146" width="185" height="78" rx="8" class="ig-panel"/>
+        <text x="36" y="170" class="ig-h">Schleife</text>
+        <text x="36" y="188" class="ig-word">wiederholt Schritte</text>
+        <text x="36" y="210" class="ig-unit">wiederhole 4-mal</text>
+
+        <rect x="215" y="146" width="185" height="78" rx="8" class="ig-panel"/>
+        <text x="231" y="170" class="ig-h">Verzweigung</text>
+        <text x="231" y="188" class="ig-word">es gibt ein Entweder-oder</text>
+        <text x="231" y="210" class="ig-unit">wenn, dann, sonst</text>
+
+        <rect x="20" y="234" width="185" height="78" rx="8" class="ig-panel"/>
+        <text x="36" y="258" class="ig-h">Variable</text>
+        <text x="36" y="276" class="ig-word">Merkbox mit Namen und Wert</text>
+        <text x="36" y="298" class="ig-unit">x = 3</text>
+
+        <rect x="215" y="234" width="185" height="78" rx="8" class="ig-panel"/>
+        <text x="231" y="258" class="ig-h">Unterprogramm</text>
+        <text x="231" y="276" class="ig-word">benannte Schrittfolge</text>
+        <text x="231" y="298" class="ig-unit">HÜPF: 2 vor, 1 zurück</text>
+
+        <text x="20" y="342" class="ig-h">So läuft eine Schleife</text>
+        <text x="20" y="364" class="ig-ex">Programm: x = 2. Wiederhole 3-mal: x = x + 5.</text>
+
+        <rect x="20" y="380" width="56" height="32" rx="6" class="ig-box"/>
+        <text x="48" y="401" text-anchor="middle" class="ig-unit">2</text>
+        <line x1="82" y1="396" x2="118" y2="396" class="ig-arrow"/>
+        <path d="M 118 392 L 126 396 L 118 400 Z" class="ig-arrowhead"/>
+        <text x="102" y="388" text-anchor="middle" class="ig-factor">+ 5</text>
+        <text x="102" y="422" text-anchor="middle" class="ig-word">1. Mal</text>
+
+        <rect x="128" y="380" width="56" height="32" rx="6" class="ig-box"/>
+        <text x="156" y="401" text-anchor="middle" class="ig-unit">7</text>
+        <line x1="190" y1="396" x2="226" y2="396" class="ig-arrow"/>
+        <path d="M 226 392 L 234 396 L 226 400 Z" class="ig-arrowhead"/>
+        <text x="210" y="388" text-anchor="middle" class="ig-factor">+ 5</text>
+        <text x="210" y="422" text-anchor="middle" class="ig-word">2. Mal</text>
+
+        <rect x="236" y="380" width="56" height="32" rx="6" class="ig-box"/>
+        <text x="264" y="401" text-anchor="middle" class="ig-unit">12</text>
+        <line x1="298" y1="396" x2="334" y2="396" class="ig-arrow"/>
+        <path d="M 334 392 L 342 396 L 334 400 Z" class="ig-arrowhead"/>
+        <text x="318" y="388" text-anchor="middle" class="ig-factor">+ 5</text>
+        <text x="318" y="422" text-anchor="middle" class="ig-word">3. Mal</text>
+
+        <rect x="344" y="380" width="56" height="32" rx="6" class="ig-box"/>
+        <text x="372" y="401" text-anchor="middle" class="ig-unit">17</text>
+
+        <text x="48" y="436" text-anchor="middle" class="ig-word">Start</text>
+        <text x="372" y="436" text-anchor="middle" class="ig-word">Ende: x = 17</text>
+        <text x="210" y="460" text-anchor="middle" class="ig-word">Der Computer führt genau aus, was im Programm steht.</text>
+      </svg>
+    </div>
+    <h2 class="section-label">Kurz gemerkt</h2>
+    <dl class="fakten">
+      <div><dt>Schleife</dt><dd>wiederholt Schritte: wiederhole 4-mal, oder: rühre, bis der Teig glatt ist</dd></div>
+      <div><dt>Verzweigung</dt><dd>wählt einen Weg: wenn es regnet, nimm den Schirm, sonst die Sonnenbrille</dd></div>
+      <div><dt>Der Computer</dt><dd>führt genau aus, was im Programm steht, nicht, was gemeint war</dd></div>
+    </dl>
+    <h2 class="section-label">Dazu üben</h2>
+    <ul class="ueben-list">
+      <li><a class="ueben-link" href="../schrittweise/?stufe=c"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Schrittweise</span><span class="ueben-meta">Stufe c · Schleife oder Verzweigung</span></a></li>
+      <li><a class="ueben-link" href="../schrittweise/?stufe=d"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Schrittweise</span><span class="ueben-meta">Stufe d · Programme ausführen</span></a></li>
+      <li><a class="ueben-link" href="../schrittweise/?stufe=e"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Schrittweise</span><span class="ueben-meta">Stufe e · Der Computer gehorcht</span></a></li>
+      <li><a class="ueben-link" href="../schrittweise/?stufe=f"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Schrittweise</span><span class="ueben-meta">Stufe f · Schleifen verstehen</span></a></li>
+      <li><a class="ueben-link" href="../schrittweise/?stufe=g"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Schrittweise</span><span class="ueben-meta">Stufe g · Bedingungen verfolgen</span></a></li>
+      <li><a class="ueben-link" href="../schrittweise/?stufe=h"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Schrittweise</span><span class="ueben-meta">Stufe h · Variablen und Unterprogramme</span></a></li>
+    </ul>
+    <p class="code-line">Lehrplan 21: MI.2.2.c, MI.2.2.d, MI.2.2.e, MI.2.2.f, MI.2.2.g, MI.2.2.h</p>
+  </article>
+</main>
+</body>
+</html>

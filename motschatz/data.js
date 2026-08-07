@@ -16,24 +16,28 @@ export const STUFEN = [
     title: 'Erste Wörter',
     desc: 'Begrüssen, danken, ja und nein, erste Zahlen und Farben.',
     kinds: ['vokabel'],
+    merkblatt: { id: 'franzoesisch-woerter', name: 'Erste Wörter' },
   },
   {
     id: 'b', cycle: 2, ga: true,
     title: 'Alltagswörter',
     desc: 'Familie, Schule, Essen, Wochentage und mehr Zahlen.',
     kinds: ['vokabel'],
+    merkblatt: { id: 'franzoesisch-woerter', name: 'Erste Wörter' },
   },
   {
     id: 'c', cycle: 3, ga: true,
     title: 'Sätze und Themen',
     desc: 'Wetter, Zeit, häufige Verben und kurze Wendungen.',
     kinds: ['vokabel', 'wendung'],
+    merkblatt: { id: 'franzoesisch-woerter', name: 'Erste Wörter' },
   },
   {
     id: 'd', cycle: 3, ga: false,
     title: 'Meine Lebenswelt',
     desc: 'Über Vorlieben, Ferien und den Alltag sprechen.',
     kinds: ['vokabel', 'wendung'],
+    merkblatt: { id: 'franzoesisch-woerter', name: 'Erste Wörter' },
   },
 ];
 

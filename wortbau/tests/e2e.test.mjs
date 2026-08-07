@@ -140,7 +140,7 @@ function chooseOption(expr, options) {
   for (const [file, text] of sources) {
     const refs = [...text.matchAll(/(?:href="[^"]+?|src="[^"]+?|from '\.\/[^']+?|url\('fonts\/[^']+?)(\?v=(\d+))?["')]/g)];
     for (const m of refs) {
-      if (m[0].includes("http") || m[0].includes('"#') || m[0].includes("${")) continue;
+      if (m[0].includes("http") || m[0].includes('"#') || m[0].includes("${") || m[0].includes("../")) continue;
       if (m[2]) versions.add(m[2]);
       else unversioned.push(`${file}: ${m[0]}`);
     }
@@ -242,6 +242,8 @@ check("home: title renders", (await page.textContent("h1")).trim() === "Wortbau"
 check("home: all Stufen with GA badges",
   await page.locator(".stufe").count() === 7 && await page.locator(".ga-badge").count() === 3);
 check("home: competency code visible", (await page.textContent('[data-stufe="a"]')).includes("D.5.D.1.a"));
+check("home: every Stufe links a Merkblatt",
+  (await page.locator(".merkblatt-link").count()) === (await page.locator(".stufe").count()));
 await page.screenshot({ path: join(SHOTS_DIR, "01-home.png"), fullPage: true });
 
 await playRound("a");

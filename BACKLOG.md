@@ -279,8 +279,10 @@ Infrastructure, quality, and process — independent of new apps.
     measuring-tape graphic) for kid testing, linked from Masswerk
     b/c/d and Grössenwissen b/c. Print pagination fixed after a
     real printed-PDF test (sections no longer split across page
-    breaks). Remaining: family feedback, then one infographic per
-    existing and future Merkblatt using the same `.ig-*` system.
+    breaks). Wave 3 (2026-08-07) completed the scale-out: every
+    Merkblatt now carries its own `.ig-*` infographic or interactive
+    model, and coverage is total (94 Merkblätter, every Stufe of
+    every app linked). Remaining: family feedback.
 13. **Link-chip aesthetics polish.** The cross-links are now clearly
     recognizable (chips with icon, underline, border): the
     "Merkblatt: …" links in the six apps and the "Dazu üben" links
@@ -322,14 +324,49 @@ Infrastructure, quality, and process — independent of new apps.
     Flächenmasse, GA), k (Häufigkeit / Einheiten / Koordinaten),
     l (Zins-Rabatt / Vorsätze, GA), Buchstabenleiter c (Vokale /
     ABC-Gruppen), Schreibprobe c (ie-ä / Kommas), Figurenmass j
-    (Pyramide / Winkel) — each with enriched pools or new
+    (Pyramide / Winkel), plus Buchstabenleiter b (b-abc /
+    b-hoeren, GA Z1), d (d-nachschlagen / d-stammregel, GA Z2) and
+    g (g-gross / g-nachschlagen) — each with enriched pools or new
     generators so the topic can be trained properly, and oracle
-    extensions in the same change. GA rule decided by the user:
+    extensions in the same change. Buchstabenleiter f
+    (Grossschreibung + Sie im Brief) was reviewed and deliberately
+    kept whole. GA rule decided by the user:
     the Grundanspruch medal requires a clean round on every card
     of the official Stufe; the badge shows on all its cards.
     Still open for later validation (borderline, currently judged
     coherent under one meta-concept): Masswerk g, Grössenwissen c,
-    Zeitreise b, Zahlenwissen g, Wertepfad i.
+    Zeitreise b, Zahlenwissen g, Wertepfad i. Noted 2026-08-07 while
+    mapping full Merkblatt coverage (each currently links the
+    dominant concept's Merkblatt): Rechenturm i (negative Zahlen /
+    Brüche / Potenzen), Wertepfad h (Funktionswerte / Massstab),
+    Grössenwissen j (Währungen / Hektaren), Schreibprobe b (sp-st /
+    Satzzeichen), Wortbau d (Pronomen-Partikeln / Fälle),
+    Formenreich l (Kreis / Tetraeder).
+15. **Answer-button affordance — quick-fix shipped, design pass
+    remains.** The multiple-choice option tiles (`.choice`) read as
+    flat panels rather than tappable buttons on the dark surface
+    (user feedback on Buchstabenleiter). Quick-fix applied family-
+    wide (2026-08-06): stronger border (`--color-border-strong`,
+    1.5px) plus a subtle bottom shadow on all 31 apps' `.choice`
+    tiles, so they clearly read as buttons; identical edit, caches
+    bumped, every suite green. The proper pass belongs with item 13
+    (DESIGN.md has no button/interactive tokens): define a token-
+    only `choice`/`button` group — resting, hover, active/pressed,
+    selected, correct/wrong states — and roll it out consistently,
+    replacing the per-app hand-tuned values. Consider a faint
+    accent tint or a pressed-depth animation (transform only) for
+    the selected state, keeping the calm dark system.
+16. **Back-to-overview navigation — quick-fix shipped.** From an
+    app's home screen there was no way back to the app overview or
+    Kompass (user feedback on Buchstabenleiter). Quick-fix
+    (2026-08-06): a quiet "Zur App-Übersicht" link with a grid icon
+    in the home footer of all 32 apps, linking `../index.html`
+    (`nav.overview` string; `.overview-link` style). The proper
+    pass: a consistent app-chrome header across the family carrying
+    the overview link; today the only in-app back affordance on a
+    practice screen is the round's "Abbrechen", and the home relies
+    on the footer link. Add the overview-link check to every app
+    suite (only Buchstabenleiter asserts it today).
 
 ## Definition of 100%
 

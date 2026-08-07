@@ -82,7 +82,7 @@ prüfen sich bei erwarteter Länge selbst und zusätzlich mit Enter.
 Einsprachig Deutsch (Schweizer Standarddeutsch), Strings in
 `strings.js`. Tokens aus DESIGN.md, Akzentfamilie **blue**, Atkinson
 Hyperlegible selbst gehostet, Lucide-Icons inline, SVG-Figuren nutzen
-die Farb-Tokens über CSS-Klassen, Cache-Busting `?v=2`.
+die Farb-Tokens über CSS-Klassen, Cache-Busting `?v=4`.
 
 **Gesplittete Stufe j.** Die offizielle Stufe j mischt
 Körperberechnung und Winkel; die App zeigt zwei Karten:
@@ -93,9 +93,17 @@ offiziellen Stufe j (Feld `code`).
 
 ## Merkheft-Verbindung und Deep-Links
 
-Deep-Links: `?stufe=<id>` startet die Stufe direkt (auch Teilstufen
-wie `j-winkel`). Die Query wird nach dem Einstieg sofort aus der
-Adresse entfernt; die Suite prüft Einstieg und bereinigte Adresse.
+Jede Stufe trägt in `data.js` ein `merkblatt: { id, name }`: Die
+App zeigt auf der Stufenkarte einen klar erkennbaren Link
+«Merkblatt: …» (Chip mit Buch-Symbol und unterstrichenem Text) und
+nach einer Runde mit Fehlern «Zum Nachlesen: …», beide auf
+`../merkheft/<id>.html`. Die Links sind optional und nie eine
+Bedingung; die Suite prüft, dass jede Stufenkarte einen trägt.
+Zuordnung: a, b, c, d, e, f → umfang-flaeche; g, i, j-koerper → flaechenformeln; h → pythagoras; j-winkel → winkel; k → abbildungen.
+
+Deep-Links: `?stufe=<id>` startet die Stufe direkt. Die Query wird
+nach dem Einstieg sofort aus der Adresse entfernt, damit sie beim
+Neuladen oder Weitergeben nicht kleben bleibt.
 
 ## Tests
 

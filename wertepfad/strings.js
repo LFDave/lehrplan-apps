@@ -6,6 +6,7 @@ export const STRINGS = {
     'app.title': 'Wertepfad',
     'app.tagline': 'Folgen, Tabellen und Funktionen Schritt für Schritt.',
     'app.source': 'Setzt die Kompetenz MA.3.A.3 des Lehrplans 21 um (Kanton Bern). Die Stufen a bis k sind die offiziellen Kompetenzstufen. Graph-Zeichnen ist als Berechnen umgesetzt.',
+    'nav.overview': 'Zur App-Übersicht',
     'home.stufen': 'Wähle deine Stufe',
     'home.level': 'Level {name}',
     'home.medals': '{n} Medaillen',

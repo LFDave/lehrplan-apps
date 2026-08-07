@@ -55,7 +55,7 @@ function check(name, condition, detail = "") {
     ];
     for (const m of refs) {
       const whole = m[0];
-      if (whole.includes("http") || whole.includes('"#') || whole.includes("${")) continue;
+      if (whole.includes("http") || whole.includes('"#') || whole.includes("${") || whole.includes("../")) continue;
       if (m[2]) versions.add(m[2]);
       else unversioned.push(`${file}: ${whole}`);
     }

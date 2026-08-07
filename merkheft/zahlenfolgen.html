@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zahlenfolgen · Merkheft</title>
+  <meta name="description" content="Merkblatt: Zahlenfolgen und ihre Regeln, Sprünge und Differenzen, Quadrat- und Dreieckszahlen mit Beispielen.">
+  <link rel="icon" href="favicon.svg?v=6" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=6">
+</head>
+<body>
+<main id="app">
+  <nav class="page-nav">
+    <a class="back" href="index.html">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+      Alle Merkblätter
+    </a>
+  </nav>
+  <article class="blatt-page">
+    <header>
+      <p class="blatt-gruppe">Daten und Funktionen</p>
+      <h1>Zahlenfolgen</h1>
+    </header>
+    <p class="intro">Eine Zahlenfolge ist eine Reihe von Zahlen, die einer
+    Regel folgt. Die Regel sagt dir, wie es von einer Zahl zur nächsten
+    weitergeht.</p>
+    <p class="intro">Oft kommt immer gleich viel dazu: Die Folge 2, 5, 8, 11
+    hat die Regel immer +3. Es gibt auch Regeln mit mal: Bei 1, 2, 4, 8 wird
+    jede Zahl verdoppelt.</p>
+    <p class="intro">Kennst du die Regel, kannst du jede Folge weiterführen.
+    Den Weg zur Regel zeigen dir die Differenzen, also die Sprünge zwischen
+    den Nachbarzahlen.</p>
+    <ul class="steps">
+      <li>Rechne die <strong>Differenzen</strong> aus: Wie gross ist der
+      Sprung von einer Zahl zur nächsten?</li>
+      <li>Ist der Sprung immer gleich, heisst die Regel zum Beispiel
+      <strong>immer +3</strong>. Auch rückwärts geht es: 40, 35, 30 hat die
+      Regel immer -5.</li>
+      <li>Wachsen die Sprünge, schau sie einzeln an: Bei
+      <strong>1, 3, 6, 10</strong> sind es +2, +3, +4. Die nächste Zahl ist
+      10 + 5 = 15.</li>
+      <li><strong>Quadratzahlen</strong> rechnest du mal sich selbst:
+      4 · 4 = 16. So entsteht die Folge 1, 4, 9, 16, 25.</li>
+      <li>Prüfe am Schluss: Passt deine Regel zu <strong>allen</strong>
+      Sprüngen der Folge?</li>
+    </ul>
+    <div class="illu-stage">
+      <svg viewBox="0 0 420 492" class="illu ig" role="img" id="ig-zahlenfolgen"
+           aria-label="Infografik Zahlenfolgen: Die Folge 2, 5, 8, 11, 14 mit Sprung-Bögen, jeder Sprung ist plus 3. Darunter Quadratzahlen als Punktequadrate: 1, 4, 9 und 16 Punkte als Quadrate von 1 mal 1 bis 4 mal 4. Zuunterst besondere Folgen: Quadratzahlen 1, 4, 9, 16, 25, 36, Dreieckszahlen 1, 3, 6, 10, 15, 21, gerade Zahlen 2, 4, 6, 8, 10, 12 und ungerade Zahlen 1, 3, 5, 7, 9, 11">
+        <text x="210" y="26" text-anchor="middle" class="ig-title">Zahlenfolgen</text>
+        <text x="210" y="42" text-anchor="middle" class="ig-sub">Jede Folge hat eine Regel. Die Sprünge verraten sie.</text>
+
+        <g>
+          <rect x="20" y="58" width="380" height="132" rx="8" class="ig-panel"/>
+          <text x="40" y="84" class="ig-h">Die Regel: immer +3</text>
+          <text x="95" y="112" text-anchor="middle" class="ig-factor">+3</text>
+          <text x="165" y="112" text-anchor="middle" class="ig-factor">+3</text>
+          <text x="235" y="112" text-anchor="middle" class="ig-factor">+3</text>
+          <text x="305" y="112" text-anchor="middle" class="ig-factor">+3</text>
+          <path d="M 60 142 Q 95 116 130 142" fill="none" class="ig-arrow"/>
+          <path d="M 130 142 Q 165 116 200 142" fill="none" class="ig-arrow"/>
+          <path d="M 200 142 Q 235 116 270 142" fill="none" class="ig-arrow"/>
+          <path d="M 270 142 Q 305 116 340 142" fill="none" class="ig-arrow"/>
+          <text x="60" y="162" text-anchor="middle" class="ig-unit">2</text>
+          <text x="130" y="162" text-anchor="middle" class="ig-unit">5</text>
+          <text x="200" y="162" text-anchor="middle" class="ig-unit">8</text>
+          <text x="270" y="162" text-anchor="middle" class="ig-unit">11</text>
+          <text x="340" y="162" text-anchor="middle" class="ig-unit">14</text>
+          <text x="210" y="180" text-anchor="middle" class="ig-word">Jeder Sprung ist gleich gross. So führst du die Folge weiter.</text>
+        </g>
+
+        <g>
+          <rect x="20" y="204" width="380" height="148" rx="8" class="ig-panel"/>
+          <text x="40" y="230" class="ig-h">Quadratzahlen als Punktequadrate</text>
+          <circle cx="70" cy="300" r="4" class="ig-dot"/>
+          <circle cx="126" cy="286" r="4" class="ig-dot"/>
+          <circle cx="140" cy="286" r="4" class="ig-dot"/>
+          <circle cx="126" cy="300" r="4" class="ig-dot"/>
+          <circle cx="140" cy="300" r="4" class="ig-dot"/>
+          <circle cx="197" cy="272" r="4" class="ig-dot"/>
+          <circle cx="211" cy="272" r="4" class="ig-dot"/>
+          <circle cx="225" cy="272" r="4" class="ig-dot"/>
+          <circle cx="197" cy="286" r="4" class="ig-dot"/>
+          <circle cx="211" cy="286" r="4" class="ig-dot"/>
+          <circle cx="225" cy="286" r="4" class="ig-dot"/>
+          <circle cx="197" cy="300" r="4" class="ig-dot"/>
+          <circle cx="211" cy="300" r="4" class="ig-dot"/>
+          <circle cx="225" cy="300" r="4" class="ig-dot"/>
+          <circle cx="285" cy="258" r="4" class="ig-dot"/>
+          <circle cx="299" cy="258" r="4" class="ig-dot"/>
+          <circle cx="313" cy="258" r="4" class="ig-dot"/>
+          <circle cx="327" cy="258" r="4" class="ig-dot"/>
+          <circle cx="285" cy="272" r="4" class="ig-dot"/>
+          <circle cx="299" cy="272" r="4" class="ig-dot"/>
+          <circle cx="313" cy="272" r="4" class="ig-dot"/>
+          <circle cx="327" cy="272" r="4" class="ig-dot"/>
+          <circle cx="285" cy="286" r="4" class="ig-dot"/>
+          <circle cx="299" cy="286" r="4" class="ig-dot"/>
+          <circle cx="313" cy="286" r="4" class="ig-dot"/>
+          <circle cx="327" cy="286" r="4" class="ig-dot"/>
+          <circle cx="285" cy="300" r="4" class="ig-dot"/>
+          <circle cx="299" cy="300" r="4" class="ig-dot"/>
+          <circle cx="313" cy="300" r="4" class="ig-dot"/>
+          <circle cx="327" cy="300" r="4" class="ig-dot"/>
+          <text x="70" y="324" text-anchor="middle" class="ig-unit">1</text>
+          <text x="133" y="324" text-anchor="middle" class="ig-unit">4</text>
+          <text x="211" y="324" text-anchor="middle" class="ig-unit">9</text>
+          <text x="306" y="324" text-anchor="middle" class="ig-unit">16</text>
+          <text x="70" y="340" text-anchor="middle" class="ig-word">1 · 1</text>
+          <text x="133" y="340" text-anchor="middle" class="ig-word">2 · 2</text>
+          <text x="211" y="340" text-anchor="middle" class="ig-word">3 · 3</text>
+          <text x="306" y="340" text-anchor="middle" class="ig-word">4 · 4</text>
+        </g>
+
+        <text x="20" y="382" class="ig-h">Besondere Folgen</text>
+        <text x="20" y="404" class="ig-ex">Quadratzahlen: 1, 4, 9, 16, 25, 36</text>
+        <text x="20" y="426" class="ig-ex">Dreieckszahlen: 1, 3, 6, 10, 15, 21</text>
+        <text x="20" y="448" class="ig-ex">Gerade Zahlen: 2, 4, 6, 8, 10, 12</text>
+        <text x="20" y="470" class="ig-ex">Ungerade Zahlen: 1, 3, 5, 7, 9, 11</text>
+      </svg>
+    </div>
+    <h2 class="section-label">Kurz gemerkt</h2>
+    <dl class="fakten">
+      <div><dt>Regel finden</dt><dd>Schau die Sprünge zwischen den Nachbarzahlen an: 2, 5, 8, 11 macht immer +3</dd></div>
+      <div><dt>Quadratzahlen</dt><dd>1, 4, 9, 16, 25, 36: immer eine Zahl mal sich selbst, zum Beispiel 5 · 5 = 25</dd></div>
+      <div><dt>Dreieckszahlen</dt><dd>1, 3, 6, 10, 15: die Sprünge wachsen bei jedem Schritt um 1</dd></div>
+    </dl>
+    <h2 class="section-label">Dazu üben</h2>
+    <ul class="ueben-list">
+      <li><a class="ueben-link" href="../wertepfad/?stufe=b"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Wertepfad</span><span class="ueben-meta">Stufe b · Zahlenfolgen</span></a></li>
+      <li><a class="ueben-link" href="../wertepfad/?stufe=c"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Wertepfad</span><span class="ueben-meta">Stufe c · Besondere Folgen</span></a></li>
+    </ul>
+    <p class="code-line">Lehrplan 21: MA.3.A.3.b, MA.3.A.3.c</p>
+  </article>
+</main>
+</body>
+</html>

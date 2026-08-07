@@ -6,6 +6,7 @@ export const STRINGS = {
     'app.title': 'Masswerk',
     'app.tagline': 'Geld, Längen, Gewichte und Zeit. Messen, umwandeln, rechnen.',
     'app.source': 'Setzt die Kompetenz MA.3.A.2 des Lehrplans 21 um (Kanton Bern). Die Stufen sind die offiziellen Kompetenzstufen.',
+    'nav.overview': 'Zur App-Übersicht',
     'home.stufen': 'Wähle deine Stufe',
     'home.note': 'Die Stufen a und f üben Schätzen und Messen mit echten Dingen. Das übst du draussen, nicht in der App.',
     'home.level': 'Level {name}',

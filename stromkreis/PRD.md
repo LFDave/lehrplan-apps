@@ -57,22 +57,21 @@ role="status"-Region.
 Einsprachig Deutsch (Schweizer Standarddeutsch), Strings in
 `strings.js`. Tokens aus DESIGN.md, Akzentfamilie **sage**,
 Atkinson Hyperlegible selbst gehostet, Lucide-Icons inline,
-Cache-Busting `?v=6`.
+Cache-Busting `?v=8`.
 
 ## Merkheft-Verbindung
 
-Die Stufen b (schaltungen.html) und c (ohmsches-gesetz.html)
-tragen in `data.js` ein `merkblatt: { id, name }`: Die App
-zeigt auf der Stufenkarte einen klar erkennbaren Link
+Jede Stufe trägt in `data.js` ein `merkblatt: { id, name }`: Die
+App zeigt auf der Stufenkarte einen klar erkennbaren Link
 «Merkblatt: …» (Chip mit Buch-Symbol und unterstrichenem Text) und
 nach einer Runde mit Fehlern «Zum Nachlesen: …», beide auf
-`../merkheft/<id>.html` (schaltungen.html, «Serie- und Parallelschaltung»). Die Links sind optional und nie
-eine Bedingung; die Suite prüft sie.
+`../merkheft/<id>.html`. Die Links sind optional und nie eine
+Bedingung; die Suite prüft, dass jede Stufenkarte einen trägt.
+Zuordnung: a, e → strom-wirkungen; b, d → schaltungen; c → ohmsches-gesetz.
 
 Deep-Links: `?stufe=<id>` startet die Stufe direkt. Die Query wird
 nach dem Einstieg sofort aus der Adresse entfernt, damit sie beim
-Neuladen oder Weitergeben nicht kleben bleibt; die Suite prüft
-Einstieg und bereinigte Adresse.
+Neuladen oder Weitergeben nicht kleben bleibt.
 
 ## Tests
 

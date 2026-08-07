@@ -6,6 +6,7 @@ export const STRINGS = {
     'app.title': 'Spellwerk',
     'app.tagline': 'Englisch richtig schreiben, Wort für Wort.',
     'app.source': 'Setzt die Kompetenz FS2E.5.E.1 des Lehrplans 21 um (Kanton Bern, Stand 01.08.2022). Die Stufen a bis d sind die offiziellen Kompetenzstufen. Eigene Texte sind als Abschreiben, Ergänzen und Prüfen von Wörtern und Wendungen umgesetzt.',
+    'nav.overview': 'Zur App-Übersicht',
     'home.stufen': 'Wähle deine Stufe',
     'home.level': 'Level {name}',
     'home.medals': '{n} Medaillen',

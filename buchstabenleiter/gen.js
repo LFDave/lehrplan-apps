@@ -43,23 +43,33 @@ export const WOERTER = [
 // Pool-Einträge: [kind, 'mc', expr, richtig, [falsch...]] oder
 // [kind, 'typed', expr, antwort].
 export const POOLS = {
-  b: [
+  'b-hoeren': [
     ['buchstabieren', 'mc', 'Wie viele Silben hat «Ba-na-ne»?', '3', ['2', '4']],
     ['buchstabieren', 'mc', 'Wie viele Silben hat «Scho-ko-la-de»?', '4', ['3', '5']],
+    ['buchstabieren', 'mc', 'Wie viele Silben hat «Ap-fel»?', '2', ['1', '3']],
+    ['buchstabieren', 'mc', 'Wie viele Silben hat «To-ma-te»?', '3', ['2', '4']],
     ['buchstabieren', 'mc', 'Am Wortanfang hörst du «schp» wie in «Spiel». Wie schreibst du?', 'sp', ['schp', 'sb']],
     ['buchstabieren', 'mc', 'Am Wortanfang hörst du «scht» wie in «Stein». Wie schreibst du?', 'st', ['scht', 'sd']],
-    ['buchstabieren', 'mc', 'Wozu hilft dir das ABC im Wörterbuch?', 'Wörter schneller zu finden', ['schöner zu schreiben', 'lauter zu lesen']],
+    ['buchstabieren', 'mc', 'Wie schreibst du den Anfang von «Sport»?', 'sp', ['schp', 'sb']],
+    ['buchstabieren', 'mc', 'Wie schreibst du den Anfang von «Stern»?', 'st', ['scht', 'sd']],
   ],
-  d: [
-    ['abcOrdnung', 'mc', 'Was ist der Stamm von «fahren, Fahrer, Abfahrt»?', 'fahr', ['fahren', 'ab']],
-    ['abcOrdnung', 'mc', 'Was ist der Stamm von «spielen, Spieler, verspielt»?', 'spiel', ['spielen', 'ver']],
+  'd-nachschlagen': [
     ['abcOrdnung', 'mc', 'Du willst «lief» im Wörterbuch nachschlagen. Unter welchem Wort suchst du?', 'unter «laufen»', ['unter «lief»', 'unter «gelaufen»']],
     ['abcOrdnung', 'mc', 'Du willst «ass» im Wörterbuch nachschlagen. Unter welchem Wort suchst du?', 'unter «essen»', ['unter «ass»', 'unter «gegessen»']],
+    ['abcOrdnung', 'mc', 'Du willst «ging» im Wörterbuch nachschlagen. Unter welchem Wort suchst du?', 'unter «gehen»', ['unter «ging»', 'unter «gegangen»']],
+    ['abcOrdnung', 'mc', 'Du willst «sang» im Wörterbuch nachschlagen. Unter welchem Wort suchst du?', 'unter «singen»', ['unter «sang»', 'unter «gesungen»']],
+    ['abcOrdnung', 'mc', 'Du willst «flog» im Wörterbuch nachschlagen. Unter welchem Wort suchst du?', 'unter «fliegen»', ['unter «flog»', 'unter «geflogen»']],
+    ['abcOrdnung', 'mc', 'In welcher Form stehen die Verben im Wörterbuch?', 'in der Grundform', ['in der Vergangenheit', 'in der Wir-Form']],
+  ],
+  'd-stammregel': [
+    ['abcOrdnung', 'mc', 'Was ist der Stamm von «fahren, Fahrer, Abfahrt»?', 'fahr', ['fahren', 'ab']],
+    ['abcOrdnung', 'mc', 'Was ist der Stamm von «spielen, Spieler, verspielt»?', 'spiel', ['spielen', 'ver']],
     ['abcOrdnung', 'mc', 'Warum schreibt man «Bäume» mit äu?', 'wegen des Stamms «Baum»', ['weil es schöner aussieht', 'wegen der Endung -e']],
     ['abcOrdnung', 'mc', 'Warum schreibt man «Häuser» mit äu?', 'wegen des Stamms «Haus»', ['weil es viele sind', 'wegen des s am Ende']],
+    ['abcOrdnung', 'mc', 'Warum schreibt man «Räume» mit äu?', 'wegen des Stamms «Raum»', ['weil es gross ist', 'wegen der Endung -e']],
     ['abcOrdnung', 'mc', 'Am Ende von «Hund» hörst du ein t. Wie prüfst du die Schreibung?', 'verlängern: die Hun-de', ['lauter sprechen', 'das Wort auswendig lernen']],
     ['abcOrdnung', 'mc', 'Am Ende von «Berg» hörst du ein k. Wie prüfst du die Schreibung?', 'verlängern: die Ber-ge', ['das k einfach schreiben', 'das Wort weglassen']],
-    ['abcOrdnung', 'mc', 'Aus welchen Teilen besteht «verkaufen»?', 'ver + kauf + en', ['verk + aufen', 'ver + laufen']],
+    ['abcOrdnung', 'mc', 'Am Ende von «Kind» hörst du ein t. Wie prüfst du die Schreibung?', 'verlängern: die Kin-der', ['leiser sprechen', 'ein t schreiben']],
   ],
   e: [
     ['morphem', 'typed', 'frei + heit: Schreibe das Nomen.', 'Freiheit'],
@@ -84,16 +94,25 @@ export const POOLS = {
     ['nominalisierung', 'mc', 'Das Höflichkeitspronomen in Briefen schreibt man ...?', 'gross: Sie', ['klein: sie', 'nur am Satzanfang gross']],
     ['nominalisierung', 'mc', 'In welchem Briefsatz ist die Höflichkeitsform richtig?', '«Ich danke Ihnen für den Brief.»', ['«Ich danke ihnen für den Brief.»']],
   ],
-  g: [
+  'g-gross': [
     ['strategie', 'mc', '«alles Gute» oder «alles gute»: Was ist richtig?', 'alles Gute', ['alles gute']],
     ['strategie', 'mc', '«etwas Schönes» oder «etwas schönes»: Was ist richtig?', 'etwas Schönes', ['etwas schönes']],
     ['strategie', 'mc', '«nichts Neues» oder «nichts neues»: Was ist richtig?', 'nichts Neues', ['nichts neues']],
+    ['strategie', 'mc', '«viel Gutes» oder «viel gutes»: Was ist richtig?', 'viel Gutes', ['viel gutes']],
+    ['strategie', 'mc', '«alles Liebe» oder «alles liebe»: Was ist richtig?', 'alles Liebe', ['alles liebe']],
+    ['strategie', 'mc', '«etwas Wichtiges» oder «etwas wichtiges»: Was ist richtig?', 'etwas Wichtiges', ['etwas wichtiges']],
     ['strategie', 'mc', 'Nomen aus Adjektiven nach «alles, etwas, nichts» schreibt man ...?', 'gross', ['klein', 'in Anführungszeichen']],
+    ['strategie', 'mc', 'Warum schreibt man «etwas Schönes» gross?', 'aus dem Adjektiv wird ein Nomen', ['weil es am Satzanfang steht', 'weil es schön klingt']],
+  ],
+  'g-nachschlagen': [
     ['strategie', 'mc', 'Du hörst «Fater», findest es im Wörterbuch aber nicht unter F. Wo suchst du?', 'unter V wie «Vater»', ['unter W', 'unter PH']],
     ['strategie', 'mc', 'Du hörst «Kwelle». Wo steht das Wort im Wörterbuch?', 'unter Q wie «Quelle»', ['unter K', 'unter G']],
     ['strategie', 'mc', 'Du hörst «Fogel». Wo steht das Wort im Wörterbuch?', 'unter V wie «Vogel»', ['unter F', 'unter W']],
     ['strategie', 'mc', 'Das Wort klingt wie «Kor», geschrieben wird es «Chor». Wo steht es im Wörterbuch?', 'unter C', ['unter K', 'unter Sch']],
     ['strategie', 'mc', 'Ein Wort beginnt gesprochen mit «oi» wie in «Eule». Womit beginnt es geschrieben oft?', 'mit Eu', ['mit Oi', 'mit Au']],
+    ['strategie', 'mc', 'Du hörst «Faze». Wo steht das Wort im Wörterbuch?', 'unter V wie «Vase»', ['unter F', 'unter W']],
+    ['strategie', 'mc', 'Du hörst «Kwark». Wo steht das Wort im Wörterbuch?', 'unter Q wie «Quark»', ['unter K', 'unter G']],
+    ['strategie', 'mc', 'Warum findest du «Vogel» nicht unter F?', 'weil es mit V geschrieben wird', ['weil es ein Tier ist', 'weil es kurz ist']],
   ],
 };
 
@@ -113,7 +132,7 @@ export function genTask(rng, stufe) {
       ...buildMc(rng, correct, wrong),
     };
   }
-  if (stufe.id === 'b' && rng() < 0.55) {
+  if (stufe.id === 'b-abc') {
     const nach = rng() < 0.5;
     const i = nach ? randInt(rng, 0, 24) : randInt(rng, 1, 25);
     const letter = ABC[i];
@@ -162,7 +181,7 @@ export function genTask(rng, stufe) {
       ...buildMc(rng, correct, [correct === 'vor' ? 'nach' : 'vor']),
     };
   }
-  if (stufe.id === 'd' && rng() < 0.5) {
+  if (stufe.id === 'd-nachschlagen' && rng() < 0.5) {
     const gruppe = pick(rng, WOERTER);
     const [w1, w2] = shuffled(rng, gruppe).slice(0, 2);
     const first = w1.toLowerCase() < w2.toLowerCase() ? w1 : w2;
