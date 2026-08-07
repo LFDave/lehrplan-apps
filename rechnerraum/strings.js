@@ -6,6 +6,7 @@ export const STRINGS = {
     'app.title': 'Rechnerraum',
     'app.tagline': 'Computer, Speicher und Netze verstehen.',
     'app.source': 'Setzt die Kompetenz MI.2.3 des Lehrplans 21 um (Kanton Bern, Stand 01.08.2022). Die Stufen a bis l sind die offiziellen Kompetenzstufen. Arbeit am Gerät ist als Wissen über Bedienung, Speicher und Netze umgesetzt.',
+    'nav.overview': 'Zur App-Übersicht',
     'home.stufen': 'Wähle deine Stufe',
     'home.level': 'Level {name}',
     'home.medals': '{n} Medaillen',

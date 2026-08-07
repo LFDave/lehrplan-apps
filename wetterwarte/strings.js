@@ -6,6 +6,7 @@ export const STRINGS = {
     'app.title': 'Wetterwarte',
     'app.tagline': 'Wetter und Naturereignisse verstehen, Stufe für Stufe.',
     'app.source': 'Setzt die Kompetenz NMG.4.4 des Lehrplans 21 um (Kanton Bern, Stand 01.08.2022). Die Stufen 1a bis 1g (Wetter) und 2a bis 2e (Naturereignisse) sind die offiziellen Kompetenzstufen. Eigenes Beobachten und Messen ist als Wissen über Phänomene, Messgeräte und Verhaltensregeln umgesetzt.',
+    'nav.overview': 'Zur App-Übersicht',
     'home.stufen': 'Wähle deine Stufe',
     'home.level': 'Level {name}',
     'home.medals': '{n} Medaillen',

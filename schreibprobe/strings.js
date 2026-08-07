@@ -6,6 +6,7 @@ export const STRINGS = {
     'app.title': 'Schreibprobe',
     'app.tagline': 'Rechtschreibregeln prüfen, Stufe für Stufe.',
     'app.source': 'Setzt die Kompetenz D.4.F.1 des Lehrplans 21 um (Kanton Bern, Stand 01.08.2022). Die Stufen a bis g sind die offiziellen Kompetenzstufen. Das Überarbeiten eigener Texte ist als Prüfen und Korrigieren umgesetzt.',
+    'nav.overview': 'Zur App-Übersicht',
     'home.stufen': 'Wähle deine Stufe',
     'home.level': 'Level {name}',
     'home.medals': '{n} Medaillen',

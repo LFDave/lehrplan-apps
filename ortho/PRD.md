@@ -59,7 +59,7 @@ role="status"-Region.
 UI einsprachig Deutsch (Schweizer Standarddeutsch), Lerninhalt
 Französisch. Strings in `strings.js`. Tokens aus DESIGN.md,
 Akzentfamilie **violet**, Atkinson Hyperlegible selbst gehostet,
-Lucide-Icons inline, Cache-Busting `?v=2`.
+Lucide-Icons inline, Cache-Busting `?v=3`.
 
 ## Tests
 

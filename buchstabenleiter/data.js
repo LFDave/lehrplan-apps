@@ -18,11 +18,17 @@ export const STUFEN = [
     merkblatt: { id: 'abc-tabelle', name: 'ABC-Tabelle' },
   },
   {
-    id: 'b', cycle: 1, ga: true,
+    id: 'b-abc', code: 'b', cycle: 1, ga: true,
     title: 'ABC auswendig',
-    desc: 'Tippe ABC-Nachbarn, zähle Silben, kenne sp und st.',
+    desc: 'Tippe die Nachbarn im ABC ohne Hilfe.',
     kinds: ['buchstabieren'],
     merkblatt: { id: 'abc-tabelle', name: 'ABC-Tabelle' },
+  },
+  {
+    id: 'b-hoeren', code: 'b', cycle: 1, ga: true,
+    title: 'Silben und sp/st',
+    desc: 'Zähle Silben und kenne sp und st am Wortanfang.',
+    kinds: ['buchstabieren'],
   },
   {
     id: 'c-vokale', code: 'c', cycle: 2, ga: false,
@@ -37,9 +43,15 @@ export const STUFEN = [
     kinds: ['abcGruppe', 'vorNach'],
   },
   {
-    id: 'd', cycle: 2, ga: true,
-    title: 'Nachschlagen und Stammregel',
-    desc: 'Ordne Wörter alphabetisch und nutze die Stammregel.',
+    id: 'd-nachschlagen', code: 'd', cycle: 2, ga: true,
+    title: 'Nachschlagen',
+    desc: 'Ordne Wörter alphabetisch und finde die Grundform.',
+    kinds: ['abcOrdnung'],
+  },
+  {
+    id: 'd-stammregel', code: 'd', cycle: 2, ga: true,
+    title: 'Stammregel',
+    desc: 'Schreibe nach dem Wortstamm: äu von au, und verlängere zum Prüfen.',
     kinds: ['abcOrdnung'],
   },
   {
@@ -55,9 +67,15 @@ export const STUFEN = [
     kinds: ['nominalisierung'],
   },
   {
-    id: 'g', cycle: 3, ga: false,
+    id: 'g-gross', code: 'g', cycle: 3, ga: false,
     title: 'Alles Gute',
-    desc: 'Schreibe «alles Gute» gross und finde schwierige Wörter.',
+    desc: 'Schreibe Nomen nach alles, etwas und nichts gross.',
+    kinds: ['strategie'],
+  },
+  {
+    id: 'g-nachschlagen', code: 'g', cycle: 3, ga: false,
+    title: 'Schwierige Laute nachschlagen',
+    desc: 'Finde Wörter, die anders klingen als sie geschrieben werden.',
     kinds: ['strategie'],
   },
 ];

@@ -6,6 +6,7 @@ export const STRINGS = {
     'app.title': 'Spiegelraster',
     'app.tagline': 'Spiegeln, drehen und verschieben im Raster.',
     'app.source': 'Setzt die Kompetenz MA.2.A.2 des Lehrplans 21 um (Kanton Bern). Die Stufen a bis j sind die offiziellen Kompetenzstufen. Zeichnen und Kippen sind als Erkennen umgesetzt.',
+    'nav.overview': 'Zur App-Übersicht',
     'home.stufen': 'Wähle deine Stufe',
     'home.level': 'Level {name}',
     'home.medals': '{n} Medaillen',

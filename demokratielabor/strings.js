@@ -6,6 +6,7 @@ export const STRINGS = {
     'app.title': 'Demokratielabor',
     'app.tagline': 'Die Schweizer Demokratie verstehen.',
     'app.source': 'Setzt die Kompetenz RZG.8.1 des Lehrplans 21 um (Kanton Bern, Stand 01.08.2022). Die Stufen a bis d sind die offiziellen Kompetenzstufen. Eigenes Stellungbeziehen ist als Wissen über Argumente und faire Debatten umgesetzt.',
+    'nav.overview': 'Zur App-Übersicht',
     'home.stufen': 'Wähle deine Stufe',
     'home.level': 'Level {name}',
     'home.medals': '{n} Medaillen',

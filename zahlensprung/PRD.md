@@ -93,7 +93,7 @@ fünfte Glied im Raum bleibt.
   UI-Texte in `strings.js` mit stabilen IDs. Keine Einstellungen-Ansicht,
   solange es nichts zu konfigurieren gibt.
 - Tokens aus DESIGN.md, Akzentfamilie **amber**, Atkinson Hyperlegible
-  selbst gehostet, Lucide-Icons inline, Cache-Busting `?v=2`.
+  selbst gehostet, Lucide-Icons inline, Cache-Busting `?v=3`.
 - Schweizer Zahlformat: Tausendertrennung mit Apostroph (13'567),
   Dezimalpunkt wie im Lehrplan.
 

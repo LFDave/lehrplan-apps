@@ -61,7 +61,7 @@ role="status"-Region.
 Einsprachig Deutsch (Schweizer Standarddeutsch), Strings in
 `strings.js`. Tokens aus DESIGN.md, Akzentfamilie **amber**,
 Atkinson Hyperlegible selbst gehostet, Lucide-Icons inline,
-Cache-Busting `?v=4`.
+Cache-Busting `?v=5`.
 
 **Gesplittete Stufe c.** Die offizielle Stufe c mischt Vokale und
 ABC-Gruppen; für Kinder sind das zwei Konzepte. Die App zeigt darum

@@ -322,9 +322,13 @@ Infrastructure, quality, and process — independent of new apps.
     Flächenmasse, GA), k (Häufigkeit / Einheiten / Koordinaten),
     l (Zins-Rabatt / Vorsätze, GA), Buchstabenleiter c (Vokale /
     ABC-Gruppen), Schreibprobe c (ie-ä / Kommas), Figurenmass j
-    (Pyramide / Winkel) — each with enriched pools or new
+    (Pyramide / Winkel), plus Buchstabenleiter b (b-abc /
+    b-hoeren, GA Z1), d (d-nachschlagen / d-stammregel, GA Z2) and
+    g (g-gross / g-nachschlagen) — each with enriched pools or new
     generators so the topic can be trained properly, and oracle
-    extensions in the same change. GA rule decided by the user:
+    extensions in the same change. Buchstabenleiter f
+    (Grossschreibung + Sie im Brief) was reviewed and deliberately
+    kept whole. GA rule decided by the user:
     the Grundanspruch medal requires a clean round on every card
     of the official Stufe; the badge shows on all its cards.
     Still open for later validation (borderline, currently judged
@@ -344,6 +348,17 @@ Infrastructure, quality, and process — independent of new apps.
     replacing the per-app hand-tuned values. Consider a faint
     accent tint or a pressed-depth animation (transform only) for
     the selected state, keeping the calm dark system.
+16. **Back-to-overview navigation — quick-fix shipped.** From an
+    app's home screen there was no way back to the app overview or
+    Kompass (user feedback on Buchstabenleiter). Quick-fix
+    (2026-08-06): a quiet "Zur App-Übersicht" link with a grid icon
+    in the home footer of all 32 apps, linking `../index.html`
+    (`nav.overview` string; `.overview-link` style). The proper
+    pass: a consistent app-chrome header across the family carrying
+    the overview link; today the only in-app back affordance on a
+    practice screen is the round's "Abbrechen", and the home relies
+    on the footer link. Add the overview-link check to every app
+    suite (only Buchstabenleiter asserts it today).
 
 ## Definition of 100%
 

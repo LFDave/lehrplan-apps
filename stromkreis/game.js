@@ -2,7 +2,7 @@
 // über dem gespeicherten Zustand, kein DOM. Medaillen sind reine
 // Funktionen der Zähler, nie Ereignis-Flags (GAMIFICATION.md).
 
-import { STUFEN, stufeIndex } from './data.js?v=7';
+import { STUFEN, stufeIndex } from './data.js?v=8';
 
 // XP pro abgeschlossener Runde: Grundwert plus Stufentiefe. Fehler
 // kosten nichts, Tempo zählt nie.

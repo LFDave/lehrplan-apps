@@ -6,6 +6,7 @@ export const STRINGS = {
     'app.title': 'Wordschatz',
     'app.tagline': 'Englische Wörter und Wendungen sammeln.',
     'app.source': 'Setzt die Kompetenz FS2E.5.B.1 des Lehrplans 21 um (Kanton Bern, Stand 01.08.2022). Die Stufen a bis d sind die offiziellen Kompetenzstufen. Englisch beginnt im 2. Zyklus.',
+    'nav.overview': 'Zur App-Übersicht',
     'home.stufen': 'Wähle deine Stufe',
     'home.level': 'Level {name}',
     'home.medals': '{n} Medaillen',

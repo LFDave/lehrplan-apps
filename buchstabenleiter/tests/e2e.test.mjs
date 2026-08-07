@@ -98,6 +98,24 @@ const QA = {
   "Du hörst «Fogel». Wo steht das Wort im Wörterbuch?": "unter V wie «Vogel»",
   "Das Wort klingt wie «Kor», geschrieben wird es «Chor». Wo steht es im Wörterbuch?": "unter C",
   "Ein Wort beginnt gesprochen mit «oi» wie in «Eule». Womit beginnt es geschrieben oft?": "mit Eu",
+  "Wie viele Silben hat «Ap-fel»?": "2",
+  "Wie viele Silben hat «To-ma-te»?": "3",
+  "Wie schreibst du den Anfang von «Sport»?": "sp",
+  "Wie schreibst du den Anfang von «Stern»?": "st",
+  "Du willst «ging» im Wörterbuch nachschlagen. Unter welchem Wort suchst du?": "unter «gehen»",
+  "Du willst «sang» im Wörterbuch nachschlagen. Unter welchem Wort suchst du?": "unter «singen»",
+  "Du willst «flog» im Wörterbuch nachschlagen. Unter welchem Wort suchst du?": "unter «fliegen»",
+  "In welcher Form stehen die Verben im Wörterbuch?": "in der Grundform",
+  "Warum schreibt man «Räume» mit äu?": "wegen des Stamms «Raum»",
+  "Am Ende von «Kind» hörst du ein t. Wie prüfst du die Schreibung?": "verlängern: die Kin-der",
+  "«viel Gutes» oder «viel gutes»: Was ist richtig?": "viel Gutes",
+  "«alles Liebe» oder «alles liebe»: Was ist richtig?": "alles Liebe",
+  "«etwas Wichtiges» oder «etwas wichtiges»: Was ist richtig?": "etwas Wichtiges",
+  "Warum schreibt man «etwas Schönes» gross?": "aus dem Adjektiv wird ein Nomen",
+  "Du hörst «Faze». Wo steht das Wort im Wörterbuch?": "unter V wie «Vase»",
+  "Du hörst «Kwark». Wo steht das Wort im Wörterbuch?": "unter Q wie «Quark»",
+  "Du hörst «fier» (die Zahl 4). Wo steht das Wort im Wörterbuch?": "unter V wie «vier»",
+  "Warum findest du «Vogel» nicht unter F?": "weil es mit V geschrieben wird",
 };
 
 function nachbar(expr) {
@@ -152,7 +170,7 @@ function chooseOption(expr, options) {
   for (const [file, text] of sources) {
     const refs = [...text.matchAll(/(?:href="[^"]+?|src="[^"]+?|from '\.\/[^']+?|url\('fonts\/[^']+?)(\?v=(\d+))?["')]/g)];
     for (const m of refs) {
-      if (m[0].includes("http") || m[0].includes('"#') || m[0].includes("${")) continue;
+      if (m[0].includes("http") || m[0].includes('"#') || m[0].includes("${") || m[0].includes("../")) continue;
       if (m[2]) versions.add(m[2]);
       else unversioned.push(`${file}: ${m[0]}`);
     }
@@ -163,10 +181,10 @@ function chooseOption(expr, options) {
 
 /* ── Data and copy sanity ─────────────────────────────────────────── */
 {
-  check("data: 8 Stufen cards (c split by topic)",
-    STUFEN.length === 8 && STUFEN.map((s) => s.code || s.id).join(",") === "a,b,c,c,d,e,f,g");
-  check("data: GA marks on b and d and f",
-    STUFEN.filter((s) => s.ga).map((s) => s.id).join(",") === "b,d,f");
+  check("data: 11 Stufen cards (b, c, d, g split by topic)",
+    STUFEN.length === 11 && STUFEN.map((s) => s.code || s.id).join(",") === "a,b,b,c,c,d,d,e,f,g,g");
+  check("data: GA marks on both b, both d and f",
+    STUFEN.filter((s) => s.ga).map((s) => s.id).join(",") === "b-abc,b-hoeren,d-nachschlagen,d-stammregel,f");
   const eszett = [];
   for (const [id, v] of Object.entries(STRINGS.de)) if (v.includes("ß")) eszett.push(id);
   for (const s of STUFEN) if ((s.title + s.desc).includes("ß")) eszett.push(s.id);
@@ -252,27 +270,41 @@ async function playRound(stufeId) {
 await page.goto(URL);
 await page.waitForSelector(".stufen-list");
 check("home: title renders", (await page.textContent("h1")).trim() === "Buchstabenleiter");
-check("home: all Stufen cards with GA badges",
-  await page.locator(".stufe").count() === 8 && await page.locator(".ga-badge").count() === 3);
+check("home: 11 Stufen cards with GA badges on both b, both d and f",
+  await page.locator(".stufe").count() === 11 && await page.locator(".ga-badge").count() === 5);
 check("home: split cards show the official letter",
-  (await page.textContent('[data-stufe="c-vokale"]')).includes("D.5.E.1.c")
-  && (await page.textContent('[data-stufe="c-gruppen"]')).includes("D.5.E.1.c"));
-check("home: competency code visible", (await page.textContent('[data-stufe="b"]')).includes("D.5.E.1.b"));
-check("home: Merkblatt link Stufen a und b",
-  await page.locator('.merkblatt-link[href="../merkheft/abc-tabelle.html"]').count() === 2);
+  (await page.textContent('[data-stufe="b-abc"]')).includes("D.5.E.1.b")
+  && (await page.textContent('[data-stufe="b-hoeren"]')).includes("D.5.E.1.b")
+  && (await page.textContent('[data-stufe="d-nachschlagen"]')).includes("D.5.E.1.d")
+  && (await page.textContent('[data-stufe="g-gross"]')).includes("D.5.E.1.g"));
+check("home: Merkblatt link on ABC cards",
+  await page.locator('.merkblatt-link[href="../merkheft/abc-tabelle.html"]').count() >= 2);
+check("home: back-to-overview link present",
+  await page.locator('.overview-link[href="../index.html"]').count() === 1);
 await page.screenshot({ path: join(SHOTS_DIR, "01-home.png"), fullPage: true });
 
-await playRound("b");
-check("round b: completion shows XP", (await page.textContent(".reward-xp")).includes(`+${roundXp("b", 8)} XP`));
-check("round b: GA medal for Zyklus 1", (await page.textContent(".done")).includes("Grundanspruch Zyklus 1"));
-check("round b: clean-run praise", (await page.textContent(".done-summary")).includes("Stark!"));
+await playRound("b-abc");
+check("round b-abc: completion shows XP", (await page.textContent(".reward-xp")).includes(`+${roundXp("b-abc", 8)} XP`));
+check("round b-abc: no GA medal yet (needs both b cards clean)",
+  !(await page.textContent(".done")).includes("Grundanspruch Zyklus 1"));
+check("round b-abc: clean-run praise", (await page.textContent(".done-summary")).includes("Stark!"));
 await page.screenshot({ path: join(SHOTS_DIR, "02-done.png"), fullPage: true });
 await page.click('[data-action="home"]');
 await page.waitForSelector(".stufen-list");
+await playRound("b-hoeren");
+check("round b-hoeren: GA medal once both b cards are clean",
+  (await page.textContent(".done")).includes("Grundanspruch Zyklus 1"));
+await page.click('[data-action="home"]');
+await page.waitForSelector(".stufen-list");
 
-await playRound("d");
-check("round d: completion shows XP", (await page.textContent(".reward-xp")).includes(`+${roundXp("d", 8)} XP`));
-check("round d: GA medal for Zyklus 2", (await page.textContent(".done")).includes("Grundanspruch Zyklus 2"));
+await playRound("d-nachschlagen");
+check("round d-nachschlagen: no GA medal yet (needs both d cards clean)",
+  !(await page.textContent(".done")).includes("Grundanspruch Zyklus 2"));
+await page.click('[data-action="home"]');
+await page.waitForSelector(".stufen-list");
+await playRound("d-stammregel");
+check("round d-stammregel: GA medal once both d cards are clean",
+  (await page.textContent(".done")).includes("Grundanspruch Zyklus 2"));
 await page.click('[data-action="home"]');
 await page.waitForSelector(".stufen-list");
 
@@ -284,7 +316,7 @@ await page.waitForSelector(".stufen-list");
 
 /* ── Persistence, mistake flow, reset ─────────────────────────────── */
 await page.waitForSelector(".stats-strip");
-const expectedXp = roundXp("b", 8) + roundXp("d", 8) + roundXp("f", 8);
+const expectedXp = roundXp("b-abc", 8) + roundXp("b-hoeren", 8) + roundXp("d-nachschlagen", 8) + roundXp("d-stammregel", 8) + roundXp("f", 8);
 check("home: stats strip shows accumulated XP", (await page.textContent(".stats-strip")).includes(`${expectedXp} XP`));
 await page.reload();
 await page.waitForSelector(".stats-strip");

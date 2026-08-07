@@ -6,6 +6,7 @@ export const STRINGS = {
     'app.title': 'Motbau',
     'app.tagline': 'Französische Formen bauen, Stufe für Stufe.',
     'app.source': 'Setzt die Kompetenz FS1F.5.D.1 des Lehrplans 21 um (Kanton Bern, Stand 01.08.2022). Die Stufen a bis d sind die offiziellen Kompetenzstufen. Sprechen und freies Schreiben sind als Erkennen und Einsetzen von Formen umgesetzt.',
+    'nav.overview': 'Zur App-Übersicht',
     'home.stufen': 'Wähle deine Stufe',
     'home.level': 'Level {name}',
     'home.medals': '{n} Medaillen',

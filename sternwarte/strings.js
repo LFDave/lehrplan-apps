@@ -6,6 +6,7 @@ export const STRINGS = {
     'app.title': 'Sternwarte',
     'app.tagline': 'Sonne, Mond, Planeten und Sterne verstehen.',
     'app.source': 'Setzt die Kompetenz NMG.4.5 des Lehrplans 21 um (Kanton Bern, Stand 01.08.2022). Die Stufen a bis f sind die offiziellen Kompetenzstufen. Beobachten am Himmel ist als Wissen über die Modelle umgesetzt.',
+    'nav.overview': 'Zur App-Übersicht',
     'home.stufen': 'Wähle deine Stufe',
     'home.level': 'Level {name}',
     'home.medals': '{n} Medaillen',

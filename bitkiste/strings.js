@@ -6,6 +6,7 @@ export const STRINGS = {
     'app.title': 'Bitkiste',
     'app.tagline': 'Daten ordnen, verschlüsseln und verstehen.',
     'app.source': 'Setzt die Kompetenz MI.2.1 des Lehrplans 21 um (Kanton Bern, Stand 01.08.2022). Die Stufen a bis k sind die offiziellen Kompetenzstufen. Praktisches Arbeiten am Gerät ist als Erkennen und Entscheiden umgesetzt.',
+    'nav.overview': 'Zur App-Übersicht',
     'home.stufen': 'Wähle deine Stufe',
     'home.level': 'Level {name}',
     'home.medals': '{n} Medaillen',

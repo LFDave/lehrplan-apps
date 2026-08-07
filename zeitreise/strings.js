@@ -6,6 +6,7 @@ export const STRINGS = {
     'app.title': 'Zeitreise',
     'app.tagline': 'Von Wochentagen bis zu den Epochen der Geschichte.',
     'app.source': 'Setzt die Kompetenz NMG.9.1 des Lehrplans 21 um (Kanton Bern, Stand 01.08.2022). Die Stufen a bis h sind die offiziellen Kompetenzstufen. Zeit erleben und messen ist als Einordnen und Vergleichen umgesetzt.',
+    'nav.overview': 'Zur App-Übersicht',
     'home.stufen': 'Wähle deine Stufe',
     'home.level': 'Level {name}',
     'home.medals': '{n} Medaillen',

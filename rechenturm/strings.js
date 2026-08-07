@@ -6,6 +6,7 @@ export const STRINGS = {
     'app.title': 'Rechenturm',
     'app.tagline': 'Plus, minus, mal und mehr. Stufe für Stufe den Turm hinauf.',
     'app.source': 'Setzt die Kompetenz MA.1.A.3 des Lehrplans 21 um (Kanton Bern). Die Stufen a bis j sind die offiziellen Kompetenzstufen. Rechner-Inhalte sind als Kopfrechnen mit einfachen Zahlen umgesetzt.',
+    'nav.overview': 'Zur App-Übersicht',
     'home.stufen': 'Wähle deine Stufe',
     'home.level': 'Level {name}',
     'home.medals': '{n} Medaillen',

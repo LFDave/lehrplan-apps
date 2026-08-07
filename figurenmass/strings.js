@@ -6,6 +6,7 @@ export const STRINGS = {
     'app.title': 'Figurenmass',
     'app.tagline': 'Umfang, Fläche und Volumen, vom Raster bis zum Kreis.',
     'app.source': 'Setzt die Kompetenz MA.2.A.3 des Lehrplans 21 um (Kanton Bern). Die Stufen a bis k sind die offiziellen Kompetenzstufen. Gemessen wird am Bildschirm-Raster.',
+    'nav.overview': 'Zur App-Übersicht',
     'home.stufen': 'Wähle deine Stufe',
     'home.level': 'Level {name}',
     'home.medals': '{n} Medaillen',

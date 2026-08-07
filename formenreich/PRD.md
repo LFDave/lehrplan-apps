@@ -85,7 +85,7 @@ Einsprachig Deutsch (Schweizer Standarddeutsch), Strings in
 `strings.js`. Tokens aus DESIGN.md, Akzentfamilie **violet**,
 Atkinson Hyperlegible selbst gehostet, Lucide-Icons inline,
 SVG-Figuren nutzen die Farb-Tokens über CSS-Klassen, Cache-Busting
-`?v=2`.
+`?v=3`.
 
 ## Tests
 

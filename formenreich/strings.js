@@ -6,6 +6,7 @@ export const STRINGS = {
     'app.title': 'Formenreich',
     'app.tagline': 'Formen, Körper und ihre Namen entdecken.',
     'app.source': 'Setzt die Kompetenz MA.2.A.1 des Lehrplans 21 um (Kanton Bern). Die Stufen a bis l sind die offiziellen Kompetenzstufen. Zeichnen ist als Erkennen umgesetzt.',
+    'nav.overview': 'Zur App-Übersicht',
     'home.stufen': 'Wähle deine Stufe',
     'home.level': 'Level {name}',
     'home.medals': '{n} Medaillen',

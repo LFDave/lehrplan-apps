@@ -82,7 +82,7 @@ prüfen sich bei erwarteter Länge selbst und zusätzlich mit Enter.
 Einsprachig Deutsch (Schweizer Standarddeutsch), Strings in
 `strings.js`. Tokens aus DESIGN.md, Akzentfamilie **blue**, Atkinson
 Hyperlegible selbst gehostet, Lucide-Icons inline, SVG-Figuren nutzen
-die Farb-Tokens über CSS-Klassen, Cache-Busting `?v=3`.
+die Farb-Tokens über CSS-Klassen, Cache-Busting `?v=4`.
 
 **Gesplittete Stufe j.** Die offizielle Stufe j mischt
 Körperberechnung und Winkel; die App zeigt zwei Karten:

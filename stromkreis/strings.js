@@ -6,6 +6,7 @@ export const STRINGS = {
     'app.title': 'Stromkreis',
     'app.tagline': 'Elektrik verstehen, vom Lämpchen bis zum Ohmschen Gesetz.',
     'app.source': 'Setzt die Kompetenz NT.5.2 des Lehrplans 21 um (Kanton Bern, Stand 01.08.2022). Die Stufen a bis e sind die offiziellen Kompetenzstufen. Experimente am Stromkreis sind als Regeln, Rechnungen und Vorhersagen umgesetzt.',
+    'nav.overview': 'Zur App-Übersicht',
     'home.stufen': 'Wähle deine Stufe',
     'home.level': 'Level {name}',
     'home.medals': '{n} Medaillen',

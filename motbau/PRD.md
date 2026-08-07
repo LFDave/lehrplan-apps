@@ -62,7 +62,7 @@ role="status"-Region.
 UI einsprachig Deutsch (Schweizer Standarddeutsch), Lerninhalt
 Französisch. Strings in `strings.js`. Tokens aus DESIGN.md,
 Akzentfamilie **coral**, Atkinson Hyperlegible selbst gehostet,
-Lucide-Icons inline, Cache-Busting `?v=3`.
+Lucide-Icons inline, Cache-Busting `?v=4`.
 
 ## Merkheft-Verbindung und Deep-Links
 

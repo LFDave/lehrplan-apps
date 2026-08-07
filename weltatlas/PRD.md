@@ -56,7 +56,7 @@ role="status"-Region.
 Einsprachig Deutsch (Schweizer Standarddeutsch), Strings in
 `strings.js`. Tokens aus DESIGN.md, Akzentfamilie **blue**,
 Atkinson Hyperlegible selbst gehostet, Lucide-Icons inline,
-Cache-Busting `?v=6`.
+Cache-Busting `?v=7`.
 
 ## Merkheft-Verbindung
 

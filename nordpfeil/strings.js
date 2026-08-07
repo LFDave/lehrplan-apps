@@ -6,6 +6,7 @@ export const STRINGS = {
     'app.title': 'Nordpfeil',
     'app.tagline': 'Himmelsrichtungen, Karten und sichere Wege.',
     'app.source': 'Setzt die Kompetenz NMG.8.5 des Lehrplans 21 um (Kanton Bern, Stand 01.08.2022). Die Stufen a bis i sind die offiziellen Kompetenzstufen. Unterwegssein im Gelände ist als Karten- und Richtungswissen umgesetzt.',
+    'nav.overview': 'Zur App-Übersicht',
     'home.stufen': 'Wähle deine Stufe',
     'home.level': 'Level {name}',
     'home.medals': '{n} Medaillen',

@@ -6,6 +6,7 @@ export const STRINGS = {
     'app.title': 'Zahlensprung',
     'app.tagline': 'Zählen, ordnen und überschlagen. Stufe für Stufe, wie in der Schule.',
     'app.source': 'Setzt die Kompetenz MA.1.A.2 des Lehrplans 21 um (Kanton Bern). Die Stufen a bis j sind die offiziellen Kompetenzstufen.',
+    'nav.overview': 'Zur App-Übersicht',
     'home.stufen': 'Wähle deine Stufe',
     'home.level': 'Level {name}',
     'home.medals': '{n} Medaillen',

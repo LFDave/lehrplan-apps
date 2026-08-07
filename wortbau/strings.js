@@ -6,6 +6,7 @@ export const STRINGS = {
     'app.title': 'Wortbau',
     'app.tagline': 'Wortarten, Zeitformen und Satzglieder erkennen.',
     'app.source': 'Setzt die Kompetenz D.5.D.1 des Lehrplans 21 um (Kanton Bern, Stand 01.08.2022). Die Stufen a bis g sind die offiziellen Kompetenzstufen.',
+    'nav.overview': 'Zur App-Übersicht',
     'home.stufen': 'Wähle deine Stufe',
     'home.level': 'Level {name}',
     'home.medals': '{n} Medaillen',

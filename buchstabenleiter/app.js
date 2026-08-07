@@ -2,11 +2,11 @@
 // Abschluss, Medaillen. Eine Runde hat 8 Aufgaben; ausgewertet wird
 // immer die ganze Antwort, nie einzelne Zeichen.
 
-import { STUFEN, COMPETENCY, stufeById, nextStufe, cycleLabel } from './data.js?v=4';
-import { genRound } from './gen.js?v=4';
-import { roundXp, levelFor, nextLevel, earnedMedals, suggestsNextStufe, MEDALS } from './game.js?v=4';
-import { t } from './strings.js?v=4';
-import { icon } from './icons.js?v=4';
+import { STUFEN, COMPETENCY, stufeById, nextStufe, cycleLabel } from './data.js?v=5';
+import { genRound } from './gen.js?v=5';
+import { roundXp, levelFor, nextLevel, earnedMedals, suggestsNextStufe, MEDALS } from './game.js?v=5';
+import { t } from './strings.js?v=5';
+import { icon } from './icons.js?v=5';
 
 const STORE = 'buchstabenleiter.progress';
 const ROUND_LENGTH = 8;
@@ -116,6 +116,7 @@ function renderHome() {
       `}
       <p class="storage-note">${t('storage.note')}</p>
       <p class="source-note">${t('app.source')}</p>
+      <a class="overview-link" href="../index.html"><svg class="overview-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>${t('nav.overview')}</a>
     </footer>
   `;
 
