@@ -2,11 +2,11 @@
 // Abschluss, Medaillen. Eine Runde hat 8 Aufgaben; ausgewertet wird
 // immer die ganze Antwort, nie einzelne Zeichen.
 
-import { STUFEN, COMPETENCY, stufeById, nextStufe, cycleLabel } from './data.js?v=5';
-import { genRound } from './gen.js?v=5';
-import { roundXp, levelFor, nextLevel, earnedMedals, suggestsNextStufe, MEDALS } from './game.js?v=5';
-import { t } from './strings.js?v=5';
-import { icon } from './icons.js?v=5';
+import { STUFEN, COMPETENCY, stufeById, nextStufe, cycleLabel } from './data.js?v=6';
+import { genRound } from './gen.js?v=6';
+import { roundXp, levelFor, nextLevel, earnedMedals, suggestsNextStufe, MEDALS } from './game.js?v=6';
+import { t } from './strings.js?v=6';
+import { icon } from './icons.js?v=6';
 
 const STORE = 'sternwarte.progress';
 const ROUND_LENGTH = 8;

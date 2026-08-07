@@ -330,6 +330,20 @@ Infrastructure, quality, and process — independent of new apps.
     Still open for later validation (borderline, currently judged
     coherent under one meta-concept): Masswerk g, Grössenwissen c,
     Zeitreise b, Zahlenwissen g, Wertepfad i.
+15. **Answer-button affordance — quick-fix shipped, design pass
+    remains.** The multiple-choice option tiles (`.choice`) read as
+    flat panels rather than tappable buttons on the dark surface
+    (user feedback on Buchstabenleiter). Quick-fix applied family-
+    wide (2026-08-06): stronger border (`--color-border-strong`,
+    1.5px) plus a subtle bottom shadow on all 31 apps' `.choice`
+    tiles, so they clearly read as buttons; identical edit, caches
+    bumped, every suite green. The proper pass belongs with item 13
+    (DESIGN.md has no button/interactive tokens): define a token-
+    only `choice`/`button` group — resting, hover, active/pressed,
+    selected, correct/wrong states — and roll it out consistently,
+    replacing the per-app hand-tuned values. Consider a faint
+    accent tint or a pressed-depth animation (transform only) for
+    the selected state, keeping the calm dark system.
 
 ## Definition of 100%
 

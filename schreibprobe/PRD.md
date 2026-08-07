@@ -62,7 +62,7 @@ role="status"-Region.
 Einsprachig Deutsch (Schweizer Standarddeutsch), Strings in
 `strings.js`. Tokens aus DESIGN.md, Akzentfamilie **coral**,
 Atkinson Hyperlegible selbst gehostet, Lucide-Icons inline,
-Cache-Busting `?v=2`.
+Cache-Busting `?v=3`.
 
 **Gesplittete Stufe c.** Die offizielle Stufe c mischt
 Rechtschreibung (ie, ä) und Zeichensetzung (Kommas); die App zeigt

@@ -121,7 +121,7 @@ stehen als "Zahl Einheit", das Ziel als "? Einheit".
   UI-Texte in `strings.js` mit stabilen IDs. Keine
   Einstellungen-Ansicht, solange es nichts zu konfigurieren gibt.
 - Tokens aus DESIGN.md, Akzentfamilie **sage**, Atkinson Hyperlegible
-  selbst gehostet, Lucide-Icons inline, Cache-Busting `?v=5`.
+  selbst gehostet, Lucide-Icons inline, Cache-Busting `?v=6`.
 - Schweizer Formate: Tausendertrennung mit Apostroph (2'000),
   Dezimalpunkt, Franken und Rappen, 24-Stunden-Uhrzeiten (09:40).
 

@@ -120,7 +120,7 @@ begrenzen die Operanden so, dass die Summe im Raum bleibt.
   UI-Texte in `strings.js` mit stabilen IDs. Keine
   Einstellungen-Ansicht, solange es nichts zu konfigurieren gibt.
 - Tokens aus DESIGN.md, Akzentfamilie **coral**, Atkinson Hyperlegible
-  selbst gehostet, Lucide-Icons inline, Cache-Busting `?v=1`.
+  selbst gehostet, Lucide-Icons inline, Cache-Busting `?v=2`.
 - Schweizer Zahlformat: Tausendertrennung mit Apostroph (320'000),
   Dezimalpunkt wie im Lehrplan. Potenzen als Unicode-Superscripts.
 

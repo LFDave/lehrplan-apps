@@ -2,11 +2,11 @@
 // Abschluss, Medaillen. Eine Runde hat 8 Aufgaben; ausgewertet wird
 // immer die ganze Antwort, nie einzelne Zeichen.
 
-import { STUFEN, COMPETENCY, stufeById, nextStufe, cycleLabel } from './data.js?v=3';
-import { genRound } from './gen.js?v=3';
-import { roundXp, levelFor, nextLevel, earnedMedals, suggestsNextStufe, MEDALS } from './game.js?v=3';
-import { t } from './strings.js?v=3';
-import { icon } from './icons.js?v=3';
+import { STUFEN, COMPETENCY, stufeById, nextStufe, cycleLabel } from './data.js?v=4';
+import { genRound } from './gen.js?v=4';
+import { roundXp, levelFor, nextLevel, earnedMedals, suggestsNextStufe, MEDALS } from './game.js?v=4';
+import { t } from './strings.js?v=4';
+import { icon } from './icons.js?v=4';
 
 const STORE = 'buchstabenleiter.progress';
 const ROUND_LENGTH = 8;

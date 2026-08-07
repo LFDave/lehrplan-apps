@@ -2,11 +2,11 @@
 // Abschluss, Medaillen. Eine Runde hat 8 Aufgaben; ausgewertet wird
 // immer die ganze Antwort, nie einzelne Zeichen.
 
-import { STUFEN, COMPETENCY, stufeById, nextStufe, cycleLabel } from './data.js?v=1';
-import { genRound } from './gen.js?v=1';
-import { roundXp, levelFor, nextLevel, earnedMedals, cleanStreak, suggestsNextStufe } from './game.js?v=1';
-import { t } from './strings.js?v=1';
-import { icon } from './icons.js?v=1';
+import { STUFEN, COMPETENCY, stufeById, nextStufe, cycleLabel } from './data.js?v=2';
+import { genRound } from './gen.js?v=2';
+import { roundXp, levelFor, nextLevel, earnedMedals, cleanStreak, suggestsNextStufe } from './game.js?v=2';
+import { t } from './strings.js?v=2';
+import { icon } from './icons.js?v=2';
 
 const STORE = 'zahlensprung.progress';
 const ROUND_LENGTH = 8;
@@ -406,7 +406,7 @@ function renderDone() {
 function renderMedals() {
   const p = state.progress;
   const earned = new Set(earnedMedals(p).map((m) => m.key));
-  import('./game.js?v=1').then(({ MEDALS }) => {
+  import('./game.js?v=2').then(({ MEDALS }) => {
     app.innerHTML = `
       <header class="subject-header">
         <a class="btn secondary back-btn" href="#">${icon('arrow-left')}${t('medals.back')}</a>

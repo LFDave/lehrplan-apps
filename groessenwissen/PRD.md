@@ -77,7 +77,7 @@ und zusätzlich mit Enter.
 Einsprachig Deutsch (Schweizer Standarddeutsch), Strings in
 `strings.js`. Tokens aus DESIGN.md, Akzentfamilie **amber**, Atkinson
 Hyperlegible selbst gehostet, Lucide-Icons inline, Cache-Busting
-`?v=5`.
+`?v=6`.
 
 ## Merkheft-Verbindung
 

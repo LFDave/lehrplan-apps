@@ -79,7 +79,7 @@ angehängtes "= ?".
 Einsprachig Deutsch (Schweizer Standarddeutsch), Strings in
 `strings.js`. Tokens aus DESIGN.md, Akzentfamilie **sage**, Atkinson
 Hyperlegible selbst gehostet, Lucide-Icons inline, Cache-Busting
-`?v=1`.
+`?v=2`.
 
 ## Tests
 

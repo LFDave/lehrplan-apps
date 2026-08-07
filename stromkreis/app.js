@@ -2,11 +2,11 @@
 // Abschluss, Medaillen. Eine Runde hat 8 Aufgaben; ausgewertet wird
 // immer die ganze Antwort, nie einzelne Zeichen.
 
-import { STUFEN, COMPETENCY, stufeById, nextStufe, cycleLabel } from './data.js?v=6';
-import { genRound } from './gen.js?v=6';
-import { roundXp, levelFor, nextLevel, earnedMedals, suggestsNextStufe, MEDALS } from './game.js?v=6';
-import { t } from './strings.js?v=6';
-import { icon } from './icons.js?v=6';
+import { STUFEN, COMPETENCY, stufeById, nextStufe, cycleLabel } from './data.js?v=7';
+import { genRound } from './gen.js?v=7';
+import { roundXp, levelFor, nextLevel, earnedMedals, suggestsNextStufe, MEDALS } from './game.js?v=7';
+import { t } from './strings.js?v=7';
+import { icon } from './icons.js?v=7';
 
 const STORE = 'stromkreis.progress';
 const ROUND_LENGTH = 8;

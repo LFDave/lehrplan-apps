@@ -85,7 +85,7 @@ Einsprachig Deutsch (Schweizer Standarddeutsch), Strings in
 `strings.js`. Tokens aus DESIGN.md, Akzentfamilie **coral**, Atkinson
 Hyperlegible selbst gehostet, Lucide-Icons inline; im Raster ist das
 Original gefüllt (Akzent), Bild und Kandidaten sind umrandet, die
-Spiegelachse gestrichelt. Cache-Busting `?v=1`.
+Spiegelachse gestrichelt. Cache-Busting `?v=2`.
 
 ## Tests
 
