@@ -16,24 +16,28 @@ export const STUFEN = [
     title: 'Wörter abschreiben',
     desc: 'Schreibe französische Wörter genau ab.',
     kinds: ['abschreiben'],
+    merkblatt: { id: 'franzoesisch-schreiben', name: 'Richtig schreiben' },
   },
   {
     id: 'b', cycle: 2, ga: true,
     title: 'Sätze abschreiben',
     desc: 'Schreibe kurze Sätze ab und setze Satzzeichen.',
     kinds: ['satzschrift'],
+    merkblatt: { id: 'franzoesisch-schreiben', name: 'Richtig schreiben' },
   },
   {
     id: 'c', cycle: 3, ga: true,
     title: 'Häufige Formen',
     desc: "Schreibe häufige Formen wie j'ai und c'est korrekt.",
     kinds: ['hochform'],
+    merkblatt: { id: 'franzoesisch-schreiben', name: 'Richtig schreiben' },
   },
   {
     id: 'd', cycle: 3, ga: false,
     title: 'Fehler finden',
     desc: 'Finde Schreibfehler und wähle die richtigen Accents.',
     kinds: ['fehlerjagd'],
+    merkblatt: { id: 'franzoesisch-schreiben', name: 'Richtig schreiben' },
   },
 ];
 

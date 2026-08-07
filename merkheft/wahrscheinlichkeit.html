@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sicher oder unmöglich · Merkheft</title>
+  <meta name="description" content="Merkblatt: Ereignisse als sicher, möglich oder unmöglich einordnen, mit der Strichliste zählen und die relative Häufigkeit berechnen.">
+  <link rel="icon" href="favicon.svg?v=6" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=6">
+</head>
+<body>
+<main id="app">
+  <nav class="page-nav">
+    <a class="back" href="index.html">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+      Alle Merkblätter
+    </a>
+  </nav>
+  <article class="blatt-page">
+    <header>
+      <p class="blatt-gruppe">Daten und Funktionen</p>
+      <h1>Sicher oder unmöglich</h1>
+    </header>
+    <p class="intro">Manche Dinge passieren ganz bestimmt, andere passieren
+    nie, und vieles dazwischen kann passieren. Mit den Wörtern sicher,
+    möglich und unmöglich ordnest du solche Ereignisse ein.</p>
+    <p class="intro">Der Würfel hilft beim Überlegen: Er zeigt immer eine
+    Zahl von 1 bis 6. Dass er eine Zahl von 1 bis 6 zeigt, ist sicher. Eine
+    6 ist möglich. Eine 7 ist unmöglich.</p>
+    <p class="intro">Wie oft etwas wirklich vorkommt, findest du durch
+    Ausprobieren heraus: Du zählst mit einer Strichliste und rechnest
+    daraus die relative Häufigkeit aus.</p>
+    <ul class="steps">
+      <li><strong>Sicher</strong> heisst: Es passiert immer. Morgen geht
+      die Sonne auf.</li>
+      <li><strong>Möglich</strong> heisst: Es kann passieren, muss aber
+      nicht. Beim Würfeln kommt eine 6.</li>
+      <li><strong>Unmöglich</strong> heisst: Es passiert nie. Der Würfel
+      zeigt eine 7.</li>
+      <li>Zähle mit der <strong>Strichliste</strong>, wie oft etwas
+      vorkommt: vier Striche, der fünfte quer, das ist eine
+      Fünfergruppe.</li>
+      <li>Die <strong>relative Häufigkeit</strong> ist die Anzahl Treffer
+      geteilt durch alle Versuche: 5 Treffer bei 20 Würfen sind
+      5 : 20 = 0.25, also 25 %.</li>
+    </ul>
+    <div class="illu-stage">
+      <svg viewBox="0 0 420 512" class="illu ig" role="img" id="ig-wahrscheinlichkeit"
+           aria-label="Infografik Zufall: Drei Felder zeigen Würfel. Sicher: Der Würfel zeigt eine Zahl von 1 bis 6, das passiert immer. Möglich: Er zeigt eine 6, das kann passieren. Unmöglich: Er zeigt eine 7, das passiert nie. Darunter eine Strichliste: Bei 20 Würfen kommt fünfmal eine 6, vier Striche und ein Querstrich sind eine Fünfergruppe. Die relative Häufigkeit: 5 von 20, also 5 geteilt durch 20, ergibt 0.25, das sind 25 Prozent">
+        <text x="210" y="26" text-anchor="middle" class="ig-title">Sicher, möglich, unmöglich</text>
+        <text x="210" y="42" text-anchor="middle" class="ig-sub">Ein Würfel zeigt immer eine Zahl von 1 bis 6.</text>
+
+        <g>
+          <rect x="20" y="58" width="120" height="160" rx="8" class="ig-panel"/>
+          <text x="80" y="84" text-anchor="middle" class="ig-h">sicher</text>
+          <line x1="36" y1="96" x2="124" y2="96" class="ig-tick"/>
+          <rect x="60" y="110" width="40" height="40" rx="6" class="ig-box"/>
+          <circle cx="70" cy="120" r="3.5" class="ig-dot"/>
+          <circle cx="80" cy="130" r="3.5" class="ig-dot"/>
+          <circle cx="90" cy="140" r="3.5" class="ig-dot"/>
+          <text x="80" y="170" text-anchor="middle" class="ig-word">zeigt eine Zahl</text>
+          <text x="80" y="184" text-anchor="middle" class="ig-word">von 1 bis 6</text>
+          <text x="80" y="204" text-anchor="middle" class="ig-factor">passiert immer</text>
+        </g>
+
+        <g>
+          <rect x="150" y="58" width="120" height="160" rx="8" class="ig-panel"/>
+          <text x="210" y="84" text-anchor="middle" class="ig-h">möglich</text>
+          <line x1="166" y1="96" x2="254" y2="96" class="ig-tick"/>
+          <rect x="190" y="110" width="40" height="40" rx="6" class="ig-box"/>
+          <circle cx="202" cy="120" r="3.5" class="ig-dot"/>
+          <circle cx="202" cy="130" r="3.5" class="ig-dot"/>
+          <circle cx="202" cy="140" r="3.5" class="ig-dot"/>
+          <circle cx="218" cy="120" r="3.5" class="ig-dot"/>
+          <circle cx="218" cy="130" r="3.5" class="ig-dot"/>
+          <circle cx="218" cy="140" r="3.5" class="ig-dot"/>
+          <text x="210" y="170" text-anchor="middle" class="ig-word">zeigt eine 6</text>
+          <text x="210" y="204" text-anchor="middle" class="ig-factor">kann passieren</text>
+        </g>
+
+        <g>
+          <rect x="280" y="58" width="120" height="160" rx="8" class="ig-panel"/>
+          <text x="340" y="84" text-anchor="middle" class="ig-h">unmöglich</text>
+          <line x1="296" y1="96" x2="384" y2="96" class="ig-tick"/>
+          <rect x="320" y="110" width="40" height="40" rx="6" class="ig-box"/>
+          <text x="340" y="136" text-anchor="middle" class="ig-unit">7</text>
+          <text x="340" y="170" text-anchor="middle" class="ig-word">zeigt eine 7</text>
+          <text x="340" y="204" text-anchor="middle" class="ig-factor">passiert nie</text>
+        </g>
+
+        <text x="20" y="248" class="ig-h">Mit der Strichliste zählen</text>
+        <text x="20" y="268" class="ig-word">Du würfelst 20 Mal und machst für jede 6 einen Strich.</text>
+        <text x="20" y="296" class="ig-word">Sechser</text>
+        <line x1="90" y1="280" x2="90" y2="302" class="ig-arrow"/>
+        <line x1="102" y1="280" x2="102" y2="302" class="ig-arrow"/>
+        <line x1="114" y1="280" x2="114" y2="302" class="ig-arrow"/>
+        <line x1="126" y1="280" x2="126" y2="302" class="ig-arrow"/>
+        <line x1="84" y1="300" x2="132" y2="282" class="ig-arrow"/>
+        <text x="150" y="296" class="ig-unit">= 5 Treffer</text>
+        <text x="20" y="326" class="ig-word">Vier Striche, der fünfte quer: eine Fünfergruppe.</text>
+
+        <text x="20" y="356" class="ig-h">Die relative Häufigkeit</text>
+        <rect x="40" y="370" width="110" height="32" rx="6" class="ig-box"/>
+        <text x="95" y="391" text-anchor="middle" class="ig-unit">5 von 20</text>
+        <text x="95" y="418" text-anchor="middle" class="ig-word">Treffer von allen Würfen</text>
+        <line x1="160" y1="386" x2="244" y2="386" class="ig-arrow"/>
+        <path d="M 244 382 L 252 386 L 244 390 Z" class="ig-arrowhead"/>
+        <text x="206" y="378" text-anchor="middle" class="ig-factor">5 : 20 = 0.25</text>
+        <rect x="270" y="370" width="110" height="32" rx="6" class="ig-box"/>
+        <text x="325" y="391" text-anchor="middle" class="ig-unit">25 %</text>
+        <text x="325" y="418" text-anchor="middle" class="ig-word">relative Häufigkeit</text>
+
+        <text x="20" y="452" class="ig-h">Beispiele</text>
+        <text x="20" y="474" class="ig-ex">Von 20 Würfen sind 5 Treffer: 25 %</text>
+        <text x="20" y="496" class="ig-ex">Von 50 Würfen sind 10 Treffer: 20 %</text>
+      </svg>
+    </div>
+    <h2 class="section-label">Kurz gemerkt</h2>
+    <dl class="fakten">
+      <div><dt>Drei Wörter</dt><dd>sicher passiert immer, möglich kann passieren, unmöglich passiert nie</dd></div>
+      <div><dt>Strichliste</dt><dd>vier Striche und ein Querstrich sind eine Fünfergruppe</dd></div>
+      <div><dt>Relative Häufigkeit</dt><dd>Treffer geteilt durch alle Versuche: 5 von 20 sind 25 %</dd></div>
+    </dl>
+    <h2 class="section-label">Dazu üben</h2>
+    <ul class="ueben-list">
+      <li><a class="ueben-link" href="../groessenwissen/?stufe=g"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Grössenwissen</span><span class="ueben-meta">Stufe g · Sicher oder unmöglich</span></a></li>
+      <li><a class="ueben-link" href="../groessenwissen/?stufe=k-haeufigkeit"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Grössenwissen</span><span class="ueben-meta">Stufe k · Häufigkeit</span></a></li>
+    </ul>
+    <p class="code-line">Lehrplan 21: MA.3.A.1.g, MA.3.A.1.k</p>
+  </article>
+</main>
+</body>
+</html>

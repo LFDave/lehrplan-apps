@@ -15,6 +15,7 @@ export const STUFEN = [
     title: 'Erste Bausteine',
     desc: 'Nutze a und an, die Mehrzahl und erste Wendungen.',
     kinds: ['baustein'],
+    merkblatt: { id: 'englisch-saetze', name: 'Sätze bauen' },
   },
   {
     id: 'b', cycle: [2, 3], ga: false,
@@ -28,12 +29,14 @@ export const STUFEN = [
     title: 'Sätze und Ausnahmen',
     desc: 'Nutze die he-Form, besondere Mehrzahl und Präpositionen.',
     kinds: ['satzform'],
+    merkblatt: { id: 'englisch-saetze', name: 'Sätze bauen' },
   },
   {
     id: 'd', cycle: 3, ga: false,
     title: 'Feine Formen',
     desc: 'Verneine Sätze, nutze can und must, this und these.',
     kinds: ['feinform'],
+    merkblatt: { id: 'englisch-saetze', name: 'Sätze bauen' },
   },
 ];
 

@@ -279,8 +279,10 @@ Infrastructure, quality, and process — independent of new apps.
     measuring-tape graphic) for kid testing, linked from Masswerk
     b/c/d and Grössenwissen b/c. Print pagination fixed after a
     real printed-PDF test (sections no longer split across page
-    breaks). Remaining: family feedback, then one infographic per
-    existing and future Merkblatt using the same `.ig-*` system.
+    breaks). Wave 3 (2026-08-07) completed the scale-out: every
+    Merkblatt now carries its own `.ig-*` infographic or interactive
+    model, and coverage is total (94 Merkblätter, every Stufe of
+    every app linked). Remaining: family feedback.
 13. **Link-chip aesthetics polish.** The cross-links are now clearly
     recognizable (chips with icon, underline, border): the
     "Merkblatt: …" links in the six apps and the "Dazu üben" links
@@ -333,7 +335,13 @@ Infrastructure, quality, and process — independent of new apps.
     of the official Stufe; the badge shows on all its cards.
     Still open for later validation (borderline, currently judged
     coherent under one meta-concept): Masswerk g, Grössenwissen c,
-    Zeitreise b, Zahlenwissen g, Wertepfad i.
+    Zeitreise b, Zahlenwissen g, Wertepfad i. Noted 2026-08-07 while
+    mapping full Merkblatt coverage (each currently links the
+    dominant concept's Merkblatt): Rechenturm i (negative Zahlen /
+    Brüche / Potenzen), Wertepfad h (Funktionswerte / Massstab),
+    Grössenwissen j (Währungen / Hektaren), Schreibprobe b (sp-st /
+    Satzzeichen), Wortbau d (Pronomen-Partikeln / Fälle),
+    Formenreich l (Kreis / Tetraeder).
 15. **Answer-button affordance — quick-fix shipped, design pass
     remains.** The multiple-choice option tiles (`.choice`) read as
     flat panels rather than tappable buttons on the dark surface

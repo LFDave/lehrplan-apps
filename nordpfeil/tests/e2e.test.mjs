@@ -282,7 +282,9 @@ check("home: Massstab Merkblatt on e-massstab and f",
 check("home: Höhenkurven Merkblatt on h-karte",
   await page.locator('.merkblatt-link[href="../merkheft/hoehenkurven.html"]').count() === 1);
 check("home: Himmelsrichtungen Merkblatt on h-richtungen",
-  await page.locator('.merkblatt-link[href="../merkheft/himmelsrichtungen.html"]').count() === 1);
+  await page.locator('.merkblatt-link[href="../merkheft/himmelsrichtungen.html"]').count() === 2);
+check("home: every Stufe links a Merkblatt",
+  (await page.locator(".merkblatt-link").count()) === (await page.locator(".stufe").count()));
 await page.screenshot({ path: join(SHOTS_DIR, "01-home.png"), fullPage: true });
 
 await playRound("c");

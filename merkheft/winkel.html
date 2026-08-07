@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Die Winkel · Merkheft</title>
+  <meta name="description" content="Merkblatt: Die Winkelarten von spitz bis gestreckt, die Winkelsumme im Dreieck und der Satz des Thales, mit Beispielen zum Rechnen.">
+  <link rel="icon" href="favicon.svg?v=6" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=6">
+</head>
+<body>
+<main id="app">
+  <nav class="page-nav">
+    <a class="back" href="index.html">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+      Alle Merkblätter
+    </a>
+  </nav>
+  <article class="blatt-page">
+    <header>
+      <p class="blatt-gruppe">Form und Raum</p>
+      <h1>Die Winkel</h1>
+    </header>
+    <p class="intro">Wo zwei Strahlen vom gleichen Punkt ausgehen, entsteht
+    ein Winkel. Seine Grösse misst man in Grad, das Zeichen dafür ist °.
+    Eine ganze Drehung hat 360°, eine halbe Drehung 180°, eine
+    Vierteldrehung 90°.</p>
+    <p class="intro">Je nach Grösse bekommt ein Winkel einen Namen: spitz,
+    recht, stumpf oder gestreckt. Rechte Winkel siehst du überall, zum
+    Beispiel in den Ecken von einem Blatt Papier.</p>
+    <p class="intro">In jedem Dreieck geben die drei Winkel zusammen genau
+    180°. Wenn du zwei Winkel kennst, kannst du den dritten darum
+    ausrechnen.</p>
+    <ul class="steps">
+      <li>Ein <strong>spitzer</strong> Winkel ist kleiner als 90°.</li>
+      <li>Ein <strong>rechter</strong> Winkel misst genau 90°. In der
+      Zeichnung markiert ihn ein kleines Quadrat.</li>
+      <li>Ein <strong>stumpfer</strong> Winkel liegt zwischen 90° und 180°.
+      Ein <strong>gestreckter</strong> Winkel misst genau 180°, seine
+      Schenkel bilden eine Gerade.</li>
+      <li>Die <strong>Winkelsumme</strong> im Dreieck ist 180°, im Viereck
+      360°. Der dritte Winkel im Dreieck ist 180° minus die zwei bekannten
+      Winkel.</li>
+      <li><strong>Satz des Thales</strong>: Liegt die Spitze eines Dreiecks
+      auf dem Halbkreis über dem Durchmesser, dann ist der Winkel an der
+      Spitze immer recht, also 90°.</li>
+    </ul>
+    <div class="illu-stage">
+      <svg viewBox="0 0 420 540" class="illu ig" role="img" id="ig-winkel"
+           aria-label="Infografik Winkel: Vier Bilder zeigen die Winkelarten: spitz unter 90 Grad, recht genau 90 Grad, stumpf zwischen 90 und 180 Grad, gestreckt genau 180 Grad. Darunter ein Dreieck mit den Winkeln 50, 60 und 70 Grad, die Winkelsumme im Dreieck ist immer 180 Grad. Darunter der Satz des Thales: Die Spitze des Dreiecks liegt auf dem Halbkreis über dem Durchmesser, darum ist der Winkel an der Spitze genau 90 Grad. Beispiele: 180 Grad minus 50 Grad minus 60 Grad gibt 70 Grad, und im gleichseitigen Dreieck misst jeder Winkel 60 Grad">
+        <text x="210" y="26" text-anchor="middle" class="ig-title">Winkel erkennen und berechnen</text>
+        <text x="210" y="42" text-anchor="middle" class="ig-sub">Winkel misst man in Grad. Das Zeichen ist °.</text>
+
+        <g>
+          <rect x="20" y="58" width="89" height="104" rx="8" class="ig-panel"/>
+          <text x="64.5" y="80" text-anchor="middle" class="ig-h">spitz</text>
+          <line x1="38" y1="138" x2="91" y2="138" class="ig-arrow"/>
+          <line x1="38" y1="138" x2="74.8" y2="101.2" class="ig-arrow"/>
+          <path d="M 54 138 A 16 16 0 0 0 49.3 126.7" fill="none" class="ig-tick"/>
+          <text x="64.5" y="156" text-anchor="middle" class="ig-word">unter 90°</text>
+        </g>
+        <g>
+          <rect x="117" y="58" width="89" height="104" rx="8" class="ig-panel"/>
+          <text x="161.5" y="80" text-anchor="middle" class="ig-h">recht</text>
+          <line x1="139" y1="138" x2="192" y2="138" class="ig-arrow"/>
+          <line x1="139" y1="138" x2="139" y2="92" class="ig-arrow"/>
+          <path d="M 149 138 L 149 128 L 139 128" fill="none" class="ig-tick"/>
+          <text x="161.5" y="156" text-anchor="middle" class="ig-word">genau 90°</text>
+        </g>
+        <g>
+          <rect x="214" y="58" width="89" height="104" rx="8" class="ig-panel"/>
+          <text x="258.5" y="80" text-anchor="middle" class="ig-h">stumpf</text>
+          <line x1="258" y1="138" x2="296" y2="138" class="ig-arrow"/>
+          <line x1="258" y1="138" x2="225.5" y2="105.5" class="ig-arrow"/>
+          <path d="M 273 138 A 15 15 0 0 0 247.4 127.4" fill="none" class="ig-tick"/>
+          <text x="258.5" y="156" text-anchor="middle" class="ig-word">90° bis 180°</text>
+        </g>
+        <g>
+          <rect x="311" y="58" width="89" height="104" rx="8" class="ig-panel"/>
+          <text x="355.5" y="80" text-anchor="middle" class="ig-h">gestreckt</text>
+          <line x1="319" y1="132" x2="392" y2="132" class="ig-arrow"/>
+          <path d="M 368.5 132 A 13 13 0 0 0 342.5 132" fill="none" class="ig-tick"/>
+          <circle cx="355.5" cy="132" r="3" class="ig-dot"/>
+          <text x="355.5" y="156" text-anchor="middle" class="ig-word">genau 180°</text>
+        </g>
+
+        <g>
+          <rect x="20" y="176" width="380" height="120" rx="8" class="ig-panel"/>
+          <text x="40" y="202" class="ig-h">Winkelsumme im Dreieck</text>
+          <text x="384" y="202" text-anchor="end" class="ig-word">immer 180°</text>
+          <text x="40" y="232" class="ig-factor">50° + 60° + 70° = 180°</text>
+          <text x="40" y="254" class="ig-word">Kennst du zwei Winkel, rechnest du:</text>
+          <text x="40" y="270" class="ig-word">180° minus die beiden bekannten Winkel.</text>
+          <line x1="255" y1="284" x2="355" y2="284" class="ig-arrow"/>
+          <line x1="255" y1="284" x2="314.2" y2="213.4" class="ig-arrow"/>
+          <line x1="355" y1="284" x2="314.2" y2="213.4" class="ig-arrow"/>
+          <path d="M 269 284 A 14 14 0 0 0 264 273.3" fill="none" class="ig-tick"/>
+          <path d="M 341 284 A 14 14 0 0 1 348 271.9" fill="none" class="ig-tick"/>
+          <path d="M 306.5 222.6 A 12 12 0 0 0 320.2 223.8" fill="none" class="ig-tick"/>
+          <text x="266" y="278" class="ig-word">50°</text>
+          <text x="338" y="278" text-anchor="end" class="ig-word">60°</text>
+          <text x="313" y="240" text-anchor="middle" class="ig-word">70°</text>
+        </g>
+
+        <g>
+          <rect x="20" y="310" width="380" height="152" rx="8" class="ig-panel"/>
+          <text x="40" y="336" class="ig-h">Satz des Thales</text>
+          <text x="40" y="366" class="ig-word">Die Spitze des Dreiecks liegt</text>
+          <text x="40" y="382" class="ig-word">auf dem Halbkreis über dem</text>
+          <text x="40" y="398" class="ig-word">Durchmesser.</text>
+          <text x="40" y="424" class="ig-word">Dann ist der Winkel an der</text>
+          <text x="40" y="440" class="ig-word">Spitze immer recht:</text>
+          <text x="40" y="456" class="ig-factor">genau 90°</text>
+          <path d="M 234 428 A 66 66 0 0 1 366 428" fill="none" class="ig-arrow"/>
+          <line x1="234" y1="428" x2="366" y2="428" class="ig-arrow"/>
+          <line x1="234" y1="428" x2="267" y2="370.8" class="ig-arrow"/>
+          <line x1="366" y1="428" x2="267" y2="370.8" class="ig-arrow"/>
+          <path d="M 262.5 378.6 L 270.3 383.1 L 274.8 375.3" fill="none" class="ig-tick"/>
+          <text x="283" y="398" text-anchor="middle" class="ig-factor">90°</text>
+          <circle cx="234" cy="428" r="3.5" class="ig-dot"/>
+          <circle cx="366" cy="428" r="3.5" class="ig-dot"/>
+          <circle cx="267" cy="370.8" r="3.5" class="ig-dot"/>
+          <text x="300" y="446" text-anchor="middle" class="ig-word">Durchmesser</text>
+        </g>
+
+        <text x="20" y="488" class="ig-h">Beispiele</text>
+        <text x="20" y="510" class="ig-ex">Winkel 50° und 60° gemessen: 180° − 50° − 60° = 70°.</text>
+        <text x="20" y="532" class="ig-ex">Gleichseitiges Dreieck: Jeder Winkel misst 60°.</text>
+      </svg>
+    </div>
+    <h2 class="section-label">Kurz gemerkt</h2>
+    <dl class="fakten">
+      <div><dt>Winkelarten</dt><dd>spitz unter 90°, recht genau 90°, stumpf zwischen 90° und 180°, gestreckt genau 180°</dd></div>
+      <div><dt>Winkelsumme</dt><dd>im Dreieck 180°, im Viereck 360°</dd></div>
+      <div><dt>Satz des Thales</dt><dd>Spitze auf dem Halbkreis über dem Durchmesser: Dort ist der Winkel immer 90°</dd></div>
+    </dl>
+    <h2 class="section-label">Dazu üben</h2>
+    <ul class="ueben-list">
+      <li><a class="ueben-link" href="../figurenmass/?stufe=j-winkel"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Figurenmass</span><span class="ueben-meta">Stufe j · Winkel und Thales</span></a></li>
+    </ul>
+    <p class="code-line">Lehrplan 21: MA.2.A.3.j</p>
+  </article>
+</main>
+</body>
+</html>

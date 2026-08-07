@@ -230,9 +230,11 @@ check("home: all Stufen with GA badges",
   await page.locator(".stufe").count() === 6 && await page.locator(".ga-badge").count() === 2);
 check("home: competency code visible", (await page.textContent('[data-stufe="b"]')).includes("NMG.1.4.b"));
 check("home: Merkblatt link Stufe a",
-  await page.locator('.merkblatt-link[href="../merkheft/skelett.html"]').count() === 1);
+  await page.locator('.merkblatt-link[href="../merkheft/skelett.html"]').count() === 2);
 check("home: Merkblatt link Stufe e",
   await page.locator('.merkblatt-link[href="../merkheft/blutkreislauf.html"]').count() === 1);
+check("home: every Stufe links a Merkblatt",
+  (await page.locator(".merkblatt-link").count()) === (await page.locator(".stufe").count()));
 await page.screenshot({ path: join(SHOTS_DIR, "01-home.png"), fullPage: true });
 
 await playRound("b");

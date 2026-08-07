@@ -97,6 +97,20 @@ fünfte Glied im Raum bleibt.
 - Schweizer Zahlformat: Tausendertrennung mit Apostroph (13'567),
   Dezimalpunkt wie im Lehrplan.
 
+## Merkheft-Verbindung und Deep-Links
+
+Jede Stufe trägt in `data.js` ein `merkblatt: { id, name }`: Die
+App zeigt auf der Stufenkarte einen klar erkennbaren Link
+«Merkblatt: …» (Chip mit Buch-Symbol und unterstrichenem Text) und
+nach einer Runde mit Fehlern «Zum Nachlesen: …», beide auf
+`../merkheft/<id>.html`. Die Links sind optional und nie eine
+Bedingung; die Suite prüft, dass jede Stufenkarte einen trägt.
+Zuordnung: a, b, c, d, j → zahlenstrahl; e, f → stellenwert; g → brueche; h, i → runden.
+
+Deep-Links: `?stufe=<id>` startet die Stufe direkt. Die Query wird
+nach dem Einstieg sofort aus der Adresse entfernt, damit sie beim
+Neuladen oder Weitergeben nicht kleben bleibt.
+
 ## Tests
 
 Playwright-Suite in `tests/e2e.test.mjs`:

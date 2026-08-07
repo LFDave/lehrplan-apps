@@ -202,6 +202,8 @@ check("home: title renders", (await page.textContent("h1")).trim() === "Motschat
 check("home: all Stufen with GA badges",
   await page.locator(".stufe").count() === 4 && await page.locator(".ga-badge").count() === 2);
 check("home: competency code visible", (await page.textContent('[data-stufe="b"]')).includes("FS1F.5.B.1.b"));
+check("home: every Stufe links a Merkblatt",
+  (await page.locator(".merkblatt-link").count()) === (await page.locator(".stufe").count()));
 await page.screenshot({ path: join(SHOTS_DIR, "01-home.png"), fullPage: true });
 
 await playRound("b");

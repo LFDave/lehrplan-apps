@@ -223,6 +223,8 @@ check("home: title renders", (await page.textContent("h1")).trim() === "Rechentu
 check("home: 10 Stufen with two GA badges",
   await page.locator(".stufe").count() === 10 && await page.locator(".ga-badge").count() === 2);
 check("home: competency code visible", (await page.textContent('[data-stufe="b"]')).includes("MA.1.A.3.b"));
+check("home: every Stufe links a Merkblatt",
+  (await page.locator(".merkblatt-link").count()) === (await page.locator(".stufe").count()));
 await page.screenshot({ path: join(SHOTS_DIR, "01-home.png"), fullPage: true });
 
 await playRound("b");

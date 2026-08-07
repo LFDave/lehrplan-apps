@@ -281,6 +281,8 @@ check("home: Merkblatt link on ABC cards",
   await page.locator('.merkblatt-link[href="../merkheft/abc-tabelle.html"]').count() >= 2);
 check("home: back-to-overview link present",
   await page.locator('.overview-link[href="../index.html"]').count() === 1);
+check("home: every Stufe links a Merkblatt",
+  (await page.locator(".merkblatt-link").count()) === (await page.locator(".stufe").count()));
 await page.screenshot({ path: join(SHOTS_DIR, "01-home.png"), fullPage: true });
 
 await playRound("b-abc");

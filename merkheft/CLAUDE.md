@@ -39,10 +39,14 @@ spec-sync rules, cache-busting convention) applies as well.
   card and after rounds with mistakes), the app's suite check for
   the link, the BLAETTER entry in `tests/e2e.test.mjs`, and a cache
   bump in that app.
-- «Dazu üben» links deep-link into the Stufe: `?stufe=<id>`, plus
-  `&thema=<kind1,kind2>` on mixed Stufen so the linked round only
-  serves the Merkblatt's topic (one link per topic — never one link
-  for a mixed bag). Filtered kinds must generate ≥8 distinct tasks.
+- «Dazu üben» links deep-link into the Stufe: `?stufe=<id>`. There
+  is no topic parameter: mixed official Stufen are split into
+  topic-pure sub-Stufen in the apps (own id, shared display `code`),
+  and the app strips the query from the address after entry.
+- Full coverage: every Stufe of every practice app links exactly one
+  Merkblatt, and every Merkblatt links back to all Stufen it serves.
+  The canonical mapping is restated in `tests/e2e.test.mjs`
+  (BLAETTER); app suites assert one Merkblatt chip per Stufe card.
 - Tests: `cd tests && npm install && node e2e.test.mjs` — must pass
   before reporting back. `tests/node_modules` is a symlink to
   `../../masswerk/tests/node_modules` locally.

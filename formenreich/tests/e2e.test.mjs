@@ -345,6 +345,8 @@ check("home: title renders", (await page.textContent("h1")).trim() === "Formenre
 check("home: 12 Stufen with three GA badges",
   await page.locator(".stufe").count() === 12 && await page.locator(".ga-badge").count() === 3);
 check("home: competency code visible", (await page.textContent('[data-stufe="c"]')).includes("MA.2.A.1.c"));
+check("home: every Stufe links a Merkblatt",
+  (await page.locator(".merkblatt-link").count()) === (await page.locator(".stufe").count()));
 await page.screenshot({ path: join(SHOTS_DIR, "01-home.png"), fullPage: true });
 
 await playRound("c");

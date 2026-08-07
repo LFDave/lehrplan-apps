@@ -207,6 +207,8 @@ check("home: three Grundanspruch badges",
   (await page.locator(".ga-badge").allTextContents()).join(",").includes("Zyklus 1")
   && await page.locator(".ga-badge").count() === 3);
 check("home: competency code visible", (await page.textContent('[data-stufe="c"]')).includes("MA.1.A.2.c"));
+check("home: every Stufe links a Merkblatt",
+  (await page.locator(".merkblatt-link").count()) === (await page.locator(".stufe").count()));
 await page.screenshot({ path: join(SHOTS_DIR, "01-home.png"), fullPage: true });
 
 /* ── Round on Stufe b (typed sequences) ───────────────────────────── */

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Funktionen und Graphen · Merkheft</title>
+  <meta name="description" content="Merkblatt: Funktionen und Graphen, die Gerade y = a·x + b mit Steigung, Nullstelle und Schnittpunkt im Koordinatensystem.">
+  <link rel="icon" href="favicon.svg?v=6" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=6">
+</head>
+<body>
+<main id="app">
+  <nav class="page-nav">
+    <a class="back" href="index.html">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+      Alle Merkblätter
+    </a>
+  </nav>
+  <article class="blatt-page">
+    <header>
+      <p class="blatt-gruppe">Daten und Funktionen</p>
+      <h1>Funktionen und Graphen</h1>
+    </header>
+    <p class="intro">Eine Funktion ist eine feste Regel: Sie ordnet jedem x
+    genau ein y zu. Aus der Regel entsteht eine Wertetabelle, und aus der
+    Tabelle wird ein Graph im Koordinatensystem.</p>
+    <p class="intro">Viele Funktionen aus dem Alltag ergeben eine gerade
+    Linie, zum Beispiel der Preis pro Kilo oder der Weg pro Stunde. Die
+    Gleichung einer Geraden heisst y = a·x + b.</p>
+    <p class="intro">An der Geraden kannst du viel ablesen: wie steil sie
+    steigt, wo sie auf der y-Achse startet und wo sie die x-Achse
+    schneidet.</p>
+    <ul class="steps">
+      <li><strong>Funktionswert berechnen</strong>: Setze x in die Gleichung
+      ein. Bei y = 3x + 4 und x = 5 rechnest du 3 · 5 + 4 = 19.</li>
+      <li>Die <strong>Steigung a</strong> sagt, wie viel y wächst, wenn x um
+      1 grösser wird. Das zeigt das Steigungsdreieck: 1 nach rechts, a nach
+      oben.</li>
+      <li><strong>b</strong> ist der Start auf der y-Achse: Bei x = 0 ist
+      y = b.</li>
+      <li>Die <strong>Nullstelle</strong> ist dort, wo der Graph die x-Achse
+      schneidet. Dort ist y = 0.</li>
+      <li>Der <strong>Schnittpunkt</strong> zweier Geraden ist dort, wo beide
+      dasselbe x und dasselbe y haben. Setze die beiden Gleichungen
+      gleich.</li>
+    </ul>
+    <div class="illu-stage">
+      <svg viewBox="0 0 420 520" class="illu ig" role="img" id="ig-funktionen"
+           aria-label="Infografik Funktionen und Graphen: Ein Koordinatensystem mit x-Achse und y-Achse zeigt zwei Geraden. Die Gerade y = 2x - 2 startet auf der y-Achse bei b = -2. Ein Steigungsdreieck an dieser Geraden zeigt die Steigung 2: 1 nach rechts, 2 nach oben. Ihre Nullstelle liegt bei x = 1, dort schneidet sie die x-Achse. Die zweite Gerade y = x + 1 schneidet die erste im Schnittpunkt (3 | 4). Darunter die Wertetabelle: x 1 gibt y 0, x 2 gibt y 2, x 3 gibt y 4, x 4 gibt y 6.">
+        <text x="210" y="26" text-anchor="middle" class="ig-title">Von der Funktion zum Graphen</text>
+        <text x="210" y="42" text-anchor="middle" class="ig-sub">Jedem x gehört genau ein y. Die Punkte ergeben eine Gerade.</text>
+
+        <rect x="20" y="58" width="380" height="330" rx="8" class="ig-panel"/>
+
+        <line x1="92" y1="250" x2="324" y2="250" class="ig-arrow"/>
+        <path d="M 324 246 L 332 250 L 324 254 Z" class="ig-arrowhead"/>
+        <text x="340" y="254" class="ig-word">x</text>
+        <line x1="136" y1="370" x2="136" y2="74" class="ig-arrow"/>
+        <path d="M 132 74 L 136 66 L 140 74 Z" class="ig-arrowhead"/>
+        <text x="144" y="72" class="ig-word">y</text>
+        <text x="128" y="266" text-anchor="end" class="ig-word">0</text>
+
+        <line x1="100" y1="246" x2="100" y2="254" class="ig-tick"/>
+        <line x1="208" y1="246" x2="208" y2="254" class="ig-tick"/>
+        <line x1="244" y1="246" x2="244" y2="254" class="ig-tick"/>
+        <line x1="280" y1="246" x2="280" y2="254" class="ig-tick"/>
+        <line x1="316" y1="246" x2="316" y2="254" class="ig-tick"/>
+        <line x1="132" y1="358" x2="140" y2="358" class="ig-tick"/>
+        <line x1="132" y1="286" x2="140" y2="286" class="ig-tick"/>
+        <line x1="132" y1="214" x2="140" y2="214" class="ig-tick"/>
+        <line x1="132" y1="178" x2="140" y2="178" class="ig-tick"/>
+        <line x1="132" y1="142" x2="140" y2="142" class="ig-tick"/>
+        <line x1="132" y1="106" x2="140" y2="106" class="ig-tick"/>
+
+        <line x1="190" y1="214" x2="218" y2="214" class="ig-arrow"/>
+        <path d="M 218 210 L 226 214 L 218 218 Z" class="ig-arrowhead"/>
+        <line x1="226" y1="214" x2="226" y2="150" class="ig-arrow"/>
+        <path d="M 222 150 L 226 142 L 230 150 Z" class="ig-arrowhead"/>
+        <text x="208" y="232" text-anchor="middle" class="ig-factor">+1</text>
+        <text x="234" y="184" class="ig-factor">+2</text>
+
+        <line x1="118" y1="358" x2="262" y2="70" class="ig-arrow"/>
+        <line x1="100" y1="250" x2="280" y2="70" class="ig-arrow"/>
+
+        <circle cx="172" cy="250" r="4.5" class="ig-dot"/>
+        <circle cx="244" cy="106" r="4.5" class="ig-dot"/>
+        <circle cx="136" cy="322" r="4.5" class="ig-dot"/>
+
+        <text x="254" y="76" text-anchor="end" class="ig-unit">y = 2x - 2</text>
+        <text x="288" y="76" class="ig-unit">y = x + 1</text>
+        <text x="182" y="270" class="ig-word">Nullstelle · x = 1</text>
+        <text x="254" y="110" class="ig-word">Schnittpunkt (3 | 4)</text>
+        <text x="126" y="318" text-anchor="end" class="ig-factor">b = -2</text>
+
+        <text x="20" y="416" class="ig-h">So liest du die Gerade y = 2x - 2</text>
+        <text x="20" y="438" class="ig-ex">Wertetabelle: x 1 → y 0, x 2 → y 2, x 3 → y 4, x 4 → y 6</text>
+        <text x="20" y="460" class="ig-ex">Steigung a = 2: 1 nach rechts, 2 nach oben</text>
+        <text x="20" y="482" class="ig-ex">b = -2: Start auf der y-Achse bei (0 | -2)</text>
+        <text x="20" y="504" class="ig-ex">Nullstelle bei x = 1 · Schnittpunkt mit y = x + 1 bei (3 | 4)</text>
+      </svg>
+    </div>
+    <h2 class="section-label">Kurz gemerkt</h2>
+    <dl class="fakten">
+      <div><dt>y = a·x + b</dt><dd>a ist die Steigung, b der Start auf der y-Achse: bei x = 0 ist y = b</dd></div>
+      <div><dt>Nullstelle</dt><dd>Schnitt mit der x-Achse: setze y = 0 und rechne x aus</dd></div>
+      <div><dt>Schnittpunkt</dt><dd>beide Geraden gleichsetzen: dort haben sie gleiches x und gleiches y</dd></div>
+    </dl>
+    <h2 class="section-label">Dazu üben</h2>
+    <ul class="ueben-list">
+      <li><a class="ueben-link" href="../wertepfad/?stufe=h"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Wertepfad</span><span class="ueben-meta">Stufe h · Funktionswerte und Massstab</span></a></li>
+      <li><a class="ueben-link" href="../wertepfad/?stufe=i"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Wertepfad</span><span class="ueben-meta">Stufe i · Funktionen anwenden</span></a></li>
+      <li><a class="ueben-link" href="../wertepfad/?stufe=j"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Wertepfad</span><span class="ueben-meta">Stufe j · Schnittpunkte</span></a></li>
+      <li><a class="ueben-link" href="../wertepfad/?stufe=k"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Wertepfad</span><span class="ueben-meta">Stufe k · Steigung und Nullstelle</span></a></li>
+    </ul>
+    <p class="code-line">Lehrplan 21: MA.3.A.3.h, MA.3.A.3.i, MA.3.A.3.j, MA.3.A.3.k</p>
+  </article>
+</main>
+</body>
+</html>

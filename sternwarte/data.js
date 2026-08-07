@@ -15,18 +15,21 @@ export const STUFEN = [
     title: 'Blick zum Himmel',
     desc: 'Beschreibe, was du am Himmel sehen kannst.',
     kinds: ['himmel'],
+    merkblatt: { id: 'tag-und-nacht', name: 'Tag und Nacht' },
   },
   {
     id: 'b', cycle: 1, ga: true,
     title: 'Sonne, Mond und Sterne',
     desc: 'Erkläre Sonnenlauf, Mond und Sterne am Tag- und Nachthimmel.',
     kinds: ['sonnenlauf'],
+    merkblatt: { id: 'tag-und-nacht', name: 'Tag und Nacht' },
   },
   {
     id: 'c', cycle: 2, ga: false,
     title: 'Die Erde als Planet',
     desc: 'Beantworte Fragen zur Erde als Planet.',
     kinds: ['erde'],
+    merkblatt: { id: 'tag-und-nacht', name: 'Tag und Nacht' },
   },
   {
     id: 'd', cycle: 2, ga: false,
@@ -47,6 +50,7 @@ export const STUFEN = [
     title: 'Galaxien und Kometen',
     desc: 'Entdecke Galaxien, Sternbilder und Kometen.',
     kinds: ['weltall'],
+    merkblatt: { id: 'sonnensystem', name: 'Sonnensystem' },
   },
 ];
 

@@ -127,23 +127,17 @@ stehen als "Zahl Einheit", das Ziel als "? Einheit".
 
 ## Merkheft-Verbindung
 
-Die Stufen b (geld.html), c (laengen.html), d (uhr.html) und
-e (masseinheiten.html) tragen in `data.js` ein
-`merkblatt: { id, name }`: Die App zeigt auf der Stufenkarte einen
-klar erkennbaren Link «Merkblatt: …» (Chip mit Buch-Symbol und
-unterstrichenem Text) und nach einer Runde mit Fehlern
-«Zum Nachlesen: …», beide auf `../merkheft/<id>.html`. Die Links
-sind optional und nie eine Bedingung; die Suite prüft sie.
+Jede Stufe trägt in `data.js` ein `merkblatt: { id, name }`: Die
+App zeigt auf der Stufenkarte einen klar erkennbaren Link
+«Merkblatt: …» (Chip mit Buch-Symbol und unterstrichenem Text) und
+nach einer Runde mit Fehlern «Zum Nachlesen: …», beide auf
+`../merkheft/<id>.html`. Die Links sind optional und nie eine
+Bedingung; die Suite prüft, dass jede Stufenkarte einen trägt.
+Zuordnung: b-geld, c-geld, d-geld → geld; b-zeit, d-zeit → uhr; c-laengen → laengen; e, g → masseinheiten; h → runden; i → flaechenmasse; j → si-vorsaetze; k → geschwindigkeit.
 
-Deep-Links: `?stufe=<id>` startet die Stufe direkt (auch Teilstufen
-wie `b-zeit`). Die Query wird nach dem Einstieg sofort aus der
-Adresse entfernt, damit sie beim Neuladen oder Weitergeben nicht
-kleben bleibt; die Suite prüft Einstieg und bereinigte Adresse.
-
-Uhrzeit-Antworten (`10:30`): Das Eingabefeld nutzt `inputmode`
-`decimal`, weil mobile Zahlentastaturen keinen Doppelpunkt haben.
-Punkt und Komma gelten bei Uhrzeit-Antworten als Doppelpunkt
-(10.30 = 10:30); ein sichtbarer Hinweis neben dem Feld sagt das.
+Deep-Links: `?stufe=<id>` startet die Stufe direkt. Die Query wird
+nach dem Einstieg sofort aus der Adresse entfernt, damit sie beim
+Neuladen oder Weitergeben nicht kleben bleibt.
 
 ## Tests
 

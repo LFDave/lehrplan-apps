@@ -15,12 +15,14 @@ export const STUFEN = [
     title: 'Erste Bausteine',
     desc: 'Nutze le und la, die Mehrzahl und erste Wendungen.',
     kinds: ['baustein'],
+    merkblatt: { id: 'franzoesisch-saetze', name: 'Sätze bauen' },
   },
   {
     id: 'b', cycle: 2, ga: true,
     title: 'Verben und Fragen',
     desc: 'Konjugiere Verben auf -er, setze Pronomen und Fragewörter.',
     kinds: ['verbform'],
+    merkblatt: { id: 'franzoesisch-saetze', name: 'Sätze bauen' },
   },
   {
     id: 'c', cycle: 3, ga: true,
@@ -34,6 +36,7 @@ export const STUFEN = [
     title: 'Feine Formen',
     desc: 'Verneine Sätze, nutze Modalverben und kleine Pronomen.',
     kinds: ['feinform'],
+    merkblatt: { id: 'franzoesisch-saetze', name: 'Sätze bauen' },
   },
 ];
 

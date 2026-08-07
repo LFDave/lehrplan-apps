@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flächen- und Volumenformeln · Merkheft</title>
+  <meta name="description" content="Merkblatt: Die wichtigsten Formeln für Flächen und Volumen, vom Dreieck über Parallelogramm und Kreis bis zu Quader, Prisma, Zylinder und Pyramide.">
+  <link rel="icon" href="favicon.svg?v=6" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=6">
+</head>
+<body>
+<main id="app">
+  <nav class="page-nav">
+    <a class="back" href="index.html">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+      Alle Merkblätter
+    </a>
+  </nav>
+  <article class="blatt-page">
+    <header>
+      <p class="blatt-gruppe">Form und Raum</p>
+      <h1>Flächen- und Volumenformeln</h1>
+    </header>
+    <p class="intro">Beim Rechteck kannst du Quadrate auszählen. Bei
+    Dreiecken, Kreisen und Körpern hilft dir eine Formel: Sie sagt, wie du
+    aus wenigen Angaben die Fläche oder das Volumen berechnest.</p>
+    <p class="intro">Flächen misst du in Quadratzentimetern, also cm².
+    Volumen misst du in Kubikzentimetern, also cm³. Die Höhe h steht immer
+    senkrecht auf der Grundlinie oder der Grundfläche.</p>
+    <p class="intro">Viele Volumenformeln folgen der gleichen Idee:
+    Grundfläche mal Höhe. Beim Quader ist die Grundfläche a · b, beim Prisma
+    und beim Zylinder heisst sie G. Nur bei der Pyramide teilst du am
+    Schluss durch 3.</p>
+    <ul class="steps">
+      <li><strong>Dreieck</strong>: A = g · h : 2. Grundlinie mal Höhe, dann
+      halbieren: Ein Dreieck ist ein halbes Parallelogramm.</li>
+      <li><strong>Parallelogramm</strong>: A = g · h. Die Höhe h steht
+      senkrecht auf der Grundlinie g.</li>
+      <li><strong>Kreis</strong>: Umfang U = 2 · π · r, Fläche A = π · r².
+      Rechne mit π ≈ 3.14.</li>
+      <li><strong>Quader</strong>: V = a · b · c. Die Oberfläche ist
+      2 · (a · b + a · c + b · c), alle 12 Kanten zusammen sind
+      4 · (a + b + c).</li>
+      <li><strong>Prisma, Zylinder, Pyramide</strong>: V = G · h. Nur die
+      Pyramide läuft spitz zu, darum gilt dort V = G · h : 3.</li>
+    </ul>
+    <div class="illu-stage">
+      <svg viewBox="0 0 420 540" class="illu ig" role="img" id="ig-flaechenformeln"
+           aria-label="Infografik Flächen- und Volumenformeln: Sechs Panels mit beschrifteten Skizzen. Dreieck mit Grundlinie g und Höhe h: Fläche A gleich g mal h durch 2, Beispiel: g 8 cm und h 5 cm ergeben 20 cm². Parallelogramm mit g und h: A gleich g mal h, Beispiel: g 6 cm und h 4 cm ergeben 24 cm². Kreis mit Radius r: Umfang U gleich 2 mal Pi mal r, Fläche A gleich Pi mal r im Quadrat, mit Pi ungefähr 3.14. Quader mit Kanten a, b und c: Volumen V gleich a mal b mal c, Beispiel: 3 mal 4 mal 5 cm ergeben 60 cm³. Prisma und Zylinder mit Grundfläche G und Höhe h: V gleich G mal h, Beispiel: G 8 cm² und h 5 cm ergeben 40 cm³. Pyramide mit Grundfläche G und Höhe h: V gleich G mal h durch 3, Beispiel: G 12 cm² und h 5 cm ergeben 20 cm³">
+        <text x="210" y="26" text-anchor="middle" class="ig-title">Flächen- und Volumenformeln</text>
+        <text x="210" y="42" text-anchor="middle" class="ig-sub">Wenige Angaben genügen, die Formel rechnet den Rest.</text>
+
+        <g>
+          <rect x="20" y="58" width="185" height="150" rx="8" class="ig-panel"/>
+          <text x="112" y="84" text-anchor="middle" class="ig-h">Dreieck</text>
+          <line x1="36" y1="96" x2="189" y2="96" class="ig-tick"/>
+          <polygon points="74,150 150,150 104,104" class="ig-box"/>
+          <line x1="104" y1="104" x2="104" y2="150" class="ig-arrow"/>
+          <text x="110" y="132" class="ig-factor">h</text>
+          <text x="112" y="164" text-anchor="middle" class="ig-factor">g</text>
+          <text x="112" y="184" text-anchor="middle" class="ig-unit">A = g · h : 2</text>
+          <text x="112" y="200" text-anchor="middle" class="ig-word">g = 8 cm, h = 5 cm: A = 20 cm²</text>
+        </g>
+
+        <g>
+          <rect x="215" y="58" width="185" height="150" rx="8" class="ig-panel"/>
+          <text x="307" y="84" text-anchor="middle" class="ig-h">Parallelogramm</text>
+          <line x1="231" y1="96" x2="384" y2="96" class="ig-tick"/>
+          <polygon points="262,150 338,150 358,106 282,106" class="ig-box"/>
+          <line x1="300" y1="106" x2="300" y2="150" class="ig-arrow"/>
+          <text x="306" y="132" class="ig-factor">h</text>
+          <text x="300" y="164" text-anchor="middle" class="ig-factor">g</text>
+          <text x="307" y="184" text-anchor="middle" class="ig-unit">A = g · h</text>
+          <text x="307" y="200" text-anchor="middle" class="ig-word">g = 6 cm, h = 4 cm: A = 24 cm²</text>
+        </g>
+
+        <g>
+          <rect x="20" y="220" width="185" height="150" rx="8" class="ig-panel"/>
+          <text x="112" y="246" text-anchor="middle" class="ig-h">Kreis · π ≈ 3.14</text>
+          <line x1="36" y1="258" x2="189" y2="258" class="ig-tick"/>
+          <circle cx="112" cy="290" r="24" class="ig-box"/>
+          <line x1="112" y1="290" x2="136" y2="290" class="ig-arrow"/>
+          <circle cx="112" cy="290" r="3.5" class="ig-dot"/>
+          <text x="124" y="282" text-anchor="middle" class="ig-factor">r</text>
+          <text x="112" y="340" text-anchor="middle" class="ig-unit">U = 2 · π · r</text>
+          <text x="112" y="362" text-anchor="middle" class="ig-unit">A = π · r²</text>
+        </g>
+
+        <g>
+          <rect x="215" y="220" width="185" height="150" rx="8" class="ig-panel"/>
+          <text x="307" y="246" text-anchor="middle" class="ig-h">Quader</text>
+          <line x1="231" y1="258" x2="384" y2="258" class="ig-tick"/>
+          <rect x="283" y="264" width="64" height="38" class="ig-panel"/>
+          <rect x="269" y="276" width="64" height="38" class="ig-box"/>
+          <line x1="269" y1="276" x2="283" y2="264" class="ig-tick"/>
+          <line x1="333" y1="276" x2="347" y2="264" class="ig-tick"/>
+          <line x1="269" y1="314" x2="283" y2="302" class="ig-tick"/>
+          <line x1="333" y1="314" x2="347" y2="302" class="ig-tick"/>
+          <text x="261" y="299" text-anchor="end" class="ig-factor">c</text>
+          <text x="301" y="328" text-anchor="middle" class="ig-factor">a</text>
+          <text x="352" y="312" class="ig-factor">b</text>
+          <text x="307" y="346" text-anchor="middle" class="ig-unit">V = a · b · c</text>
+          <text x="307" y="362" text-anchor="middle" class="ig-word">3 cm · 4 cm · 5 cm: V = 60 cm³</text>
+        </g>
+
+        <g>
+          <rect x="20" y="382" width="185" height="150" rx="8" class="ig-panel"/>
+          <text x="112" y="408" text-anchor="middle" class="ig-h">Prisma und Zylinder</text>
+          <line x1="36" y1="420" x2="189" y2="420" class="ig-tick"/>
+          <ellipse cx="100" cy="472" rx="24" ry="8" class="ig-box"/>
+          <line x1="76" y1="434" x2="76" y2="472" class="ig-tick"/>
+          <line x1="124" y1="434" x2="124" y2="472" class="ig-tick"/>
+          <ellipse cx="100" cy="434" rx="24" ry="8" class="ig-box"/>
+          <text x="100" y="438" text-anchor="middle" class="ig-factor">G</text>
+          <line x1="138" y1="434" x2="138" y2="472" class="ig-arrow"/>
+          <text x="145" y="457" class="ig-factor">h</text>
+          <text x="112" y="494" text-anchor="middle" class="ig-word">gilt auch für das Prisma</text>
+          <text x="112" y="508" text-anchor="middle" class="ig-unit">V = G · h</text>
+          <text x="112" y="524" text-anchor="middle" class="ig-word">G = 8 cm², h = 5 cm: V = 40 cm³</text>
+        </g>
+
+        <g>
+          <rect x="215" y="382" width="185" height="150" rx="8" class="ig-panel"/>
+          <text x="307" y="408" text-anchor="middle" class="ig-h">Pyramide</text>
+          <line x1="231" y1="420" x2="384" y2="420" class="ig-tick"/>
+          <line x1="272" y1="474" x2="288" y2="462" class="ig-tick"/>
+          <line x1="288" y1="462" x2="346" y2="462" class="ig-tick"/>
+          <polygon points="330,474 346,462 309,428" class="ig-panel"/>
+          <polygon points="272,474 330,474 309,428" class="ig-box"/>
+          <line x1="360" y1="430" x2="360" y2="474" class="ig-arrow"/>
+          <text x="367" y="455" class="ig-factor">h</text>
+          <text x="301" y="490" text-anchor="middle" class="ig-factor">G</text>
+          <text x="307" y="508" text-anchor="middle" class="ig-unit">V = G · h : 3</text>
+          <text x="307" y="524" text-anchor="middle" class="ig-word">G = 12 cm², h = 5 cm: V = 20 cm³</text>
+        </g>
+      </svg>
+    </div>
+    <h2 class="section-label">Kurz gemerkt</h2>
+    <dl class="fakten">
+      <div><dt>Dreieck</dt><dd>A = g · h : 2, ein Dreieck ist ein halbes Parallelogramm</dd></div>
+      <div><dt>Kreis</dt><dd>U = 2 · π · r und A = π · r², rechne mit π ≈ 3.14</dd></div>
+      <div><dt>Körper</dt><dd>Prisma und Zylinder: V = G · h, Pyramide: V = G · h : 3</dd></div>
+    </dl>
+    <h2 class="section-label">Dazu üben</h2>
+    <ul class="ueben-list">
+      <li><a class="ueben-link" href="../figurenmass/?stufe=g"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Figurenmass</span><span class="ueben-meta">Stufe g · Dreiecke und Quader</span></a></li>
+      <li><a class="ueben-link" href="../figurenmass/?stufe=i"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Figurenmass</span><span class="ueben-meta">Stufe i · Kreis, Prisma und Zylinder</span></a></li>
+      <li><a class="ueben-link" href="../figurenmass/?stufe=j-koerper"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Figurenmass</span><span class="ueben-meta">Stufe j · Pyramide</span></a></li>
+    </ul>
+    <p class="code-line">Lehrplan 21: MA.2.A.3.g, MA.2.A.3.i, MA.2.A.3.j</p>
+  </article>
+</main>
+</body>
+</html>

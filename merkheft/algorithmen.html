@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Schritt für Schritt · Merkheft</title>
+  <meta name="description" content="Merkblatt: Algorithmen als genaue Anleitungen, Lösungswege vergleichen und schneller suchen mit dem Hälfte-Trick.">
+  <link rel="icon" href="favicon.svg?v=6" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=6">
+</head>
+<body>
+<main id="app">
+  <nav class="page-nav">
+    <a class="back" href="index.html">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+      Alle Merkblätter
+    </a>
+  </nav>
+  <article class="blatt-page">
+    <header>
+      <p class="blatt-gruppe">Informatik</p>
+      <h1>Schritt für Schritt</h1>
+    </header>
+    <p class="intro">Ein Rezept sagt dir genau, was du tun musst: zuerst den
+    Teig rühren, danach backen. So eine genaue Anleitung heisst Algorithmus.
+    Sie führt dich Schritt für Schritt zum Ziel.</p>
+    <p class="intro">Eine gute Anleitung ist eindeutig: Jeder Schritt ist
+    klar, und die Reihenfolge stimmt. Lässt du einen Schritt aus, stimmt das
+    Ergebnis oft nicht.</p>
+    <p class="intro">Oft führen verschiedene Wege zum Ziel. Dann vergleichst
+    du: Welcher Weg braucht weniger Schritte? Beim Suchen hilft ein Trick:
+    Im Wörterbuch schlägst du in der Mitte auf, statt vorne Wort für Wort
+    zu lesen.</p>
+    <ul class="steps">
+      <li>Beginne bei <strong>Schritt 1</strong> und arbeite die Schritte
+      der Reihe nach ab.</li>
+      <li>Klappt ein Weg nicht, gehe <strong>zurück</strong> und probiere
+      einen anderen.</li>
+      <li>Vergleiche Wege: <strong>zähle die Schritte</strong>. Weniger
+      Schritte heisst kürzer.</li>
+      <li><strong>Lineare Suche</strong>: alles von vorne der Reihe nach
+      prüfen. Das geht immer, dauert aber lange.</li>
+      <li><strong>Binäre Suche</strong>: bei sortierten Dingen in der Mitte
+      nachschauen und nur in der passenden Hälfte weitersuchen.</li>
+    </ul>
+    <div class="illu-stage">
+      <svg viewBox="0 0 420 410" class="illu ig" role="img" id="ig-algorithmen"
+           aria-label="Infografik Schritt für Schritt: Links ein Rezept als Algorithmus mit drei nummerierten Schritten, erst Teig rühren, dann Teig backen, dann Kuchen essen, mit Pfeilen verbunden, die Reihenfolge ist wichtig. Rechts der Hälfte-Trick: 16 sortierte Karten werden durch Halbieren zu 8, 4, 2 und zuletzt 1 Karte, nach 4-mal Halbieren ist die Karte gefunden. Darunter drei Beispiele: Start auf Feld 2, gehe 3 vor und 1 zurück, du stehst auf Feld 4. Weg A braucht 12 Schritte, Weg B nur 9, Weg B ist kürzer. 16 Karten immer halbieren gibt 16, 8, 4, 2, 1, also 4-mal">
+        <text x="210" y="26" text-anchor="middle" class="ig-title">Schritt für Schritt zum Ziel</text>
+        <text x="210" y="42" text-anchor="middle" class="ig-sub">Ein Algorithmus ist eine genaue Anleitung.</text>
+
+        <g>
+          <rect x="20" y="58" width="185" height="234" rx="8" class="ig-panel"/>
+          <text x="112" y="84" text-anchor="middle" class="ig-h">Wie ein Rezept</text>
+          <line x1="36" y1="96" x2="189" y2="96" class="ig-tick"/>
+          <rect x="36" y="108" width="152" height="30" rx="6" class="ig-box"/>
+          <text x="112" y="128" text-anchor="middle" class="ig-unit">1 · Teig rühren</text>
+          <line x1="112" y1="142" x2="112" y2="157" class="ig-arrow"/>
+          <path d="M 108 157 L 116 157 L 112 165 Z" class="ig-arrowhead"/>
+          <rect x="36" y="172" width="152" height="30" rx="6" class="ig-box"/>
+          <text x="112" y="192" text-anchor="middle" class="ig-unit">2 · Teig backen</text>
+          <line x1="112" y1="206" x2="112" y2="221" class="ig-arrow"/>
+          <path d="M 108 221 L 116 221 L 112 229 Z" class="ig-arrowhead"/>
+          <rect x="36" y="236" width="152" height="30" rx="6" class="ig-box"/>
+          <text x="112" y="256" text-anchor="middle" class="ig-unit">3 · Kuchen essen</text>
+          <text x="112" y="284" text-anchor="middle" class="ig-word">Die Reihenfolge ist wichtig.</text>
+        </g>
+
+        <g>
+          <rect x="215" y="58" width="185" height="234" rx="8" class="ig-panel"/>
+          <text x="307" y="84" text-anchor="middle" class="ig-h">Der Hälfte-Trick</text>
+          <line x1="231" y1="96" x2="384" y2="96" class="ig-tick"/>
+          <text x="307" y="112" text-anchor="middle" class="ig-word">16 sortierte Karten</text>
+          <rect x="231" y="122" width="120" height="20" rx="4" class="ig-box"/>
+          <text x="361" y="137" class="ig-unit">16</text>
+          <rect x="231" y="156" width="60" height="20" rx="4" class="ig-box"/>
+          <text x="301" y="171" class="ig-unit">8</text>
+          <rect x="231" y="190" width="30" height="20" rx="4" class="ig-box"/>
+          <text x="271" y="205" class="ig-unit">4</text>
+          <rect x="231" y="224" width="15" height="20" rx="4" class="ig-box"/>
+          <text x="256" y="239" class="ig-unit">2</text>
+          <rect x="231" y="258" width="8" height="20" rx="4" class="ig-box"/>
+          <text x="249" y="273" class="ig-unit">1</text>
+          <text x="307" y="288" text-anchor="middle" class="ig-factor">4-mal halbiert, gefunden</text>
+        </g>
+
+        <text x="20" y="322" class="ig-h">Beispiele</text>
+        <text x="20" y="344" class="ig-ex">Anleitung: Start auf Feld 2, gehe 3 vor, 1 zurück: Feld 4.</text>
+        <text x="20" y="366" class="ig-ex">Weg A braucht 12 Schritte, Weg B nur 9: Weg B ist kürzer.</text>
+        <text x="20" y="388" class="ig-ex">16 Karten immer halbieren: 16, 8, 4, 2, 1, also 4-mal.</text>
+      </svg>
+    </div>
+    <h2 class="section-label">Kurz gemerkt</h2>
+    <dl class="fakten">
+      <div><dt>Algorithmus</dt><dd>eine genaue Anleitung, die Schritt für Schritt zum Ziel führt</dd></div>
+      <div><dt>Lineare Suche</dt><dd>alles der Reihe nach prüfen: geht auch ohne Ordnung, ist aber langsam</dd></div>
+      <div><dt>Binäre Suche</dt><dd>braucht sortierte Dinge: immer halbieren, so bist du schnell am Ziel</dd></div>
+    </dl>
+    <h2 class="section-label">Dazu üben</h2>
+    <ul class="ueben-list">
+      <li><a class="ueben-link" href="../schrittweise/?stufe=a"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Schrittweise</span><span class="ueben-meta">Stufe a · Anleitungen befolgen</span></a></li>
+      <li><a class="ueben-link" href="../schrittweise/?stufe=b"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Schrittweise</span><span class="ueben-meta">Stufe b · Wege ausprobieren</span></a></li>
+      <li><a class="ueben-link" href="../schrittweise/?stufe=i"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Schrittweise</span><span class="ueben-meta">Stufe i · Suchen im Vergleich</span></a></li>
+    </ul>
+    <p class="code-line">Lehrplan 21: MI.2.2.a, MI.2.2.b, MI.2.2.i</p>
+  </article>
+</main>
+</body>
+</html>

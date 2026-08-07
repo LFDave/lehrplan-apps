@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Der Kalender · Merkheft</title>
+  <meta name="description" content="Merkblatt: Der Kalender mit Tag, Woche, Monaten und Jahreszeiten, dazu Reihenfolgen, Dauer und regelmässige Abläufe.">
+  <link rel="icon" href="favicon.svg?v=6" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=6">
+</head>
+<body>
+<main id="app">
+  <nav class="page-nav">
+    <a class="back" href="index.html">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+      Alle Merkblätter
+    </a>
+  </nav>
+  <article class="blatt-page">
+    <header>
+      <p class="blatt-gruppe">Zeit und Geschichte</p>
+      <h1>Der Kalender</h1>
+    </header>
+    <p class="intro">Der Kalender ordnet die Zeit. Er sagt dir, welcher Tag
+    heute ist, was gestern war und was morgen kommt.</p>
+    <p class="intro">Vieles an der Zeit läuft im Kreis: Nach dem Sonntag
+    kommt wieder ein Montag, nach dem Dezember wieder ein Januar. Darum
+    passt das Jahr gut in einen Kreis.</p>
+    <p class="intro">Eine Minute hat 60 Sekunden, eine Stunde 60 Minuten,
+    ein Tag 24 Stunden. Auf der Uhr zeigt der kleine Zeiger die Stunde:
+    Steht er auf der 3 und der grosse auf der 12, ist es genau 3 Uhr.</p>
+    <ul class="steps">
+      <li><strong>Gestern</strong> ist vorbei, <strong>heute</strong> ist
+      jetzt, <strong>morgen</strong> kommt noch.</li>
+      <li>Die Woche hat <strong>7 Tage</strong>: Montag bis Sonntag. Nach
+      dem Sonntag beginnt sie von vorne.</li>
+      <li>Das Jahr hat <strong>12 Monate</strong> mit 30 oder 31 Tagen. Nur
+      der Februar ist kürzer: Er hat 28 Tage, im Schaltjahr 29.</li>
+      <li>Reihenfolgen ordnest du mit <strong>zuerst, dann,
+      zuletzt</strong>: zuerst Zahnpasta auf die Bürste, dann putzen,
+      zuletzt den Mund ausspülen.</li>
+      <li>Vergleiche die <strong>Dauer</strong>: Einmal klatschen dauert
+      etwa eine Sekunde, das ABC aufsagen eine Minute, eine Schullektion
+      mit Pause eine Stunde.</li>
+    </ul>
+    <div class="illu-stage">
+      <svg viewBox="0 0 420 524" class="illu ig" role="img" id="ig-kalender"
+           aria-label="Infografik Kalender: Ein Jahreskreis zeigt die 12 Monate von Januar bis Dezember im Uhrzeigersinn und die 4 Jahreszeiten: Winter bei Dezember, Januar und Februar, Frühling bei März, April und Mai, Sommer bei Juni, Juli und August, Herbst bei September, Oktober und November. Darunter eine Wochenleiste mit den 7 Tagen Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag, Sonntag; nach dem Sonntag beginnt die Woche wieder mit dem Montag. Zuunterst die Zeit-Einheiten: 1 Minute hat 60 Sekunden, 1 Stunde 60 Minuten, 1 Tag 24 Stunden, 1 Woche 7 Tage, 1 Jahr 12 Monate und 4 Jahreszeiten">
+        <text x="210" y="26" text-anchor="middle" class="ig-title">Das Jahr und die Woche</text>
+        <text x="210" y="42" text-anchor="middle" class="ig-sub">12 Monate im Kreis, 7 Tage im Band.</text>
+
+        <circle cx="210" cy="190" r="90" fill="none" class="ig-tick"/>
+        <line x1="265" y1="135" x2="282" y2="118" class="ig-tick"/>
+        <line x1="265" y1="245" x2="282" y2="262" class="ig-tick"/>
+        <line x1="155" y1="245" x2="138" y2="262" class="ig-tick"/>
+        <line x1="155" y1="135" x2="138" y2="118" class="ig-tick"/>
+
+        <text x="210" y="81" text-anchor="middle" class="ig-word">Januar</text>
+        <text x="266" y="96" text-anchor="middle" class="ig-word">Februar</text>
+        <text x="307" y="137" text-anchor="middle" class="ig-word">März</text>
+        <text x="322" y="193" text-anchor="middle" class="ig-word">April</text>
+        <text x="307" y="249" text-anchor="middle" class="ig-word">Mai</text>
+        <text x="266" y="290" text-anchor="middle" class="ig-word">Juni</text>
+        <text x="210" y="305" text-anchor="middle" class="ig-word">Juli</text>
+        <text x="154" y="290" text-anchor="middle" class="ig-word">August</text>
+        <text x="113" y="249" text-anchor="middle" class="ig-word">September</text>
+        <text x="98" y="193" text-anchor="middle" class="ig-word">Oktober</text>
+        <text x="113" y="137" text-anchor="middle" class="ig-word">November</text>
+        <text x="154" y="96" text-anchor="middle" class="ig-word">Dezember</text>
+
+        <text x="210" y="143" text-anchor="middle" class="ig-h">Winter</text>
+        <text x="265" y="194" text-anchor="middle" class="ig-h">Frühling</text>
+        <text x="210" y="253" text-anchor="middle" class="ig-h">Sommer</text>
+        <text x="155" y="194" text-anchor="middle" class="ig-h">Herbst</text>
+
+        <text x="20" y="344" class="ig-h">Die Woche · 7 Tage</text>
+        <rect x="20" y="358" width="50" height="32" rx="6" class="ig-box"/>
+        <text x="45" y="379" text-anchor="middle" class="ig-unit">Mo</text>
+        <rect x="75" y="358" width="50" height="32" rx="6" class="ig-box"/>
+        <text x="100" y="379" text-anchor="middle" class="ig-unit">Di</text>
+        <rect x="130" y="358" width="50" height="32" rx="6" class="ig-box"/>
+        <text x="155" y="379" text-anchor="middle" class="ig-unit">Mi</text>
+        <rect x="185" y="358" width="50" height="32" rx="6" class="ig-box"/>
+        <text x="210" y="379" text-anchor="middle" class="ig-unit">Do</text>
+        <rect x="240" y="358" width="50" height="32" rx="6" class="ig-box"/>
+        <text x="265" y="379" text-anchor="middle" class="ig-unit">Fr</text>
+        <rect x="295" y="358" width="50" height="32" rx="6" class="ig-box"/>
+        <text x="320" y="379" text-anchor="middle" class="ig-unit">Sa</text>
+        <rect x="350" y="358" width="50" height="32" rx="6" class="ig-box"/>
+        <text x="375" y="379" text-anchor="middle" class="ig-unit">So</text>
+        <text x="210" y="408" text-anchor="middle" class="ig-word">Nach dem Sonntag beginnt die Woche wieder mit dem Montag.</text>
+
+        <text x="20" y="442" class="ig-h">Zeit-Einheiten</text>
+        <text x="20" y="464" class="ig-ex">1 Minute = 60 Sekunden · 1 Stunde = 60 Minuten</text>
+        <text x="20" y="486" class="ig-ex">1 Tag = 24 Stunden · 1 Woche = 7 Tage</text>
+        <text x="20" y="508" class="ig-ex">1 Jahr = 12 Monate · 4 Jahreszeiten</text>
+      </svg>
+    </div>
+    <h2 class="section-label">Kurz gemerkt</h2>
+    <dl class="fakten">
+      <div><dt>Der Tag</dt><dd>hat 24 Stunden: erst Morgen, dann Mittag, dann Abend, dann Nacht</dd></div>
+      <div><dt>Das Jahr</dt><dd>hat 12 Monate und 4 Jahreszeiten: Frühling, Sommer, Herbst, Winter</dd></div>
+      <div><dt>Regelmässig</dt><dd>heisst: immer wieder im gleichen Abstand, jeden Tag oder jede Woche</dd></div>
+    </dl>
+    <h2 class="section-label">Dazu üben</h2>
+    <ul class="ueben-list">
+      <li><a class="ueben-link" href="../zeitreise/?stufe=a"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Zeitreise</span><span class="ueben-meta">Stufe a · Gestern, heute, morgen</span></a></li>
+      <li><a class="ueben-link" href="../zeitreise/?stufe=b"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Zeitreise</span><span class="ueben-meta">Stufe b · Jahreszeiten und Uhr</span></a></li>
+      <li><a class="ueben-link" href="../zeitreise/?stufe=c"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Zeitreise</span><span class="ueben-meta">Stufe c · Reihenfolgen und Dauer</span></a></li>
+      <li><a class="ueben-link" href="../zeitreise/?stufe=d"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Zeitreise</span><span class="ueben-meta">Stufe d · Jeden Tag oder nicht?</span></a></li>
+    </ul>
+    <p class="code-line">Lehrplan 21: NMG.9.1.a, NMG.9.1.b, NMG.9.1.c, NMG.9.1.d</p>
+  </article>
+</main>
+</body>
+</html>

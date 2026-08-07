@@ -124,6 +124,20 @@ begrenzen die Operanden so, dass die Summe im Raum bleibt.
 - Schweizer Zahlformat: Tausendertrennung mit Apostroph (320'000),
   Dezimalpunkt wie im Lehrplan. Potenzen als Unicode-Superscripts.
 
+## Merkheft-Verbindung und Deep-Links
+
+Jede Stufe trägt in `data.js` ein `merkblatt: { id, name }`: Die
+App zeigt auf der Stufenkarte einen klar erkennbaren Link
+«Merkblatt: …» (Chip mit Buch-Symbol und unterstrichenem Text) und
+nach einer Runde mit Fehlern «Zum Nachlesen: …», beide auf
+`../merkheft/<id>.html`. Die Links sind optional und nie eine
+Bedingung; die Suite prüft, dass jede Stufenkarte einen trägt.
+Zuordnung: a, b → plus-minus; c → einmaleins; d → schriftlich-rechnen; e → kopfrechnen; f, g → dezimalzahlen; h → prozente; i → brueche; j → potenzen.
+
+Deep-Links: `?stufe=<id>` startet die Stufe direkt. Die Query wird
+nach dem Einstieg sofort aus der Adresse entfernt, damit sie beim
+Neuladen oder Weitergeben nicht kleben bleibt.
+
 ## Tests
 
 Playwright-Suite in `tests/e2e.test.mjs`:

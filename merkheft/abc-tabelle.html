@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Die ABC-Tabelle · Merkheft</title>
-  <meta name="description" content="Merkblatt: Das ABC mit 26 Buchstaben, Vokale und Konsonanten, drei Merkgruppen, mit Übersichts-Infografik.">
-  <link rel="icon" href="favicon.svg?v=5" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=5">
+  <meta name="description" content="Merkblatt: Das ABC mit 26 Buchstaben und den Umlauten ä, ö, ü, Vokale und Konsonanten, Silben, sp und st, und das Nachschlagen im Wörterbuch.">
+  <link rel="icon" href="favicon.svg?v=6" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=6">
 </head>
 <body>
 <main id="app">
@@ -18,7 +18,7 @@
   </nav>
   <article class="blatt-page">
     <header>
-      <p class="blatt-gruppe">Sprache</p>
+      <p class="blatt-gruppe">Deutsch</p>
       <h1>Die ABC-Tabelle</h1>
     </header>
     <p class="intro">Das ABC hat 26 Buchstaben. Sie stehen immer in derselben
@@ -36,8 +36,8 @@
       <li>Sag das ABC laut auf. So lernst du die Reihenfolge auswendig.</li>
     </ul>
     <div class="illu-stage">
-      <svg viewBox="0 0 420 340" class="illu ig" role="img" id="ig-abc-tabelle"
-           aria-label="Infografik ABC-Tabelle: Alle 26 Buchstaben von A bis Z in drei Reihen, gruppiert in vorne (A bis H), in der Mitte (I bis Q) und hinten (R bis Z). Die Vokale A, E, I, O und U sind mit einem Punkt markiert, alle anderen 21 Buchstaben sind Konsonanten.">
+      <svg viewBox="0 0 420 388" class="illu ig" role="img" id="ig-abc-tabelle"
+           aria-label="Infografik ABC-Tabelle: Alle 26 Buchstaben von A bis Z in drei Reihen, gruppiert in vorne (A bis H), in der Mitte (I bis Q) und hinten (R bis Z). Die Vokale A, E, I, O und U sind mit einem Punkt markiert, alle anderen 21 Buchstaben sind Konsonanten. Darunter die drei Umlaute ä, ö und ü: Sie klingen anders und stehen im Wörterbuch bei a, o und u.">
         <text x="210" y="26" text-anchor="middle" class="ig-title">Das ABC</text>
         <text x="210" y="42" text-anchor="middle" class="ig-sub">26 Buchstaben, immer in derselben Reihenfolge</text>
 
@@ -119,23 +119,75 @@
           <text x="207" y="266" text-anchor="middle" class="ig-h">hinten (R bis Z)</text>
         </g>
 
-        <circle cx="24" cy="296" r="2.5" class="ig-dot"/>
-        <text x="34" y="300" class="ig-ex">Punkt = Vokal: A, E, I, O, U</text>
-        <text x="20" y="322" class="ig-ex">Die anderen 21 Buchstaben sind Konsonanten.</text>
+        <g class="ig-lane">
+          <rect x="20" y="282" width="38" height="34" rx="6" class="ig-box"/>
+          <text x="39" y="304" text-anchor="middle" class="ig-unit">Ä</text>
+          <circle cx="39" cy="310" r="2.5" class="ig-dot"/>
+          <rect x="62" y="282" width="38" height="34" rx="6" class="ig-box"/>
+          <text x="81" y="304" text-anchor="middle" class="ig-unit">Ö</text>
+          <circle cx="81" cy="310" r="2.5" class="ig-dot"/>
+          <rect x="104" y="282" width="38" height="34" rx="6" class="ig-box"/>
+          <text x="123" y="304" text-anchor="middle" class="ig-unit">Ü</text>
+          <circle cx="123" cy="310" r="2.5" class="ig-dot"/>
+          <text x="160" y="298" class="ig-h">Umlaute</text>
+          <text x="160" y="316" class="ig-word">ä wie a, ö wie o, ü wie u:</text>
+          <text x="160" y="332" class="ig-word">so findest du sie im Wörterbuch</text>
+        </g>
+
+        <circle cx="24" cy="358" r="2.5" class="ig-dot"/>
+        <text x="34" y="362" class="ig-ex">Punkt = Vokal oder Umlaut</text>
+        <text x="20" y="384" class="ig-ex">Die anderen 21 Buchstaben sind Konsonanten.</text>
       </svg>
     </div>
+    <h2 class="section-label">Die Umlaute ä, ö, ü</h2>
+    <p class="intro">Zu a, o und u gehören die Umlaute ä, ö und ü. Sie sehen
+    aus wie a, o und u mit zwei Punkten und klingen heller: Apfel wird zu
+    Äpfeln, Ofen zu Öfen, Huhn zu Hühnern.</p>
+    <ul class="steps">
+      <li>Die Umlaute zählen zu den <strong>Selbstlauten</strong>: Du kannst
+      sie allein und lange sprechen.</li>
+      <li>Im Wörterbuch stehen sie <strong>bei a, o und u</strong>:
+      «Äpfel» findest du bei A, «Öfen» bei O, «Übung» bei U.</li>
+    </ul>
+    <h2 class="section-label">Silben und sp, st</h2>
+    <ul class="steps">
+      <li><strong>Klatsche</strong> das Wort: Jede Silbe ist ein Klatsch.
+      Ba-na-ne hat drei Silben, Scho-ko-la-de hat vier.</li>
+      <li>Am Wortanfang hörst du «schp» oder «scht», schreibst aber
+      <strong>sp</strong> und <strong>st</strong>: Spiel, Sport, Stein,
+      Stern.</li>
+    </ul>
+    <h2 class="section-label">Im Wörterbuch nachschlagen</h2>
+    <ul class="steps">
+      <li>Die Wörter stehen nach dem ABC: zuerst zählt der
+      <strong>erste Buchstabe</strong>. Ist er gleich, entscheidet der
+      zweite: Ball steht vor Baum, Baum vor Berg.</li>
+      <li>Verben suchst du in der <strong>Grundform</strong>: «lief» findest
+      du unter «laufen», «ass» unter «essen».</li>
+      <li>Manche Wörter klingen anders, als sie geschrieben werden:
+      «Vogel» steht unter <strong>V</strong>, «Quelle» unter
+      <strong>Qu</strong>, «Chor» unter <strong>C</strong>. Den oi-Laut
+      schreibt man oft <strong>Eu</strong> wie in Eule.</li>
+    </ul>
     <h2 class="section-label">Kurz gemerkt</h2>
     <dl class="fakten">
       <div><dt>26 Buchstaben</dt><dd>von A bis Z, immer in derselben Reihenfolge</dd></div>
-      <div><dt>5 Vokale</dt><dd>A, E, I, O, U; alle anderen sind Konsonanten</dd></div>
+      <div><dt>5 Vokale</dt><dd>A, E, I, O, U; dazu die Umlaute ä, ö, ü</dd></div>
       <div><dt>3 Gruppen</dt><dd>vorne (A bis H), Mitte (I bis Q), hinten (R bis Z)</dd></div>
+      <div><dt>Grundform</dt><dd>Verben stehen im Wörterbuch in der Grundform: lief bei laufen</dd></div>
+      <div><dt>sp und st</dt><dd>du hörst schp und scht, schreibst sp und st</dd></div>
     </dl>
     <h2 class="section-label">Dazu üben</h2>
     <ul class="ueben-list">
-      <li><a class="ueben-link" href="../buchstabenleiter/?stufe=a"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Buchstabenleiter</span><span class="ueben-meta">Stufe a · Nachbarn</span></a></li>
-      <li><a class="ueben-link" href="../buchstabenleiter/?stufe=b"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Buchstabenleiter</span><span class="ueben-meta">Stufe b · auswendig</span></a></li>
+      <li><a class="ueben-link" href="../buchstabenleiter/?stufe=a"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Buchstabenleiter</span><span class="ueben-meta">Stufe a · ABC mit Hilfe</span></a></li>
+      <li><a class="ueben-link" href="../buchstabenleiter/?stufe=b-abc"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Buchstabenleiter</span><span class="ueben-meta">Stufe b · ABC auswendig</span></a></li>
+      <li><a class="ueben-link" href="../buchstabenleiter/?stufe=b-hoeren"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Buchstabenleiter</span><span class="ueben-meta">Stufe b · Silben und sp/st</span></a></li>
+      <li><a class="ueben-link" href="../buchstabenleiter/?stufe=c-vokale"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Buchstabenleiter</span><span class="ueben-meta">Stufe c · Vokale und Konsonanten</span></a></li>
+      <li><a class="ueben-link" href="../buchstabenleiter/?stufe=c-gruppen"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Buchstabenleiter</span><span class="ueben-meta">Stufe c · ABC-Gruppen</span></a></li>
+      <li><a class="ueben-link" href="../buchstabenleiter/?stufe=d-nachschlagen"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Buchstabenleiter</span><span class="ueben-meta">Stufe d · Nachschlagen</span></a></li>
+      <li><a class="ueben-link" href="../buchstabenleiter/?stufe=g-nachschlagen"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Buchstabenleiter</span><span class="ueben-meta">Stufe g · Schwierige Laute nachschlagen</span></a></li>
     </ul>
-    <p class="code-line">Lehrplan 21: D.5.E.1.a, D.5.E.1.b</p>
+    <p class="code-line">Lehrplan 21: D.5.E.1.a, D.5.E.1.b, D.5.E.1.c, D.5.E.1.d, D.5.E.1.g</p>
   </article>
 </main>
 </body>

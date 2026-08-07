@@ -224,6 +224,8 @@ check("home: all Stufen with GA badges",
 check("home: competency code visible", (await page.textContent('[data-stufe="c"]')).includes("RZG.4.1.c"));
 check("home: Merkblatt link on Stufe c",
   await page.locator('.merkblatt-link[href="../merkheft/gradnetz.html"]').count() === 1);
+check("home: every Stufe links a Merkblatt",
+  (await page.locator(".merkblatt-link").count()) === (await page.locator(".stufe").count()));
 await page.screenshot({ path: join(SHOTS_DIR, "01-home.png"), fullPage: true });
 
 await playRound("c");

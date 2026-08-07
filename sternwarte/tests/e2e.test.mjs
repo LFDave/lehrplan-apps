@@ -230,7 +230,9 @@ check("home: competency code visible", (await page.textContent('[data-stufe="b"]
 check("home: Merkblatt link on Stufe d",
   await page.locator('.merkblatt-link[href="../merkheft/mondphasen.html"]').count() === 1);
 check("home: Merkblatt link on Stufe e",
-  await page.locator('.merkblatt-link[href="../merkheft/sonnensystem.html"]').count() === 1);
+  await page.locator('.merkblatt-link[href="../merkheft/sonnensystem.html"]').count() === 2);
+check("home: every Stufe links a Merkblatt",
+  (await page.locator(".merkblatt-link").count()) === (await page.locator(".stufe").count()));
 await page.screenshot({ path: join(SHOTS_DIR, "01-home.png"), fullPage: true });
 
 await playRound("b");

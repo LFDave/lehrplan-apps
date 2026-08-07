@@ -244,6 +244,8 @@ check("home: title renders", (await page.textContent("h1")).trim() === "Zeitreis
 check("home: all Stufen with GA badges",
   await page.locator(".stufe").count() === 8 && await page.locator(".ga-badge").count() === 2);
 check("home: competency code visible", (await page.textContent('[data-stufe="c"]')).includes("NMG.9.1.c"));
+check("home: every Stufe links a Merkblatt",
+  (await page.locator(".merkblatt-link").count()) === (await page.locator(".stufe").count()));
 await page.screenshot({ path: join(SHOTS_DIR, "01-home.png"), fullPage: true });
 
 await playRound("c");

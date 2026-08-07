@@ -16,6 +16,7 @@ export const STUFEN = [
     title: 'Demokratie verstehen',
     desc: 'Verstehe, wie Demokratie entstand und was sie unterscheidet.',
     kinds: ['staatsform'],
+    merkblatt: { id: 'abstimmen', name: 'Abstimmen' },
   },
   {
     id: 'b', cycle: 3, ga: false,
@@ -29,12 +30,14 @@ export const STUFEN = [
     title: 'Direkte Demokratie',
     desc: 'Kenne Initiative, Referendum und den Föderalismus.',
     kinds: ['mitbestimmung'],
+    merkblatt: { id: 'abstimmen', name: 'Abstimmen' },
   },
   {
     id: 'd', cycle: 3, ga: false,
     title: 'Meinung begründen',
     desc: 'Wisse, wie man fair debattiert und Positionen begründet.',
     kinds: ['debatte'],
+    merkblatt: { id: 'meinung', name: 'Meinung begründen' },
   },
 ];
 

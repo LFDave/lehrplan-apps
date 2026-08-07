@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kreis und Geraden · Merkheft</title>
+  <meta name="description" content="Merkblatt: Der Kreis mit Mittelpunkt, Radius und Durchmesser, dazu Strecke, Gerade, parallel und senkrecht.">
+  <link rel="icon" href="favicon.svg?v=6" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=6">
+</head>
+<body>
+<main id="app">
+  <nav class="page-nav">
+    <a class="back" href="index.html">
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+      Alle Merkblätter
+    </a>
+  </nav>
+  <article class="blatt-page">
+    <header>
+      <p class="blatt-gruppe">Form und Raum</p>
+      <h1>Kreis und Geraden</h1>
+    </header>
+    <p class="intro">Ein Kreis sieht einfach aus, aber seine Teile haben
+    genaue Namen. In der Mitte liegt der Mittelpunkt M. Alle Punkte auf dem
+    Kreis sind gleich weit von M entfernt.</p>
+    <p class="intro">Genau darum funktioniert der Zirkel: Die Spitze steht im
+    Mittelpunkt, der Stift hält immer den gleichen Abstand und zeichnet so
+    den Kreis.</p>
+    <p class="intro">Auch für Linien gibt es genaue Wörter: Eine Strecke hat
+    zwei Endpunkte, eine Gerade läuft ohne Ende weiter. Zwei Geraden können
+    parallel, senkrecht oder schräg zueinander liegen.</p>
+    <ul class="steps">
+      <li>Der <strong>Radius</strong> r ist die Strecke vom Mittelpunkt zum
+      Kreisrand.</li>
+      <li>Der <strong>Durchmesser</strong> d geht quer durch den Kreis,
+      durch den Mittelpunkt. Er ist doppelt so lang wie der Radius:
+      d = 2 · r.</li>
+      <li><strong>Parallele</strong> Geraden haben überall den gleichen
+      Abstand. Sie treffen sich nie.</li>
+      <li><strong>Senkrechte</strong> Geraden schneiden sich im rechten
+      Winkel, also mit 90 Grad. Der Punkt, in dem sie sich treffen, heisst
+      Schnittpunkt.</li>
+      <li>Geraden, die weder parallel noch senkrecht sind, liegen
+      <strong>schräg</strong> zueinander.</li>
+    </ul>
+    <div class="illu-stage">
+      <svg viewBox="0 0 420 480" class="illu ig" role="img" id="ig-kreis"
+           aria-label="Infografik Kreis und Geraden: Ein beschrifteter Kreis zeigt den Mittelpunkt M, den Radius r von der Mitte zum Rand und den Durchmesser d quer durch die Mitte, d gleich 2 mal r. Daneben zwei Geradenpaare: parallele Geraden mit immer gleichem Abstand und senkrechte Geraden, die sich im rechten Winkel von 90 Grad schneiden. Darunter der Unterschied zwischen Strecke mit zwei Endpunkten und Gerade ohne Enden. Beispiel: Radius 3 Zentimeter ergibt Durchmesser 6 Zentimeter">
+        <text x="210" y="26" text-anchor="middle" class="ig-title">Kreis und Geraden</text>
+        <text x="210" y="42" text-anchor="middle" class="ig-sub">Alle Punkte auf dem Kreis sind gleich weit vom Mittelpunkt entfernt.</text>
+
+        <g>
+          <rect x="20" y="58" width="185" height="240" rx="8" class="ig-panel"/>
+          <text x="112" y="84" text-anchor="middle" class="ig-h">Der Kreis</text>
+          <line x1="36" y1="96" x2="189" y2="96" class="ig-tick"/>
+          <circle cx="112" cy="168" r="56" class="ig-arrow" fill="none"/>
+          <line x1="112" y1="112" x2="112" y2="224" class="ig-tick"/>
+          <line x1="112" y1="168" x2="168" y2="168" class="ig-arrow"/>
+          <circle cx="112" cy="168" r="4" class="ig-dot"/>
+          <text x="104" y="134" text-anchor="end" class="ig-factor">d</text>
+          <text x="140" y="160" text-anchor="middle" class="ig-factor">r</text>
+          <text x="104" y="182" text-anchor="end" class="ig-word">M</text>
+          <text x="112" y="246" text-anchor="middle" class="ig-word">r: von der Mitte zum Rand</text>
+          <text x="112" y="264" text-anchor="middle" class="ig-word">d: quer durch die Mitte</text>
+          <text x="112" y="286" text-anchor="middle" class="ig-unit">d = 2 · r</text>
+        </g>
+
+        <g>
+          <rect x="215" y="58" width="185" height="115" rx="8" class="ig-panel"/>
+          <text x="307" y="84" text-anchor="middle" class="ig-h">parallel</text>
+          <line x1="231" y1="96" x2="384" y2="96" class="ig-tick"/>
+          <line x1="235" y1="118" x2="380" y2="118" class="ig-arrow"/>
+          <line x1="235" y1="142" x2="380" y2="142" class="ig-arrow"/>
+          <text x="307" y="164" text-anchor="middle" class="ig-word">immer gleicher Abstand</text>
+        </g>
+
+        <g>
+          <rect x="215" y="185" width="185" height="113" rx="8" class="ig-panel"/>
+          <text x="307" y="211" text-anchor="middle" class="ig-h">senkrecht</text>
+          <line x1="231" y1="223" x2="384" y2="223" class="ig-tick"/>
+          <line x1="235" y1="255" x2="380" y2="255" class="ig-arrow"/>
+          <line x1="307" y1="233" x2="307" y2="277" class="ig-arrow"/>
+          <path d="M 317 255 L 317 245 L 307 245" class="ig-tick" fill="none"/>
+          <text x="307" y="292" text-anchor="middle" class="ig-word">rechter Winkel: 90 Grad</text>
+        </g>
+
+        <text x="20" y="330" class="ig-h">Strecke und Gerade</text>
+        <line x1="40" y1="356" x2="185" y2="356" class="ig-arrow"/>
+        <circle cx="40" cy="356" r="4" class="ig-dot"/>
+        <circle cx="185" cy="356" r="4" class="ig-dot"/>
+        <text x="112" y="380" text-anchor="middle" class="ig-word">Strecke: mit zwei Endpunkten</text>
+        <line x1="235" y1="356" x2="380" y2="356" class="ig-arrow"/>
+        <path d="M 235 352 L 227 356 L 235 360 Z" class="ig-arrowhead"/>
+        <path d="M 380 352 L 388 356 L 380 360 Z" class="ig-arrowhead"/>
+        <text x="307" y="380" text-anchor="middle" class="ig-word">Gerade: ohne Enden</text>
+
+        <text x="20" y="414" class="ig-h">Beispiele</text>
+        <text x="20" y="436" class="ig-ex">Radius r = 3 cm: Durchmesser d = 2 · 3 cm = 6 cm</text>
+        <text x="20" y="458" class="ig-ex">Zirkel: Die Spitze steht in M, der Stift hält den Abstand.</text>
+      </svg>
+    </div>
+    <h2 class="section-label">Kurz gemerkt</h2>
+    <dl class="fakten">
+      <div><dt>Radius r</dt><dd>Strecke vom Mittelpunkt M zum Kreisrand</dd></div>
+      <div><dt>Durchmesser d</dt><dd>quer durch die Mitte, d = 2 · r</dd></div>
+      <div><dt>Rechter Winkel</dt><dd>90 Grad: so schneiden sich senkrechte Geraden</dd></div>
+    </dl>
+    <h2 class="section-label">Dazu üben</h2>
+    <ul class="ueben-list">
+      <li><a class="ueben-link" href="../formenreich/?stufe=g"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Formenreich</span><span class="ueben-meta">Stufe g · Kreis und Geraden</span></a></li>
+      <li><a class="ueben-link" href="../formenreich/?stufe=l"><svg class="ueben-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg><span class="ueben-text">Formenreich</span><span class="ueben-meta">Stufe l · Kreis und Tetraeder</span></a></li>
+    </ul>
+    <p class="code-line">Lehrplan 21: MA.2.A.1.g, MA.2.A.1.l</p>
+  </article>
+</main>
+</body>
+</html>

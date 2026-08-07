@@ -14,12 +14,14 @@ export const STUFEN = [
     title: 'Orte auffinden',
     desc: 'Kenne Kontinente, Ozeane, Länder und Hauptstädte.',
     kinds: ['ort'],
+    merkblatt: { id: 'kontinente', name: 'Kontinente' },
   },
   {
     id: 'b', cycle: 3, ga: false,
     title: 'Lage beschreiben',
     desc: 'Beschreibe die Lage von Orten mit Raummerkmalen.',
     kinds: ['lage'],
+    merkblatt: { id: 'kontinente', name: 'Kontinente' },
   },
   {
     id: 'c', cycle: 3, ga: true,

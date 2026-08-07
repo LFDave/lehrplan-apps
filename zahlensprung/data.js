@@ -21,6 +21,7 @@ export const STUFEN = [
     desc: 'Zähle Punkte und vergleiche Zahlen bis 20.',
     tasks: ['count', 'order'],
     params: { countMax: 20, orderMax: 20, orderCount: 3 },
+    merkblatt: { id: 'zahlenstrahl', name: 'Zahlenstrahl' },
   },
   {
     id: 'b', cycle: 1, ga: false,
@@ -28,6 +29,7 @@ export const STUFEN = [
     desc: 'Zähle vorwärts und rückwärts bis 20, auch in 2er-Schritten.',
     tasks: ['sequence'],
     params: { max: 20, steps: [1, 2], backward: true },
+    merkblatt: { id: 'zahlenstrahl', name: 'Zahlenstrahl' },
   },
   {
     id: 'c', cycle: 1, ga: true,
@@ -35,6 +37,7 @@ export const STUFEN = [
     desc: 'Zähle in 1er-, 2er-, 5er- und 10er-Schritten bis 100 und ordne Zahlen.',
     tasks: ['sequence', 'order'],
     params: { max: 100, steps: [1, 2, 5, 10], backward: false, orderMax: 100, orderCount: 4 },
+    merkblatt: { id: 'zahlenstrahl', name: 'Zahlenstrahl' },
   },
   {
     id: 'd', cycle: [1, 2], ga: false,
@@ -42,6 +45,7 @@ export const STUFEN = [
     desc: 'Zähle von jeder Zahl aus vorwärts und rückwärts bis 100.',
     tasks: ['sequence'],
     params: { max: 100, steps: [1, 2, 5, 10], backward: true },
+    merkblatt: { id: 'zahlenstrahl', name: 'Zahlenstrahl' },
   },
   {
     id: 'e', cycle: 2, ga: false,
@@ -49,6 +53,7 @@ export const STUFEN = [
     desc: 'Zähle in Schritten bis 1000 und ordne Zahlen.',
     tasks: ['sequence', 'order'],
     params: { max: 1000, steps: [1, 2, 10, 100], backward: true, orderMax: 1000, orderCount: 4 },
+    merkblatt: { id: 'stellenwert', name: 'Stellenwerttafel' },
   },
   {
     id: 'f', cycle: 2, ga: false,
@@ -56,6 +61,7 @@ export const STUFEN = [
     desc: 'Zähle in grossen Schritten bis 1 Million und ordne grosse Zahlen.',
     tasks: ['sequence', 'order'],
     params: { max: 1000000, steps: [1000, 10000, 20000, 100000], backward: true, orderMax: 1000000, orderCount: 4 },
+    merkblatt: { id: 'stellenwert', name: 'Stellenwerttafel' },
   },
   {
     id: 'g', cycle: 2, ga: true,
@@ -66,6 +72,7 @@ export const STUFEN = [
       max: 10, steps: [0.005, 0.01, 0.1, 0.25], decimals: 3, backward: true,
       orderKind: 'decimals', orderCount: 4, estimateKind: 'natural',
     },
+    merkblatt: { id: 'brueche', name: 'Brüche und Prozente' },
   },
   {
     id: 'h', cycle: [2, 3], ga: false,
@@ -73,6 +80,7 @@ export const STUFEN = [
     desc: 'Überschlage Ergebnisse mit Dezimalzahlen und Prozenten.',
     tasks: ['estimate'],
     params: { estimateKind: 'decimal-percent' },
+    merkblatt: { id: 'runden', name: 'Runden' },
   },
   {
     id: 'i', cycle: 3, ga: false, erweiterung: true,
@@ -80,6 +88,7 @@ export const STUFEN = [
     desc: 'Überschlage Produkte und Quotienten von Dezimalzahlen.',
     tasks: ['estimate'],
     params: { estimateKind: 'decimal-multiply' },
+    merkblatt: { id: 'runden', name: 'Runden' },
   },
   {
     id: 'j', cycle: 3, ga: true,
@@ -87,6 +96,7 @@ export const STUFEN = [
     desc: 'Ordne positive und negative Zahlen auf dem Zahlenstrahl.',
     tasks: ['order'],
     params: { orderKind: 'negatives', orderCount: 4 },
+    merkblatt: { id: 'zahlenstrahl', name: 'Zahlenstrahl' },
   },
 ];
 

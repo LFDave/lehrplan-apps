@@ -236,6 +236,8 @@ check("home: split cards show the official letter",
   (await page.textContent('[data-stufe="c-schreibung"]')).includes("D.4.F.1.c")
   && (await page.textContent('[data-stufe="c-kommas"]')).includes("D.4.F.1.c"));
 check("home: competency code visible", (await page.textContent('[data-stufe="a"]')).includes("D.4.F.1.a"));
+check("home: every Stufe links a Merkblatt",
+  (await page.locator(".merkblatt-link").count()) === (await page.locator(".stufe").count()));
 await page.screenshot({ path: join(SHOTS_DIR, "01-home.png"), fullPage: true });
 
 await playRound("a");
