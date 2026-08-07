@@ -93,7 +93,7 @@ const QA = {
   "Welche Einheit misst die Länge?": "Meter",
   "Was wiegt etwa 1 kg?": "eine Packung Mehl",
   "Was wiegt etwa 100 g?": "eine Tafel Schokolade",
-  "Was ist etwa 1 km lang?": "ein Spaziergang von 12 Minuten ist länger",
+  "Was ist etwa 1 km lang?": "ein Spaziergang von 12 Minuten",
   "Was fasst etwa 1 l?": "eine grosse Milchpackung",
   "Was fasst etwa 1 dl?": "ein kleines Glas",
   "Wie lang ist etwa 1 dm?": "eine Handbreite",

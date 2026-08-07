@@ -69,7 +69,7 @@ export const GW_QA = {
   referenceMc: [
     ['Was wiegt etwa 1 kg?', 'eine Packung Mehl', ['ein Auto', 'eine Feder']],
     ['Was wiegt etwa 100 g?', 'eine Tafel Schokolade', ['ein Fahrrad', 'ein Reiskorn']],
-    ['Was ist etwa 1 km lang?', 'ein Spaziergang von 12 Minuten ist länger', ['ein Bleistift', 'ein Fussballfeld ist 10 km lang']],
+    ['Was ist etwa 1 km lang?', 'ein Spaziergang von 12 Minuten', ['ein Bleistift', 'ein Fussballfeld']],
     ['Was fasst etwa 1 l?', 'eine grosse Milchpackung', ['ein Fingerhut', 'eine Badewanne']],
     ['Was fasst etwa 1 dl?', 'ein kleines Glas', ['ein Eimer', 'ein Schwimmbecken']],
     ['Wie lang ist etwa 1 dm?', 'eine Handbreite', ['ein Schulweg', 'ein Auto']],
