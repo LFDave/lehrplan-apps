@@ -247,6 +247,14 @@ concrete expression, never the fact, method, or exercise idea behind it.
   embed the original.
 - Cite Lehrplan 21 competency codes; never commit official Lehrplan
   wording or extracted grounding data to the repo.
+- Strict Lehrplan check before adding content, to an app or a
+  Merkblatt: re-derive the official Kompetenzstufen locally with
+  tools/lehrplan-extraktion and check every planned item against the
+  wording of the target Stufe. Only what a Stufe names goes in; what
+  no Stufe names stays out, even if a schoolbook, worksheet, or test
+  covers it. Record the verified scope and the deliberate exclusions
+  in the app's PRD. Schoolbooks and worksheets are sources for
+  exercise types, never for scope.
 
 ## Accessibility rules
 

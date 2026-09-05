@@ -1,6 +1,6 @@
 # PRD — Zeitreise
 
-Version: 1.0. Dieses Dokument ist die massgebende Spezifikation der App.
+Version: 1.1. Dieses Dokument ist die massgebende Spezifikation der App.
 Verhalten und PRD werden immer in derselben Änderung angepasst.
 
 ## Zweck und Leitprinzip
@@ -33,9 +33,47 @@ nicht die Stoppuhr. NMG.9.1 endet im 2. Zyklus mit Übergang in den
 
 ## Inhalt und Aufgabenformen
 
-Der Inhalt liegt in festen Aufgaben-Pools pro Stufe mit geprüften
-Kalender- und Geschichtsfakten. Die Suite prüft jede Aufgabe gegen
-eine unabhängig neu aufgeschriebene Antwort-Tabelle.
+Der Inhalt liegt in Aufgaben-Pools pro Stufe in `gen.js`. Feste
+Einträge tragen geprüftes Faktenwissen (Uhr, Dauer, Tagesstruktur,
+Zeitstrahl, Generationen, Epochen, Ereignisse). Die Reihen der Stufen
+a und b werden generiert, damit keine Runde der anderen gleicht:
+
+- **Stufe a, Wochentage und Monate** (NMG.9.1.a, zeitliche Reihen und
+  Listen): Vorgänger und Nachfolger im Kreis (nach Sonntag kommt
+  Montag, nach Dezember Januar), «Welcher Tag liegt zwischen …?»,
+  Lücke in einer Viererreihe, «Was gehört nicht dazu?», für Monate
+  zusätzlich die Position im Jahr in beide Richtungen. Vorgänger,
+  Nachfolger, Lücke und Position wechseln je zur Hälfte zwischen
+  Tippen und Auswahl; Dazwischen und Fremdling sind immer Auswahl.
+  Fest bleiben gestern/heute/morgen, 7 Tage, 12 Monate.
+- **Stufe b, Jahreszeiten und Jahreskreis** (NMG.9.1.b): Reihenfolge
+  der Jahreszeiten im Kreis (vor und nach), Jahreszeit eines Monats,
+  die drei Monate einer Jahreszeit, der Monat, der nicht dazugehört,
+  3 Monate pro Jahreszeit. Fest bleiben Schnee, 4 Jahreszeiten und
+  die Uhr-Aufgaben.
+
+**Jahreskreis-Konvention:** meteorologische Jahreszeiten der
+Nordhalbkugel wie im Merkblatt (Frühling März bis Mai, Sommer Juni
+bis August, Herbst September bis November, Winter Dezember bis
+Februar). Die Aufgaben sagen darum «bei uns». Die App hat bewusst
+keinen Länder-Schalter; NMG.9.1 ist an den Schweizer Kontext
+gebunden.
+
+Auswahl-Aufgaben haben höchstens drei Optionen. Getippte Namen zählen
+unabhängig von Gross- und Kleinschreibung (mittwoch = Mittwoch):
+geprüft wird die Zeitkompetenz, nicht die Rechtschreibung.
+
+**Bewusst nicht enthalten** (strikte Prüfung gegen die Stufen a bis h
+am 5. September 2026): Kalenderraster mit Datum und Wochentag,
+Datumsformate (21.02. gegenüber 21. Februar), Tage pro Monat und
+Schaltjahr, Abkürzungen (Mo., Jan.), 365 Tage und 52 Wochen,
+Jahreszeiten-Merkmale (Blätter fallen, baden) sowie Rätselaufgaben.
+Keine Stufe von NMG.9.1 nennt sie: Die Wörter Kalender, Schaltjahr
+und Wochenende kommen im ganzen Lehrplan nicht vor, Datum nur in den
+Fremdsprachen, Abkürzungen nur für Masseinheiten (MA.3.A.1), und
+Jahreszeiten-Merkmale gehören zu NMG.4.4 (Wetterwarte). Was eine
+Stufe nicht nennt, wird nicht ergänzt, auch wenn Schulbücher und
+Arbeitsblätter es üben.
 
 ## Kernablauf, Eingabe, Gamification, Persistenz
 
@@ -57,7 +95,7 @@ role="status"-Region.
 Einsprachig Deutsch (Schweizer Standarddeutsch), Strings in
 `strings.js`. Tokens aus DESIGN.md, Akzentfamilie **amber**,
 Atkinson Hyperlegible selbst gehostet, Lucide-Icons inline,
-Cache-Busting `?v=3`.
+Cache-Busting `?v=4`.
 
 ## Merkheft-Verbindung und Deep-Links
 
@@ -76,6 +114,11 @@ Neuladen oder Weitergeben nicht kleben bleibt.
 ## Tests
 
 Playwright-Suite in `tests/e2e.test.mjs`: Generatoren mit gesätem
-Zufall gegen ein unabhängiges Orakel, dazu die UI-Abläufe (Runden auf
-den GA-Stufen, Fehlerfluss, Persistenz, Medaillen, Reset, Layout,
-Konsole, keine externen Requests).
+Zufall gegen ein unabhängiges Orakel (Antwort-Tabelle für die festen
+Aufgaben, eigener Löser mit eigenen Tages-, Monats- und
+Jahreszeitentabellen für die generierten), Varianz der Stufen a und b
+(mindestens 60 beziehungsweise 25 verschiedene Aufgaben in 50 Runden),
+dazu die UI-Abläufe (Runden auf a, b und den GA-Stufen,
+Kleinschreibung beim Tippen, Fehlerfluss, Persistenz, Medaillen,
+Reset, Layout auch in der Aufgabenansicht, Konsole, keine externen
+Requests).
