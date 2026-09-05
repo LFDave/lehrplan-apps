@@ -2,13 +2,13 @@
 
 @font-face {
   font-family: 'Atkinson Hyperlegible';
-  src: url('fonts/atkinson-hyperlegible-400.woff2?v=7') format('woff2');
+  src: url('fonts/atkinson-hyperlegible-400.woff2?v=9') format('woff2');
   font-weight: 400;
   font-display: swap;
 }
 @font-face {
   font-family: 'Atkinson Hyperlegible';
-  src: url('fonts/atkinson-hyperlegible-700.woff2?v=7') format('woff2');
+  src: url('fonts/atkinson-hyperlegible-700.woff2?v=9') format('woff2');
   font-weight: 700;
   font-display: swap;
 }
@@ -27,7 +27,14 @@
   --color-accent: #D8C47A;
   --color-accent-soft: #D8C47A26;
   --color-accent-muted: #A99858;
+  --color-action-secondary-bg: #1C2A3B;
+  --color-action-secondary-hover-bg: #26384E;
   --font-body: 'Atkinson Hyperlegible', system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --font-size-xs: 0.75rem;
+  --font-size-xl: 1.375rem;
+  --font-size-xxl: 1.75rem;
+  --line-height-title: 1.15;
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -53,14 +60,15 @@ body {
 
 .app-header { display: grid; gap: var(--space-1); margin-bottom: var(--space-2); }
 .app-title {
-  font-size: 1.5rem; display: flex; align-items: center; gap: var(--space-2);
+  font-size: var(--font-size-xxl); line-height: var(--line-height-title); letter-spacing: -0.015em;
+  display: flex; align-items: center; gap: var(--space-3);
   color: var(--color-text-primary);
 }
-.title-icon { width: 1.5rem; height: 1.5rem; color: var(--color-accent); }
+.title-icon { width: 1.75rem; height: 1.75rem; flex: none; color: var(--color-accent); }
 .tagline { color: var(--color-text-secondary); max-width: 65ch; }
 
 .section-label {
-  font-size: 0.95rem; color: var(--color-text-muted); font-weight: 700;
+  font-size: var(--font-size-sm); letter-spacing: 0.02em; color: var(--color-text-muted); font-weight: 700;
   margin-top: var(--space-2);
 }
 
@@ -77,8 +85,8 @@ body {
 .blatt:hover { background: var(--color-background-surface-raised); }
 .blatt:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }
 .blatt-title { font-weight: 700; }
-.blatt-meta { grid-column: 1; color: var(--color-text-muted); font-size: 0.85rem; }
-.chevron { grid-column: 2; grid-row: 1 / span 2; width: 1.1rem; height: 1.1rem; color: var(--color-text-muted); }
+.blatt-meta { grid-column: 1; color: var(--color-text-muted); font-family: var(--font-mono); font-size: var(--font-size-xs); }
+.chevron { grid-column: 2; grid-row: 1 / span 2; width: 1.25rem; height: 1.25rem; color: var(--color-text-muted); }
 
 /* Pfad (Breadcrumb): Lehrplan-Apps › Merkheft › Merkblatt */
 .crumbs { font-size: var(--font-size-sm); color: var(--color-text-muted); }
@@ -97,15 +105,11 @@ body {
 .crumbs [aria-current="page"] { font-weight: 700; }
 .crumb-sep { width: 1rem; height: 1rem; flex: none; color: var(--color-text-muted); }
 
-.blatt-page {
-  background: var(--color-background-surface);
-  border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-lg);
-  padding: var(--space-6) var(--space-4);
-  display: grid; gap: var(--space-3);
-}
-.blatt-gruppe { color: var(--color-accent); font-size: 0.9rem; font-weight: 700; }
-.blatt-page h1 { font-size: 1.4rem; }
+/* Auf dem Handy liegt das Merkblatt direkt auf der Fläche, damit die
+   Infografik die ganze Spalte bekommt; ab Tablet wird es eine Karte. */
+.blatt-page { display: grid; gap: var(--space-3); }
+.blatt-gruppe { color: var(--color-accent); font-size: var(--font-size-sm); font-weight: 700; }
+.blatt-page h1 { font-size: var(--font-size-xl); line-height: var(--line-height-title); }
 .intro { color: var(--color-text-secondary); max-width: 65ch; }
 .steps {
   color: var(--color-text-secondary); max-width: 60ch;
@@ -129,16 +133,16 @@ svg text { font-family: var(--font-body); font-size: 0.85rem; fill: var(--color-
 .illu-controls button {
   font: inherit; border: 1px solid var(--color-border-strong);
   border-radius: var(--radius-sm);
-  background: #1C2A3B; color: var(--color-text-primary);
+  background: var(--color-action-secondary-bg); color: var(--color-text-primary);
   padding: var(--space-2) var(--space-3); cursor: pointer; min-height: 2.75rem;
 }
-.illu-controls button:hover { background: #26384E; }
+.illu-controls button:hover { background: var(--color-action-secondary-hover-bg); }
 .illu-controls button[aria-pressed="true"] { border-color: var(--color-accent); color: var(--color-accent); }
 .illu-controls button:focus-visible,
 .illu-controls input:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }
-.illu-controls input[type="range"] { flex: 1 1 9rem; accent-color: #D8C47A; min-height: 2.75rem; }
+.illu-controls input[type="range"] { flex: 1 1 9rem; accent-color: var(--color-accent); min-height: 2.75rem; }
 .illu-controls label { color: var(--color-text-secondary); display: inline-flex; gap: var(--space-2); align-items: center; }
-.illu-status { color: var(--color-text-muted); font-size: 0.9rem; text-align: center; }
+.illu-status { color: var(--color-text-muted); font-size: var(--font-size-sm); text-align: center; }
 
 /* Infografik-Klassen: Einheitentreppen, Regelkasten, Beispiele.
    Farben pro Klasse, damit der Druck sie hell überschreiben kann. */
@@ -170,6 +174,8 @@ svg text { font-family: var(--font-body); font-size: 0.85rem; fill: var(--color-
 .sun { position: absolute; inset: 0; margin: auto; width: 22px; height: 22px; border-radius: 50%; background: var(--color-accent); }
 .running .carrier { animation: orbit linear infinite; }
 @keyframes orbit { to { transform: rotate(360deg); } }
+/* Reduzierte Bewegung: die Planeten kreisen nicht; der Startknopf
+   wechselt trotzdem seinen Zustand und Text. */
 @media (prefers-reduced-motion: reduce) {
   .running .carrier { animation: none; }
 }
@@ -202,12 +208,17 @@ svg text { font-family: var(--font-body); font-size: 0.85rem; fill: var(--color-
 .ueben-link:hover { background: var(--color-background-surface-raised); }
 .ueben-link:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }
 
-.code-line { color: var(--color-text-muted); font-size: 0.85rem; }
+.code-line { color: var(--color-text-muted); font-family: var(--font-mono); font-size: var(--font-size-xs); }
 
 .app-footer { color: var(--color-text-muted); font-size: var(--font-size-sm); display: grid; gap: var(--space-2); }
 
 @media (min-width: 40rem) {
-  .blatt-page { padding: var(--space-6); }
+  .blatt-page {
+    background: var(--color-background-surface);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+  }
   .fakten { grid-template-columns: repeat(3, 1fr); }
   .fakten div { grid-template-rows: auto 1fr; }
 }

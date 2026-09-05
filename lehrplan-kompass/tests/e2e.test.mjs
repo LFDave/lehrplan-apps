@@ -366,6 +366,21 @@ check("nav: practice links carry the family Üben icon",
   await page.locator(".practice-link .icon").count() === await page.locator(".practice-link").count()
   && await page.locator(".practice-link").count() > 0);
 
+/* ── Bewegung: Balken über transform, Häkchen blendet ein, reduziert springt ── */
+await page.goto(URL + "#MA");
+await page.waitForSelector(".area");
+const kMotion = await page.evaluate(() => {
+  const f = getComputedStyle(document.querySelector(".subject-header .progress-fill"));
+  const i = getComputedStyle(document.querySelector(".competence .checkbox .icon"));
+  return { fillProp: f.transitionProperty, fillDur: f.transitionDuration, iconProp: i.transitionProperty, iconOpacity: i.opacity };
+});
+check("motion: progress bar and check icon transition via transform and opacity only",
+  kMotion.fillProp === "transform" && kMotion.fillDur === "0.24s" && kMotion.iconProp === "opacity" && kMotion.iconOpacity === "0", JSON.stringify(kMotion));
+await page.emulateMedia({ reducedMotion: "reduce" });
+check("motion: reduced motion removes both transitions",
+  (await page.evaluate(() => [".subject-header .progress-fill", ".competence .checkbox .icon"].map((s) => getComputedStyle(document.querySelector(s)).transitionDuration).join(","))) === "0s,0s");
+await page.emulateMedia({ reducedMotion: "no-preference" });
+
 check("console: no errors", consoleErrors.length === 0, consoleErrors.slice(0, 3).join(" | "));
 check("network: no external requests", externalRequests.length === 0, externalRequests.slice(0, 3).join(", "));
 

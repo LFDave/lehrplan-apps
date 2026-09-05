@@ -8,8 +8,8 @@ explainer sheets to read before and after practising.
 **Open:** [lfdave.github.io/lehrplan-apps](https://lfdave.github.io/lehrplan-apps)
 
 The start page has exactly three entries: Kompass (einschätzen),
-Übungs-Apps (üben, listed by subject on `ueben/`) and Merkheft
-(nachschlagen). Every page below the start carries a breadcrumb
+Merkheft (nachschlagen) and Übungs-Apps (üben, listed by subject on
+`ueben/`). Every page below the start carries a breadcrumb
 (Lehrplan-Apps › Bereich › App › Ansicht), and a practice round is its
 own history entry, so the browser back button always retraces the way
 a learner came, for example from a Merkblatt into a round and back.

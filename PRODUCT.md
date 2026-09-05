@@ -113,9 +113,9 @@ Every app with something to configure uses the same settings surface, so a child
 
 ## Family navigation
 
-The site has three entries and nothing else on its start page:
-Lehrplan-Kompass (einschätzen), Übungs-Apps (üben) and Merkheft
-(nachschlagen). The practice apps are listed on their own page
+The site has three entries and nothing else on its start page, in
+this order: Lehrplan-Kompass (einschätzen), Merkheft (nachschlagen),
+Übungs-Apps (üben). The practice apps are listed on their own page
 (`ueben/`), grouped by subject, with the competency code next to
 each app.
 
@@ -201,11 +201,11 @@ The visual system should be dark-only, quiet, and content-led. Use layered charc
 
 ## Typography direction
 
-Typography must be readable before it is expressive. Use a self-hosted, accessible body face and a modest display face only when it improves hierarchy. Do not use overused default AI fonts. Maintain a clear size ramp. Avoid long all-caps text, very tight line height, and body text below comfortable reading size.
+Typography must be readable before it is expressive. The family uses one self-hosted, accessible face (Atkinson Hyperlegible) for everything; titles are that face at the top of the scale, codes use the system monospace stack. A display face would only be added if hierarchy demanded it. Do not use overused default AI fonts. Maintain a clear size ramp. Avoid long all-caps text, very tight line height, and body text below comfortable reading size.
 
 ## Motion direction
 
-Motion should clarify state changes. Use short, smooth transitions. Prefer transform and opacity. Do not animate layout properties. Do not use bounce, elastic, wobble, glowing, or celebratory motion unless the game specifically needs a small reward moment.
+Motion should clarify state changes. Use short, smooth transitions. Prefer transform and opacity. Do not animate layout properties. Do not use bounce, elastic, wobble, glowing, or celebratory motion unless the game specifically needs a small reward moment. The family's motion is exactly two things: progress bars grow (transform, 240 ms; the XP bar on the done screen is the quiet reward moment) and answer buttons press in (120 ms). Reduced motion removes spatial movement and keeps every state change visible: bars jump to their value, buttons stay still, nothing hides behind an animation, and no stylesheet kills transitions globally.
 
 ## Sound direction
 
@@ -342,7 +342,7 @@ platform work — lives in BACKLOG.md.
   cross-checked against two independent references, no copied
   encyclopedia or Lehrplan text).
 - Site structure: the start page has exactly three entries (Kompass,
-  Übungs-Apps, Merkheft); practice apps are listed on `ueben/` by
+  Merkheft, Übungs-Apps); practice apps are listed on `ueben/` by
   subject. Every page below the start carries the family breadcrumb
   (Lehrplan-Apps › Bereich › App › Ansicht); per-app overview links
   in footers are gone.

@@ -20,7 +20,7 @@ export const STRINGS = {
     'practice.abort': 'Abbrechen',
     'task.typed': 'Rechne aus.',
     'task.mc': 'Wähle die richtige Antwort.',
-    'task.autocheck': 'Beim letzten Zeichen siehst du sofort, ob es stimmt.',
+    'task.autocheck': 'Beim letzten Zeichen siehst du sofort, ob es stimmt. Mit Enter geht es auch früher.',
     'feedback.correct': 'Richtig.',
     'feedback.almost': 'Fast. Versuch es noch einmal.',
     'next': 'Weiter',

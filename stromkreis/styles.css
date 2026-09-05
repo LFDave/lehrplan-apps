@@ -2,13 +2,13 @@
 
 @font-face {
   font-family: 'Atkinson Hyperlegible';
-  src: url('fonts/atkinson-hyperlegible-400.woff2?v=9') format('woff2');
+  src: url('fonts/atkinson-hyperlegible-400.woff2?v=11') format('woff2');
   font-weight: 400;
   font-display: swap;
 }
 @font-face {
   font-family: 'Atkinson Hyperlegible';
-  src: url('fonts/atkinson-hyperlegible-700.woff2?v=9') format('woff2');
+  src: url('fonts/atkinson-hyperlegible-700.woff2?v=11') format('woff2');
   font-weight: 700;
   font-display: swap;
 }
@@ -66,6 +66,7 @@
   --shadow-sm: 0 1px 2px #00000033;
 
   --motion-fast: 120ms;
+  --motion-slow: 240ms;
   --motion-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 
   --target-child: 3rem;
@@ -247,8 +248,9 @@ body {
 .stufe-meta {
   font-size: var(--font-size-xs);
   color: var(--color-text-muted);
-  font-family: var(--font-mono);
 }
+
+.stufe-meta .code { font-family: var(--font-mono); }
 
 .subject-chevron { color: var(--color-text-muted); }
 
@@ -258,17 +260,23 @@ body {
   display: block;
   height: 0.5rem;
   background: var(--color-background-surface-soft);
+  border: 1px solid var(--color-border-subtle);
   border-radius: var(--radius-pill);
   overflow: hidden;
 }
 
 .progress-track.wide { margin: var(--space-2) 0; }
 
+/* Der Balken wächst über transform (scaleX), nie über width; sein Ende
+   bleibt eckig, die Schiene rundet ihn mit overflow: hidden. */
 .progress-fill {
   display: block;
+  width: 100%;
   height: 100%;
   background: var(--color-accent);
-  border-radius: var(--radius-pill);
+  transform-origin: left;
+  transform: scaleX(var(--p, 0));
+  transition: transform var(--motion-slow) var(--motion-ease-out);
 }
 
 /* ── Übung ───────────────────────────────────────────────────── */
@@ -277,7 +285,7 @@ body {
 
 .back-btn { margin-bottom: var(--space-4); }
 
-.practice-meta { margin: 0; color: var(--color-text-secondary); font-size: var(--font-size-sm); }
+.practice-meta { margin: 0; color: var(--color-text-secondary); font-size: var(--font-size-sm); font-weight: 400; line-height: var(--line-height-body); }
 
 .task-area {
   background: var(--color-background-surface);
@@ -287,7 +295,7 @@ body {
   margin-bottom: var(--space-3);
 }
 
-.task-question { margin: 0 0 var(--space-4); font-size: var(--font-size-lg); font-weight: 700; }
+.task-question { margin: 0 0 var(--space-4); font-size: var(--font-size-lg); font-weight: 700; line-height: var(--line-height-body); }
 
 .dots {
   display: flex;
@@ -375,6 +383,7 @@ body {
 
 .choice:hover:not(:disabled) { background: var(--color-action-secondary-hover-bg); }
 .choice:active:not(:disabled) { transform: translateY(1px); box-shadow: none; }
+.choice { transition: transform var(--motion-fast) var(--motion-ease-out); }
 .choice.picked { border-color: var(--color-accent); background: var(--color-accent-soft); }
 .choice.correct { border-color: var(--color-accent-success); background: var(--color-accent-success-soft); }
 .choice.wrong { border-color: var(--color-accent-danger); background: var(--color-accent-danger-soft); }
@@ -505,8 +514,12 @@ body {
 
 :focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }
 
+/* Reduzierte Bewegung: keine räumliche Bewegung, jeder Zustand bleibt
+   sichtbar. Balken springen auf ihren Wert, Antwortknöpfe drücken sich
+   nicht ein. */
 @media (prefers-reduced-motion: reduce) {
-  * { transition-duration: 0.01ms !important; }
+  .progress-fill, .choice { transition: none; }
+  .choice:active:not(:disabled) { transform: none; }
 }
 
 /* Merkblatt-Verweise: ruhige Links zum Merkheft (Nachschlagewerk). */

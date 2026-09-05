@@ -6,3 +6,8 @@
 .codex/
 .cursor/
 node_modules/
+
+# Impeccable critique snapshots are local tool state; the shared config is committed.
+.impeccable/critique/
+.impeccable/config.local.json
+.impeccable/live/

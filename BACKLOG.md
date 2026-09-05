@@ -218,6 +218,12 @@ Infrastructure, quality, and process — independent of new apps.
    each with its oracle counterpart in the same change.
 8. **A11y sweep per release.** Keyboard walk, focus states, contrast,
    reduced motion across all apps once per batch, not only per new app.
+   Sweep 2026-09-05 (Impeccable pass): keyboard walk with visible focus
+   on start page, app list, app home and Merkblatt (root suite asserts
+   it), contrast AA on screen and in print, reduced motion turned into
+   an intentional alternative family-wide (bars jump, buttons stay
+   still; no global transition kill left). Open: the Merkheft orbit
+   model only stops under reduced motion (no stepped alternative).
 9.–11. **Merkheft: the family's explanation layer — SHIPPED with
     wave 1, waves remain.** The Merkheft app (merkheft/, amber) is
     the wiki-style reference surface: **one Merkblatt = one static
@@ -255,7 +261,10 @@ Infrastructure, quality, and process — independent of new apps.
 
     Remaining:
     - **Kompass → Merkheft links** next to "Üben mit …" for
-      competencies with a Merkblatt.
+      competencies with a Merkblatt. Still open (2026-09-05): the only
+      remaining navigation/design item; needs a competency → Merkblätter
+      map (most competencies have several sheets), so it is a data
+      task before it is a design task.
     - ~~Deep-link to a Stufe from "Dazu üben"~~ — shipped:
       `?stufe=<id>` starts the Stufe (or split sub-Stufe)
       directly; the app removes the query from the address after
@@ -386,7 +395,7 @@ Infrastructure, quality, and process — independent of new apps.
     Shipped (2026-09-05): the family breadcrumb «Lehrplan-Apps ›
     Übungs-Apps › App › Ansicht» on every view of all 31 apps, the
     Kompass and the Merkheft (footer links removed); the start page
-    has exactly three entries (Kompass, Übungs-Apps, Merkheft) and
+    has exactly three entries (Kompass, Merkheft, Übungs-Apps) and
     `ueben/` lists the apps by subject; a round is a `#stufe/<id>`
     history entry and Abbrechen pops it, so browser back retraces
     the real path (Merkblatt → round → app overview → Merkblatt).

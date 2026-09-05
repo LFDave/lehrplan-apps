@@ -121,7 +121,16 @@ stehen als "Zahl Einheit", das Ziel als "? Einheit".
   UI-Texte in `strings.js` mit stabilen IDs. Keine
   Einstellungen-Ansicht, solange es nichts zu konfigurieren gibt.
 - Tokens aus DESIGN.md, Akzentfamilie **sage**, Atkinson Hyperlegible
-  selbst gehostet, Lucide-Icons inline, Cache-Busting `?v=8`.
+  selbst gehostet, Lucide-Icons inline, Cache-Busting `?v=10`. Bewegung nur als
+Zustandswechsel: Fortschrittsbalken wachsen über `transform: scaleX`
+(240 ms), Antwortknöpfe drücken sich beim Antippen ein (120 ms); bei
+reduzierter Bewegung springen die Balken, die Knöpfe bleiben still, und
+jeder Zustand bleibt sichtbar. Speichern in localStorage ist gegen
+blockierten Speicher (privater Modus) abgesichert. Der Aufgabenschirm
+trägt die Stufenzeile als h1 und die Frage als h2; bei Auswahlaufgaben
+liegt der Fokus nach dem Rendern auf der ersten Antwort, beim Reset auf
+der Bestätigung. Neben einem Stufenvorschlag ist «Noch eine Runde» der
+Zweitknopf.
 - Schweizer Formate: Tausendertrennung mit Apostroph (2'000),
   Dezimalpunkt, Franken und Rappen, 24-Stunden-Uhrzeiten (09:40).
 

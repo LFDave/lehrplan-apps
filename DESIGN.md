@@ -74,9 +74,13 @@ color:
 typography:
   font-family:
     body: "Atkinson Hyperlegible"
-    display: "Literata"
-    mono: "IBM Plex Mono"
+    display: "Atkinson Hyperlegible"
+    mono: "ui-monospace, SF Mono, Menlo, Consolas, monospace"
     fallback: "system-ui, sans-serif"
+    policy:
+      one-family: true
+      display-is-body-at-xxl-bold: true
+      mono-is-system-stack: true
   font-source:
     policy: self-hosted
     external-font-services: false
@@ -184,6 +188,9 @@ motion:
     - spring
   reduced-motion:
     non-essential-animation: false
+    spatial-motion: none
+    state-changes: instant-but-visible
+    global-transition-kill: false
 
 layout:
   max-width:
@@ -280,6 +287,10 @@ component:
     fill: color.mode.dark.accent.default
     height: "0.5rem"
     radius: radius.pill
+    fill-property: transform
+    fill-transform: scaleX
+    fill-transition: motion.duration.slow
+    fill-easing: motion.easing.out
   choice:
     background: color.mode.dark.background.surface-raised
     border: "1.5px solid"
@@ -288,6 +299,7 @@ component:
     hover-background: color.mode.dark.action.secondary-hover-bg
     pressed-transform: "translateY(1px)"
     pressed-shadow: shadow.none
+    pressed-transition: motion.duration.fast
     selected-border-color: color.mode.dark.accent.default
     selected-background: color.mode.dark.accent.default-soft
     correct-border-color: color.mode.dark.accent.success
@@ -330,6 +342,9 @@ component:
       hover-background: color.mode.dark.background.surface-raised
       indent: "4rem"
       padding-block: space.2
+  toggle:
+    icon-property: opacity
+    icon-transition: motion.duration.fast
   breadcrumb:
     font-size: typography.size.sm
     color: color.mode.dark.text.muted

@@ -3,13 +3,13 @@
 
 @font-face {
   font-family: 'Atkinson Hyperlegible';
-  src: url('fonts/atkinson-hyperlegible-400.woff2?v=1') format('woff2');
+  src: url('fonts/atkinson-hyperlegible-400.woff2?v=2') format('woff2');
   font-weight: 400;
   font-display: swap;
 }
 @font-face {
   font-family: 'Atkinson Hyperlegible';
-  src: url('fonts/atkinson-hyperlegible-700.woff2?v=1') format('woff2');
+  src: url('fonts/atkinson-hyperlegible-700.woff2?v=2') format('woff2');
   font-weight: 700;
   font-display: swap;
 }
@@ -180,7 +180,7 @@ body {
 .chevron { width: 1.25rem; height: 1.25rem; flex: none; color: var(--color-text-muted); }
 
 /* Die drei Bereiche der Startseite sind grösser und tragen den Weg:
-   einschätzen, üben, nachschlagen. */
+   einschätzen, nachschlagen, üben. */
 .entry {
   padding: var(--space-4) var(--space-5);
   border-radius: var(--radius-lg);
@@ -204,6 +204,5 @@ body {
 .quiet-link:hover { color: var(--color-text-primary); }
 .quiet-link:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }
 
-@media (prefers-reduced-motion: reduce) {
-  * { transition-duration: 0.01ms !important; }
-}
+/* Keine Bewegung auf der Startseite und in der Liste: Zustände wechseln
+   sofort, darum braucht es hier auch keine Regel für reduzierte Bewegung. */

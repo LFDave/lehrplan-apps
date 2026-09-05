@@ -108,6 +108,8 @@ check("root: exactly three entries: Kompass, Übungs-Apps, Merkheft",
   && await page.locator('.row[href="ueben/"]').count() === 1
   && await page.locator('.row[href="merkheft/"]').count() === 1);
 check("root: no breadcrumb on the root itself", await page.locator(".crumbs").count() === 0);
+check("root: entries read Kompass → Merkheft → Übungs-Apps (einschätzen, nachschlagen, üben)",
+  (await page.locator(".entry-list .row").evaluateAll((els) => els.map((e) => e.getAttribute("href")))).join(",") === "lehrplan-kompass/,merkheft/,ueben/");
 check("root: every entry has icon, name, description and meta",
   await page.locator(".entry .row-icon").count() === 3
   && await page.locator(".entry .row-name").count() === 3
@@ -163,6 +165,39 @@ check("404: calm German page with a way back to the overview",
   (await page.textContent("h1")).includes("nicht gefunden")
   && await page.locator('a[href="/lehrplan-apps/"]').count() === 1);
 await page.screenshot({ path: join(SHOTS_DIR, "03-404.png"), fullPage: true });
+
+/* ── Keyboard walk: visible focus on every stop (A11y sweep) ─────── */
+async function keyboardWalk(url, ready, stops) {
+  await page.goto(url);
+  await page.waitForSelector(ready);
+  const seen = [];
+  for (let i = 0; i < stops; i++) {
+    await page.keyboard.press("Tab");
+    const stop = await page.evaluate(() => {
+      const el = document.activeElement;
+      const s = getComputedStyle(el);
+      return { tag: el.tagName, visible: s.outlineStyle !== "none" && parseFloat(s.outlineWidth) > 0 };
+    });
+    if (stop.tag === "BODY") break; // end of the page (the start page has four stops)
+    seen.push(stop);
+  }
+  return seen;
+}
+for (const [url, ready, label] of [[`${BASE}/`, ".entry-list", "start page"], [`${BASE}/ueben/`, ".row-list", "Übungs-Apps"], [`${BASE}/zahlenwissen/`, ".stufen-list", "app home"], [`${BASE}/merkheft/zahlenstrahl.html`, ".blatt-page", "Merkblatt"]]) {
+  const walk = await keyboardWalk(url, ready, 5);
+  check(`a11y: ${label} shows a visible focus ring on every early tab stop`,
+    walk.length >= 3 && walk.every((w) => w.visible), JSON.stringify(walk));
+}
+
+/* ── Motion: family bars use transform, reduced motion jumps ─────── */
+await page.goto(`${BASE}/zahlenwissen/`);
+await page.waitForSelector(".stufen-list");
+check("motion: no global transition kill, the bar transitions transform only",
+  (await page.evaluate(() => { const s = getComputedStyle(document.querySelector(".stats-strip .progress-fill")); return s.transitionProperty + " " + s.transitionDuration; })) === "transform 0.24s");
+await page.emulateMedia({ reducedMotion: "reduce" });
+check("motion: reduced motion removes the bar transition and keeps its value",
+  (await page.evaluate(() => { const s = getComputedStyle(document.querySelector(".stats-strip .progress-fill")); return s.transitionDuration + " " + (s.transform !== "none"); })) === "0s true");
+await page.emulateMedia({ reducedMotion: "no-preference" });
 
 /* ── Layout, console, network ─────────────────────────────────────── */
 const noHorizScroll = () => page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth);

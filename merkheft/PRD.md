@@ -143,7 +143,10 @@ von aussen.
 Einsprachig Deutsch (Schweizer Standarddeutsch). Tokens aus
 DESIGN.md, Akzentfamilie **amber**, Atkinson Hyperlegible selbst
 gehostet, Illustrationen als Inline-SVG mit `role="img"` und
-deutschem `aria-label`, Cache-Busting `?v=7`.
+deutschem `aria-label`, Cache-Busting `?v=9`. Auf schmalen Bildschirmen liegt das Merkblatt
+ohne Kartenrahmen direkt auf der Fläche, damit die Infografik die ganze
+Spalte bekommt; ab 40rem wird es eine Karte. Titel, Gruppen- und Abschnittslabels, Codes
+(Monospace, xs) folgen der Typo-Skala der Familie.
 
 ## Tests
 

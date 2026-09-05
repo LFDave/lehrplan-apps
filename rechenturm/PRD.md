@@ -120,7 +120,16 @@ begrenzen die Operanden so, dass die Summe im Raum bleibt.
   UI-Texte in `strings.js` mit stabilen IDs. Keine
   Einstellungen-Ansicht, solange es nichts zu konfigurieren gibt.
 - Tokens aus DESIGN.md, Akzentfamilie **coral**, Atkinson Hyperlegible
-  selbst gehostet, Lucide-Icons inline, Cache-Busting `?v=4`.
+  selbst gehostet, Lucide-Icons inline, Cache-Busting `?v=6`. Bewegung nur als
+Zustandswechsel: Fortschrittsbalken wachsen über `transform: scaleX`
+(240 ms), Antwortknöpfe drücken sich beim Antippen ein (120 ms); bei
+reduzierter Bewegung springen die Balken, die Knöpfe bleiben still, und
+jeder Zustand bleibt sichtbar. Speichern in localStorage ist gegen
+blockierten Speicher (privater Modus) abgesichert. Der Aufgabenschirm
+trägt die Stufenzeile als h1 und die Frage als h2; bei Auswahlaufgaben
+liegt der Fokus nach dem Rendern auf der ersten Antwort, beim Reset auf
+der Bestätigung. Neben einem Stufenvorschlag ist «Noch eine Runde» der
+Zweitknopf.
 - Schweizer Zahlformat: Tausendertrennung mit Apostroph (320'000),
   Dezimalpunkt wie im Lehrplan. Potenzen als Unicode-Superscripts.
 

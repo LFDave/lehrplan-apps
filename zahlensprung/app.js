@@ -2,11 +2,11 @@
 // Abschluss, Medaillen. Eine Runde hat 8 Aufgaben; ausgewertet wird
 // immer die ganze Antwort, nie einzelne Zeichen.
 
-import { STUFEN, COMPETENCY, stufeById, nextStufe, cycleLabel } from './data.js?v=4';
-import { genRound } from './gen.js?v=4';
-import { roundXp, levelFor, nextLevel, earnedMedals, cleanStreak, suggestsNextStufe } from './game.js?v=4';
-import { t } from './strings.js?v=4';
-import { icon } from './icons.js?v=4';
+import { STUFEN, COMPETENCY, stufeById, nextStufe, cycleLabel } from './data.js?v=6';
+import { genRound } from './gen.js?v=6';
+import { roundXp, levelFor, nextLevel, earnedMedals, cleanStreak, suggestsNextStufe } from './game.js?v=6';
+import { t } from './strings.js?v=6';
+import { icon } from './icons.js?v=6';
 
 const STORE = 'zahlensprung.progress';
 const ROUND_LENGTH = 8;
@@ -34,7 +34,13 @@ const state = {
 };
 
 function save() {
-  localStorage.setItem(STORE, JSON.stringify(state.progress));
+  // Privater Modus oder voller Speicher: die Runde läuft weiter, nur
+  // ohne Speichern; der Fortschritt bleibt für diese Sitzung im state.
+  try {
+    localStorage.setItem(STORE, JSON.stringify(state.progress));
+  } catch {
+    /* nicht speicherbar */
+  }
 }
 
 function perStufe(id) {
@@ -71,6 +77,14 @@ function bindCrumbs() {
   if (home) home.addEventListener('click', (e) => { e.preventDefault(); leaveRound(); });
 }
 
+// Fortschrittsbalken: der alte Stand steht im Markup, der neue wird im
+// übernächsten Frame gesetzt, damit der Übergang (transform) sichtbar
+// wird. Bei reduzierter Bewegung springt der Balken (styles.css).
+function growFill(fill, to) {
+  if (!fill) return;
+  requestAnimationFrame(() => requestAnimationFrame(() => fill.style.setProperty('--p', String(to))));
+}
+
 /* ── Übersicht ────────────────────────────────────────────────── */
 
 function renderHome() {
@@ -90,7 +104,7 @@ function renderHome() {
     <a class="stats-strip" href="#medaillen" aria-label="${esc(t('medals.title'))}">
       <span class="stats-level">
         <span>${t('home.level', { name: levelFor(p.xp).name })} · ${p.xp} XP</span>
-        <span class="progress-track"><span class="progress-fill" style="width:${pct}%"></span></span>
+        <span class="progress-track"><span class="progress-fill" style="--p:${pct / 100}"></span></span>
       </span>
       <span class="stats-medals">${icon('medal')}${t('home.medals', { n: medals.length })}</span>
       ${icon('chevron-right', 'subject-chevron')}
@@ -111,7 +125,7 @@ function renderHome() {
                   ${s.erweiterung ? `<span class="stufe-tag">${t('stufe.erweiterung')}</span>` : ''}
                 </span>
                 <span class="stufe-desc">${esc(s.desc)}</span>
-                <span class="stufe-meta">${esc(cycleLabel(s.cycle))} · ${COMPETENCY}.${s.id}${ps.rounds ? ` · ${t('home.rounds', { n: ps.rounds })}` : ''}</span>
+                <span class="stufe-meta">${esc(cycleLabel(s.cycle))} · <span class="code">${COMPETENCY}.${s.id}</span>${ps.rounds ? ` · ${t('home.rounds', { n: ps.rounds })}` : ''}</span>
               </span>
               ${icon('chevron-right', 'subject-chevron')}
             </button>
@@ -154,6 +168,7 @@ function renderHome() {
       renderHome();
     });
   }
+  if (state.resetArmed) app.querySelector('.reset-confirm button')?.focus();
 }
 
 /* ── Übung ────────────────────────────────────────────────────── */
@@ -183,33 +198,33 @@ function renderTask() {
   let taskHtml = '';
   if (task.type === 'count') {
     taskHtml = `
-      <p class="task-question">${t('task.count')}</p>
-      <div class="dots" aria-label="${task.dots} Punkte">
-        ${Array.from({ length: task.dots }, () => '<span class="dot"></span>').join('')}
+      <h2 class="task-question">${t('task.count')}</h2>
+      <div class="dots" role="img" aria-label="${task.dots} Punkte">
+        ${Array.from({ length: Math.ceil(task.dots / 5) }, (_, g) => `<span class="dot-group">${'<span class="dot"></span>'.repeat(Math.min(5, task.dots - g * 5))}</span>`).join('')}
       </div>
       ${typedInput(task.answer)}
     `;
   } else if (task.type === 'sequence') {
     taskHtml = `
-      <p class="task-question">${t('task.sequence')}</p>
+      <h2 class="task-question">${t('task.sequence')}</h2>
       <p class="sequence">${task.terms.map((x) => `<span class="term">${x}</span>`).join('')}<span class="term blank">?</span></p>
       ${typedInput(task.answer)}
     `;
   } else if (task.type === 'order') {
     taskHtml = `
-      <p class="task-question">${t('task.order')}</p>
+      <h2 class="task-question">${t('task.order')}</h2>
       <div class="order-slots" aria-hidden="true">
         ${task.items.map((_, i) => `<span class="slot" data-slot="${i}"></span>`).join('')}
       </div>
       <div class="choices order-choices">
         ${task.items.map((x, i) => `<button class="choice" data-pick="${i}">${x}</button>`).join('')}
       </div>
-      <button class="btn secondary small" data-action="undo">${icon('delete')}</button>
+      <button class="btn secondary small" data-action="undo" aria-label="${esc(t('task.undo'))}">${icon('delete')}</button>
       <p class="advisory">${t('task.orderhint')}</p>
     `;
   } else {
     taskHtml = `
-      <p class="task-question">${t('task.estimate')}</p>
+      <h2 class="task-question">${t('task.estimate')}</h2>
       <p class="sequence"><span class="term">${task.expr} ≈ ?</span></p>
       <div class="choices">
         ${task.options.map((x, i) => `<button class="choice" data-option="${i}">${x}</button>`).join('')}
@@ -221,14 +236,15 @@ function renderTask() {
     ${crumbs(t('nav.stufe', { id: stufe.id }))}
     <header class="practice-header">
       <button class="btn secondary back-btn" data-action="abort">${icon('arrow-left')}${t('practice.abort')}</button>
-      <p class="practice-meta">${esc(stufe.title)} · Stufe ${stufe.id} · ${t('practice.progress', { i: r.index + 1, n: r.tasks.length })}</p>
-      <div class="progress-track wide"><div class="progress-fill" style="width:${Math.round((r.index / r.tasks.length) * 100)}%"></div></div>
+      <h1 class="practice-meta">${esc(stufe.title)} · Stufe ${stufe.id} · ${t('practice.progress', { i: r.index + 1, n: r.tasks.length })}</h1>
+      <div class="progress-track wide"><div class="progress-fill" style="--p:${Math.max(0, r.index - 1) / r.tasks.length}"></div></div>
     </header>
     <section class="task-area">${taskHtml}</section>
     <div class="feedback" role="status" id="feedback"></div>
     <div class="task-actions" id="task-actions"></div>
   `;
 
+  growFill(app.querySelector('.practice-header .progress-fill'), r.index / r.tasks.length);
   app.querySelector('[data-action="abort"]').addEventListener('click', leaveRound);
   bindCrumbs();
 
@@ -239,7 +255,15 @@ function renderTask() {
       const value = input.value.trim();
       if (value.length >= task.answer.length) evaluateTyped(input, value, task);
     });
+    input.addEventListener('keydown', (e) => {
+      if (e.key !== 'Enter') return;
+      // Default-Aktivierung unterdrücken: sonst löst dasselbe Enter den
+      // frisch fokussierten Weiter-Knopf aus und überspringt das Feedback.
+      e.preventDefault();
+      if (input.value.trim()) evaluateTyped(input, input.value.trim(), task);
+    });
   }
+  if (!input) app.querySelector('[data-option], [data-pick]')?.focus();
   for (const btn of app.querySelectorAll('[data-option]')) {
     btn.addEventListener('click', () => evaluateChoice(btn, task));
   }
@@ -396,6 +420,10 @@ function renderDone() {
   const next = nextLevel(p.xp);
   const pct = next ? Math.round(((p.xp - level.xp) / (next.xp - level.xp)) * 100) : 100;
 
+  // Der Balken startet beim Stand vor der Runde und wächst auf den neuen.
+  const xpBefore = p.xp - res.xp;
+  const pctBefore = res.levelUp ? 0 : (next ? Math.max(0, Math.round(((xpBefore - level.xp) / (next.xp - level.xp)) * 100)) : 100);
+
   app.innerHTML = `
     ${crumbs(t('nav.stufe', { id: stufe.id }))}
     <section class="done">
@@ -405,7 +433,7 @@ function renderDone() {
       <div class="reward-block">
         <p class="reward-xp">${t('done.xp', { xp: res.xp })}</p>
         <p>${res.levelUp ? t('done.levelup', { name: level.name }) : t('done.level', { name: level.name })} · ${p.xp} XP</p>
-        <div class="progress-track wide"><div class="progress-fill" style="width:${pct}%"></div></div>
+        <div class="progress-track wide"><div class="progress-fill" style="--p:${pctBefore / 100}"></div></div>
         ${res.newMedals.map((m) => `<p class="reward-medal">${icon(m.icon)}${t('done.medal', { name: m.name })}</p>`).join('')}
       </div>
       ${res.suggestion ? `
@@ -415,12 +443,13 @@ function renderDone() {
         </div>
       ` : ''}
       <div class="done-actions">
-        <button class="btn primary" data-action="again">${t('done.again')}</button>
+        <button class="btn ${res.suggestion ? 'secondary' : 'primary'}" data-action="again">${t('done.again')}</button>
         <button class="btn secondary" data-action="home">${t('done.home')}</button>
       </div>
     </section>
   `;
 
+  growFill(app.querySelector('.reward-block .progress-fill'), pct / 100);
   app.querySelector('[data-action="again"]').addEventListener('click', () => startRound(res.stufeId));
   app.querySelector('[data-action="home"]').addEventListener('click', leaveRound);
   const sug = app.querySelector('[data-action="suggest"]');
@@ -433,7 +462,7 @@ function renderDone() {
 function renderMedals() {
   const p = state.progress;
   const earned = new Set(earnedMedals(p).map((m) => m.key));
-  import('./game.js?v=4').then(({ MEDALS }) => {
+  import('./game.js?v=6').then(({ MEDALS }) => {
     app.innerHTML = `
       ${crumbs(t('medals.title'))}
       <header class="subject-header">

@@ -2,9 +2,9 @@
 // Zykluswahl und Häkchen. Navigation läuft über location.hash, damit der
 // Zurück-Knopf des Browsers funktioniert.
 
-import { CYCLES, subjectsForCycle, subjectById, areaCompetenciesForCycle, competencyCount, PRACTICE_APPS } from './data.js?v=12';
-import { STRINGS, t } from './strings.js?v=12';
-import { icon } from './icons.js?v=12';
+import { CYCLES, subjectsForCycle, subjectById, areaCompetenciesForCycle, competencyCount, PRACTICE_APPS } from './data.js?v=14';
+import { STRINGS, t } from './strings.js?v=14';
+import { icon } from './icons.js?v=14';
 
 const STORE_CYCLE = 'kompass.cycle';
 const STORE_CHECKED = 'kompass.checked';
@@ -32,8 +32,14 @@ function loadChecked() {
 }
 
 function saveState() {
-  localStorage.setItem(STORE_CYCLE, String(state.cycle));
-  localStorage.setItem(STORE_CHECKED, JSON.stringify(state.checked));
+  // Privater Modus oder voller Speicher: die Häkchen bleiben für diese
+  // Sitzung im state, nur das Speichern entfällt.
+  try {
+    localStorage.setItem(STORE_CYCLE, String(state.cycle));
+    localStorage.setItem(STORE_CHECKED, JSON.stringify(state.checked));
+  } catch {
+    /* nicht speicherbar */
+  }
 }
 
 function checkKey(cycle, code) {
@@ -132,7 +138,7 @@ function renderHome() {
                   <span class="subject-name">${esc(s.name)}${s.tag ? ` <span class="subject-tag">${esc(s.tag)}</span>` : ''}</span>
                   <span class="subject-meta">${t('subject.competencies', { n: sTotal })}</span>
                   <span class="progress-row">
-                    <span class="progress-track"><span class="progress-fill" style="width:${pct}%"></span></span>
+                    <span class="progress-track"><span class="progress-fill" style="--p:${pct / 100}"></span></span>
                     <span class="progress-num">${sDone}/${sTotal}</span>
                   </span>
                 </span>
@@ -187,7 +193,7 @@ function renderSubject(subject) {
       <a class="btn secondary back-btn" href="#">${icon('arrow-left')}${t('subject.back')}</a>
       <h1 class="subject-title">${icon(subject.icon, 'title-icon')}${esc(subject.name)}</h1>
       <p class="subject-progress" role="status">${t('subject.progress', { done, total })}</p>
-      <div class="progress-track wide"><div class="progress-fill" style="width:${pct}%"></div></div>
+      <div class="progress-track wide"><div class="progress-fill" style="--p:${pct / 100}"></div></div>
       <p class="cycle-note">${t('subject.cycleNote', { cycle: t(`cycle.${state.cycle}.title`) })}</p>
     </header>
 
@@ -244,7 +250,7 @@ function updateSubjectProgress(subject) {
   const label = app.querySelector('.subject-progress');
   const fill = app.querySelector('.subject-header .progress-fill');
   if (label) label.textContent = t('subject.progress', { done, total });
-  if (fill) fill.style.width = `${pct}%`;
+  if (fill) fill.style.setProperty('--p', String(pct / 100));
 }
 
 function bindResetActions() {
