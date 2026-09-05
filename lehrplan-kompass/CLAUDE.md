@@ -41,4 +41,9 @@ spec-sync rules, cache-busting convention) applies as well.
   chains, minimum text length), per-cycle persistence, reset
   confirmation, no horizontal scroll at 320px, no console errors, no
   external requests.
+- Navigation chrome: every view starts with the family breadcrumb
+  (`crumbs()` in app.js: Lehrplan-Apps › Lehrplan-Kompass › Fach); the
+  footer has no overview link any more. The practice links use the
+  family "üben" icon `dumbbell` (same as Merkheft "Dazu üben" and the
+  root "Übungs-Apps" entry).
 - Practice-app links: `PRACTICE_APPS` in `data.js` maps official codes to sibling apps; rows with an entry render an "Üben mit ..." link below the toggle (relative href, never inside the button element).

@@ -350,6 +350,22 @@ const noHorizScrollNarrow = await page.evaluate(() =>
 check("layout: no horizontal scrolling at 320px in subject view", noHorizScrollNarrow);
 await page.screenshot({ path: join(SHOTS_DIR, "06-subject-nmg-narrow.png"), fullPage: false });
 
+/* ── Navigation: Pfad ────────────────────────────────────────────── */
+await page.goto(URL);
+await page.waitForSelector(".subject-grid");
+check("nav: home breadcrumb links the overview and names the Kompass",
+  await page.locator('.crumbs a[href="../"]').count() === 1
+  && (await page.textContent('.crumbs [aria-current="page"]')).trim() === "Lehrplan-Kompass");
+await page.click('.subject-card[href="#MA"]');
+await page.waitForSelector(".area");
+check("nav: subject breadcrumb adds the subject and links the Kompass home",
+  await page.locator('.crumbs a[href="../"]').count() === 1
+  && await page.locator('.crumbs a[href="#"]').count() === 1
+  && (await page.textContent('.crumbs [aria-current="page"]')).trim() === (await page.textContent(".subject-title")).trim());
+check("nav: practice links carry the family Üben icon",
+  await page.locator(".practice-link .icon").count() === await page.locator(".practice-link").count()
+  && await page.locator(".practice-link").count() > 0);
+
 check("console: no errors", consoleErrors.length === 0, consoleErrors.slice(0, 3).join(" | "));
 check("network: no external requests", externalRequests.length === 0, externalRequests.slice(0, 3).join(", "));
 

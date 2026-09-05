@@ -1,4 +1,4 @@
-version: 2026-08-01
+version: 2026-09-05
 name: mini-apps-design-system
 role: token-only
 register: product-surface
@@ -161,6 +161,7 @@ shadow:
   sm: "0 1px 2px #00000033"
   md: "0 8px 24px #00000030"
   lg: "0 18px 48px #00000038"
+  edge: "0 1px 0 #00000040"
   policy:
     colored-glow: false
     wide-diffuse-plus-hairline-border: false
@@ -281,16 +282,78 @@ component:
     radius: radius.pill
   choice:
     background: color.mode.dark.background.surface-raised
+    border: "1.5px solid"
+    border-color: color.mode.dark.border.strong
+    shadow: shadow.edge
+    hover-background: color.mode.dark.action.secondary-hover-bg
+    pressed-transform: "translateY(1px)"
+    pressed-shadow: shadow.none
     selected-border-color: color.mode.dark.accent.default
+    selected-background: color.mode.dark.accent.default-soft
+    correct-border-color: color.mode.dark.accent.success
     correct-background: color.mode.dark.accent.success-soft
+    wrong-border-color: color.mode.dark.accent.danger
     wrong-background: color.mode.dark.accent.danger-soft
     radius: radius.md
     padding: space.4
+  link:
+    quiet:
+      color: color.mode.dark.text.secondary
+      hover-color: color.mode.dark.text.primary
+      underline: hover-only
+      underline-offset: "3px"
+    accent:
+      color: color.mode.dark.accent.default
+      font-size: typography.size.sm
+      font-weight: typography.weight.bold
+      icon-size: icon.size.sm
+      underline: hover-only
+      underline-offset: "3px"
+      min-height: "2.75rem"
+    row:
+      background: color.mode.dark.background.surface
+      hover-background: color.mode.dark.background.surface-raised
+      border: "1px solid"
+      border-color: color.mode.dark.border.subtle
+      radius: radius.md
+      min-height: target.child
+      padding-block: space.3
+      padding-inline: space.4
+      icon-size: icon.size.lg
+      icon-color: color.mode.dark.accent.default
+      chevron: icon.semantic.row-chevron
+      chevron-color: color.mode.dark.text.muted
+    card-footer:
+      inherits: component.link.accent
+      border-top: "1px solid"
+      border-top-color: color.mode.dark.border.subtle
+      hover-background: color.mode.dark.background.surface-raised
+      indent: "4rem"
+      padding-block: space.2
+  breadcrumb:
+    font-size: typography.size.sm
+    color: color.mode.dark.text.muted
+    link-color: color.mode.dark.text.secondary
+    link-hover-color: color.mode.dark.text.primary
+    current-color: color.mode.dark.text.secondary
+    current-weight: typography.weight.bold
+    separator: icon.semantic.breadcrumb-separator
+    separator-size: icon.size.sm
+    item-min-height: "2.25rem"
+    gap: space.1
+    margin-bottom: space.4
 
 icon:
   library: lucide
   delivery: inline-svg
   external-icon-cdn: false
+  semantic:
+    overview: layout-grid
+    kompass: compass
+    ueben: dumbbell
+    merkheft: book-open
+    breadcrumb-separator: chevron-right
+    row-chevron: chevron-right
   favicon:
     format: svg
     file: favicon.svg

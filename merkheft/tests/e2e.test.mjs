@@ -549,7 +549,8 @@ const MIME = {
   ".svg": "image/svg+xml", ".woff2": "font/woff2",
 };
 const server = createServer(async (req, res) => {
-  const path = req.url.split("?")[0].replace(/^\//, "") || "index.html";
+  let path = req.url.split("?")[0].replace(/^\//, "") || "index.html";
+  if (path.endsWith("/")) path += "index.html";
   try {
     const data = await readFile(join(ROOT_DIR, path));
     res.writeHead(200, { "Content-Type": MIME[extname(path)] || "application/octet-stream" });
@@ -592,12 +593,15 @@ for (const b of BLAETTER) {
     && (await page.textContent(".blatt-gruppe")).trim() === b.gruppe
     && (await page.locator(".illu-stage svg, .illu-stage .orbits").count()) >= 1
     && (await page.title()).includes("Merkheft"));
-  check(`page ${b.id}: Dazu-üben links present with icon and underlined name`,
+  check(`page ${b.id}: Dazu-üben rows with icon, name, meta and chevron`,
     await page.locator(".ueben-link").count() === b.ueben.length
     && await page.locator(".ueben-link .ueben-icon").count() === b.ueben.length
-    && await page.locator(".ueben-link .ueben-text").count() === b.ueben.length);
-  check(`page ${b.id}: back link to index`,
-    await page.locator('.back[href="index.html"]').count() === 1);
+    && await page.locator(".ueben-link .ueben-text").count() === b.ueben.length
+    && await page.locator(".ueben-link .chevron").count() === b.ueben.length);
+  check(`page ${b.id}: breadcrumb links overview and index, names the sheet`,
+    await page.locator('.crumbs a[href="../"]').count() === 1
+    && await page.locator('.crumbs a[href="index.html"]').count() === 1
+    && (await page.textContent('.crumbs [aria-current="page"]')).trim() === b.title);
 }
 
 /* ── Interactivity: circuit ───────────────────────────────────────── */
@@ -671,10 +675,29 @@ await page.waitForSelector("#ig-laengen");
 check("laengen: ruler with major and minor ticks",
   (await page.locator("#ig-laengen .ig-tick").count()) === 21);
 
-/* ── Back navigation ──────────────────────────────────────────────── */
-await page.click(".back");
+/* ── Navigation: Pfad zurück zur Liste, Dazu üben und Browser-Zurück ── */
+await page.click('.crumbs a[href="index.html"]');
 await page.waitForSelector(".blatt-list");
-check("nav: back returns to the list", (await page.locator(".blatt").count()) === BLAETTER.length);
+check("nav: breadcrumb returns to the list", (await page.locator(".blatt").count()) === BLAETTER.length);
+check("nav: index breadcrumb links the overview and names the Merkheft",
+  await page.locator('.crumbs a[href="../"]').count() === 1
+  && (await page.textContent('.crumbs [aria-current="page"]')).trim() === "Merkheft");
+
+// Merkblatt → Dazu üben → Runde → Browser-Zurück → App-Übersicht →
+// Browser-Zurück → wieder das Merkblatt (kein verlorener Faden).
+await page.goto(`${BASE}/zahlenstrahl.html`);
+await page.waitForSelector(".blatt-page");
+await page.click('.ueben-link[href="../zahlensprung/?stufe=a"]');
+await page.waitForSelector(".task-area");
+check("journey: Dazu üben starts the Stufe with its own history entry, query cleaned",
+  page.url().endsWith("/zahlensprung/#stufe/a")
+  && (await page.textContent(".practice-meta")).includes("Stufe a"));
+await page.goBack();
+await page.waitForSelector(".stufen-list");
+check("journey: browser back leaves the round for the app overview", page.url().endsWith("/zahlensprung/"));
+await page.goBack();
+await page.waitForSelector(".blatt-page");
+check("journey: a second back returns to the Merkblatt", page.url().endsWith("/zahlenstrahl.html"));
 
 /* ── Print rendering ──────────────────────────────────────────────── */
 await page.goto(`${BASE}/wasserkreislauf.html`);
@@ -682,7 +705,7 @@ await page.waitForSelector(".blatt-page");
 await page.emulateMedia({ media: "print" });
 const printState = await page.evaluate(() => ({
   bodyBg: getComputedStyle(document.body).backgroundColor,
-  navHidden: getComputedStyle(document.querySelector(".page-nav")).display === "none",
+  navHidden: getComputedStyle(document.querySelector(".crumbs")).display === "none",
   faktenBreak: getComputedStyle(document.querySelector(".fakten div")).breakInside,
   labelBreak: getComputedStyle(document.querySelector(".section-label")).breakAfter,
 }));

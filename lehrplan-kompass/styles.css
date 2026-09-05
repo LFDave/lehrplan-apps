@@ -2,13 +2,13 @@
 
 @font-face {
   font-family: 'Atkinson Hyperlegible';
-  src: url('fonts/atkinson-hyperlegible-400.woff2?v=11') format('woff2');
+  src: url('fonts/atkinson-hyperlegible-400.woff2?v=12') format('woff2');
   font-weight: 400;
   font-display: swap;
 }
 @font-face {
   font-family: 'Atkinson Hyperlegible';
-  src: url('fonts/atkinson-hyperlegible-700.woff2?v=11') format('woff2');
+  src: url('fonts/atkinson-hyperlegible-700.woff2?v=12') format('woff2');
   font-weight: 700;
   font-display: swap;
 }
@@ -398,7 +398,7 @@ body {
 
 .practice-link:hover { background: var(--color-background-surface-raised); }
 
-.practice-link .icon { width: 0.9rem; height: 0.9rem; }
+.practice-link .icon { width: 1rem; height: 1rem; }
 
 .code-chip {
   flex: none;
@@ -486,16 +486,35 @@ body {
   * { transition-duration: 0.01ms !important; }
 }
 
-.overview-link {
+/* ── Pfad (Breadcrumb): Lehrplan-Apps › Lehrplan-Kompass › Fach ── */
+
+.crumbs {
+  margin-bottom: var(--space-4);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+.crumbs ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 var(--space-1);
+}
+.crumbs li { display: inline-flex; align-items: center; gap: var(--space-1); }
+.crumbs a,
+.crumbs [aria-current="page"] {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-2);
-  align-self: start;
-  min-height: 2.75rem;
+  min-height: 2.25rem;
   color: var(--color-text-secondary);
   text-decoration: none;
-  font-size: 0.9rem;
 }
-.overview-icon { width: 1.1rem; height: 1.1rem; flex: none; }
-.overview-link:hover { color: var(--color-text-primary); }
-.overview-link:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }
+.crumbs a:hover { color: var(--color-text-primary); text-decoration: underline; text-underline-offset: 3px; }
+.crumbs a:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }
+.crumbs [aria-current="page"] { font-weight: 700; }
+.crumb-sep { width: 1rem; height: 1rem; flex: none; color: var(--color-text-muted); }
+
+/* In der Fachansicht folgt der Pfad der schmalen, zentrierten Spalte. */
+.crumbs.narrow { max-width: var(--max-width-narrow); margin-inline: auto; }

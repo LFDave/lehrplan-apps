@@ -72,6 +72,16 @@ sich spätere Übungsmodule anhängen lassen.
    eine Bestätigung und nennt, dass die Daten nur auf diesem Gerät liegen.
    Er löscht alle Haken in allen Zyklen, behält aber die Zykluswahl.
 
+## Pfad und Familie
+
+Beide Ansichten beginnen mit dem Pfad «Lehrplan-Apps › Lehrplan-Kompass»
+(Breadcrumb, `nav[aria-label="Pfad"]`, Link auf `../`); in der
+Fachansicht ist der Kompass ein Link auf die Startansicht (`#`) und
+das Fach der letzte Eintrag. Der Pfad ersetzt den früheren
+Fusszeilen-Link «Zur App-Übersicht». Die «Üben mit …»-Links tragen das
+Familien-Symbol für Üben (Lucide `dumbbell`), wie die «Dazu üben»-Zeilen
+im Merkheft und der Bereich «Übungs-Apps» der Startseite.
+
 ## Zustände
 
 - Leer: alle Fortschritte 0, kein Sonderzustand nötig.
@@ -119,7 +129,7 @@ ergänzt.
 - Tokens aus DESIGN.md, Akzentfamilie **blue**, dunkel, ruhig.
 - Schrift Atkinson Hyperlegible (400/700), selbst gehostet.
 - Lucide-Icons inline (`icons.js`), ein Icon pro Fachbereich.
-- Cache-Busting `?v=N` auf allen lokalen Asset-URLs, aktuell `v=2`.
+- Cache-Busting `?v=N` auf allen lokalen Asset-URLs, aktuell `v=12`.
 
 ## Barrierefreiheit
 

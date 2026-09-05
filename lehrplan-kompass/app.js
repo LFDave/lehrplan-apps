@@ -2,9 +2,9 @@
 // Zykluswahl und Häkchen. Navigation läuft über location.hash, damit der
 // Zurück-Knopf des Browsers funktioniert.
 
-import { CYCLES, subjectsForCycle, subjectById, areaCompetenciesForCycle, competencyCount, PRACTICE_APPS } from './data.js?v=11';
-import { STRINGS, t } from './strings.js?v=11';
-import { icon } from './icons.js?v=11';
+import { CYCLES, subjectsForCycle, subjectById, areaCompetenciesForCycle, competencyCount, PRACTICE_APPS } from './data.js?v=12';
+import { STRINGS, t } from './strings.js?v=12';
+import { icon } from './icons.js?v=12';
 
 const STORE_CYCLE = 'kompass.cycle';
 const STORE_CHECKED = 'kompass.checked';
@@ -58,6 +58,21 @@ function esc(s) {
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
+/* ── Pfad ─────────────────────────────────────────────────────── */
+
+// Ort in der App-Familie: Lehrplan-Apps › Lehrplan-Kompass [› Fach].
+// In der Fachansicht ist die Kompass-Ebene ein Link auf die Startansicht.
+function crumbs(current) {
+  const sep = icon('chevron-right', 'crumb-sep');
+  const items = [
+    `<li><a href="../">${t('nav.site')}</a></li>`,
+    current
+      ? `<li>${sep}<a href="#">${t('app.title')}</a></li><li>${sep}<span aria-current="page">${esc(current)}</span></li>`
+      : `<li>${sep}<span aria-current="page">${t('app.title')}</span></li>`,
+  ];
+  return `<nav class="crumbs${current ? ' narrow' : ''}" aria-label="${esc(t('nav.path'))}"><ol>${items.join('')}</ol></nav>`;
+}
+
 /* ── Views ─────────────────────────────────────────────────────── */
 
 function currentSubject() {
@@ -80,6 +95,7 @@ function renderHome() {
   const done = subjects.reduce((n, s) => n + doneCount(s), 0);
 
   app.innerHTML = `
+    ${crumbs()}
     <header class="app-header">
       <h1 class="app-title">${icon('compass', 'title-icon')}${t('app.title')}</h1>
       <p class="tagline">${t('app.tagline')}</p>
@@ -142,7 +158,6 @@ function renderHome() {
       `}
       <p class="storage-note">${t('storage.note')}</p>
       <p class="source-note">${t('app.source')}</p>
-      <a class="overview-link" href="../index.html"><svg class="overview-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>${t('nav.overview')}</a>
     </footer>
   `;
 
@@ -167,6 +182,7 @@ function renderSubject(subject) {
   const pct = total ? Math.round((done / total) * 100) : 0;
 
   app.innerHTML = `
+    ${crumbs(subject.name)}
     <header class="subject-header">
       <a class="btn secondary back-btn" href="#">${icon('arrow-left')}${t('subject.back')}</a>
       <h1 class="subject-title">${icon(subject.icon, 'title-icon')}${esc(subject.name)}</h1>
@@ -194,7 +210,7 @@ function renderSubject(subject) {
               </button>
               ${practice ? `
               <a class="practice-link" href="${practice.href}">
-                ${icon('play')}${t('subject.practice', { name: practice.name })}
+                ${icon('dumbbell')}${t('subject.practice', { name: practice.name })}
               </a>` : ''}
             </li>
           `;

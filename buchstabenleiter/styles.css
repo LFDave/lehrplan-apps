@@ -2,13 +2,13 @@
 
 @font-face {
   font-family: 'Atkinson Hyperlegible';
-  src: url('fonts/atkinson-hyperlegible-400.woff2?v=5') format('woff2');
+  src: url('fonts/atkinson-hyperlegible-400.woff2?v=6') format('woff2');
   font-weight: 400;
   font-display: swap;
 }
 @font-face {
   font-family: 'Atkinson Hyperlegible';
-  src: url('fonts/atkinson-hyperlegible-700.woff2?v=5') format('woff2');
+  src: url('fonts/atkinson-hyperlegible-700.woff2?v=6') format('woff2');
   font-weight: 700;
   font-display: swap;
 }
@@ -164,6 +164,12 @@ body {
   gap: var(--space-2);
 }
 
+.stufe-item {
+  background: var(--color-background-surface);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+}
+
 .stufe {
   display: flex;
   align-items: center;
@@ -171,16 +177,17 @@ body {
   width: 100%;
   min-height: var(--target-child);
   padding: var(--space-3) var(--space-4);
-  background: var(--color-background-surface);
+  background: transparent;
   color: var(--color-text-primary);
-  border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-md);
+  border: none;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
   font-family: inherit;
   font-size: var(--font-size-md);
   text-align: left;
   cursor: pointer;
 }
 
+.stufe:last-child { border-radius: var(--radius-md); }
 .stufe:hover { background: var(--color-background-surface-raised); }
 
 .stufe-letter {
@@ -367,6 +374,7 @@ body {
 }
 
 .choice:hover:not(:disabled) { background: var(--color-action-secondary-hover-bg); }
+.choice:active:not(:disabled) { transform: translateY(1px); box-shadow: none; }
 .choice.picked { border-color: var(--color-accent); background: var(--color-accent-soft); }
 .choice.correct { border-color: var(--color-accent-success); background: var(--color-accent-success-soft); }
 .choice.wrong { border-color: var(--color-accent-danger); background: var(--color-accent-danger-soft); }
@@ -501,35 +509,58 @@ body {
   * { transition-duration: 0.01ms !important; }
 }
 
+/* ── Merkblatt-Link: Fusszeile der Stufenkarte, allein im Abschluss ── */
+
 .merkblatt-link {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  margin: var(--space-1) 0 var(--space-2) var(--space-4);
   min-height: 2.75rem;
-  padding: 0 var(--space-3);
   color: var(--color-accent);
-  background: var(--color-background-surface);
-  border: 1px solid var(--color-border-subtle);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  font-size: 0.9rem;
-  border-radius: 0.5rem;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  text-decoration: none;
 }
-.merkblatt-icon { width: 1.1rem; height: 1.1rem; flex: none; }
-.merkblatt-link:hover { background: var(--color-background-surface-raised); border-color: var(--color-border-strong); }
+.merkblatt-link span { text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 3px; }
+.merkblatt-link:hover span,
+.merkblatt-link:focus-visible span { text-decoration-color: currentColor; }
 .merkblatt-link:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }
+.merkblatt-icon { width: 1rem; height: 1rem; flex: none; }
+.stufe-item .merkblatt-link {
+  display: flex;
+  padding: var(--space-2) var(--space-4) var(--space-2) calc(var(--space-4) + 2rem + var(--space-4));
+  border-top: 1px solid var(--color-border-subtle);
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+}
+.stufe-item .merkblatt-link:hover { background: var(--color-background-surface-raised); }
+.stufe-item .merkblatt-link:focus-visible { outline-offset: -2px; }
 
-.overview-link {
+/* ── Pfad (Breadcrumb): Lehrplan-Apps › Übungs-Apps › App › Ansicht ── */
+
+.crumbs {
+  margin-bottom: var(--space-4);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+.crumbs ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 var(--space-1);
+}
+.crumbs li { display: inline-flex; align-items: center; gap: var(--space-1); }
+.crumbs a,
+.crumbs [aria-current="page"] {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-2);
-  align-self: start;
-  min-height: 2.75rem;
+  min-height: 2.25rem;
   color: var(--color-text-secondary);
   text-decoration: none;
-  font-size: 0.9rem;
 }
-.overview-icon { width: 1.1rem; height: 1.1rem; flex: none; }
-.overview-link:hover { color: var(--color-text-primary); }
-.overview-link:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }
+.crumbs a:hover { color: var(--color-text-primary); text-decoration: underline; text-underline-offset: 3px; }
+.crumbs a:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }
+.crumbs [aria-current="page"] { font-weight: 700; }
+.crumb-sep { width: 1rem; height: 1rem; flex: none; color: var(--color-text-muted); }

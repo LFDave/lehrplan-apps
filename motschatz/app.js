@@ -2,11 +2,11 @@
 // Abschluss, Medaillen. Eine Runde hat 8 Aufgaben; ausgewertet wird
 // immer die ganze Antwort, nie einzelne Zeichen.
 
-import { STUFEN, COMPETENCY, stufeById, nextStufe, cycleLabel } from './data.js?v=3';
-import { genRound } from './gen.js?v=3';
-import { roundXp, levelFor, nextLevel, earnedMedals, suggestsNextStufe, MEDALS } from './game.js?v=3';
-import { t } from './strings.js?v=3';
-import { icon } from './icons.js?v=3';
+import { STUFEN, COMPETENCY, stufeById, nextStufe, cycleLabel } from './data.js?v=4';
+import { genRound } from './gen.js?v=4';
+import { roundXp, levelFor, nextLevel, earnedMedals, suggestsNextStufe, MEDALS } from './game.js?v=4';
+import { t } from './strings.js?v=4';
+import { icon } from './icons.js?v=4';
 
 const STORE = 'motschatz.progress';
 const ROUND_LENGTH = 8;
@@ -49,6 +49,29 @@ function esc(s) {
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
+/* ── Pfad ─────────────────────────────────────────────────────── */
+
+// Ort in der App-Familie: Lehrplan-Apps › Übungs-Apps › App [› Ansicht].
+// Die App-Ebene wird zum Link, sobald eine tiefere Ansicht offen ist.
+function crumbs(current) {
+  const sep = icon('chevron-right', 'crumb-sep');
+  const items = [
+    `<li><a href="../">${t('nav.site')}</a></li>`,
+    `<li>${sep}<a href="../ueben/">${t('nav.apps')}</a></li>`,
+    current
+      ? `<li>${sep}<a href="#" data-nav="home">${t('app.title')}</a></li><li>${sep}<span aria-current="page">${esc(current)}</span></li>`
+      : `<li>${sep}<span aria-current="page">${t('app.title')}</span></li>`,
+  ];
+  return `<nav class="crumbs" aria-label="${esc(t('nav.path'))}"><ol>${items.join('')}</ol></nav>`;
+}
+
+// In Runde und Abschluss verlässt der App-Link die Runde über den
+// Verlauf (wie Abbrechen), statt einen neuen Eintrag anzuhängen.
+function bindCrumbs() {
+  const home = app.querySelector('[data-nav="home"]');
+  if (home) home.addEventListener('click', (e) => { e.preventDefault(); leaveRound(); });
+}
+
 /* ── Übersicht ────────────────────────────────────────────────── */
 
 function renderHome() {
@@ -59,6 +82,7 @@ function renderHome() {
   const medals = earnedMedals(p);
 
   app.innerHTML = `
+    ${crumbs()}
     <header class="app-header">
       <h1 class="app-title">${icon(TITLE_ICON, 'title-icon')}${t('app.title')}</h1>
       <p class="tagline">${t('app.tagline')}</p>
@@ -79,7 +103,7 @@ function renderHome() {
         ${STUFEN.map((s) => {
           const ps = state.progress.stufen[s.id] || { rounds: 0 };
           return `
-          <li>
+          <li class="stufe-item">
             <button class="stufe" data-stufe="${s.id}">
               <span class="stufe-letter" aria-hidden="true">${s.id}</span>
               <span class="stufe-body">
@@ -112,12 +136,11 @@ function renderHome() {
       `}
       <p class="storage-note">${t('storage.note')}</p>
       <p class="source-note">${t('app.source')}</p>
-      <a class="overview-link" href="../index.html"><svg class="overview-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>${t('nav.overview')}</a>
     </footer>
   `;
 
   for (const btn of app.querySelectorAll('[data-stufe]')) {
-    btn.addEventListener('click', () => startRound(btn.dataset.stufe));
+    btn.addEventListener('click', () => openStufe(btn.dataset.stufe));
   }
   for (const btn of app.querySelectorAll('[data-action]')) {
     btn.addEventListener('click', () => {
@@ -158,6 +181,7 @@ function renderTask() {
     && !task.expr.startsWith('Das ') && !task.expr.startsWith('Die ');
 
   app.innerHTML = `
+    ${crumbs(t('nav.stufe', { id: stufe.id }))}
     <header class="practice-header">
       <button class="btn secondary back-btn" data-action="abort">${icon('arrow-left')}${t('practice.abort')}</button>
       <p class="practice-meta">${esc(stufe.title)} · Stufe ${stufe.id} · ${t('practice.progress', { i: r.index + 1, n: r.tasks.length })}</p>
@@ -180,10 +204,8 @@ function renderTask() {
     <div class="task-actions" id="task-actions"></div>
   `;
 
-  app.querySelector('[data-action="abort"]').addEventListener('click', () => {
-    state.round = null;
-    renderHome();
-  });
+  app.querySelector('[data-action="abort"]').addEventListener('click', leaveRound);
+  bindCrumbs();
 
   const input = app.querySelector('.typed-input');
   if (input) {
@@ -307,6 +329,7 @@ function renderDone() {
   const pct = next ? Math.round(((p.xp - level.xp) / (next.xp - level.xp)) * 100) : 100;
 
   app.innerHTML = `
+    ${crumbs(t('nav.stufe', { id: stufe.id }))}
     <section class="done">
       <h1 class="app-title">${icon(TITLE_ICON, 'title-icon')}${t('done.title')}</h1>
       <p class="done-summary" role="status">${t('done.tasks', { n: ROUND_LENGTH, stufe: stufe.id })}${res.clean ? ' ' + t('done.clean') : ''}</p>
@@ -331,9 +354,10 @@ function renderDone() {
   `;
 
   app.querySelector('[data-action="again"]').addEventListener('click', () => startRound(res.stufeId));
-  app.querySelector('[data-action="home"]').addEventListener('click', () => renderHome());
+  app.querySelector('[data-action="home"]').addEventListener('click', leaveRound);
   const sug = app.querySelector('[data-action="suggest"]');
-  if (sug) sug.addEventListener('click', () => startRound(res.suggestion.id));
+  if (sug) sug.addEventListener('click', () => replaceStufe(res.suggestion.id));
+  bindCrumbs();
 }
 
 /* ── Medaillen ────────────────────────────────────────────────── */
@@ -341,6 +365,7 @@ function renderDone() {
 function renderMedals() {
   const earned = new Set(earnedMedals(state.progress).map((m) => m.key));
   app.innerHTML = `
+    ${crumbs(t('medals.title'))}
     <header class="subject-header">
       <a class="btn secondary back-btn" href="#">${icon('arrow-left')}${t('medals.back')}</a>
       <h1 class="app-title">${icon('medal', 'title-icon')}${t('medals.title')}</h1>
@@ -362,24 +387,61 @@ function renderMedals() {
 
 /* ── Navigation ───────────────────────────────────────────────── */
 
+// Jede Runde ist ein eigener Verlaufseintrag (#stufe/<id>): Browser-
+// Zurück verlässt die Runde zur Übersicht, ein weiteres Zurück führt
+// dorthin, woher man kam (zum Beispiel ins Merkblatt). navDepth zählt
+// die selbst gesetzten Einträge, damit Abbrechen sie wieder abbaut,
+// statt neue anzuhängen.
+let navDepth = 0;
+
+function openStufe(id) {
+  history.pushState(null, '', `#stufe/${id}`);
+  navDepth++;
+  startRound(id);
+}
+
+function replaceStufe(id) {
+  history.replaceState(null, '', `#stufe/${id}`);
+  startRound(id);
+}
+
+function leaveRound() {
+  state.round = null;
+  if (navDepth > 0) {
+    navDepth--;
+    history.back();
+  } else {
+    history.replaceState(null, '', location.pathname);
+    renderHome();
+  }
+}
+
 function route() {
   state.resetArmed = false;
+  const m = location.hash.match(/^#stufe\/(.+)$/);
+  const id = m ? decodeURIComponent(m[1]) : null;
   if (location.hash === '#medaillen') {
     renderMedals();
-  } else if (!state.round) {
+  } else if (id && STUFEN.some((s) => s.id === id)) {
+    startRound(id);
+  } else {
+    state.round = null;
     renderHome();
   }
 }
 
 window.addEventListener('hashchange', route);
 document.documentElement.lang = 'de-CH';
-route();
 
 // Deep-Link aus dem Merkheft: ?stufe=<id> startet die Stufe direkt.
 // Die Query wird sofort aus der Adresse entfernt, damit sie beim
-// Neuladen oder Weitergeben nicht kleben bleibt.
+// Neuladen oder Weitergeben nicht kleben bleibt; die Runde bekommt
+// ihren eigenen Verlaufseintrag hinter der Übersicht.
 const deepStufe = new URLSearchParams(location.search).get('stufe');
-if (deepStufe) {
-  history.replaceState(null, '', location.pathname + location.hash);
-  if (STUFEN.some((s) => s.id === deepStufe)) startRound(deepStufe);
+if (deepStufe && STUFEN.some((s) => s.id === deepStufe)) {
+  history.replaceState(null, '', location.pathname);
+  openStufe(deepStufe);
+} else {
+  if (deepStufe) history.replaceState(null, '', location.pathname + location.hash);
+  route();
 }

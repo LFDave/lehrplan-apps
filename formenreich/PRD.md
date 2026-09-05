@@ -85,13 +85,13 @@ Einsprachig Deutsch (Schweizer Standarddeutsch), Strings in
 `strings.js`. Tokens aus DESIGN.md, Akzentfamilie **violet**,
 Atkinson Hyperlegible selbst gehostet, Lucide-Icons inline,
 SVG-Figuren nutzen die Farb-Tokens über CSS-Klassen, Cache-Busting
-`?v=3`.
+`?v=4`.
 
 ## Merkheft-Verbindung und Deep-Links
 
 Jede Stufe trägt in `data.js` ein `merkblatt: { id, name }`: Die
 App zeigt auf der Stufenkarte einen klar erkennbaren Link
-«Merkblatt: …» (Chip mit Buch-Symbol und unterstrichenem Text) und
+«Merkblatt: …» (Fusszeile der Stufenkarte mit Buch-Symbol) und
 nach einer Runde mit Fehlern «Zum Nachlesen: …», beide auf
 `../merkheft/<id>.html`. Die Links sind optional und nie eine
 Bedingung; die Suite prüft, dass jede Stufenkarte einen trägt.
@@ -99,7 +99,21 @@ Zuordnung: a, d, e, f, k → formen-koerper; b → laengen; c → lagewoerter; g
 
 Deep-Links: `?stufe=<id>` startet die Stufe direkt. Die Query wird
 nach dem Einstieg sofort aus der Adresse entfernt, damit sie beim
-Neuladen oder Weitergeben nicht kleben bleibt.
+Neuladen oder Weitergeben nicht kleben bleibt; die Runde erhält ihren
+eigenen Verlaufseintrag (`#stufe/<id>`) hinter der Übersicht.
+
+## Navigation
+
+Jede Ansicht beginnt mit dem Pfad «Lehrplan-Apps › Übungs-Apps ›
+App» (Breadcrumb, `nav[aria-label="Pfad"]`, Links auf `../` und
+`../ueben/`). In Runde, Abschluss und Medaillen ist die App-Ebene ein
+Link und die Ansicht («Stufe x», «Medaillen») der letzte Eintrag.
+Eine Runde ist ein eigener Verlaufseintrag (`#stufe/<id>`):
+Browser-Zurück führt zur Übersicht; «Abbrechen», «Zur Übersicht» und
+der App-Link im Pfad bauen den Eintrag über den Verlauf ab, sodass
+ein weiteres Zurück dorthin führt, woher man kam, etwa ins Merkblatt.
+Der Stufenvorschlag nach einer Runde ersetzt den Eintrag. Der frühere
+Fusszeilen-Link «Zur App-Übersicht» ist durch den Pfad ersetzt.
 
 ## Tests
 

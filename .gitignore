@@ -1,0 +1,8 @@
+# Dev-time tool installs (npx impeccable install) and local test dependencies.
+# Playwright lives in masswerk/tests/node_modules; the other tests/node_modules
+# are local junctions or symlinks to it (see CLAUDE.md).
+.claude/
+.agents/
+.codex/
+.cursor/
+node_modules/

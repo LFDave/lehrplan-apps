@@ -120,7 +120,7 @@ begrenzen die Operanden so, dass die Summe im Raum bleibt.
   UI-Texte in `strings.js` mit stabilen IDs. Keine
   Einstellungen-Ansicht, solange es nichts zu konfigurieren gibt.
 - Tokens aus DESIGN.md, Akzentfamilie **coral**, Atkinson Hyperlegible
-  selbst gehostet, Lucide-Icons inline, Cache-Busting `?v=3`.
+  selbst gehostet, Lucide-Icons inline, Cache-Busting `?v=4`.
 - Schweizer Zahlformat: Tausendertrennung mit Apostroph (320'000),
   Dezimalpunkt wie im Lehrplan. Potenzen als Unicode-Superscripts.
 
@@ -128,7 +128,7 @@ begrenzen die Operanden so, dass die Summe im Raum bleibt.
 
 Jede Stufe trägt in `data.js` ein `merkblatt: { id, name }`: Die
 App zeigt auf der Stufenkarte einen klar erkennbaren Link
-«Merkblatt: …» (Chip mit Buch-Symbol und unterstrichenem Text) und
+«Merkblatt: …» (Fusszeile der Stufenkarte mit Buch-Symbol) und
 nach einer Runde mit Fehlern «Zum Nachlesen: …», beide auf
 `../merkheft/<id>.html`. Die Links sind optional und nie eine
 Bedingung; die Suite prüft, dass jede Stufenkarte einen trägt.
@@ -136,7 +136,21 @@ Zuordnung: a, b → plus-minus; c → einmaleins; d → schriftlich-rechnen; e �
 
 Deep-Links: `?stufe=<id>` startet die Stufe direkt. Die Query wird
 nach dem Einstieg sofort aus der Adresse entfernt, damit sie beim
-Neuladen oder Weitergeben nicht kleben bleibt.
+Neuladen oder Weitergeben nicht kleben bleibt; die Runde erhält ihren
+eigenen Verlaufseintrag (`#stufe/<id>`) hinter der Übersicht.
+
+## Navigation
+
+Jede Ansicht beginnt mit dem Pfad «Lehrplan-Apps › Übungs-Apps ›
+App» (Breadcrumb, `nav[aria-label="Pfad"]`, Links auf `../` und
+`../ueben/`). In Runde, Abschluss und Medaillen ist die App-Ebene ein
+Link und die Ansicht («Stufe x», «Medaillen») der letzte Eintrag.
+Eine Runde ist ein eigener Verlaufseintrag (`#stufe/<id>`):
+Browser-Zurück führt zur Übersicht; «Abbrechen», «Zur Übersicht» und
+der App-Link im Pfad bauen den Eintrag über den Verlauf ab, sodass
+ein weiteres Zurück dorthin führt, woher man kam, etwa ins Merkblatt.
+Der Stufenvorschlag nach einer Runde ersetzt den Eintrag. Der frühere
+Fusszeilen-Link «Zur App-Übersicht» ist durch den Pfad ersetzt.
 
 ## Tests
 
