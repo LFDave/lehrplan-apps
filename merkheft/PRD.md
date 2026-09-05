@@ -129,7 +129,8 @@ sprachliche Form. Daraus folgt die Regel für jedes Merkblatt:
   Uhr: zwei Links auf Masswerk b «Halbe Stunden» und d «Zeitdauern»).
   Dargestellt als Listenzeile wie in der Merkblatt-Liste: Hantel-Symbol
   (Familien-Symbol für Üben, Lucide `dumbbell`), App-Name, Meta-Zeile
-  mit Stufe und Thema, Chevron. Die Runde in der App ist ein eigener
+  mit Stufe, Zyklus (aus der data.js der App, gleiche Worte wie auf der
+  Stufenkarte) und Thema, Chevron. Die Runde in der App ist ein eigener
   Verlaufseintrag, darum führt zweimal Browser-Zurück wieder auf das
   Merkblatt.
 
@@ -143,7 +144,7 @@ von aussen.
 Einsprachig Deutsch (Schweizer Standarddeutsch). Tokens aus
 DESIGN.md, Akzentfamilie **amber**, Atkinson Hyperlegible selbst
 gehostet, Illustrationen als Inline-SVG mit `role="img"` und
-deutschem `aria-label`, Cache-Busting `?v=9`. Auf schmalen Bildschirmen liegt das Merkblatt
+deutschem `aria-label`, Cache-Busting `?v=10`. Auf schmalen Bildschirmen liegt das Merkblatt
 ohne Kartenrahmen direkt auf der Fläche, damit die Infografik die ganze
 Spalte bekommt; ab 40rem wird es eine Karte. Titel, Gruppen- und Abschnittslabels, Codes
 (Monospace, xs) folgen der Typo-Skala der Familie.

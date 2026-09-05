@@ -349,6 +349,12 @@ platform work — lives in BACKLOG.md.
 - History: a practice round is its own history entry (`#stufe/<id>`)
   and Abbrechen pops it, so the browser back button always leads to
   where the learner came from (2026-09-05).
+- Zyklus filter on the Stufe ladder: every practice app that spans more
+  than one Zyklus offers «Alle Stufen» plus one choice per Zyklus above
+  the ladder. It is content like the Kompass cycle picker, not a
+  setting: default all, persisted per app under `<app>.zyklus`, cleared
+  by reset, and it never hides a Stufe for good. Merkheft «Dazu üben»
+  rows name Stufe, Zyklus and topic in the app's own words (2026-09-05).
 - Link vocabulary: quiet links for navigation, accent links with an
   icon for cross-links, list rows for lists (DESIGN.md `component.link`).
   Merkblatt links sit as the footer row of the Stufe card; "Dazu üben"
