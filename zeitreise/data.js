@@ -22,7 +22,7 @@ export const STUFEN = [
     id: 'b', cycle: 1, ga: false,
     title: 'Jahreszeiten und Uhr',
     desc: 'Kenne den Jahreskreis und lies die Uhr.',
-    kinds: ['jahreszeit', 'uhr'],
+    kinds: ['jahreszeit', 'jahreskreis', 'uhr'],
     merkblatt: { id: 'kalender', name: 'Kalender' },
   },
   {

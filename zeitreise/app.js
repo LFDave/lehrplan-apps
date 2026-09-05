@@ -2,11 +2,11 @@
 // Abschluss, Medaillen. Eine Runde hat 8 Aufgaben; ausgewertet wird
 // immer die ganze Antwort, nie einzelne Zeichen.
 
-import { STUFEN, COMPETENCY, stufeById, nextStufe, cycleLabel } from './data.js?v=7';
-import { genRound } from './gen.js?v=7';
-import { roundXp, levelFor, nextLevel, earnedMedals, suggestsNextStufe, MEDALS } from './game.js?v=7';
-import { t } from './strings.js?v=7';
-import { icon } from './icons.js?v=7';
+import { STUFEN, COMPETENCY, stufeById, nextStufe, cycleLabel } from './data.js?v=8';
+import { genRound } from './gen.js?v=8';
+import { roundXp, levelFor, nextLevel, earnedMedals, suggestsNextStufe, MEDALS } from './game.js?v=8';
+import { t } from './strings.js?v=8';
+import { icon } from './icons.js?v=8';
 
 const STORE = 'zeitreise.progress';
 const STORE_ZYKLUS = STORE.replace(/\.progress$/, '.zyklus');
@@ -301,7 +301,9 @@ function evaluateTyped(input, value, task) {
   const numericSame = !task.answer.includes(':')
     && a !== '' && Number.isFinite(Number(a)) && Number.isFinite(Number(b))
     && Number(a) === Number(b);
-  if (normalize(value) === normalize(task.answer) || numericSame) {
+  // Gross- und Kleinschreibung zählt nicht: geprüft wird die Zeitkompetenz,
+  // nicht die Rechtschreibung (mittwoch = Mittwoch).
+  if (normalize(value).toLowerCase() === normalize(task.answer).toLowerCase() || numericSame) {
     input.disabled = true;
     input.classList.add('correct');
     taskSolved();

@@ -4,10 +4,11 @@
 //   cd zeitreise/tests && npm install && node e2e.test.mjs
 //
 // Part 1 exercises the pure generators with a seeded RNG and checks
-// every task against an independent oracle (unabhängig neu
-// aufgeschriebene Antwort-Tabellen und eigene Nachrechnungen).
-// Part 2 drives the real app in Chromium. Screenshots land in
-// tests/screenshots/ (gitignored).
+// every task against an independent oracle: a hand-written answer
+// table for the fixed facts, and an independently re-stated solver
+// (own day, month and season tables) for the generated Wochentage,
+// Monate and Jahreskreis tasks. Part 2 drives the real app in
+// Chromium. Screenshots land in tests/screenshots/ (gitignored).
 
 import { chromium } from "playwright";
 import { createServer } from "node:http";
@@ -49,22 +50,16 @@ function mulberry32(seed) {
 /* ── Independent oracle ───────────────────────────────────────────── */
 
 // Unabhängig neu aufgeschriebene Antwort-Tabelle (Frage → richtige
-// Antwort). Kalender- und Geschichtsfakten, von Hand nachgeprüft.
+// Antwort) für die festen Aufgaben. Kalender- und Geschichtsfakten,
+// von Hand nachgeprüft.
 const QA = {
   "Was war zuerst: gestern, heute oder morgen?": "gestern",
   "Was kommt als Letztes: gestern, heute oder morgen?": "morgen",
-  "Welcher Tag kommt nach Dienstag?": "Mittwoch",
-  "Welcher Tag kommt vor Sonntag?": "Samstag",
   "Wie viele Tage hat eine Woche?": "7",
-  "Was gehört nicht zu den Wochentagen?": "April",
   "Wie viele Monate hat ein Jahr?": "12",
-  "Welcher Monat kommt nach März?": "April",
-  "Welcher Monat kommt vor Dezember?": "November",
-  "Welcher Monat ist der erste im Jahr?": "Januar",
-  "Welche Jahreszeit kommt nach dem Sommer?": "Herbst",
-  "Welche Jahreszeit kommt nach dem Winter?": "Frühling",
   "In welcher Jahreszeit fällt am ehesten Schnee?": "Winter",
   "Wie viele Jahreszeiten hat ein Jahr?": "4",
+  "Wie viele Monate hat eine Jahreszeit?": "3",
   "Der kleine Zeiger zeigt auf die 3, der grosse auf die 12. Wie spät ist es? (? Uhr)": "3",
   "Der kleine Zeiger zeigt auf die 8, der grosse auf die 12. Wie spät ist es? (? Uhr)": "8",
   "Wie viele Stunden hat ein ganzer Tag?": "24",
@@ -121,12 +116,70 @@ const QA = {
   "Wie viele Jahre hat ein Jahrzehnt?": "10",
 };
 
+// Eigene Tabellen für die generierten Reihen- und Jahreskreis-Aufgaben,
+// unabhängig von gen.js aufgeschrieben. Jahreszeiten: meteorologisch,
+// Nordhalbkugel (Winter = Dezember, Januar, Februar).
+const O_DAYS = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"];
+const O_MONTHS = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"];
+const O_SEASONS = ["Frühling", "Sommer", "Herbst", "Winter"];
+const O_SEASON_OF = {
+  Januar: "Winter", Februar: "Winter", März: "Frühling", April: "Frühling", Mai: "Frühling",
+  Juni: "Sommer", Juli: "Sommer", August: "Sommer", September: "Herbst", Oktober: "Herbst",
+  November: "Herbst", Dezember: "Winter",
+};
+const O_SEASON_MONTHS = {
+  Frühling: "März, April, Mai", Sommer: "Juni, Juli, August",
+  Herbst: "September, Oktober, November", Winter: "Dezember, Januar, Februar",
+};
+
+function cyc(list, i) {
+  return list[((i % list.length) + list.length) % list.length];
+}
+
+function solve(expr, options = []) {
+  if (expr in QA) return QA[expr];
+  let m;
+  if ((m = expr.match(/^Welcher (Tag|Monat) kommt (nach|vor) (\S+)\?$/))) {
+    const list = m[1] === "Tag" ? O_DAYS : O_MONTHS;
+    return cyc(list, list.indexOf(m[3]) + (m[2] === "nach" ? 1 : -1));
+  }
+  if ((m = expr.match(/^Welcher (Tag|Monat) liegt zwischen (\S+) und (\S+)\?$/))) {
+    const list = m[1] === "Tag" ? O_DAYS : O_MONTHS;
+    const i = list.indexOf(m[2]);
+    return list[i + 2] === m[3] ? list[i + 1] : null;
+  }
+  if ((m = expr.match(/^(.+)\. Welcher (Tag|Monat) fehlt\?$/))) {
+    const list = m[2] === "Tag" ? O_DAYS : O_MONTHS;
+    const seq = m[1].split(", ");
+    const g = seq.indexOf("?");
+    const j = seq.findIndex((x) => x !== "?");
+    return cyc(list, list.indexOf(seq[j]) + (g - j));
+  }
+  if (expr === "Was gehört nicht zu den Wochentagen?") return options.find((o) => !O_DAYS.includes(o)) ?? null;
+  if (expr === "Was gehört nicht zu den Monaten?") return options.find((o) => !O_MONTHS.includes(o)) ?? null;
+  if ((m = expr.match(/^Welcher Monat ist der (\d+)\. Monat im Jahr\?$/))) return O_MONTHS[Number(m[1]) - 1] ?? null;
+  if ((m = expr.match(/^An welcher Stelle im Jahr steht der (\S+)\? \(1 bis 12\)$/))) {
+    const i = O_MONTHS.indexOf(m[1]);
+    return i >= 0 ? String(i + 1) : null;
+  }
+  if ((m = expr.match(/^Welche Jahreszeit kommt (nach|vor) dem (\S+)\?$/))) {
+    return cyc(O_SEASONS, O_SEASONS.indexOf(m[2]) + (m[1] === "nach" ? 1 : -1));
+  }
+  if ((m = expr.match(/^Zu welcher Jahreszeit gehört bei uns der (\S+)\?$/))) return O_SEASON_OF[m[1]] ?? null;
+  if ((m = expr.match(/^Welche drei Monate gehören bei uns zum (\S+)\?$/))) return O_SEASON_MONTHS[m[1]] ?? null;
+  if ((m = expr.match(/^Welcher Monat gehört bei uns nicht zum (\S+)\?$/))) {
+    return options.find((o) => O_SEASON_OF[o] && O_SEASON_OF[o] !== m[1]) ?? null;
+  }
+  return null;
+}
+
 function solveTyped(expr) {
-  return QA[expr] ?? null;
+  return solve(expr);
 }
 
 function chooseOption(expr, options) {
-  return expr in QA ? options.indexOf(QA[expr]) : -1;
+  const answer = solve(expr, options);
+  return answer == null ? -1 : options.indexOf(answer);
 }
 
 /* ── Cache-busting version consistency ────────────────────────────── */
@@ -156,6 +209,8 @@ function chooseOption(expr, options) {
   check("data: 8 Stufen a-h", STUFEN.length === 8 && STUFEN.map((s) => s.id).join("") === "abcdefgh");
   check("data: GA marks on c and g",
     STUFEN.filter((s) => s.ga).map((s) => s.id).join(",") === "c,g");
+  check("data: Stufe a lists Wochentage and Monate, Stufe b the Jahreskreis",
+    ["wochentag", "monat"].every((k) => STUFEN[0].kinds.includes(k)) && STUFEN[1].kinds.includes("jahreskreis"));
   const eszett = [];
   for (const [id, v] of Object.entries(STRINGS.de)) if (v.includes("ß")) eszett.push(id);
   for (const s of STUFEN) if ((s.title + s.desc).includes("ß")) eszett.push(s.id);
@@ -167,12 +222,20 @@ function chooseOption(expr, options) {
 /* ── Generator sanity against the oracle (seeded) ─────────────────── */
 {
   const issues = [];
+  const exprsByStufe = {};
+  const kindsByStufe = {};
   for (const stufe of STUFEN) {
     const rng = mulberry32(53 + stufe.id.charCodeAt(0));
+    const exprs = new Set();
+    const kinds = new Set();
     for (let r = 0; r < 50; r++) {
       const round = genRound(rng, stufe, 8);
       if (round.length !== 8) issues.push(`${stufe.id}: round has only ${round.length} tasks`);
       for (const task of round) {
+        exprs.add(task.expr);
+        kinds.add(task.kind);
+        if (!stufe.kinds.includes(task.kind)) issues.push(`${stufe.id}: unknown kind ${task.kind}`);
+        if (task.expr.includes("ß") || task.expr.includes("undefined")) issues.push(`${stufe.id}: bad copy in ${task.expr}`);
         if (task.type === "typed") {
           const oracle = solveTyped(task.expr);
           if (oracle !== task.answer) {
@@ -182,6 +245,9 @@ function chooseOption(expr, options) {
           if (new Set(task.options).size !== task.options.length) {
             issues.push(`${stufe.id}/${task.kind}: duplicate options for ${task.expr}`);
           }
+          if (task.options.length < 2 || task.options.length > 3) {
+            issues.push(`${stufe.id}/${task.kind}: ${task.options.length} options for ${task.expr}`);
+          }
           const idx = chooseOption(task.expr, task.options);
           if (idx !== task.answer) {
             issues.push(`${stufe.id}/${task.kind}: ${task.expr} [${task.options}] → app ${task.answer}, oracle ${idx}`);
@@ -189,8 +255,14 @@ function chooseOption(expr, options) {
         }
       }
     }
+    exprsByStufe[stufe.id] = exprs.size;
+    kindsByStufe[stufe.id] = kinds;
   }
   check("gen: seeded rounds agree with the independent oracle", issues.length === 0, issues.slice(0, 4).join("; "));
+  check("gen: Stufe a varies (60+ distinct tasks over 50 rounds)", exprsByStufe.a >= 60, `a: ${exprsByStufe.a}`);
+  check("gen: Stufe b varies (25+ distinct tasks over 50 rounds)", exprsByStufe.b >= 25, `b: ${exprsByStufe.b}`);
+  check("gen: every declared kind of Stufe a and b actually appears",
+    ["a", "b"].every((id) => STUFEN.find((s) => s.id === id).kinds.every((k) => kindsByStufe[id].has(k))));
 }
 
 /* ── Static server and browser ────────────────────────────────────── */
@@ -214,14 +286,33 @@ page.on("pageerror", (err) => consoleErrors.push(String(err)));
 const externalRequests = [];
 page.on("request", (req) => { if (!req.url().startsWith(`http://localhost:${PORT}`)) externalRequests.push(req.url()); });
 
+// Once per run: a typed day or month name is entered in lowercase and
+// must still count (Zeitkompetenz, nicht Rechtschreibung).
+let lowercaseResult = null;
+const shots = new Set();
+
+async function shotIf(name, pattern, expr) {
+  if (shots.has(name) || !pattern.test(expr)) return;
+  shots.add(name);
+  await page.screenshot({ path: join(SHOTS_DIR, name), fullPage: false });
+}
+
 async function solveTask() {
   const expr = (await page.textContent(".sequence .term")).trim();
+  await shotIf("04-wochentag.png", /Tag (kommt|liegt|fehlt)/, expr);
+  await shotIf("05-jahreskreis.png", /bei uns/, expr);
   if (await page.locator(".typed-input").count()) {
-    const answer = solveTyped(expr);
-    await page.fill(".typed-input", String(answer));
+    const answer = String(solveTyped(expr));
+    if (lowercaseResult === null && /^[A-Za-zÄÖÜäöü]+$/.test(answer)) {
+      await page.fill(".typed-input", answer.toLowerCase());
+      lowercaseResult = (await page.locator(".typed-input.correct").count()) === 1;
+    } else {
+      await page.fill(".typed-input", answer);
+    }
   } else {
     const options = await page.locator("[data-option]").allTextContents();
     const idx = chooseOption(expr, options.map((o) => o.trim()));
+    if (idx < 0) throw new Error(`oracle cannot solve: ${expr} [${options}]`);
     await page.click(`[data-option="${idx}"]`);
   }
   await page.waitForSelector('[data-action="next"]');
@@ -262,9 +353,27 @@ check("round g: GA medal for Zyklus 2", (await page.textContent(".done")).includ
 await page.click('[data-action="home"]');
 await page.waitForSelector(".stufen-list");
 
+// Generated Stufen: up to three rounds of a so that a typed name shows up.
+let roundsA = 0;
+while (roundsA < 3 && (roundsA === 0 || lowercaseResult === null)) {
+  await playRound("a");
+  roundsA++;
+  check(`round a (${roundsA}): completion shows XP`, (await page.textContent(".reward-xp")).includes(`+${roundXp("a", 8)} XP`));
+  await page.click('[data-action="home"]');
+  await page.waitForSelector(".stufen-list");
+}
+check("typed: lowercase day or month name is accepted", lowercaseResult === true, String(lowercaseResult));
+
+await playRound("b");
+check("round b: completion shows XP", (await page.textContent(".reward-xp")).includes(`+${roundXp("b", 8)} XP`));
+await page.click('[data-action="home"]');
+await page.waitForSelector(".stufen-list");
+check("screenshots: a Wochentag and a Jahreskreis task were captured",
+  shots.has("04-wochentag.png") && shots.has("05-jahreskreis.png"), [...shots].join(","));
+
 /* ── Persistence, mistake flow, reset ─────────────────────────────── */
 await page.waitForSelector(".stats-strip");
-const expectedXp = roundXp("c", 8) + roundXp("g", 8);
+const expectedXp = roundXp("c", 8) + roundXp("g", 8) + roundsA * roundXp("a", 8) + roundXp("b", 8);
 check("home: stats strip shows accumulated XP", (await page.textContent(".stats-strip")).includes(`${expectedXp} XP`));
 await page.reload();
 await page.waitForSelector(".stats-strip");
@@ -314,6 +423,10 @@ await page.setViewportSize({ width: 320, height: 700 });
 await page.goto(URL);
 await page.waitForSelector(".stufen-list");
 check("layout: no horizontal scrolling at 320px",
+  await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth));
+await page.click('[data-stufe="b"]');
+await page.waitForSelector(".task-area");
+check("layout: task view has no horizontal scrolling at 320px",
   await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth));
 
 /* ── Navigation: Pfad und Verlauf ────────────────────────────────── */

@@ -1,10 +1,11 @@
-// gen.js — Aufgaben für Zeitreise. Reine Funktionen ohne DOM; der
-// Inhalt liegt in festen Aufgaben-Pools pro Stufe (Kalender und
-// Geschichte sind Faktenwissen). Die e2e-Suite prüft jede Aufgabe
-// gegen eine unabhängig neu aufgeschriebene Antwort-Tabelle. Jede
-// Aufgabe:
-//   { type: 'typed', expr, answer }               getippte Antwort
-//   { type: 'mc', expr, options, answer }         Auswahl (Index)
+// gen.js — Aufgaben für Zeitreise. Reine Funktionen ohne DOM. Der
+// Inhalt liegt in Aufgaben-Pools pro Stufe: feste Einträge für
+// Faktenwissen (Uhr, Dauer, Geschichte) und Generatoren für die Reihen
+// der Wochentage, Monate und Jahreszeiten (NMG.9.1.a und b), damit
+// keine Runde der anderen gleicht. Die e2e-Suite prüft jede Aufgabe
+// gegen einen unabhängig neu aufgeschriebenen Löser. Jede Aufgabe:
+//   { kind, type: 'typed', expr, answer }          getippte Antwort
+//   { kind, type: 'mc', expr, options, answer }    Auswahl (Index)
 
 export function formatNumber(n) {
   return String(n);
@@ -23,26 +24,158 @@ function shuffled(rng, arr) {
   return a;
 }
 
-// Pool-Einträge: [kind, 'mc', expr, richtig, [falsch...]] oder
-// [kind, 'typed', expr, antwort].
+function others(rng, arr, exclude, n) {
+  return shuffled(rng, arr.filter((x) => !exclude.includes(x))).slice(0, n);
+}
+
+// Zugriff im Kreis: nach dem Sonntag kommt der Montag, nach dem
+// Dezember der Januar, nach dem Winter der Frühling.
+function cyc(arr, i) {
+  return arr[((i % arr.length) + arr.length) % arr.length];
+}
+
+/* ── Reihen (NMG.9.1.a) und Jahreskreis (NMG.9.1.b) ───────────── */
+
+export const DAYS = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag'];
+export const MONTHS = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
+
+// Jahreskreis wie im Merkblatt: die meteorologischen Jahreszeiten der
+// Nordhalbkugel, je drei volle Monate. Die Aufgaben sagen darum
+// «bei uns»; südlich des Äquators liegt der Kreis ein halbes Jahr
+// versetzt.
+export const SEASONS = [
+  { name: 'Frühling', months: ['März', 'April', 'Mai'] },
+  { name: 'Sommer', months: ['Juni', 'Juli', 'August'] },
+  { name: 'Herbst', months: ['September', 'Oktober', 'November'] },
+  { name: 'Winter', months: ['Dezember', 'Januar', 'Februar'] },
+];
+
+const DAY = { kind: 'wochentag', items: DAYS, noun: 'Tag', group: 'den Wochentagen', foreign: MONTHS };
+const MONTH = { kind: 'monat', items: MONTHS, noun: 'Monat', group: 'den Monaten', foreign: DAYS };
+
+function typed(kind, expr, answer) {
+  return { kind, type: 'typed', expr, answer };
+}
+
+function choice(rng, kind, expr, correct, wrongs) {
+  const options = shuffled(rng, [correct, ...wrongs]);
+  return { kind, type: 'mc', expr, options, answer: options.indexOf(correct) };
+}
+
+// Je zur Hälfte getippt (Schreiben der Namen) oder als Auswahl.
+function typedOrChoice(rng, kind, expr, correct, pool, exclude) {
+  if (rng() < 0.5) return typed(kind, expr, correct);
+  return choice(rng, kind, expr, correct, others(rng, pool, [correct, ...exclude], 2));
+}
+
+// Vorgänger und Nachfolger, im Kreis.
+function neighbour(rng, spec, dir) {
+  const i = Math.floor(rng() * spec.items.length);
+  const from = spec.items[i];
+  const correct = cyc(spec.items, i + dir);
+  const expr = `Welcher ${spec.noun} kommt ${dir > 0 ? 'nach' : 'vor'} ${from}?`;
+  return typedOrChoice(rng, spec.kind, expr, correct, spec.items, [from]);
+}
+
+// Was liegt dazwischen: drei aufeinanderfolgende Einträge, ohne Umbruch.
+function between(rng, spec) {
+  const i = Math.floor(rng() * (spec.items.length - 2));
+  const [a, b, c] = spec.items.slice(i, i + 3);
+  const expr = `Welcher ${spec.noun} liegt zwischen ${a} und ${c}?`;
+  return choice(rng, spec.kind, expr, b, others(rng, spec.items, [a, b, c], 2));
+}
+
+// Lücke in einer Viererreihe, ohne Umbruch.
+function gap(rng, spec) {
+  const i = Math.floor(rng() * (spec.items.length - 3));
+  const seq = spec.items.slice(i, i + 4);
+  const g = Math.floor(rng() * 4);
+  const shown = seq.map((x, k) => (k === g ? '?' : x)).join(', ');
+  const expr = `${shown}. Welcher ${spec.noun} fehlt?`;
+  return typedOrChoice(rng, spec.kind, expr, seq[g], spec.items, seq);
+}
+
+// Was gehört nicht dazu: zwei echte Einträge und ein Fremdling.
+function intruder(rng, spec) {
+  const correct = pick(rng, spec.foreign);
+  return choice(rng, spec.kind, `Was gehört nicht zu ${spec.group}?`, correct, others(rng, spec.items, [], 2));
+}
+
+// Position im Jahr, nur für Monate.
+function monthAt(rng) {
+  const n = 1 + Math.floor(rng() * 12);
+  return typedOrChoice(rng, 'monat', `Welcher Monat ist der ${n}. Monat im Jahr?`, MONTHS[n - 1], MONTHS, []);
+}
+
+function positionOf(rng) {
+  const n = 1 + Math.floor(rng() * 12);
+  return typed('monat', `An welcher Stelle im Jahr steht der ${MONTHS[n - 1]}? (1 bis 12)`, String(n));
+}
+
+// Jahreszeiten: Reihenfolge im Kreis.
+function seasonNeighbour(rng, dir) {
+  const i = Math.floor(rng() * SEASONS.length);
+  const from = SEASONS[i].name;
+  const correct = cyc(SEASONS, i + dir).name;
+  const names = SEASONS.map((s) => s.name);
+  const expr = `Welche Jahreszeit kommt ${dir > 0 ? 'nach' : 'vor'} dem ${from}?`;
+  return choice(rng, 'jahreszeit', expr, correct, others(rng, names, [from, correct], 2));
+}
+
+// Jahreskreis: Monate und Jahreszeiten.
+function seasonOfMonth(rng) {
+  const s = pick(rng, SEASONS);
+  const m = pick(rng, s.months);
+  const names = SEASONS.map((x) => x.name);
+  return choice(rng, 'jahreskreis', `Zu welcher Jahreszeit gehört bei uns der ${m}?`, s.name, others(rng, names, [s.name], 2));
+}
+
+function monthsOfSeason(rng) {
+  const s = pick(rng, SEASONS);
+  const label = (x) => x.months.join(', ');
+  const wrongs = others(rng, SEASONS.filter((x) => x !== s), [], 2).map(label);
+  return choice(rng, 'jahreskreis', `Welche drei Monate gehören bei uns zum ${s.name}?`, label(s), wrongs);
+}
+
+function oddMonth(rng) {
+  const s = pick(rng, SEASONS);
+  const other = pick(rng, SEASONS.filter((x) => x !== s));
+  const correct = pick(rng, other.months);
+  return choice(rng, 'jahreskreis', `Welcher Monat gehört bei uns nicht zum ${s.name}?`, correct, others(rng, s.months, [], 2));
+}
+
+/* ── Pools ────────────────────────────────────────────────────── */
+
+// Pool-Einträge: [kind, 'mc', expr, richtig, [falsch...]],
+// [kind, 'typed', expr, antwort] oder [kind, 'gen', fn(rng)].
 export const POOLS = {
   a: [
     ['zeitwort', 'mc', 'Was war zuerst: gestern, heute oder morgen?', 'gestern', ['heute', 'morgen']],
     ['zeitwort', 'mc', 'Was kommt als Letztes: gestern, heute oder morgen?', 'morgen', ['gestern', 'heute']],
-    ['wochentag', 'typed', 'Welcher Tag kommt nach Dienstag?', 'Mittwoch'],
-    ['wochentag', 'typed', 'Welcher Tag kommt vor Sonntag?', 'Samstag'],
     ['wochentag', 'typed', 'Wie viele Tage hat eine Woche?', '7'],
-    ['wochentag', 'mc', 'Was gehört nicht zu den Wochentagen?', 'April', ['Montag', 'Freitag']],
+    ['wochentag', 'gen', (rng) => neighbour(rng, DAY, 1)],
+    ['wochentag', 'gen', (rng) => neighbour(rng, DAY, -1)],
+    ['wochentag', 'gen', (rng) => between(rng, DAY)],
+    ['wochentag', 'gen', (rng) => gap(rng, DAY)],
+    ['wochentag', 'gen', (rng) => intruder(rng, DAY)],
     ['monat', 'typed', 'Wie viele Monate hat ein Jahr?', '12'],
-    ['monat', 'typed', 'Welcher Monat kommt nach März?', 'April'],
-    ['monat', 'typed', 'Welcher Monat kommt vor Dezember?', 'November'],
-    ['monat', 'mc', 'Welcher Monat ist der erste im Jahr?', 'Januar', ['März', 'Dezember']],
+    ['monat', 'gen', (rng) => neighbour(rng, MONTH, 1)],
+    ['monat', 'gen', (rng) => neighbour(rng, MONTH, -1)],
+    ['monat', 'gen', (rng) => between(rng, MONTH)],
+    ['monat', 'gen', (rng) => gap(rng, MONTH)],
+    ['monat', 'gen', (rng) => intruder(rng, MONTH)],
+    ['monat', 'gen', monthAt],
+    ['monat', 'gen', positionOf],
   ],
   b: [
-    ['jahreszeit', 'mc', 'Welche Jahreszeit kommt nach dem Sommer?', 'Herbst', ['Frühling', 'Winter']],
-    ['jahreszeit', 'mc', 'Welche Jahreszeit kommt nach dem Winter?', 'Frühling', ['Herbst', 'Sommer']],
+    ['jahreszeit', 'gen', (rng) => seasonNeighbour(rng, 1)],
+    ['jahreszeit', 'gen', (rng) => seasonNeighbour(rng, -1)],
     ['jahreszeit', 'mc', 'In welcher Jahreszeit fällt am ehesten Schnee?', 'Winter', ['Sommer', 'Frühling']],
     ['jahreszeit', 'typed', 'Wie viele Jahreszeiten hat ein Jahr?', '4'],
+    ['jahreskreis', 'gen', seasonOfMonth],
+    ['jahreskreis', 'gen', monthsOfSeason],
+    ['jahreskreis', 'gen', oddMonth],
+    ['jahreskreis', 'typed', 'Wie viele Monate hat eine Jahreszeit?', '3'],
     ['uhr', 'typed', 'Der kleine Zeiger zeigt auf die 3, der grosse auf die 12. Wie spät ist es? (? Uhr)', '3'],
     ['uhr', 'typed', 'Der kleine Zeiger zeigt auf die 8, der grosse auf die 12. Wie spät ist es? (? Uhr)', '8'],
     ['uhr', 'typed', 'Wie viele Stunden hat ein ganzer Tag?', '24'],
@@ -114,9 +247,9 @@ export const POOLS = {
 
 function build(rng, entry) {
   const [kind, type, expr, correctOrAnswer, wrongs] = entry;
-  if (type === 'typed') return { kind, type, expr, answer: correctOrAnswer };
-  const options = shuffled(rng, [correctOrAnswer, ...wrongs]);
-  return { kind, type, expr, options, answer: options.indexOf(correctOrAnswer) };
+  if (type === 'gen') return expr(rng);
+  if (type === 'typed') return typed(kind, expr, correctOrAnswer);
+  return choice(rng, kind, expr, correctOrAnswer, wrongs);
 }
 
 export function genTask(rng, stufe) {
