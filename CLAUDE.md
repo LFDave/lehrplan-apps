@@ -1,6 +1,6 @@
 # Claude Instructions for Mini Apps
 
-Version: 2026-08-01
+Version: 2026-09-05
 
 ## Read first
 
@@ -81,9 +81,15 @@ For every UI change, before reporting back or opening or updating a PR:
 
 - Cache busting: every local asset URL, meaning every CSS link, script tag, and inter-module import, carries the same `?v=N` query. Bump N in all files on every release so mobile browsers pick up changed JS and CSS on a plain reload. Every app's e2e suite enforces this.
 - App-specific instructions live in a CLAUDE.md inside the app's own folder, for example `lehrplan-kompass/CLAUDE.md`. It is loaded automatically when working on files in that directory, in addition to this file.
-- index.html at the repo root is the German overview of the Lehrplan apps for the GitHub Pages site, built with the DESIGN.md tokens. README.md is for the repository page on GitHub only. Update both together when an app is added or renamed.
+- index.html at the repo root is the German start page of the GitHub Pages site with exactly three entries in this order: Lehrplan-Kompass, Merkheft, Übungs-Apps (`ueben/index.html`, every practice app grouped by subject with its competency code). Both pages use the shared `site.css` and the root `fonts/` folder and carry the same `?v=N`; the root suite in `tests/` checks them, including that the `ueben/` list equals the practice apps of the PRODUCT.md registry. README.md is for the repository page on GitHub only. When an app is added or renamed, update `ueben/index.html`, README.md and the registry together.
 - The repo root has a .nojekyll file so Pages serves files as-is without Jekyll processing.
-- 404.html at the repo root is the custom not-found page for the whole GitHub Pages site. Keep it dark, calm, and German, following the DESIGN.md tokens, with a link to the app overview.
+- 404.html at the repo root is the custom not-found page for the whole GitHub Pages site. Keep it dark, calm, and German, following the DESIGN.md tokens, with a link to the start page. It is served for any path, so its few asset URLs are absolute (`/lehrplan-apps/...`).
+- Family navigation: every page below the start page begins with the breadcrumb `<nav class="crumbs" aria-label="Pfad">` (Lehrplan-Apps › Übungs-Apps › App › Ansicht, or › Merkheft › Titel, or › Lehrplan-Kompass › Fach). Earlier items are links, the last item carries `aria-current="page"`. Practice apps render it through `crumbs()` in app.js with the strings `nav.site`, `nav.apps`, `nav.path`, `nav.stufe`; there is no footer "Zur App-Übersicht" link any more. Styles follow DESIGN.md `component.breadcrumb`.
+- History in practice apps: a round is the hash route `#stufe/<id>` (`openStufe` pushes, `replaceStufe` swaps for the suggested next Stufe, `leaveRound` pops via `history.back()` when the app pushed the entry, otherwise replaces). The Merkheft deep link `?stufe=<id>` strips the query and then pushes the round, so browser back goes round → app overview → Merkblatt. Every app suite asserts this; keep it when syncing template changes.
+- Family-wide template changes: app.js, game.js, strings.js and styles.css are deliberately copied per app (no build step). A fix to the shared template patches all 31 apps in one change with a script that matches the exact template text and fails loudly on any app that drifted, bumps every app's `?v=N`, and runs every suite. Note that the working tree is CRLF under git autocrlf; normalise before matching.
+- Motion: the family animates exactly two things, progress bars (`transform: scaleX` on `.progress-fill`, driven by the `--p` custom property, 240 ms) and the pressed state of answer buttons (120 ms); the Kompass check icon fades in. Never animate width or colour, never add a global `transition-duration: 0.01ms` kill: the reduced-motion block names the transitions it removes and every state stays visible (DESIGN.md `motion.reduced-motion`).
+- Zyklus filter: practice apps derive `ZYKLEN` from `STUFEN[].cycle` (a number or an array) and render «Alle Stufen» plus one choice per Zyklus above the ladder (`inZyklus`, storage key `<app>.zyklus`); single-Zyklus apps render none. Merkheft «Dazu üben» meta lines read «Stufe x · Zyklus n · Thema» with the Zyklus from the app's `cycleLabel`. Every app suite asserts the filter.
+- Test dependencies: Playwright is installed once in `masswerk/tests/node_modules`; every other `tests/node_modules` (including the root `tests/`) is a local symlink or, on Windows, a directory junction to it. They are ignored by git.
 - Git commits: always use the GitHub noreply address `36726874+LFDave@users.noreply.github.com` as the commit email, with user name `LFDave`. The GitHub account blocks pushes that expose the private email (error GH007). In a fresh environment, set both with `git config user.name` and `git config user.email` before committing.
 
 ## Product behavior

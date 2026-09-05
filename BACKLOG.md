@@ -199,7 +199,10 @@ Infrastructure, quality, and process — independent of new apps.
    deliberately copied per app (no build step). Document in the root
    CLAUDE.md: fixes to the shared template list the affected apps and
    patch all of them in one change (as done for the inputmode and
-   `ci`-flag fixes).
+   `ci`-flag fixes). Done (2026-09-05): documented in the root
+   CLAUDE.md («Family-wide template changes»); the breadcrumb and
+   history rollout followed it (one script, all 31 apps, every cache
+   bumped, every suite green).
 4. **Kompass: coverage view.** Optional filter or badge count showing
    which competencies have a practice app ("18 von 363 mit
    Übungs-App"), keeping the registry and PRACTICE_APPS in sync.
@@ -215,6 +218,12 @@ Infrastructure, quality, and process — independent of new apps.
    each with its oracle counterpart in the same change.
 8. **A11y sweep per release.** Keyboard walk, focus states, contrast,
    reduced motion across all apps once per batch, not only per new app.
+   Sweep 2026-09-05 (Impeccable pass): keyboard walk with visible focus
+   on start page, app list, app home and Merkblatt (root suite asserts
+   it), contrast AA on screen and in print, reduced motion turned into
+   an intentional alternative family-wide (bars jump, buttons stay
+   still; no global transition kill left). Open: the Merkheft orbit
+   model only stops under reduced motion (no stepped alternative).
 9.–11. **Merkheft: the family's explanation layer — SHIPPED with
     wave 1, waves remain.** The Merkheft app (merkheft/, amber) is
     the wiki-style reference surface: **one Merkblatt = one static
@@ -252,7 +261,10 @@ Infrastructure, quality, and process — independent of new apps.
 
     Remaining:
     - **Kompass → Merkheft links** next to "Üben mit …" for
-      competencies with a Merkblatt.
+      competencies with a Merkblatt. Still open (2026-09-05): the only
+      remaining navigation/design item; needs a competency → Merkblätter
+      map (most competencies have several sheets), so it is a data
+      task before it is a design task.
     - ~~Deep-link to a Stufe from "Dazu üben"~~ — shipped:
       `?stufe=<id>` starts the Stufe (or split sub-Stufe)
       directly; the app removes the query from the address after
@@ -295,6 +307,15 @@ Infrastructure, quality, and process — independent of new apps.
     for "read the Merkblatt" reads well, the pencil for "practise
     in the app" is questioned — candidates: Lucide `dumbbell`,
     `play`, `target`, or the app's own title icon.
+    Shipped (2026-09-05): DESIGN.md carries a token-only `link` group
+    (quiet, accent, row, card-footer) plus `breadcrumb` tokens and an
+    `icon.semantic` map. The Stufe card owns its Merkblatt link as a
+    footer row (book-open, accent, underline on hover), «Dazu üben»
+    renders as list rows like the Merkblatt list (name, Stufe meta,
+    chevron), and the practice icon is Lucide `dumbbell` on all three
+    surfaces (Merkheft rows, Kompass «Üben mit …», start page
+    «Übungs-Apps»). Open for family feedback: whether the dumbbell
+    reads as «üben» for children; `play` remains the fallback.
 14. **Mixed-concept Stufen (analysis 2026-08-06).** The official
     Kompetenzstufen sometimes bundle concept families a child
     experiences as unrelated, and our levels-are-Stufen principle
@@ -356,6 +377,10 @@ Infrastructure, quality, and process — independent of new apps.
     replacing the per-app hand-tuned values. Consider a faint
     accent tint or a pressed-depth animation (transform only) for
     the selected state, keeping the calm dark system.
+    Shipped (2026-09-05): `component.choice` in DESIGN.md names
+    resting, hover, pressed (translateY(1px), no edge shadow),
+    selected, correct and wrong; the pressed state is rolled out to
+    all 31 apps. No extra accent tint on purpose (calm system).
 16. **Back-to-overview navigation — quick-fix shipped.** From an
     app's home screen there was no way back to the app overview or
     Kompass (user feedback on Buchstabenleiter). Quick-fix
@@ -367,6 +392,17 @@ Infrastructure, quality, and process — independent of new apps.
     practice screen is the round's "Abbrechen", and the home relies
     on the footer link. Add the overview-link check to every app
     suite (only Buchstabenleiter asserts it today).
+    Shipped (2026-09-05): the family breadcrumb «Lehrplan-Apps ›
+    Übungs-Apps › App › Ansicht» on every view of all 31 apps, the
+    Kompass and the Merkheft (footer links removed); the start page
+    has exactly three entries (Kompass, Merkheft, Übungs-Apps) and
+    `ueben/` lists the apps by subject; a round is a `#stufe/<id>`
+    history entry and Abbrechen pops it, so browser back retraces
+    the real path (Merkblatt → round → app overview → Merkblatt).
+    Every app suite asserts breadcrumb and history behaviour, the
+    Merkheft suite the Merkblatt → app → back journey, and a root
+    suite (`tests/`) the shell and its consistency with the
+    registry.
 
 ## Definition of 100%
 

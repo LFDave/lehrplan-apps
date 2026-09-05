@@ -1,11 +1,25 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de-CH">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0E141D">
 <title>Seite nicht gefunden</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23D8C47A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpolygon points='16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76'/%3E%3C/svg%3E" type="image/svg+xml">
+<link rel="icon" href="/lehrplan-apps/favicon.svg" type="image/svg+xml">
 <style>
+  /* Die 404-Seite gilt für jeden Pfad der Site, darum absolute URLs. */
+  @font-face {
+    font-family: 'Atkinson Hyperlegible';
+    src: url('/lehrplan-apps/fonts/atkinson-hyperlegible-400.woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Atkinson Hyperlegible';
+    src: url('/lehrplan-apps/fonts/atkinson-hyperlegible-700.woff2') format('woff2');
+    font-weight: 700;
+    font-display: swap;
+  }
   :root {
     --color-background-app: #0E141D;
     --color-background-surface: #162232;
@@ -17,6 +31,7 @@
     --color-action-primary-text: #101722;
     --color-action-primary-hover-bg: #E5EAF0;
     --color-accent: #D8C47A;
+    --font-body: 'Atkinson Hyperlegible', system-ui, sans-serif;
     --space-2: 0.5rem;
     --space-4: 1rem;
     --space-5: 1.25rem;
@@ -24,8 +39,6 @@
     --radius-lg: 1rem;
     --radius-pill: 999px;
     --shadow-sm: 0 1px 2px #00000033;
-    --duration-base: 180ms;
-    --easing-out: cubic-bezier(0.16, 1, 0.3, 1);
   }
   * { box-sizing: border-box; }
   body {
@@ -36,7 +49,7 @@
     padding: var(--space-4);
     background: var(--color-background-app);
     color: var(--color-text-primary);
-    font-family: system-ui, sans-serif;
+    font-family: var(--font-body);
     line-height: 1.55;
   }
   main {
@@ -68,9 +81,8 @@
     border-radius: var(--radius-pill);
     background: var(--color-action-primary-bg);
     color: var(--color-action-primary-text);
-    font-weight: 600;
+    font-weight: 700;
     text-decoration: none;
-    transition: background-color var(--duration-base) var(--easing-out);
   }
   a.primary:hover { background: var(--color-action-primary-hover-bg); }
   a.primary:focus-visible {
@@ -84,7 +96,7 @@
   <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
   <h1>Seite nicht gefunden</h1>
   <p>Diese Seite existiert nicht oder ist umgezogen.</p>
-  <a class="primary" href="/lehrplan-apps/">Zur App-Übersicht</a>
+  <a class="primary" href="/lehrplan-apps/">Zur Startseite</a>
 </main>
 </body>
 </html>
