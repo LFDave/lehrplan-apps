@@ -337,6 +337,55 @@ await page.waitForSelector(".stufen-list");
 check("layout: no horizontal scrolling at 320px",
   await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth));
 
+/* ── Navigation: Pfad und Verlauf ────────────────────────────────── */
+await page.goto("about:blank");
+await page.goto(URL);
+await page.waitForSelector(".stufen-list");
+check("nav: breadcrumb links the overview and the app list, names the app",
+  await page.locator('.crumbs a[href="../"]').count() === 1
+  && await page.locator('.crumbs a[href="../ueben/"]').count() === 1
+  && (await page.textContent('.crumbs [aria-current="page"]')).trim() === (await page.textContent("h1")).trim());
+const navStufe = await page.getAttribute("[data-stufe]", "data-stufe");
+await page.click(`[data-stufe="${navStufe}"]`);
+await page.waitForSelector(".task-area");
+check("nav: a round gets its own history entry and a Stufe crumb",
+  (await page.evaluate(() => location.hash)) === `#stufe/${navStufe}`
+  && await page.locator('.crumbs [data-nav="home"]').count() === 1
+  && (await page.textContent('.crumbs [aria-current="page"]')).includes("Stufe"));
+await page.goBack();
+await page.waitForSelector(".stufen-list");
+check("nav: browser back leaves the round for the overview", (await page.evaluate(() => location.hash)) === "");
+await page.click(`[data-stufe="${navStufe}"]`);
+await page.waitForSelector(".task-area");
+await page.click('[data-action="abort"]');
+await page.waitForSelector(".stufen-list");
+const hashAfterAbort = await page.evaluate(() => location.hash);
+await page.goBack();
+check("nav: abort pops the round entry instead of adding one",
+  hashAfterAbort === "" && page.url() === "about:blank");
+await page.goto(`${URL}?stufe=${navStufe}`);
+await page.waitForSelector(".task-area");
+await page.goBack();
+await page.waitForSelector(".stufen-list");
+const addressAfterBack = await page.evaluate(() => location.search + location.hash);
+await page.goBack();
+check("nav: deep link keeps the overview between the round and the referrer",
+  addressAfterBack === "" && page.url() === "about:blank");
+
+/* ── Bewegung: Balken über transform, reduzierte Bewegung springt ───── */
+await page.goto(URL);
+await page.waitForSelector(".stufen-list");
+const fillMotion = await page.evaluate(() => {
+  const s = getComputedStyle(document.querySelector(".stats-strip .progress-fill"));
+  return { prop: s.transitionProperty, dur: s.transitionDuration, transform: s.transform };
+});
+check("motion: progress bar grows via transform with a short transition",
+  fillMotion.prop === "transform" && fillMotion.dur === "0.24s" && fillMotion.transform !== "none", JSON.stringify(fillMotion));
+await page.emulateMedia({ reducedMotion: "reduce" });
+check("motion: reduced motion drops the transition but keeps the bar",
+  (await page.evaluate(() => getComputedStyle(document.querySelector(".stats-strip .progress-fill")).transitionDuration)) === "0s");
+await page.emulateMedia({ reducedMotion: "no-preference" });
+
 check("console: no errors", consoleErrors.length === 0, consoleErrors.slice(0, 3).join(" | "));
 check("network: no external requests", externalRequests.length === 0, externalRequests.slice(0, 3).join(", "));
 

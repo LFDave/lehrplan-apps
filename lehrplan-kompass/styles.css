@@ -2,13 +2,13 @@
 
 @font-face {
   font-family: 'Atkinson Hyperlegible';
-  src: url('fonts/atkinson-hyperlegible-400.woff2?v=11') format('woff2');
+  src: url('fonts/atkinson-hyperlegible-400.woff2?v=14') format('woff2');
   font-weight: 400;
   font-display: swap;
 }
 @font-face {
   font-family: 'Atkinson Hyperlegible';
-  src: url('fonts/atkinson-hyperlegible-700.woff2?v=11') format('woff2');
+  src: url('fonts/atkinson-hyperlegible-700.woff2?v=14') format('woff2');
   font-weight: 700;
   font-display: swap;
 }
@@ -67,6 +67,7 @@
 
   --motion-fast: 120ms;
   --motion-base: 180ms;
+  --motion-slow: 240ms;
   --motion-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 
   --target-child: 3rem;
@@ -217,7 +218,6 @@ body {
   box-shadow: var(--shadow-sm);
   color: inherit;
   text-decoration: none;
-  transition: transform var(--motion-fast) var(--motion-ease-out);
 }
 
 .subject-card:hover { background: var(--color-background-surface-raised); }
@@ -275,11 +275,16 @@ body {
 
 .progress-track.wide { margin: var(--space-2) 0; }
 
+/* Der Balken wächst über transform (scaleX), nie über width; sein Ende
+   bleibt eckig, die Schiene rundet ihn mit overflow: hidden. */
 .progress-fill {
   display: block;
+  width: 100%;
   height: 100%;
   background: var(--color-accent);
-  border-radius: var(--radius-pill);
+  transform-origin: left;
+  transform: scaleX(var(--p, 0));
+  transition: transform var(--motion-slow) var(--motion-ease-out);
 }
 
 .progress-num {
@@ -363,10 +368,16 @@ body {
   border: 2px solid var(--color-border-strong);
   border-radius: 50%;
   color: transparent;
-  transition: opacity var(--motion-fast) var(--motion-ease-out);
 }
 
-.competence .checkbox .icon { width: 0.9rem; height: 0.9rem; }
+/* Das Häkchen blendet ein (opacity), Rahmen und Füllung wechseln sofort. */
+.competence .checkbox .icon {
+  width: 0.9rem;
+  height: 0.9rem;
+  opacity: 0;
+  transition: opacity var(--motion-fast) var(--motion-ease-out);
+}
+.competence.checked .checkbox .icon { opacity: 1; }
 
 .competence.checked {
   border-color: var(--color-accent);
@@ -381,24 +392,26 @@ body {
 
 .competence-text { flex: 1; }
 
+/* Akzent-Link wie in der Familie (DESIGN.md link.accent): Symbol, fette
+   Akzentschrift, Unterstreichung erst beim Zeigen; bündig mit dem Text. */
 .practice-link {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  margin: var(--space-1) 0 var(--space-2) var(--space-4);
-  min-height: 2.25rem;
-  padding: 0 var(--space-3);
+  margin: 0 0 var(--space-2) calc(var(--space-4) + 1.5rem + var(--space-3));
+  min-height: 2.75rem;
   color: var(--color-accent);
   font-size: var(--font-size-sm);
-  font-weight: 600;
-  text-decoration: none;
-  border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-pill);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
 }
 
-.practice-link:hover { background: var(--color-background-surface-raised); }
+.practice-link:hover,
+.practice-link:focus-visible { text-decoration-color: currentColor; }
 
-.practice-link .icon { width: 0.9rem; height: 0.9rem; }
+.practice-link .icon { width: 1rem; height: 1rem; }
 
 .code-chip {
   flex: none;
@@ -482,20 +495,41 @@ body {
   outline-offset: 2px;
 }
 
+/* Reduzierte Bewegung: keine räumliche Bewegung, jeder Zustand bleibt
+   sichtbar. Balken springen auf ihren Wert, das Häkchen erscheint sofort. */
 @media (prefers-reduced-motion: reduce) {
-  * { transition-duration: 0.01ms !important; }
+  .progress-fill, .competence .checkbox .icon { transition: none; }
 }
 
-.overview-link {
+/* ── Pfad (Breadcrumb): Lehrplan-Apps › Lehrplan-Kompass › Fach ── */
+
+.crumbs {
+  margin-bottom: var(--space-4);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+.crumbs ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 var(--space-1);
+}
+.crumbs li { display: inline-flex; align-items: center; gap: var(--space-1); }
+.crumbs a,
+.crumbs [aria-current="page"] {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-2);
-  align-self: start;
-  min-height: 2.75rem;
+  min-height: 2.25rem;
   color: var(--color-text-secondary);
   text-decoration: none;
-  font-size: 0.9rem;
 }
-.overview-icon { width: 1.1rem; height: 1.1rem; flex: none; }
-.overview-link:hover { color: var(--color-text-primary); }
-.overview-link:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }
+.crumbs a:hover { color: var(--color-text-primary); text-decoration: underline; text-underline-offset: 3px; }
+.crumbs a:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }
+.crumbs [aria-current="page"] { font-weight: 700; }
+.crumb-sep { width: 1rem; height: 1rem; flex: none; color: var(--color-text-muted); }
+
+/* In der Fachansicht folgt der Pfad der schmalen, zentrierten Spalte. */
+.crumbs.narrow { max-width: var(--max-width-narrow); margin-inline: auto; }

@@ -108,12 +108,16 @@ sprachliche Form. Daraus folgt die Regel für jedes Merkblatt:
 
 ## Navigation und Verbindungen
 
-- `index.html` listet alle Merkblätter gruppiert nach Themen; jede
-  Merkblatt-Seite hat einen Zurück-Link zur Liste.
+- `index.html` listet alle Merkblätter gruppiert nach Themen und
+  beginnt mit dem Pfad «Lehrplan-Apps › Merkheft»; jede Merkblatt-Seite
+  beginnt mit «Lehrplan-Apps › Merkheft › Titel» (Breadcrumb,
+  `nav[aria-label="Pfad"]`), der Eintrag «Merkheft» führt zur Liste.
+  Der frühere Zurück-Link «Alle Merkblätter» und der Fusszeilen-Link
+  «Zur App-Übersicht» sind durch den Pfad ersetzt.
 - **Apps → Merkheft:** Stufen mit Merkblatt tragen in ihrer
   `data.js` ein `merkblatt: { id, name }`. Die App zeigt auf der
-  Stufenkarte einen klar erkennbaren Link «Merkblatt: …» (Chip mit
-  Buch-Symbol und unterstrichenem Text) und nach einer Runde mit
+  Stufenkarte einen klar erkennbaren Link «Merkblatt: …» (Fusszeile der
+  Stufenkarte mit Buch-Symbol) und nach einer Runde mit
   Fehlern auf dem Abschlussbildschirm «Zum Nachlesen: …», beide auf
   `../merkheft/<id>.html`. Beide Links sind optional und nie eine
   Bedingung.
@@ -123,8 +127,11 @@ sprachliche Form. Daraus folgt die Regel für jedes Merkblatt:
   d-geld, d-zeit), darum braucht es keinen Themen-Parameter, und die
   App entfernt die Query nach dem Einstieg aus der Adresse (Beispiel
   Uhr: zwei Links auf Masswerk b «Halbe Stunden» und d «Zeitdauern»).
-  Dargestellt als klar erkennbarer Link-Chip mit Stift-Symbol und
-  unterstrichenem App-Namen; die Meta-Zeile nennt Stufe und Thema.
+  Dargestellt als Listenzeile wie in der Merkblatt-Liste: Hantel-Symbol
+  (Familien-Symbol für Üben, Lucide `dumbbell`), App-Name, Meta-Zeile
+  mit Stufe und Thema, Chevron. Die Runde in der App ist ein eigener
+  Verlaufseintrag, darum führt zweimal Browser-Zurück wieder auf das
+  Merkblatt.
 
 ## Persistenz und Privatsphäre
 
@@ -136,7 +143,10 @@ von aussen.
 Einsprachig Deutsch (Schweizer Standarddeutsch). Tokens aus
 DESIGN.md, Akzentfamilie **amber**, Atkinson Hyperlegible selbst
 gehostet, Illustrationen als Inline-SVG mit `role="img"` und
-deutschem `aria-label`, Cache-Busting `?v=6`.
+deutschem `aria-label`, Cache-Busting `?v=9`. Auf schmalen Bildschirmen liegt das Merkblatt
+ohne Kartenrahmen direkt auf der Fläche, damit die Infografik die ganze
+Spalte bekommt; ab 40rem wird es eine Karte. Titel, Gruppen- und Abschnittslabels, Codes
+(Monospace, xs) folgen der Typo-Skala der Familie.
 
 ## Tests
 
@@ -146,7 +156,8 @@ Codes): Cache-Busting-Konsistenz, eine Datei pro Merkblatt mit
 gültigen App-Zielen und ohne ß, die Liste mit allen Links, jede
 Seite mit Titel, Gruppe, Bild und «Dazu üben», die Interaktivität
 (alle Stromkreis-Zustände, Globus-Drehung, Orbit-Start nur auf
-Klick), Zurück-Navigation, Druckdarstellung (heller Hintergrund,
+Klick), Pfad-Navigation und die Reise Merkblatt → App → zurück,
+Druckdarstellung (heller Hintergrund,
 ausgeblendete Bedienelemente, Abschnitte ohne Seitenumbruch
 mittendrin), Layout bei 320px, Konsole ohne Fehler, keine externen
 Requests. Die Suiten aller 31 Übungs-Apps prüfen, dass jede Stufenkarte

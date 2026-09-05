@@ -1,10 +1,18 @@
 # Lehrplan-Apps
 
 Calm learning apps for the Swiss Lehrplan 21 (Bern edition): the
-**Lehrplan-Kompass** for self-assessment across all subjects, plus one
-small practice app per competency.
+**Lehrplan-Kompass** for self-assessment across all subjects, one
+small **practice app** per competency, and the **Merkheft**, short
+explainer sheets to read before and after practising.
 
 **Open:** [lfdave.github.io/lehrplan-apps](https://lfdave.github.io/lehrplan-apps)
+
+The start page has exactly three entries: Kompass (einschätzen),
+Merkheft (nachschlagen) and Übungs-Apps (üben, listed by subject on
+`ueben/`). Every page below the start carries a breadcrumb
+(Lehrplan-Apps › Bereich › App › Ansicht), and a practice round is its
+own history entry, so the browser back button always retraces the way
+a learner came, for example from a Merkblatt into a round and back.
 
 ## The principle
 
@@ -101,6 +109,10 @@ cd <app>
 python3 -m http.server 8000   # ES modules need http
 
 cd <app>/tests
+npm install
+node e2e.test.mjs
+
+cd tests                        # site shell: start page, ueben/, 404
 npm install
 node e2e.test.mjs
 ```

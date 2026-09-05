@@ -85,13 +85,22 @@ Einsprachig Deutsch (Schweizer Standarddeutsch), Strings in
 `strings.js`. Tokens aus DESIGN.md, Akzentfamilie **coral**, Atkinson
 Hyperlegible selbst gehostet, Lucide-Icons inline; im Raster ist das
 Original gefüllt (Akzent), Bild und Kandidaten sind umrandet, die
-Spiegelachse gestrichelt. Cache-Busting `?v=3`.
+Spiegelachse gestrichelt. Cache-Busting `?v=6`. Bewegung nur als
+Zustandswechsel: Fortschrittsbalken wachsen über `transform: scaleX`
+(240 ms), Antwortknöpfe drücken sich beim Antippen ein (120 ms); bei
+reduzierter Bewegung springen die Balken, die Knöpfe bleiben still, und
+jeder Zustand bleibt sichtbar. Speichern in localStorage ist gegen
+blockierten Speicher (privater Modus) abgesichert. Der Aufgabenschirm
+trägt die Stufenzeile als h1 und die Frage als h2; bei Auswahlaufgaben
+liegt der Fokus nach dem Rendern auf der ersten Antwort, beim Reset auf
+der Bestätigung. Neben einem Stufenvorschlag ist «Noch eine Runde» der
+Zweitknopf.
 
 ## Merkheft-Verbindung und Deep-Links
 
 Jede Stufe trägt in `data.js` ein `merkblatt: { id, name }`: Die
 App zeigt auf der Stufenkarte einen klar erkennbaren Link
-«Merkblatt: …» (Chip mit Buch-Symbol und unterstrichenem Text) und
+«Merkblatt: …» (Fusszeile der Stufenkarte mit Buch-Symbol) und
 nach einer Runde mit Fehlern «Zum Nachlesen: …», beide auf
 `../merkheft/<id>.html`. Die Links sind optional und nie eine
 Bedingung; die Suite prüft, dass jede Stufenkarte einen trägt.
@@ -99,7 +108,21 @@ Zuordnung: a, b, c, d, e, i → symmetrie; f, g, h → abbildungen; j → koordi
 
 Deep-Links: `?stufe=<id>` startet die Stufe direkt. Die Query wird
 nach dem Einstieg sofort aus der Adresse entfernt, damit sie beim
-Neuladen oder Weitergeben nicht kleben bleibt.
+Neuladen oder Weitergeben nicht kleben bleibt; die Runde erhält ihren
+eigenen Verlaufseintrag (`#stufe/<id>`) hinter der Übersicht.
+
+## Navigation
+
+Jede Ansicht beginnt mit dem Pfad «Lehrplan-Apps › Übungs-Apps ›
+App» (Breadcrumb, `nav[aria-label="Pfad"]`, Links auf `../` und
+`../ueben/`). In Runde, Abschluss und Medaillen ist die App-Ebene ein
+Link und die Ansicht («Stufe x», «Medaillen») der letzte Eintrag.
+Eine Runde ist ein eigener Verlaufseintrag (`#stufe/<id>`):
+Browser-Zurück führt zur Übersicht; «Abbrechen», «Zur Übersicht» und
+der App-Link im Pfad bauen den Eintrag über den Verlauf ab, sodass
+ein weiteres Zurück dorthin führt, woher man kam, etwa ins Merkblatt.
+Der Stufenvorschlag nach einer Runde ersetzt den Eintrag. Der frühere
+Fusszeilen-Link «Zur App-Übersicht» ist durch den Pfad ersetzt.
 
 ## Tests
 

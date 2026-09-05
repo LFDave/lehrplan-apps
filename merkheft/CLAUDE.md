@@ -43,10 +43,16 @@ spec-sync rules, cache-busting convention) applies as well.
   is no topic parameter: mixed official Stufen are split into
   topic-pure sub-Stufen in the apps (own id, shared display `code`),
   and the app strips the query from the address after entry.
+- Every page starts with the family breadcrumb (`nav.crumbs`:
+  Lehrplan-Apps › Merkheft › Titel); a new sheet copies that block from
+  any sheet and sets its title as the current item. «Dazu üben» rows
+  carry the family «üben» icon `dumbbell` and a trailing chevron. Print
+  hides the breadcrumb and uses the darker amber `#6E6130` (AA on white
+  and cream) for accent text.
 - Full coverage: every Stufe of every practice app links exactly one
   Merkblatt, and every Merkblatt links back to all Stufen it serves.
   The canonical mapping is restated in `tests/e2e.test.mjs`
-  (BLAETTER); app suites assert one Merkblatt chip per Stufe card.
+  (BLAETTER); app suites assert one Merkblatt footer row per Stufe card.
 - Tests: `cd tests && npm install && node e2e.test.mjs` — must pass
   before reporting back. `tests/node_modules` is a symlink to
   `../../masswerk/tests/node_modules` locally.

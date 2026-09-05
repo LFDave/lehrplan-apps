@@ -2,13 +2,13 @@
 
 @font-face {
   font-family: 'Atkinson Hyperlegible';
-  src: url('fonts/atkinson-hyperlegible-400.woff2?v=6') format('woff2');
+  src: url('fonts/atkinson-hyperlegible-400.woff2?v=9') format('woff2');
   font-weight: 400;
   font-display: swap;
 }
 @font-face {
   font-family: 'Atkinson Hyperlegible';
-  src: url('fonts/atkinson-hyperlegible-700.woff2?v=6') format('woff2');
+  src: url('fonts/atkinson-hyperlegible-700.woff2?v=9') format('woff2');
   font-weight: 700;
   font-display: swap;
 }
@@ -27,14 +27,23 @@
   --color-accent: #D8C47A;
   --color-accent-soft: #D8C47A26;
   --color-accent-muted: #A99858;
+  --color-action-secondary-bg: #1C2A3B;
+  --color-action-secondary-hover-bg: #26384E;
   --font-body: 'Atkinson Hyperlegible', system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --font-size-xs: 0.75rem;
+  --font-size-xl: 1.375rem;
+  --font-size-xxl: 1.75rem;
+  --line-height-title: 1.15;
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
   --space-4: 1rem;
   --space-6: 1.5rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -51,14 +60,15 @@ body {
 
 .app-header { display: grid; gap: var(--space-1); margin-bottom: var(--space-2); }
 .app-title {
-  font-size: 1.5rem; display: flex; align-items: center; gap: var(--space-2);
+  font-size: var(--font-size-xxl); line-height: var(--line-height-title); letter-spacing: -0.015em;
+  display: flex; align-items: center; gap: var(--space-3);
   color: var(--color-text-primary);
 }
-.title-icon { width: 1.5rem; height: 1.5rem; color: var(--color-accent); }
+.title-icon { width: 1.75rem; height: 1.75rem; flex: none; color: var(--color-accent); }
 .tagline { color: var(--color-text-secondary); max-width: 65ch; }
 
 .section-label {
-  font-size: 0.95rem; color: var(--color-text-muted); font-weight: 700;
+  font-size: var(--font-size-sm); letter-spacing: 0.02em; color: var(--color-text-muted); font-weight: 700;
   margin-top: var(--space-2);
 }
 
@@ -68,35 +78,38 @@ body {
   gap: var(--space-1) var(--space-2);
   background: var(--color-background-surface);
   border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   padding: var(--space-3) var(--space-4);
   color: inherit; text-decoration: none; min-height: 3rem;
 }
 .blatt:hover { background: var(--color-background-surface-raised); }
 .blatt:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }
 .blatt-title { font-weight: 700; }
-.blatt-meta { grid-column: 1; color: var(--color-text-muted); font-size: 0.85rem; }
-.chevron { grid-column: 2; grid-row: 1 / span 2; width: 1.1rem; height: 1.1rem; color: var(--color-text-muted); }
+.blatt-meta { grid-column: 1; color: var(--color-text-muted); font-family: var(--font-mono); font-size: var(--font-size-xs); }
+.chevron { grid-column: 2; grid-row: 1 / span 2; width: 1.25rem; height: 1.25rem; color: var(--color-text-muted); }
 
-.page-nav { margin-bottom: var(--space-1); }
-.back {
-  display: inline-flex; align-items: center; gap: var(--space-2);
-  color: var(--color-text-secondary); text-decoration: none; min-height: 2.75rem;
-  padding: var(--space-2) var(--space-2) var(--space-2) 0;
+/* Pfad (Breadcrumb): Lehrplan-Apps › Merkheft › Merkblatt */
+.crumbs { font-size: var(--font-size-sm); color: var(--color-text-muted); }
+.crumbs ol {
+  list-style: none; display: flex; flex-wrap: wrap; align-items: center;
+  gap: 0 var(--space-1);
 }
-.back:hover { color: var(--color-text-primary); }
-.back:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }
-.back .icon { width: 1.1rem; height: 1.1rem; }
+.crumbs li { display: inline-flex; align-items: center; gap: var(--space-1); }
+.crumbs a,
+.crumbs [aria-current="page"] {
+  display: inline-flex; align-items: center; min-height: 2.25rem;
+  color: var(--color-text-secondary); text-decoration: none;
+}
+.crumbs a:hover { color: var(--color-text-primary); text-decoration: underline; text-underline-offset: 3px; }
+.crumbs a:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }
+.crumbs [aria-current="page"] { font-weight: 700; }
+.crumb-sep { width: 1rem; height: 1rem; flex: none; color: var(--color-text-muted); }
 
-.blatt-page {
-  background: var(--color-background-surface);
-  border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-lg);
-  padding: var(--space-6) var(--space-4);
-  display: grid; gap: var(--space-3);
-}
-.blatt-gruppe { color: var(--color-accent); font-size: 0.9rem; font-weight: 700; }
-.blatt-page h1 { font-size: 1.4rem; }
+/* Auf dem Handy liegt das Merkblatt direkt auf der Fläche, damit die
+   Infografik die ganze Spalte bekommt; ab Tablet wird es eine Karte. */
+.blatt-page { display: grid; gap: var(--space-3); }
+.blatt-gruppe { color: var(--color-accent); font-size: var(--font-size-sm); font-weight: 700; }
+.blatt-page h1 { font-size: var(--font-size-xl); line-height: var(--line-height-title); }
 .intro { color: var(--color-text-secondary); max-width: 65ch; }
 .steps {
   color: var(--color-text-secondary); max-width: 60ch;
@@ -107,7 +120,7 @@ body {
 .illu-stage {
   background: var(--color-background-surface-soft);
   border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
   padding: var(--space-4);
   display: grid; place-items: center; gap: var(--space-3);
   overflow-x: auto;
@@ -119,17 +132,17 @@ svg text { font-family: var(--font-body); font-size: 0.85rem; fill: var(--color-
 .illu-controls { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; justify-content: center; }
 .illu-controls button {
   font: inherit; border: 1px solid var(--color-border-strong);
-  border-radius: var(--radius-md);
-  background: #1C2A3B; color: var(--color-text-primary);
+  border-radius: var(--radius-sm);
+  background: var(--color-action-secondary-bg); color: var(--color-text-primary);
   padding: var(--space-2) var(--space-3); cursor: pointer; min-height: 2.75rem;
 }
-.illu-controls button:hover { background: #26384E; }
+.illu-controls button:hover { background: var(--color-action-secondary-hover-bg); }
 .illu-controls button[aria-pressed="true"] { border-color: var(--color-accent); color: var(--color-accent); }
 .illu-controls button:focus-visible,
 .illu-controls input:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }
-.illu-controls input[type="range"] { flex: 1 1 9rem; accent-color: #D8C47A; min-height: 2.75rem; }
+.illu-controls input[type="range"] { flex: 1 1 9rem; accent-color: var(--color-accent); min-height: 2.75rem; }
 .illu-controls label { color: var(--color-text-secondary); display: inline-flex; gap: var(--space-2); align-items: center; }
-.illu-status { color: var(--color-text-muted); font-size: 0.9rem; text-align: center; }
+.illu-status { color: var(--color-text-muted); font-size: var(--font-size-sm); text-align: center; }
 
 /* Infografik-Klassen: Einheitentreppen, Regelkasten, Beispiele.
    Farben pro Klasse, damit der Druck sie hell überschreiben kann. */
@@ -161,6 +174,8 @@ svg text { font-family: var(--font-body); font-size: 0.85rem; fill: var(--color-
 .sun { position: absolute; inset: 0; margin: auto; width: 22px; height: 22px; border-radius: 50%; background: var(--color-accent); }
 .running .carrier { animation: orbit linear infinite; }
 @keyframes orbit { to { transform: rotate(360deg); } }
+/* Reduzierte Bewegung: die Planeten kreisen nicht; der Startknopf
+   wechselt trotzdem seinen Zustand und Text. */
 @media (prefers-reduced-motion: reduce) {
   .running .carrier { animation: none; }
 }
@@ -169,35 +184,41 @@ svg text { font-family: var(--font-body); font-size: 0.85rem; fill: var(--color-
 .fakten div {
   display: grid; gap: var(--space-1);
   background: var(--color-background-surface-soft);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
   padding: var(--space-2) var(--space-3);
 }
 .fakten dt { font-weight: 700; color: var(--color-accent); }
 .fakten dd { color: var(--color-text-secondary); }
 
+/* Dazu üben: Listenzeilen wie die Merkblatt-Liste, Hantel-Symbol für Üben */
 .ueben-list { list-style: none; display: grid; gap: var(--space-2); }
 .ueben-link {
-  display: inline-flex; align-items: center; gap: var(--space-2);
-  color: var(--color-accent); text-decoration: none; font-weight: 700;
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center;
+  gap: var(--space-1) var(--space-3);
   background: var(--color-background-surface-soft);
   border: 1px solid var(--color-border-subtle);
-  min-height: 2.75rem; padding: var(--space-1) var(--space-3);
   border-radius: var(--radius-md);
+  padding: var(--space-2) var(--space-4);
+  color: inherit; text-decoration: none; min-height: 3rem;
 }
-.ueben-icon { width: 1.1rem; height: 1.1rem; flex: none; }
-.ueben-text { text-decoration: underline; text-underline-offset: 3px; }
-.ueben-link:hover { background: var(--color-background-surface-raised); border-color: var(--color-border-strong); }
+.ueben-icon { grid-row: 1 / span 2; width: 1.25rem; height: 1.25rem; color: var(--color-accent); }
+.ueben-text { font-weight: 700; }
+.ueben-meta { grid-column: 2; color: var(--color-text-muted); font-size: var(--font-size-sm); }
+.ueben-link .chevron { grid-column: 3; grid-row: 1 / span 2; }
+.ueben-link:hover { background: var(--color-background-surface-raised); }
 .ueben-link:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }
-.ueben-meta { color: var(--color-text-muted); font-weight: 400; font-size: 0.9rem; }
 
-.code-line { color: var(--color-text-muted); font-size: 0.85rem; }
+.code-line { color: var(--color-text-muted); font-family: var(--font-mono); font-size: var(--font-size-xs); }
 
-.app-footer { color: var(--color-text-muted); font-size: 0.9rem; display: grid; gap: var(--space-2); }
-.quiet-link { color: var(--color-text-secondary); }
-.quiet-link:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }
+.app-footer { color: var(--color-text-muted); font-size: var(--font-size-sm); display: grid; gap: var(--space-2); }
 
 @media (min-width: 40rem) {
-  .blatt-page { padding: var(--space-6); }
+  .blatt-page {
+    background: var(--color-background-surface);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+  }
   .fakten { grid-template-columns: repeat(3, 1fr); }
   .fakten div { grid-template-rows: auto 1fr; }
 }
@@ -206,32 +227,36 @@ svg text { font-family: var(--font-body); font-size: 0.85rem; fill: var(--color-
    Schrift, keine Navigation und keine Bedienelemente. */
 @media print {
   body { background: #fff; color: #1A2230; padding: 0; }
-  .page-nav, .illu-controls, .app-footer { display: none; }
+  .crumbs, .illu-controls, .app-footer { display: none; }
+  .app-title, .blatt-title { color: #1A2230; }
+  .tagline, .blatt-meta, .chevron { color: #5C6B7C; }
+  .blatt { background: #F7F8FA; border-color: #D4DAE1; }
   .blatt-page {
     background: #fff; border: none; padding: 0;
   }
-  .blatt-gruppe { color: #8A7A3E; }
+  .blatt-gruppe { color: #6E6130; }
   .intro, .steps, .fakten dd { color: #33404F; }
   .section-label { color: #5C6B7C; }
   .fakten div { background: #F4F1E4; }
-  .fakten dt { color: #8A7A3E; }
+  .fakten dt { color: #6E6130; }
   .illu-stage { background: #F7F8FA; border-color: #D4DAE1; }
   svg text { fill: #5C6B7C; }
-  .ueben-link { color: #8A7A3E; background: #F7F8FA; border-color: #D4DAE1; }
+  .ueben-link { color: #1A2230; background: #F7F8FA; border-color: #D4DAE1; }
+  .ueben-icon { color: #6E6130; }
   .ueben-meta, .code-line, .illu-status { color: #5C6B7C; }
   .blatt-page, .illu-stage { break-inside: avoid; }
   .ig-title, .ig-unit { fill: #1A2230; }
   .ig-sub, .ig-word { fill: #5C6B7C; }
-  .ig-h, .ig-factor { fill: #8A7A3E; }
+  .ig-h, .ig-factor { fill: #6E6130; }
   .ig-box { fill: #F7F4E6; stroke: #C9BD8F; }
   .ig-arrow { stroke: #33404F; }
   .ig-arrowhead { fill: #33404F; }
   .ig-panel { fill: #F7F8FA; stroke: #D4DAE1; }
   .ig-ex { fill: #33404F; }
   .ig-tick { stroke: #A9B4BF; }
-  .ig-hand-h { stroke: #8A7A3E; }
+  .ig-hand-h { stroke: #6E6130; }
   .ig-hand-m { stroke: #1A2230; }
-  .ig-dot { fill: #8A7A3E; }
+  .ig-dot { fill: #6E6130; }
   .ig-coin { fill: #F7F4E6; stroke: #C9BD8F; }
   /* Seitenumbrüche: Abschnitte bleiben beisammen, Titel kleben am
      folgenden Inhalt, kompaktere Abstände für ein A4-Blatt. */
