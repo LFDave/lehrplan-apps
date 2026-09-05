@@ -46,7 +46,10 @@ spec-sync rules, cache-busting convention) applies as well.
 - Every page starts with the family breadcrumb (`nav.crumbs`:
   Lehrplan-Apps › Merkheft › Titel); a new sheet copies that block from
   any sheet and sets its title as the current item. «Dazu üben» rows
-  carry the family «üben» icon `dumbbell` and a trailing chevron. Print
+  carry the family «üben» icon `dumbbell` and a trailing chevron; their
+  meta line reads «Stufe x · Zyklus n · Thema», the Zyklus copied from
+  `cycleLabel(stufe.cycle)` of the app's data.js (the suite enforces the
+  shape). Print
   hides the breadcrumb and uses the darker amber `#6E6130` (AA on white
   and cream) for accent text.
 - Full coverage: every Stufe of every practice app links exactly one

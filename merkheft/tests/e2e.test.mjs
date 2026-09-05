@@ -598,6 +598,8 @@ for (const b of BLAETTER) {
     && await page.locator(".ueben-link .ueben-icon").count() === b.ueben.length
     && await page.locator(".ueben-link .ueben-text").count() === b.ueben.length
     && await page.locator(".ueben-link .chevron").count() === b.ueben.length);
+  check(`page ${b.id}: every Dazu-üben row names Stufe, Zyklus and topic`,
+    (await page.locator(".ueben-meta").allTextContents()).every((m) => /^Stufe \S+ · Zyklus \d( und Zyklus \d)* · \S/.test(m.trim())));
   check(`page ${b.id}: breadcrumb links overview and index, names the sheet`,
     await page.locator('.crumbs a[href="../"]').count() === 1
     && await page.locator('.crumbs a[href="index.html"]').count() === 1

@@ -426,6 +426,32 @@ check("motion: reduced motion drops the transition but keeps the bar",
   (await page.evaluate(() => getComputedStyle(document.querySelector(".stats-strip .progress-fill")).transitionDuration)) === "0s");
 await page.emulateMedia({ reducedMotion: "no-preference" });
 
+/* ── Zyklus-Filter: Anzeige, keine Sperre, bleibt auf dem Gerät ────── */
+await page.goto(URL);
+await page.waitForSelector(".stufen-list");
+const zyklusSet = [...new Set(STUFEN.flatMap((s) => [].concat(s.cycle)))].sort();
+if (zyklusSet.length > 1) {
+  const zyklusPick = zyklusSet[zyklusSet.length - 1];
+  const zyklusExpected = STUFEN.filter((s) => [].concat(s.cycle).includes(zyklusPick)).length;
+  check("zyklus: one choice per Zyklus plus «Alle Stufen», all selected by default",
+    await page.locator("[data-zyklus]").count() === zyklusSet.length + 1
+    && (await page.getAttribute('[data-zyklus="all"]', "aria-pressed")) === "true");
+  await page.click(`[data-zyklus="${zyklusPick}"]`);
+  await page.waitForSelector(`[data-zyklus="${zyklusPick}"][aria-pressed="true"]`);
+  check(`zyklus: choosing Zyklus ${zyklusPick} shows only its ${zyklusExpected} Stufen`,
+    await page.locator(".stufe").count() === zyklusExpected);
+  await page.reload();
+  await page.waitForSelector(".stufen-list");
+  check("zyklus: the choice survives a reload",
+    await page.locator(".stufe").count() === zyklusExpected
+    && (await page.getAttribute(`[data-zyklus="${zyklusPick}"]`, "aria-pressed")) === "true");
+  await page.click('[data-zyklus="all"]');
+  await page.waitForSelector('[data-zyklus="all"][aria-pressed="true"]');
+  check("zyklus: «Alle Stufen» brings every Stufe back", await page.locator(".stufe").count() === STUFEN.length);
+} else {
+  check("zyklus: a single-Zyklus app shows no filter", await page.locator("[data-zyklus]").count() === 0);
+}
+
 check("console: no errors", consoleErrors.length === 0, consoleErrors.slice(0, 3).join(" | "));
 check("network: no external requests", externalRequests.length === 0, externalRequests.slice(0, 3).join(", "));
 

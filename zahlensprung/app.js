@@ -2,13 +2,14 @@
 // Abschluss, Medaillen. Eine Runde hat 8 Aufgaben; ausgewertet wird
 // immer die ganze Antwort, nie einzelne Zeichen.
 
-import { STUFEN, COMPETENCY, stufeById, nextStufe, cycleLabel } from './data.js?v=6';
-import { genRound } from './gen.js?v=6';
-import { roundXp, levelFor, nextLevel, earnedMedals, cleanStreak, suggestsNextStufe } from './game.js?v=6';
-import { t } from './strings.js?v=6';
-import { icon } from './icons.js?v=6';
+import { STUFEN, COMPETENCY, stufeById, nextStufe, cycleLabel } from './data.js?v=7';
+import { genRound } from './gen.js?v=7';
+import { roundXp, levelFor, nextLevel, earnedMedals, cleanStreak, suggestsNextStufe } from './game.js?v=7';
+import { t } from './strings.js?v=7';
+import { icon } from './icons.js?v=7';
 
 const STORE = 'zahlensprung.progress';
+const STORE_ZYKLUS = STORE.replace(/\.progress$/, '.zyklus');
 const ROUND_LENGTH = 8;
 
 const app = document.getElementById('app');
@@ -26,8 +27,27 @@ function loadState() {
   }
 }
 
+// Zyklus-Filter der Stufenleiter: Inhalt wie die Zykluswahl im Kompass,
+// keine Einstellung. 'all' zeigt alle Stufen; die Wahl bleibt auf dem
+// Gerät, gilt nur für die Anzeige und sperrt keine Stufe.
+const ZYKLEN = [...new Set(STUFEN.flatMap((s) => [].concat(s.cycle)))].sort();
+
+function loadZyklus() {
+  try {
+    const raw = Number(localStorage.getItem(STORE_ZYKLUS));
+    return ZYKLEN.length > 1 && ZYKLEN.includes(raw) ? raw : 'all';
+  } catch {
+    return 'all';
+  }
+}
+
+function inZyklus(stufe, zyklus) {
+  return zyklus === 'all' || [].concat(stufe.cycle).includes(zyklus);
+}
+
 const state = {
   progress: loadState(),
+  zyklus: loadZyklus(),
   resetArmed: false,
   round: null, // { stufeId, tasks, index, mistakes, taskMistakes, solved }
   result: null,
@@ -112,8 +132,13 @@ function renderHome() {
 
     <section class="stufen-section">
       <h2 class="section-label">${t('home.stufen')}</h2>
+      ${ZYKLEN.length > 1 ? `
+      <div class="zyklus-filter" role="group" aria-label="${esc(t('home.zyklus'))}">
+        ${[['all', t('home.zyklusAll')], ...ZYKLEN.map((z) => [z, t('home.zyklusN', { n: z })])].map(([z, label]) => `
+          <button class="zyklus-choice${String(state.zyklus) === String(z) ? ' selected' : ''}" data-zyklus="${z}" aria-pressed="${String(state.zyklus) === String(z)}">${label}</button>`).join('')}
+      </div>` : ''}
       <ul class="stufen-list">
-        ${STUFEN.map((s) => {
+        ${STUFEN.filter((s) => inZyklus(s, state.zyklus)).map((s) => {
           const ps = state.progress.stufen[s.id] || { rounds: 0, cleanRuns: 0 };
           return `
           <li class="stufe-item">
@@ -155,6 +180,19 @@ function renderHome() {
   for (const btn of app.querySelectorAll('[data-stufe]')) {
     btn.addEventListener('click', () => openStufe(btn.dataset.stufe));
   }
+  for (const btn of app.querySelectorAll('[data-zyklus]')) {
+    btn.addEventListener('click', () => {
+      const z = btn.dataset.zyklus === 'all' ? 'all' : Number(btn.dataset.zyklus);
+      state.zyklus = z;
+      try {
+        localStorage.setItem(STORE_ZYKLUS, String(z));
+      } catch {
+        /* nicht speicherbar */
+      }
+      renderHome();
+      app.querySelector(`[data-zyklus="${z}"]`)?.focus();
+    });
+  }
   for (const btn of app.querySelectorAll('[data-action]')) {
     btn.addEventListener('click', () => {
       const action = btn.dataset.action;
@@ -162,6 +200,12 @@ function renderHome() {
       if (action === 'reset-cancel') state.resetArmed = false;
       if (action === 'reset-confirm') {
         state.progress = freshState();
+        state.zyklus = 'all';
+        try {
+          localStorage.removeItem(STORE_ZYKLUS);
+        } catch {
+          /* nicht speicherbar */
+        }
         state.resetArmed = false;
         save();
       }
@@ -462,7 +506,7 @@ function renderDone() {
 function renderMedals() {
   const p = state.progress;
   const earned = new Set(earnedMedals(p).map((m) => m.key));
-  import('./game.js?v=6').then(({ MEDALS }) => {
+  import('./game.js?v=7').then(({ MEDALS }) => {
     app.innerHTML = `
       ${crumbs(t('medals.title'))}
       <header class="subject-header">
