@@ -1,6 +1,7 @@
 // e2e.test.mjs — Playwright end-to-end tests for the site shell:
-// the root overview with its three entries (Kompass, Übungs-Apps,
-// Merkheft), the Übungs-Apps list, breadcrumbs across the family, the
+// the root overview with its five entries (Lehrplan 21, Kompass,
+// Merkheft, Übungs-Apps, Nachfragen), the Lehrplan-21 page, the
+// Nachfragen page, the Übungs-Apps list, breadcrumbs across the family, the
 // 404 page, registry consistency with PRODUCT.md, cache-busting,
 // layout, console and network hygiene.
 //
@@ -35,13 +36,19 @@ function check(name, condition, detail = "") {
   // Cache-busting: the shell files share one ?v= on every local asset.
   const versions = new Set();
   const unversioned = [];
-  for (const f of ["index.html", "ueben/index.html", "site.css"]) {
+  for (const f of ["index.html", "ueben/index.html", "lehrplan21/index.html", "nachfragen/index.html", "site.css", "nachfragen/styles.css"]) {
     const text = readFileSync(join(ROOT_DIR, f), "utf8");
     for (const m of text.matchAll(/(?:href="[^"]+?|url\('fonts\/[^']+?)(\?v=(\d+))?["')]/g)) {
       const whole = m[0];
-      if (whole.includes("http") || whole.includes('"#') || /href="(\.\.\/|[a-z-]+\/)+"/.test(whole)) continue;
+      if (whole.includes("http") || whole.includes('"#') || /href="(\.\.\/|[a-z0-9-]+\/)+"/.test(whole)) continue;
       if (m[2]) versions.add(m[2]);
       else unversioned.push(`${f}: ${whole}`);
+    }
+  }
+  for (const f of ["nachfragen/index.html", "nachfragen/app.js"]) {
+    const text = readFileSync(join(ROOT_DIR, f), "utf8");
+    for (const m of text.matchAll(/(?:src="|from ')[^"']+?\.js(\?v=(\d+))?["']/g)) {
+      if (m[2]) versions.add(m[2]); else unversioned.push(`${f}: ${m[0]}`);
     }
   }
   check("cache-busting: every local asset ref carries ?v=", unversioned.length === 0, unversioned.join("; "));
@@ -62,6 +69,12 @@ function check(name, condition, detail = "") {
     `registry ${practice.join(",")} / listed ${listed.join(",")}`);
   check("registry: every listed app folder exists",
     listed.every((a) => existsSync(join(ROOT_DIR, a, "index.html"))));
+  // Nachfragen: the APPS list in data.js mirrors the Übungs-Apps list.
+  const nachData = readFileSync(join(ROOT_DIR, "nachfragen", "data.js"), "utf8");
+  const nachApps = [...nachData.matchAll(/\{ id: "([a-z-]+)", name: "[^"]+", code: "([A-Z0-9.]+)"/g)].map((m) => `${m[1]} ${m[2]}`);
+  const uebenApps = [...ueben.matchAll(/href="\.\.\/([a-z-]+)\/".*?<span class="row-meta">([A-Z0-9.]+)<\/span>/gs)].map((m) => `${m[1]} ${m[2]}`);
+  check("nachfragen: APPS in data.js equals the Übungs-Apps list (id and code)",
+    nachApps.length === 31 && nachApps.join("|") === uebenApps.join("|"), `${nachApps.length} vs ${uebenApps.length}`);
   check("registry: Kompass and Merkheft are the other two entries",
     registry.some((r) => r.app === "lehrplan-kompass") && registry.some((r) => r.app === "merkheft"));
 }
@@ -98,24 +111,162 @@ page.on("request", (req) => { if (!req.url().startsWith(BASE)) externalRequests.
 
 const crumbCurrent = async () => (await page.textContent('.crumbs [aria-current="page"]')).trim();
 
-/* ── Root: three entries ──────────────────────────────────────────── */
+/* ── Root: five entries ───────────────────────────────────────────── */
 await page.goto(`${BASE}/`);
 await page.waitForSelector(".entry-list");
 check("root: title renders", (await page.textContent("h1")).trim() === "Lehrplan-Apps");
-check("root: exactly three entries: Kompass, Übungs-Apps, Merkheft",
-  await page.locator(".entry-list .row").count() === 3
+check("root: exactly five entries: Lehrplan 21, Kompass, Merkheft, Übungs-Apps, Nachfragen",
+  await page.locator(".entry-list .row").count() === 5
+  && await page.locator('.row[href="lehrplan21/"]').count() === 1
   && await page.locator('.row[href="lehrplan-kompass/"]').count() === 1
   && await page.locator('.row[href="ueben/"]').count() === 1
-  && await page.locator('.row[href="merkheft/"]').count() === 1);
+  && await page.locator('.row[href="merkheft/"]').count() === 1
+  && await page.locator('.row[href="nachfragen/"]').count() === 1);
 check("root: no breadcrumb on the root itself", await page.locator(".crumbs").count() === 0);
-check("root: entries read Kompass → Merkheft → Übungs-Apps (einschätzen, nachschlagen, üben)",
-  (await page.locator(".entry-list .row").evaluateAll((els) => els.map((e) => e.getAttribute("href")))).join(",") === "lehrplan-kompass/,merkheft/,ueben/");
+check("root: entries read Lehrplan 21 → Kompass → Merkheft → Übungs-Apps → Nachfragen",
+  (await page.locator(".entry-list .row").evaluateAll((els) => els.map((e) => e.getAttribute("href")))).join(",") === "lehrplan21/,lehrplan-kompass/,merkheft/,ueben/,nachfragen/");
 check("root: every entry has icon, name, description and meta",
-  await page.locator(".entry .row-icon").count() === 3
-  && await page.locator(".entry .row-name").count() === 3
-  && await page.locator(".entry .row-desc").count() === 3
-  && await page.locator(".entry .row-meta").count() === 3);
+  await page.locator(".entry .row-icon").count() === 5
+  && await page.locator(".entry .row-name").count() === 5
+  && await page.locator(".entry .row-desc").count() === 5
+  && await page.locator(".entry .row-meta").count() === 5);
 await page.screenshot({ path: join(SHOTS_DIR, "01-root.png"), fullPage: true });
+
+/* ── Lehrplan 21: the explainer page ──────────────────────────────── */
+await page.click('.row[href="lehrplan21/"]');
+await page.waitForSelector(".text-page");
+check("lehrplan21: breadcrumb links the overview and names the page",
+  await page.locator('.crumbs a[href="../"]').count() === 1 && (await crumbCurrent()) === "Der Lehrplan 21");
+check("lehrplan21: title renders", (await page.textContent("h1")).trim() === "Der Lehrplan 21");
+const sectionIds = await page.locator(".text-page section").evaluateAll((els) => els.map((e) => e.id));
+check("lehrplan21: sections cover concept, Zyklen, Aufbau, Stufen, Verbindlichkeiten, Prim/Sek, Beurteilung, Apps, Glossar, Quelle",
+  sectionIds.join(",") === "was,ansatz,zyklen,aufbau,stufen,verbindlich,primsek,beurteilung,apps,glossar,quellen", sectionIds.join(","));
+const tocTargets = await page.locator(".toc a").evaluateAll((els) => els.map((e) => e.getAttribute("href").slice(1)));
+check("lehrplan21: every table-of-contents link targets an existing section",
+  tocTargets.length >= 8 && tocTargets.every((id) => sectionIds.includes(id)), tocTargets.join(","));
+check("lehrplan21: one h1, h2 per section, no skipped heading levels",
+  await page.locator("h1").count() === 1
+  && await page.locator(".text-page h2").count() === sectionIds.length
+  && await page.locator("h3, h4, h5, h6").count() === 0);
+const bodyText = await page.textContent(".text-page");
+check("lehrplan21: explains Grundanspruch, Orientierungspunkt, Zyklus, Kompetenzstufe, Real- und Sekundarschule",
+  ["Grundanspruch", "Orientierungspunkt", "Zyklus", "Kompetenzstufe", "Realschul", "Sekundarschul", "Auftrag des Zyklus"].every((w) => bodyText.includes(w)));
+check("lehrplan21: the three Zyklen carry their class ranges",
+  bodyText.includes("Kindergarten") && bodyText.includes("3. bis 6. Klasse") && bodyText.includes("7. bis 9. Klasse"));
+check("lehrplan21: glossary defines at least 30 terms, alphabetically, each with a definition",
+  await (async () => {
+    const terms = await page.locator(".glossar dt").allTextContents();
+    const defs = await page.locator(".glossar dd").allTextContents();
+    const sorted = [...terms].sort((a, b) => a.localeCompare(b, "de"));
+    return terms.length >= 30 && defs.length === terms.length && defs.every((d) => d.trim().length > 20)
+      && terms.join("|") === sorted.join("|") && new Set(terms).size === terms.length;
+  })(), (await page.locator(".glossar dt").allTextContents()).join("|"));
+check("lehrplan21: two schemata as labelled inline SVG (Zyklen timeline, Stufen ladder)",
+  await page.locator('.figure svg[role="img"][aria-label]').count() === 2
+  && await page.locator(".figure figcaption").count() === 2);
+check("lehrplan21: Swiss standard German, no ß, no em dash",
+  !bodyText.includes("ß") && !bodyText.includes("—"));
+check("lehrplan21: names the official source",
+  await page.locator('#quellen a[href="https://be.lehrplan.ch"]').count() === 1);
+await page.screenshot({ path: join(SHOTS_DIR, "06-lehrplan21.png"), fullPage: true });
+await page.click(".toc a[href='#glossar']");
+check("lehrplan21: table-of-contents link jumps to the glossary", page.url().endsWith("#glossar")
+  && await page.locator("#glossar").evaluate((el) => el.getBoundingClientRect().top >= -1 && el.getBoundingClientRect().top < 200));
+await page.click('.crumbs a[href="../"]');
+await page.waitForSelector(".entry-list");
+
+/* ── Nachfragen mit KI: button-built prompts ───────────────────────── */
+{
+  const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, permissions: ["clipboard-read", "clipboard-write"] });
+  const np = await ctx.newPage();
+  np.on("console", (msg) => { if (msg.type() === "error") consoleErrors.push(msg.text()); });
+  np.on("pageerror", (err) => consoleErrors.push(String(err)));
+  const external = [];
+  np.on("request", (req) => { if (!req.url().startsWith(BASE)) external.push(req.url()); });
+  await np.goto(`${BASE}/`);
+  await np.click('.row[href="nachfragen/"]');
+  await np.waitForSelector(".prompt-card");
+  check("nachfragen: breadcrumb links the overview and names the page",
+    await np.locator('.crumbs a[href="../"]').count() === 1 && (await np.textContent('.crumbs [aria-current="page"]')).trim() === "Nachfragen mit KI");
+  check("nachfragen: four prompt cards, each with visible text, copy button and the four providers",
+    await np.locator(".prompt-card").count() === 4
+    && await np.locator(".prompt-card .prompt-text").count() === 4
+    && await np.locator(".prompt-card [data-copy]").count() === 4
+    && (await np.locator(".prompt-card a[data-provider]").evaluateAll((els) => els.map((a) => a.dataset.provider).join(","))) === ["chatgpt", "claude", "perplexity", "lechat"].join(",").repeat(1) + ("," + ["chatgpt", "claude", "perplexity", "lechat"].join(",")).repeat(3));
+  const texts = await np.locator(".prompt-text").allTextContents();
+  check("nachfragen: every prompt names the official PDF as the only source and forbids other websites",
+    texts.every((x) => x.includes("BE_DE_Gesamtausgabe.pdf") && x.includes("einzige Quelle") && x.includes("keine andere Website") && x.includes("Erfinde keine Kompetenzstufen")));
+  check("nachfragen: every prompt ends with the answer language, German by default",
+    texts.every((x) => x.trim().endsWith("Antworte auf Deutsch.")));
+  check("nachfragen: prompts stay within the length limits (text ≤ 4000, URL ≤ 7000)",
+    texts.every((x) => x.length <= 4000 && encodeURIComponent(x).length <= 7000), texts.map((x) => x.length).join(","));
+  check("nachfragen: the material prompt lists all 31 apps with their codes",
+    (texts[3].match(/^- [a-z-]+ [A-Z0-9.]+ /gm) || []).length === 31 && texts[3].includes("Zahlen und Rechnen"));
+  check("nachfragen: provider links carry exactly the shown text, URL-encoded, and open safely",
+    await np.locator(".prompt-card").evaluateAll((cards) => cards.every((c) => {
+      const text = c.querySelector(".prompt-text").textContent;
+      return [...c.querySelectorAll("a[data-provider]")].every((a) => {
+        const q = new URL(a.href).searchParams.get("q");
+        return q === text && a.target === "_blank" && a.rel.includes("noopener") && a.getAttribute("referrerpolicy") === "no-referrer";
+      });
+    })));
+  check("nachfragen: no ß and no em dash in prompts or UI",
+    !(await np.textContent("#app")).includes("ß") && !(await np.textContent("#app")).includes("—"));
+  // Check points: only the five official markers, default end of 6th class.
+  const checks = await np.locator('#einschaetzen [data-choice="check"]').evaluateAll((els) => els.map((b) => `${b.dataset.value}:${b.getAttribute("aria-pressed")}`));
+  check("nachfragen: check points are exactly the five official markers, default Ende 6. Klasse",
+    checks.join(",") === "ga1:false,op4:false,ga2:true,op8:false,ga3:false", checks.join(","));
+  check("nachfragen: default check prompt speaks of the Grundanspruch of Zyklus 2",
+    texts[2].includes("Ende der 6. Klasse") && texts[2].includes("Grundanspruch des 2. Zyklus"));
+  await np.click('#einschaetzen [data-choice="check"][data-value="op4"]');
+  const op4 = await np.locator('[data-prompt="einschaetzen"]').textContent();
+  check("nachfragen: an Orientierungspunkt prompt asks for caution («bearbeitet», not «erreicht»)",
+    op4.includes("Ende der 4. Klasse") && op4.includes("Orientierungspunkt") && op4.includes("kein Grundanspruch") && op4.includes("«bearbeitet»") && op4.includes("was am Orientierungspunkt erwartet wird"));
+  // Language: the closing line follows the chosen answer language.
+  await np.click('[data-choice="lang"][data-value="fr"]');
+  check("nachfragen: choosing Français changes the closing line of every prompt",
+    (await np.locator(".prompt-text").allTextContents()).every((x) => x.trim().endsWith("Antworte auf Französisch.")));
+  // Andere Sprache: the one free-text field, feeding only the closing line.
+  check("nachfragen: the language field is hidden until «Andere» is chosen",
+    await np.locator("#lang-other").isHidden());
+  await np.click('[data-choice="lang"][data-value="other"]');
+  check("nachfragen: «Andere» reveals the field, focuses it, and falls back to German while empty",
+    await np.locator("#lang-other").isVisible()
+    && await np.evaluate(() => document.activeElement.id === "lang-other-input")
+    && (await np.locator(".prompt-text").allTextContents()).every((x) => x.trim().endsWith("Antworte auf Deutsch.")));
+  await np.fill("#lang-other-input", "  Ukrainisch \n");
+  check("nachfragen: a typed language name lands, cleaned, in the closing line of every prompt",
+    (await np.locator(".prompt-text").allTextContents()).every((x) => x.trim().endsWith("Antworte auf Ukrainisch.")));
+  check("nachfragen: the provider links follow the typed language",
+    (await np.locator('a[data-for="erklaeren"][data-provider="chatgpt"]').getAttribute("href")).includes(encodeURIComponent("Antworte auf Ukrainisch.")));
+  await np.click('[data-choice="lang"][data-value="fr"]');
+  check("nachfragen: choosing a listed language hides the field again", await np.locator("#lang-other").isHidden());
+  // Zyklus: both Zyklus cards follow the same choice.
+  await np.click('#koennen [data-choice="zyklus"][data-value="3"]');
+  check("nachfragen: choosing Zyklus 3 updates the child prompt and the material prompt together",
+    (await np.locator('[data-prompt="koennen"]').textContent()).includes("im 3. Zyklus (7. bis 9. Klasse)")
+    && (await np.locator('[data-prompt="material"]').textContent()).includes("im 3. Zyklus (7. bis 9. Klasse)")
+    && await np.locator('#material [data-choice="zyklus"][data-value="3"][aria-pressed="true"]').count() === 1);
+  // Copy writes the shown text to the clipboard and reports it.
+  await np.click('[data-copy="erklaeren"]');
+  const clip = await np.evaluate(() => navigator.clipboard.readText());
+  check("nachfragen: Kopieren puts the shown prompt on the clipboard and shows a persistent status",
+    clip === (await np.locator('[data-prompt="erklaeren"]').textContent()) && (await np.textContent('[data-status="erklaeren"]')).startsWith("Kopiert."));
+  await np.screenshot({ path: join(SHOTS_DIR, "08-nachfragen.png"), fullPage: true });
+  // Choices survive a reload.
+  await np.reload();
+  await np.waitForSelector(".prompt-card");
+  check("nachfragen: language, Zyklus and check point survive a reload",
+    await np.locator('[data-choice="lang"][data-value="fr"][aria-pressed="true"]').count() === 1
+    && await np.locator('#koennen [data-choice="zyklus"][data-value="3"][aria-pressed="true"]').count() === 1
+    && await np.locator('#einschaetzen [data-choice="check"][data-value="op4"][aria-pressed="true"]').count() === 1);
+  await np.click('[data-choice="lang"][data-value="other"]');
+  check("nachfragen: the typed language survives a reload and applies again when «Andere» is chosen",
+    await np.inputValue("#lang-other-input") === "Ukrainisch"
+    && (await np.locator('[data-prompt="koennen"]').textContent()).trim().endsWith("Antworte auf Ukrainisch."));
+  check("nachfragen: the page makes no external request before a click", external.length === 0, external.slice(0, 3).join(", "));
+  await ctx.close();
+}
 
 /* ── Übungs-Apps list ─────────────────────────────────────────────── */
 await page.click('.row[href="ueben/"]');
@@ -178,12 +329,12 @@ async function keyboardWalk(url, ready, stops) {
       const s = getComputedStyle(el);
       return { tag: el.tagName, visible: s.outlineStyle !== "none" && parseFloat(s.outlineWidth) > 0 };
     });
-    if (stop.tag === "BODY") break; // end of the page (the start page has four stops)
+    if (stop.tag === "BODY") break; // end of the page (the start page has five stops)
     seen.push(stop);
   }
   return seen;
 }
-for (const [url, ready, label] of [[`${BASE}/`, ".entry-list", "start page"], [`${BASE}/ueben/`, ".row-list", "Übungs-Apps"], [`${BASE}/zahlenwissen/`, ".stufen-list", "app home"], [`${BASE}/merkheft/zahlenstrahl.html`, ".blatt-page", "Merkblatt"]]) {
+for (const [url, ready, label] of [[`${BASE}/`, ".entry-list", "start page"], [`${BASE}/lehrplan21/`, ".text-page", "Lehrplan 21"], [`${BASE}/nachfragen/`, ".prompt-card", "Nachfragen"], [`${BASE}/ueben/`, ".row-list", "Übungs-Apps"], [`${BASE}/zahlenwissen/`, ".stufen-list", "app home"], [`${BASE}/merkheft/zahlenstrahl.html`, ".blatt-page", "Merkblatt"]]) {
   const walk = await keyboardWalk(url, ready, 5);
   check(`a11y: ${label} shows a visible focus ring on every early tab stop`,
     walk.length >= 3 && walk.every((w) => w.visible), JSON.stringify(walk));
@@ -205,6 +356,16 @@ await page.setViewportSize({ width: 320, height: 700 });
 await page.goto(`${BASE}/`);
 await page.waitForSelector(".entry-list");
 check("layout: root has no horizontal scrolling at 320px", await noHorizScroll());
+await page.goto(`${BASE}/lehrplan21/`);
+await page.waitForSelector(".text-page");
+check("layout: Lehrplan-21 page has no horizontal scrolling at 320px", await noHorizScroll());
+await page.goto(`${BASE}/nachfragen/`);
+await page.waitForSelector(".prompt-card");
+check("layout: Nachfragen page has no horizontal scrolling at 320px", await noHorizScroll());
+check("layout: Lehrplan-21 paragraphs keep a readable line length (≤ 75ch)",
+  await page.locator(".text-page p").evaluateAll((els) => els.every((p) => {
+    const s = getComputedStyle(p); return p.getBoundingClientRect().width / (parseFloat(s.fontSize) * 0.5) <= 80;
+  })));
 await page.goto(`${BASE}/ueben/`);
 await page.waitForSelector(".row-list");
 check("layout: Übungs-Apps list has no horizontal scrolling at 320px", await noHorizScroll());
@@ -215,6 +376,12 @@ await page.screenshot({ path: join(SHOTS_DIR, "04-root-desktop.png"), fullPage: 
 await page.goto(`${BASE}/ueben/`);
 await page.waitForSelector(".row-list");
 await page.screenshot({ path: join(SHOTS_DIR, "05-ueben-desktop.png"), fullPage: true });
+await page.goto(`${BASE}/lehrplan21/`);
+await page.waitForSelector(".text-page");
+await page.screenshot({ path: join(SHOTS_DIR, "07-lehrplan21-desktop.png"), fullPage: true });
+await page.goto(`${BASE}/nachfragen/`);
+await page.waitForSelector(".prompt-card");
+await page.screenshot({ path: join(SHOTS_DIR, "09-nachfragen-desktop.png"), fullPage: true });
 
 check("console: no errors", consoleErrors.length === 0, consoleErrors.slice(0, 3).join(" | "));
 check("network: no external requests", externalRequests.length === 0, externalRequests.slice(0, 3).join(", "));

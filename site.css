@@ -1,15 +1,15 @@
-/* site.css — Lehrplan-Apps: Startseite, Übungs-Apps-Liste. Tokens aus
+/* site.css — Lehrplan-Apps: Startseite, Übungs-Apps-Liste, Lehrplan-21-Seite. Tokens aus
    DESIGN.md, Akzentfamilie amber (Familien-Akzent). */
 
 @font-face {
   font-family: 'Atkinson Hyperlegible';
-  src: url('fonts/atkinson-hyperlegible-400.woff2?v=2') format('woff2');
+  src: url('fonts/atkinson-hyperlegible-400.woff2?v=3') format('woff2');
   font-weight: 400;
   font-display: swap;
 }
 @font-face {
   font-family: 'Atkinson Hyperlegible';
-  src: url('fonts/atkinson-hyperlegible-700.woff2?v=2') format('woff2');
+  src: url('fonts/atkinson-hyperlegible-700.woff2?v=3') format('woff2');
   font-weight: 700;
   font-display: swap;
 }
@@ -35,6 +35,7 @@
   --font-size-sm: 0.875rem;
   --font-size-md: 1rem;
   --font-size-lg: 1.125rem;
+  --font-size-xl: 1.375rem;
   --font-size-xxl: 1.75rem;
   --line-height-title: 1.15;
   --line-height-body: 1.55;
@@ -179,8 +180,8 @@ body {
 
 .chevron { width: 1.25rem; height: 1.25rem; flex: none; color: var(--color-text-muted); }
 
-/* Die drei Bereiche der Startseite sind grösser und tragen den Weg:
-   einschätzen, nachschlagen, üben. */
+/* Die fünf Bereiche der Startseite sind grösser und tragen den Weg:
+   verstehen, einschätzen, nachschlagen, üben, nachfragen. */
 .entry {
   padding: var(--space-4) var(--space-5);
   border-radius: var(--radius-lg);
@@ -204,5 +205,102 @@ body {
 .quiet-link:hover { color: var(--color-text-primary); }
 .quiet-link:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }
 
-/* Keine Bewegung auf der Startseite und in der Liste: Zustände wechseln
-   sofort, darum braucht es hier auch keine Regel für reduzierte Bewegung. */
+/* ── Textseite: Der Lehrplan 21 (lehrplan21/) ──────────────────────
+   Lange Leseseite mit Abschnitten, zwei Schemata und Glossar. Zeilen
+   bleiben bei rund 68 Zeichen, Bilder sind Inline-SVG im
+   illustration-Stil aus DESIGN.md. */
+
+.toc { margin-bottom: var(--space-6); }
+.toc ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.toc a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.25rem;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--color-background-surface);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  text-decoration: none;
+}
+.toc a:hover { background: var(--color-background-surface-raised); color: var(--color-text-primary); }
+.toc a:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }
+
+.text-page section { margin-bottom: var(--space-8); }
+.text-page section:last-child { margin-bottom: 0; }
+.text-page h2 {
+  margin: 0 0 var(--space-3);
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-title);
+  letter-spacing: -0.015em;
+  scroll-margin-top: var(--space-4);
+}
+.text-page section { scroll-margin-top: var(--space-4); }
+.text-page p,
+.text-page li,
+.text-page dd { color: var(--color-text-secondary); }
+.text-page p,
+.text-page ul { margin: 0 0 var(--space-3); max-width: 68ch; }
+.text-page strong { color: var(--color-text-primary); }
+.text-page ul { padding-left: 1.25rem; display: grid; gap: var(--space-2); }
+.text-page li::marker { color: var(--color-accent); }
+.text-page a.quiet-link { color: var(--color-text-primary); }
+.code {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  background: var(--color-background-surface-soft);
+  border-radius: 0.5rem;
+  padding: 0 var(--space-1);
+}
+
+.figure {
+  margin: var(--space-4) 0 0;
+  padding: var(--space-4);
+  background: var(--color-background-surface);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+}
+.figure svg { display: block; width: min(460px, 100%); height: auto; margin: 0 auto; }
+.figure figcaption {
+  margin-top: var(--space-3);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  max-width: 68ch;
+}
+/* Schema-Klassen: Zeitleiste der Zyklen und Stufenleiter einer Kompetenz. */
+.lp-h { fill: var(--color-accent); font-size: 0.85rem; font-weight: 700; }
+.lp-label { fill: var(--color-text-primary); font-size: 0.85rem; font-weight: 700; }
+.lp-word { fill: var(--color-text-muted); font-size: 0.62rem; }
+.lp-band { fill: none; stroke: var(--color-border-strong); stroke-width: 1.5; }
+.lp-box { fill: var(--color-background-surface-raised); stroke: var(--color-border-subtle); stroke-width: 1; }
+.lp-box-ga { fill: var(--color-accent-soft); stroke: var(--color-accent-muted); }
+.lp-text { fill: var(--color-border-strong); }
+.lp-ga { fill: var(--color-accent); }
+.lp-op { stroke: var(--color-accent); stroke-width: 2; stroke-dasharray: 3 4; stroke-linecap: round; }
+
+.glossar {
+  margin: 0;
+  display: grid;
+  gap: var(--space-2);
+}
+.glossar div {
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-background-surface);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+}
+.glossar dt { font-weight: 700; }
+.glossar dd { margin: var(--space-1) 0 0; font-size: var(--font-size-sm); max-width: 68ch; }
+
+/* Keine Bewegung auf der Startseite, in der Liste und auf der Textseite:
+   Zustände wechseln sofort, darum braucht es hier auch keine Regel für
+   reduzierte Bewegung. */

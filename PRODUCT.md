@@ -1,6 +1,6 @@
 # Mini Apps Product Principles
 
-Version: 2026-09-05
+Version: 2026-09-06
 
 ## Product register
 
@@ -113,11 +113,33 @@ Every app with something to configure uses the same settings surface, so a child
 
 ## Family navigation
 
-The site has three entries and nothing else on its start page, in
-this order: Lehrplan-Kompass (einschätzen), Merkheft (nachschlagen),
-Übungs-Apps (üben). The practice apps are listed on their own page
+The site has five entries and nothing else on its start page, in
+this order: Der Lehrplan 21 (verstehen), Lehrplan-Kompass
+(einschätzen), Merkheft (nachschlagen), Übungs-Apps (üben),
+Nachfragen mit KI (nachfragen). The
+first entry is a single reading page (`lehrplan21/`) that explains
+the Lehrplan for parents and older children: what it is and who made
+it, the competency approach, the three Zyklen with their class
+ranges, the structure and the codes, Kompetenzstufen, the three kinds
+of Verbindlichkeit (Grundanspruch, Auftrag des Zyklus,
+Orientierungspunkte), Primarstufe and Sekundarstufe I with the Bern
+Real/Sek levels, assessment, how the apps follow the Lehrplan, and an
+alphabetical glossary. It follows the sourcing rule (own wording,
+facts cross-checked, no official text) and links the official PDF as
+its source. The practice apps are listed on their own page
 (`ueben/`), grouped by subject, with the competency code next to
-each app.
+each app. The last entry (`nachfragen/`) hands parents, children and
+teenagers ready-made questions for the AI service they already use:
+explain the Lehrplan, know the goals of one's Zyklus, build a fair
+check against one of the five official markers (Grundanspruch at the
+end of Zyklus 1, 2, 3; Orientierungspunkte end of 4th and middle of
+8th class), find material in this collection. Everything is a button;
+the only free text is the name of another answer language (for
+families whose language is not among the five), and there is no name
+field; the service asks the family itself. Every prompt names the official PDF as the only allowed
+source and forbids other websites. Only services with a native
+prefill link are listed (ChatGPT, Claude, Perplexity, Le Chat); the
+copy button is the general path.
 
 Every page below the start carries a location breadcrumb:
 Lehrplan-Apps › Bereich › App › Ansicht. It is quiet (small, muted
@@ -341,9 +363,18 @@ platform work — lives in BACKLOG.md.
   sourcing rule in merkheft/PRD.md (own wording always, facts
   cross-checked against two independent references, no copied
   encyclopedia or Lehrplan text).
-- Site structure: the start page has exactly three entries (Kompass,
-  Merkheft, Übungs-Apps); practice apps are listed on `ueben/` by
-  subject. Every page below the start carries the family breadcrumb
+- Site structure: the start page has exactly four entries (Der
+  Lehrplan 21, Kompass, Merkheft, Übungs-Apps); practice apps are
+  listed on `ueben/` by subject. The Lehrplan-21 page is the one
+  place that explains the curriculum itself (Zyklen, Stufen,
+  Grundanspruch, Orientierungspunkte, Prim/Sek, glossary); apps and
+  Merkblätter do not repeat it (2026-09-06).
+- Nachfragen mit KI: the site may link out to third-party AI services
+  from one parent-facing page, as plain links that open on click. The
+  page itself makes no request, stores only button choices plus the
+  name of another answer language, and never asks for a child's name. Prompts allow the
+  official PDF as the only source. Checks are offered only for the
+  five markers the Lehrplan actually defines (2026-09-06). Every page below the start carries the family breadcrumb
   (Lehrplan-Apps › Bereich › App › Ansicht); per-app overview links
   in footers are gone.
 - History: a practice round is its own history entry (`#stufe/<id>`)
