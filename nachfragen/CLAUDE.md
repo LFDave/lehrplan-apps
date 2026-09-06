@@ -19,9 +19,14 @@ App-specific guidance; the repo root `CLAUDE.md` applies as well.
   (`CHECKS` in data.js): Grundanspruch at the end of Zyklus 1, 2, 3
   and the two Orientierungspunkte (end of 4th class, middle of 8th).
   An Orientierungspunkt prompt says «bearbeitet», not «erreicht».
-- Every prompt ends with `SOURCE_BLOCK`: the official PDF is the
-  only allowed source, no other website, no invented Stufen, answer
-  in the chosen language. Keep it when editing templates.
+- The three Lehrplan prompts end with `SOURCE_BLOCK`: the official
+  Lehrplan is the only allowed source, read from the small chapter
+  PDFs in `PDFS` (the 72 MB Gesamtausgabe is too large for AI PDF
+  readers), no other website, no invented Stufen, answer in the
+  chosen language. `PROMPT_PDFS` says which files each prompt names.
+  The material prompt ends with `LIST_BLOCK` instead: no PDF needed,
+  the app list with full links is the verified source. Keep both
+  when editing templates.
 - Providers (`PROVIDERS`) are only services with a native prefill
   URL parameter: ChatGPT `?q=`, Claude `/new?q=`, Perplexity
   `/search?q=`, Le Chat `/chat?q=`. Gemini has none and is left out;

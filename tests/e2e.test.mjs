@@ -194,14 +194,20 @@ await page.waitForSelector(".entry-list");
     && await np.locator(".prompt-card [data-copy]").count() === 4
     && (await np.locator(".prompt-card a[data-provider]").evaluateAll((els) => els.map((a) => a.dataset.provider).join(","))) === ["chatgpt", "claude", "perplexity", "lechat"].join(",").repeat(1) + ("," + ["chatgpt", "claude", "perplexity", "lechat"].join(",")).repeat(3));
   const texts = await np.locator(".prompt-text").allTextContents();
-  check("nachfragen: every prompt names the official PDF as the only source and forbids other websites",
-    texts.every((x) => x.includes("BE_DE_Gesamtausgabe.pdf") && x.includes("einzige Quelle") && x.includes("keine andere Website") && x.includes("Erfinde keine Kompetenzstufen")));
+  check("nachfragen: the three Lehrplan prompts name the small chapter PDFs as the only source and forbid other websites",
+    texts.slice(0, 3).every((x) => x.includes("BE_Ueberblick.pdf") && x.includes("Einzige Quelle") && x.includes("keine andere Website") && x.includes("Erfinde keine Kompetenzstufen") && x.includes("72 MB")));
+  check("nachfragen: the check prompt lists every Fachbereich PDF, the explainer the Grundlagen and AHB",
+    ["BE_DE_Fachbereich_SPR.pdf", "BE_DE_Fachbereich_MA.pdf", "BE_DE_Fachbereich_NMG.pdf", "BE_DE_Fachbereich_GES.pdf", "BE_DE_Fachbereich_MU.pdf", "BE_DE_Fachbereich_BS.pdf", "BE_DE_Modul_MI.pdf", "BE_DE_Modul_BO.pdf"].every((f) => texts[2].includes(f))
+    && texts[0].includes("BE_Grundlagen.pdf") && texts[0].includes("fb_id=92"));
+  check("nachfragen: the material prompt needs no PDF, marks the list as verified and carries a link per app",
+    texts[3].includes("kein PDF und keine Website") && texts[3].includes("brauchen kein (?)")
+    && (texts[3].match(/https:\/\/lfdave\.github\.io\/lehrplan-apps\/[a-z-]+\/$/gm) || []).length === 31);
   check("nachfragen: every prompt ends with the answer language, German by default",
     texts.every((x) => x.trim().endsWith("Antworte auf Deutsch.")));
-  check("nachfragen: prompts stay within the length limits (text ≤ 4000, URL ≤ 7000)",
-    texts.every((x) => x.length <= 4000 && encodeURIComponent(x).length <= 7000), texts.map((x) => x.length).join(","));
+  check("nachfragen: prompts stay within the length limits (text ≤ 5000, URL ≤ 7000)",
+    texts.every((x) => x.length <= 5000 && encodeURIComponent(x).length <= 7000), texts.map((x) => `${x.length}/${encodeURIComponent(x).length}`).join(","));
   check("nachfragen: the material prompt lists all 31 apps with their codes",
-    (texts[3].match(/^- [a-z-]+ [A-Z0-9.]+ /gm) || []).length === 31 && texts[3].includes("Zahlen und Rechnen"));
+    (texts[3].match(/^- [^(]+ \([A-Z0-9.]+\): /gm) || []).length === 31 && texts[3].includes("Zahlen und Rechnen"));
   check("nachfragen: provider links carry exactly the shown text, URL-encoded, and open safely",
     await np.locator(".prompt-card").evaluateAll((cards) => cards.every((c) => {
       const text = c.querySelector(".prompt-text").textContent;
