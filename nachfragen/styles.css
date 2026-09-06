@@ -20,6 +20,24 @@
 .card-desc { margin: 0 0 var(--space-3); color: var(--color-text-secondary); max-width: 65ch; }
 .card-hint { margin: 0 0 var(--space-3); color: var(--color-text-muted); font-size: var(--font-size-sm); max-width: 65ch; }
 
+/* Das einzige Textfeld der Seite: der Name einer weiteren Sprache
+   (DESIGN.md component.input). */
+.lang-other { margin-top: var(--space-3); max-width: 24rem; }
+.field-label { display: block; margin-bottom: var(--space-1); font-size: var(--font-size-sm); font-weight: 700; color: var(--color-text-secondary); }
+.field {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0 var(--space-4);
+  background: var(--color-background-surface-soft);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  font: inherit;
+}
+.field::placeholder { color: var(--color-text-muted); }
+.field:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; border-color: var(--color-border-focus); }
+.lang-other .card-hint { margin: var(--space-2) 0 0; }
+
 /* Karten: eine Frage pro Karte, keine Karte in der Karte. */
 .cards { display: grid; gap: var(--space-4); }
 .prompt-card {

@@ -8,11 +8,13 @@ App-specific guidance; the repo root `CLAUDE.md` applies as well.
   plus a local `styles.css`, shares the shell's `?v=N` (currently 3)
   on every asset and module import, and is tested by the root suite
   in `tests/e2e.test.mjs`, not by a suite of its own.
-- No form and no free text. Every variable a prompt needs is a
-  button (`aria-pressed`, persisted under `nachfragen.lang`,
-  `nachfragen.zyklus`, `nachfragen.check`); everything else the AI
-  service asks the parent itself. Never add a field for the child's
-  name or for personal details.
+- No form. Every variable a prompt needs is a button (`aria-pressed`,
+  persisted under `nachfragen.lang`, `nachfragen.zyklus`,
+  `nachfragen.check`); everything else the AI service asks the parent
+  itself. The one free-text field is the name of another answer
+  language behind «Andere» (`nachfragen.langOther`, cleaned by
+  `cleanLang`, max `OTHER_LANG_MAX`); it feeds only the closing line.
+  Never add a field for the child's name or for personal details.
 - Only the five official markers are offered as check points
   (`CHECKS` in data.js): Grundanspruch at the end of Zyklus 1, 2, 3
   and the two Orientierungspunkte (end of 4th class, middle of 8th).

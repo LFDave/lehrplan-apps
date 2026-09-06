@@ -16,9 +16,12 @@ nichts über das Kind.
 ## Prinzipien
 
 - **Knöpfe statt Formular.** Antwortsprache, Zyklus und Zeitpunkt sind
-  Auswahlknöpfe. Es gibt kein Textfeld. Was der Dienst über das Kind
-  wissen muss (Fächer, Stärken, Schwächen, Zeit), fragt er im Gespräch
-  selbst nach. Namen gehören nicht in den Chat; die Seite sagt das.
+  Auswahlknöpfe. Das einzige Textfeld ist der Name einer weiteren
+  Antwortsprache hinter dem Knopf «Andere» (zum Beispiel Ukrainisch);
+  er fliesst nur in die Schlusszeile «Antworte auf …». Was der Dienst
+  über das Kind wissen muss (Fächer, Stärken, Schwächen, Zeit), fragt
+  er im Gespräch selbst nach. Namen gehören nicht in den Chat; die
+  Seite sagt das.
 - **Nur echte Marker.** Eine Einschätzung gibt es nur für Zeitpunkte,
   die der Lehrplan kennt: Grundanspruch am Ende der 2., 6. und 9.
   Klasse und die Orientierungspunkte Ende 4. Klasse und Mitte 8.
@@ -37,10 +40,12 @@ nichts über das Kind.
 
 ## Inhalt
 
-1. Antwortsprache: Deutsch, Français, Italiano, Rumantsch, English.
-   Die Frage bleibt deutsch, die Schlusszeile verlangt die Antwort in
-   der gewählten Sprache. Standard Deutsch, gespeichert unter
-   `nachfragen.lang`.
+1. Antwortsprache: Deutsch, Français, Italiano, Rumantsch, English,
+   Andere. Die Frage bleibt deutsch, die Schlusszeile verlangt die
+   Antwort in der gewählten Sprache. «Andere» zeigt ein Textfeld für
+   den Sprachnamen (eine Zeile, höchstens 40 Zeichen, Steuerzeichen
+   entfernt); leer heisst Deutsch. Standard Deutsch, gespeichert unter
+   `nachfragen.lang` und `nachfragen.langOther`.
 2. Karte «Den Lehrplan erklären lassen» (Eltern): Aufbau, Zyklen,
    Begriffe, woran man erkennt, ob das Kind auf Kurs ist, fünf
    Merksätze.
@@ -77,7 +82,8 @@ bis zur nächsten Auswahl stehen bleibt.
 ## Tests
 
 Root-Suite `tests/e2e.test.mjs`: fünfter Eintrag auf der Startseite,
-Pfad, Sprach- und Zeitpunkt-Wahl ändern den Text, Links tragen genau
+Pfad, Sprach- und Zeitpunkt-Wahl ändern den Text, «Andere» zeigt das
+Feld und der bereinigte Sprachname landet in der Schlusszeile, Links tragen genau
 den angezeigten Text URL-kodiert, Kopieren schreibt in die
 Zwischenablage, Auswahl überlebt ein Neuladen, `APPS` entspricht der
 Übungs-Apps-Liste, Längenlimits, kein ß, keine externen Anfragen vor

@@ -226,6 +226,21 @@ await page.waitForSelector(".entry-list");
   await np.click('[data-choice="lang"][data-value="fr"]');
   check("nachfragen: choosing Français changes the closing line of every prompt",
     (await np.locator(".prompt-text").allTextContents()).every((x) => x.trim().endsWith("Antworte auf Französisch.")));
+  // Andere Sprache: the one free-text field, feeding only the closing line.
+  check("nachfragen: the language field is hidden until «Andere» is chosen",
+    await np.locator("#lang-other").isHidden());
+  await np.click('[data-choice="lang"][data-value="other"]');
+  check("nachfragen: «Andere» reveals the field, focuses it, and falls back to German while empty",
+    await np.locator("#lang-other").isVisible()
+    && await np.evaluate(() => document.activeElement.id === "lang-other-input")
+    && (await np.locator(".prompt-text").allTextContents()).every((x) => x.trim().endsWith("Antworte auf Deutsch.")));
+  await np.fill("#lang-other-input", "  Ukrainisch \n");
+  check("nachfragen: a typed language name lands, cleaned, in the closing line of every prompt",
+    (await np.locator(".prompt-text").allTextContents()).every((x) => x.trim().endsWith("Antworte auf Ukrainisch.")));
+  check("nachfragen: the provider links follow the typed language",
+    (await np.locator('a[data-for="erklaeren"][data-provider="chatgpt"]').getAttribute("href")).includes(encodeURIComponent("Antworte auf Ukrainisch.")));
+  await np.click('[data-choice="lang"][data-value="fr"]');
+  check("nachfragen: choosing a listed language hides the field again", await np.locator("#lang-other").isHidden());
   // Zyklus: both Zyklus cards follow the same choice.
   await np.click('#koennen [data-choice="zyklus"][data-value="3"]');
   check("nachfragen: choosing Zyklus 3 updates the child prompt and the material prompt together",
@@ -245,6 +260,10 @@ await page.waitForSelector(".entry-list");
     await np.locator('[data-choice="lang"][data-value="fr"][aria-pressed="true"]').count() === 1
     && await np.locator('#koennen [data-choice="zyklus"][data-value="3"][aria-pressed="true"]').count() === 1
     && await np.locator('#einschaetzen [data-choice="check"][data-value="op4"][aria-pressed="true"]').count() === 1);
+  await np.click('[data-choice="lang"][data-value="other"]');
+  check("nachfragen: the typed language survives a reload and applies again when «Andere» is chosen",
+    await np.inputValue("#lang-other-input") === "Ukrainisch"
+    && (await np.locator('[data-prompt="koennen"]').textContent()).trim().endsWith("Antworte auf Ukrainisch."));
   check("nachfragen: the page makes no external request before a click", external.length === 0, external.slice(0, 3).join(", "));
   await ctx.close();
 }

@@ -4,10 +4,11 @@
 // über das Kind wissen muss, fragt er selbst nach.
 
 import { STRINGS, t } from './strings.js?v=3';
-import { PROVIDERS, LANGS, ZYKLEN, CHECKS, APPS, MERKHEFT_GROUPS, SOURCE_BLOCK, PROMPTS, SITE_URL } from './data.js?v=3';
+import { PROVIDERS, LANGS, OTHER_LANG_MAX, ZYKLEN, CHECKS, APPS, MERKHEFT_GROUPS, SOURCE_BLOCK, PROMPTS, SITE_URL } from './data.js?v=3';
 
 const STORE = {
   lang: 'nachfragen.lang',
+  langOther: 'nachfragen.langOther',
   zyklus: 'nachfragen.zyklus',
   check: 'nachfragen.check',
 };
@@ -22,15 +23,25 @@ function save(key, value) {
   try { localStorage.setItem(key, value); } catch { /* Speicher nicht verfügbar */ }
 }
 
+// Der Name einer weiteren Sprache: eine Zeile, begrenzt, ohne
+// Steuerzeichen. Er landet nur in der Schlusszeile «Antworte auf …».
+function cleanLang(value) {
+  return String(value ?? '').replace(/[\r\n\t]+/g, ' ').replace(/\s+/g, ' ').trim().slice(0, OTHER_LANG_MAX);
+}
+function loadText(key) {
+  try { return cleanLang(localStorage.getItem(key)); } catch { return ''; }
+}
+
 const state = {
   lang: load(STORE.lang, LANGS.map((l) => l.id), 'de'),
+  langOther: loadText(STORE.langOther),
   zyklus: load(STORE.zyklus, ZYKLEN.map((z) => z.id), '2'),
   check: load(STORE.check, CHECKS.map((c) => c.id), 'ga2'),
 };
 
 /* ── Prompt-Aufbau ─────────────────────────────────────────────────── */
 
-const langAnswer = () => LANGS.find((l) => l.id === state.lang).answer;
+const langAnswer = () => (state.lang === 'other' ? (state.langOther || 'Deutsch') : LANGS.find((l) => l.id === state.lang).answer);
 const zyklus = () => ZYKLEN.find((z) => z.id === state.zyklus);
 const check = () => CHECKS.find((c) => c.id === state.check);
 
@@ -109,7 +120,12 @@ function render() {
       <h2 id="lang-title" class="section-label">${esc(t('lang.title'))}</h2>
       <p class="card-desc">${esc(t('lang.desc'))}</p>
       <div class="choice-grid choice-grid-lang">${LANGS.map((l) => `
-        <button type="button" class="choice choice-compact" data-choice="lang" data-value="${l.id}" aria-pressed="${l.id === state.lang}" lang="${l.id}">${esc(l.label)}</button>`).join('')}
+        <button type="button" class="choice choice-compact" data-choice="lang" data-value="${l.id}" aria-pressed="${l.id === state.lang}"${l.answer ? ` lang="${l.id}"` : ''}>${esc(l.label)}</button>`).join('')}
+      </div>
+      <div class="lang-other" id="lang-other"${state.lang === 'other' ? '' : ' hidden'}>
+        <label class="field-label" for="lang-other-input">${esc(t('lang.otherLabel'))}</label>
+        <input class="field" id="lang-other-input" type="text" maxlength="${OTHER_LANG_MAX}" autocomplete="off" spellcheck="false" placeholder="${esc(t('lang.otherPlaceholder'))}" value="${esc(state.langOther)}">
+        <p class="card-hint">${esc(t('lang.otherHint'))}</p>
       </div>
     </section>
     <div class="cards">
@@ -140,6 +156,8 @@ function updatePrompts() {
   for (const b of document.querySelectorAll('[data-choice]')) {
     b.setAttribute('aria-pressed', String(state[b.dataset.choice] === b.dataset.value));
   }
+  const other = document.getElementById('lang-other');
+  if (other) other.hidden = state.lang !== 'other';
 }
 
 async function copy(id) {
@@ -161,10 +179,18 @@ document.addEventListener('click', (e) => {
     save(STORE[key], state[key]);
     for (const s of document.querySelectorAll('.copy-status')) s.textContent = '';
     updatePrompts();
+    if (key === 'lang' && state.lang === 'other') document.getElementById('lang-other-input').focus();
     return;
   }
   const cp = e.target.closest('[data-copy]');
   if (cp) copy(cp.dataset.copy);
+});
+
+document.addEventListener('input', (e) => {
+  if (e.target.id !== 'lang-other-input') return;
+  state.langOther = cleanLang(e.target.value);
+  save(STORE.langOther, state.langOther);
+  updatePrompts();
 });
 
 document.documentElement.lang = 'de-CH';

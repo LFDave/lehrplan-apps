@@ -25,14 +25,18 @@ export const PROVIDERS = [
 
 // Antwortsprache: der Prompt selbst bleibt deutsch, die letzte Zeile
 // verlangt die Antwort in der gewählten Sprache (Produktregel: de, fr,
-// it, rm, en).
+// it, rm, en). «Andere» öffnet das einzige Textfeld der Seite: den
+// Namen einer weiteren Sprache (zum Beispiel Ukrainisch), der nur in
+// diese Schlusszeile fliesst. Leer heisst Deutsch.
 export const LANGS = [
   { id: 'de', label: 'Deutsch', answer: 'Deutsch' },
   { id: 'fr', label: 'Français', answer: 'Französisch' },
   { id: 'it', label: 'Italiano', answer: 'Italienisch' },
   { id: 'rm', label: 'Rumantsch', answer: 'Rumantsch Grischun' },
   { id: 'en', label: 'English', answer: 'Englisch' },
+  { id: 'other', label: 'Andere', answer: null },
 ];
+export const OTHER_LANG_MAX = 40;
 
 export const ZYKLEN = [
   { id: '1', label: '1. Zyklus', range: 'Kindergarten bis 2. Klasse', text: 'im 1. Zyklus (Kindergarten bis 2. Klasse)' },

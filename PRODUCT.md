@@ -133,9 +133,10 @@ teenagers ready-made questions for the AI service they already use:
 explain the Lehrplan, know the goals of one's Zyklus, build a fair
 check against one of the five official markers (Grundanspruch at the
 end of Zyklus 1, 2, 3; Orientierungspunkte end of 4th and middle of
-8th class), find material in this collection. Everything is a button,
-there is no free text and no name field; the service asks the family
-itself. Every prompt names the official PDF as the only allowed
+8th class), find material in this collection. Everything is a button;
+the only free text is the name of another answer language (for
+families whose language is not among the five), and there is no name
+field; the service asks the family itself. Every prompt names the official PDF as the only allowed
 source and forbids other websites. Only services with a native
 prefill link are listed (ChatGPT, Claude, Perplexity, Le Chat); the
 copy button is the general path.
@@ -370,8 +371,8 @@ platform work — lives in BACKLOG.md.
   Merkblätter do not repeat it (2026-09-06).
 - Nachfragen mit KI: the site may link out to third-party AI services
   from one parent-facing page, as plain links that open on click. The
-  page itself makes no request, stores only button choices, offers no
-  free text and never asks for a child's name. Prompts allow the
+  page itself makes no request, stores only button choices plus the
+  name of another answer language, and never asks for a child's name. Prompts allow the
   official PDF as the only source. Checks are offered only for the
   five markers the Lehrplan actually defines (2026-09-06). Every page below the start carries the family breadcrumb
   (Lehrplan-Apps › Bereich › App › Ansicht); per-app overview links
