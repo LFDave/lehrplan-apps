@@ -164,6 +164,11 @@ check("lehrplan21: glossary defines at least 30 terms, alphabetically, each with
 check("lehrplan21: two schemata as labelled inline SVG (Zyklen timeline, Stufen ladder)",
   await page.locator('.figure svg[role="img"][aria-label]').count() === 2
   && await page.locator(".figure figcaption").count() === 2);
+check("lehrplan21: Beurteilung names when there are Noten: none before the 4th class, 1 to 6 from then on, with a table of all eleven years",
+  bodyText.includes("Wann gibt es Noten?") && bodyText.includes("Die Noten gehen von 1 bis 6")
+  && await page.locator("#beurteilung .years tbody tr").count() === 11
+  && (await page.locator("#beurteilung .years tbody tr td:last-child").allTextContents()).join(",") === "keine,keine,keine,keine,keine,1 bis 6,1 bis 6,1 bis 6,1 bis 6,1 bis 6,1 bis 6"
+  && await page.locator('#quellen a[href*="beurteilung-lp21-elterninformation"]').count() === 1);
 check("lehrplan21: Swiss standard German, no ß, no em dash",
   !bodyText.includes("ß") && !bodyText.includes("—"));
 check("lehrplan21: names the official source",
@@ -202,6 +207,10 @@ await page.waitForSelector(".entry-list");
   check("nachfragen: the material prompt needs no PDF, marks the list as verified and carries a link per app",
     texts[3].includes("kein PDF und keine Website") && texts[3].includes("brauchen kein (?)")
     && (texts[3].match(/https:\/\/lfdave\.github\.io\/lehrplan-apps\/[a-z-]+\/$/gm) || []).length === 31);
+  check("nachfragen: the code rule asks for codes only where a Kompetenz is named, and (?) only for unchecked Stufen",
+    texts.slice(0, 3).every((x) => x.includes("Allgemeine Aussagen brauchen keinen Code") && x.includes("Markiere mit (?) nur Aussagen zu Kompetenzstufen")));
+  check("nachfragen: the explainer prompt asks when there are Noten in Bern and states the facts to verify",
+    texts[0].includes("Wann es im Kanton Bern Noten gibt") && texts[0].includes("Ab der 4. Klasse") && texts[0].includes("Noten von 1 bis 6"));
   check("nachfragen: every prompt ends with the answer language, German by default",
     texts.every((x) => x.trim().endsWith("Antworte auf Deutsch.")));
   check("nachfragen: prompts stay within the length limits (text ≤ 5000, URL ≤ 7000)",
@@ -228,6 +237,13 @@ await page.waitForSelector(".entry-list");
   const op4 = await np.locator('[data-prompt="einschaetzen"]').textContent();
   check("nachfragen: an Orientierungspunkt prompt asks for caution («bearbeitet», not «erreicht»)",
     op4.includes("Ende der 4. Klasse") && op4.includes("Orientierungspunkt") && op4.includes("kein Grundanspruch") && op4.includes("«bearbeitet»") && op4.includes("was am Orientierungspunkt erwartet wird"));
+  check("nachfragen: every check point says what report and which Noten exist at that time",
+    op4.includes("ersten Beurteilungsbericht mit Noten") && texts[2].includes("Beurteilungsbericht mit Noten")
+    && await np.locator('#einschaetzen [data-choice="check"]').count() === 5);
+  await np.click('#einschaetzen [data-choice="check"][data-value="ga1"]');
+  check("nachfragen: the end-of-2nd-class check says the report carries no Noten",
+    (await np.locator('[data-prompt="einschaetzen"]').textContent()).includes("Beurteilungsbericht ohne Noten"));
+  await np.click('#einschaetzen [data-choice="check"][data-value="op4"]');
   // Language: the closing line follows the chosen answer language.
   await np.click('[data-choice="lang"][data-value="fr"]');
   check("nachfragen: choosing Français changes the closing line of every prompt",

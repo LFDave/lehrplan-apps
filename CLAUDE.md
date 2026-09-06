@@ -81,7 +81,7 @@ For every UI change, before reporting back or opening or updating a PR:
 
 - Cache busting: every local asset URL, meaning every CSS link, script tag, and inter-module import, carries the same `?v=N` query. Bump N in all files on every release so mobile browsers pick up changed JS and CSS on a plain reload. Every app's e2e suite enforces this.
 - App-specific instructions live in a CLAUDE.md inside the app's own folder, for example `lehrplan-kompass/CLAUDE.md`. It is loaded automatically when working on files in that directory, in addition to this file.
-- index.html at the repo root is the German start page of the GitHub Pages site with exactly five entries in this order: Der Lehrplan 21 (`lehrplan21/index.html`, the explainer page: concept, Zyklen, Aufbau, Kompetenzstufen, Grundanspruch, Auftrag des Zyklus, Orientierungspunkte, Primar-/Sekundarstufe, Beurteilung, glossary; own wording derived from the official PDF, never Lehrplan text), Lehrplan-Kompass, Merkheft, Übungs-Apps (`ueben/index.html`, every practice app grouped by subject with its competency code), Nachfragen mit KI (`nachfragen/`, button-built prompts for ChatGPT, Claude, Perplexity and Le Chat with the official PDF as the only allowed source; only the five official markers as check points; see `nachfragen/CLAUDE.md`). All four shell pages use the shared `site.css` and the root `fonts/` folder and carry the same `?v=N`; the root suite in `tests/` checks them, including that the `ueben/` list equals the practice apps of the PRODUCT.md registry and that the Lehrplan-21 page keeps its sections, schemata and alphabetical glossary. README.md is for the repository page on GitHub only. When an app is added or renamed, update `ueben/index.html`, README.md and the registry together.
+- index.html at the repo root is the German start page of the GitHub Pages site with exactly five entries in this order: Der Lehrplan 21 (`lehrplan21/index.html`, the explainer page: concept, Zyklen, Aufbau, Kompetenzstufen, Grundanspruch, Auftrag des Zyklus, Orientierungspunkte, Primar-/Sekundarstufe, Beurteilung with the year-by-year table of Berichte and Noten, glossary; own wording derived from the official PDF, never Lehrplan text), Lehrplan-Kompass, Merkheft, Übungs-Apps (`ueben/index.html`, every practice app grouped by subject with its competency code), Nachfragen mit KI (`nachfragen/`, button-built prompts for ChatGPT, Claude, Perplexity and Le Chat with the official PDF as the only allowed source; only the five official markers as check points; see `nachfragen/CLAUDE.md`). All four shell pages use the shared `site.css` and the root `fonts/` folder and carry the same `?v=N`; the root suite in `tests/` checks them, including that the `ueben/` list equals the practice apps of the PRODUCT.md registry and that the Lehrplan-21 page keeps its sections, schemata and alphabetical glossary. README.md is for the repository page on GitHub only. When an app is added or renamed, update `ueben/index.html`, README.md and the registry together.
 - The repo root has a .nojekyll file so Pages serves files as-is without Jekyll processing.
 - 404.html at the repo root is the custom not-found page for the whole GitHub Pages site. Keep it dark, calm, and German, following the DESIGN.md tokens, with a link to the start page. It is served for any path, so its few asset URLs are absolute (`/lehrplan-apps/...`).
 - Family navigation: every page below the start page begins with the breadcrumb `<nav class="crumbs" aria-label="Pfad">` (Lehrplan-Apps › Übungs-Apps › App › Ansicht, or › Merkheft › Titel, or › Lehrplan-Kompass › Fach, or › Der Lehrplan 21, or › Nachfragen mit KI). Earlier items are links, the last item carries `aria-current="page"`. Practice apps render it through `crumbs()` in app.js with the strings `nav.site`, `nav.apps`, `nav.path`, `nav.stufe`; there is no footer "Zur App-Übersicht" link any more. Styles follow DESIGN.md `component.breadcrumb`.
@@ -253,6 +253,16 @@ concrete expression, never the fact, method, or exercise idea behind it.
   embed the original.
 - Cite Lehrplan 21 competency codes; never commit official Lehrplan
   wording or extracted grounding data to the repo.
+- Lehrplan facts come from the local extraction only. Before any
+  statement about the Lehrplan 21 (a Stufe, a Grundanspruch, a rule
+  from the AHB, a fact for a page like `lehrplan21/`), download the
+  official PDF into tools/lehrplan-extraktion and run
+  `extract_stufen.py` (Stufen data) and `to_markdown.py` (readable
+  chapter files in `markdown/`), then read those files. Never use web
+  search, other websites or memory as the source for Lehrplan
+  content; other sites serve at most to cross-check a date or a name.
+  The PDF, `stufen.json` and `markdown/` are gitignored and stay on
+  the machine.
 - Strict Lehrplan check before adding content, to an app or a
   Merkblatt: re-derive the official Kompetenzstufen locally with
   tools/lehrplan-extraktion and check every planned item against the

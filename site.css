@@ -3,13 +3,13 @@
 
 @font-face {
   font-family: 'Atkinson Hyperlegible';
-  src: url('fonts/atkinson-hyperlegible-400.woff2?v=3') format('woff2');
+  src: url('fonts/atkinson-hyperlegible-400.woff2?v=4') format('woff2');
   font-weight: 400;
   font-display: swap;
 }
 @font-face {
   font-family: 'Atkinson Hyperlegible';
-  src: url('fonts/atkinson-hyperlegible-700.woff2?v=3') format('woff2');
+  src: url('fonts/atkinson-hyperlegible-700.woff2?v=4') format('woff2');
   font-weight: 700;
   font-display: swap;
 }
@@ -276,6 +276,17 @@ body {
   font-size: var(--font-size-sm);
   max-width: 68ch;
 }
+/* Tabelle: Berichte und Noten pro Schuljahr. Breite Inhalte rollen im
+   eigenen Rahmen, nie die Seite. */
+.table-wrap { margin: var(--space-4) 0; overflow-x: auto; }
+.years { width: 100%; border-collapse: collapse; font-size: var(--font-size-sm); }
+.years caption { text-align: left; padding-bottom: var(--space-2); color: var(--color-text-muted); font-size: var(--font-size-sm); }
+.years th, .years td { padding: var(--space-2) var(--space-3); border-bottom: 1px solid var(--color-border-subtle); text-align: left; vertical-align: top; }
+.years thead th { color: var(--color-text-muted); font-weight: 700; letter-spacing: 0.02em; }
+.years tbody th { white-space: nowrap; font-weight: 700; color: var(--color-text-primary); }
+.years td { color: var(--color-text-secondary); }
+.years td:last-child { white-space: nowrap; }
+
 /* Schema-Klassen: Zeitleiste der Zyklen und Stufenleiter einer Kompetenz. */
 .lp-h { fill: var(--color-accent); font-size: 0.85rem; font-weight: 700; }
 .lp-label { fill: var(--color-text-primary); font-size: 0.85rem; font-weight: 700; }

@@ -23,6 +23,20 @@ and the step text. This is the source of truth for a new app's
 generators — the app itself ships only child-friendly paraphrases,
 never the extracted text.
 
+## Markdown working copy for reading
+
+`to_markdown.py` turns the same PDF into one Markdown file per chapter
+(`markdown/00-index.md` lists them with their page ranges; every page
+carries a `<!-- PDF-Seite n -->` marker). This is the copy that Claude
+sessions read when they need the wording of a Kompetenzstufe, a
+Grundanspruch or a rule from the AHB. Like the PDF and `stufen.json`
+it is gitignored: it holds official text and stays on this machine.
+
+```bash
+pip install pymupdf
+python3 to_markdown.py   # reads lehrplan21_be.pdf next to it, writes markdown/
+```
+
 ## How the geometry decoding works
 
 See the docstring in `extract_stufen.py`: cycle bands are color-coded

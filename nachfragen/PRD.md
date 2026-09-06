@@ -38,7 +38,10 @@ nichts über das Kind.
   Sport, Medien und Informatik, Berufliche Orientierung). Welche
   Dateien eine Frage nennt, steht in `PROMPT_PDFS`. Die Materialfrage
   braucht kein PDF: ihre Liste ist die Quelle, und der Schlussblock sagt,
-  dass Codes und Links darin geprüft sind und kein (?) brauchen.
+  dass Codes und Links darin geprüft sind und kein (?) brauchen. Codes
+  verlangt der Block nur dort, wo eine Kompetenz oder Stufe genannt
+  wird, und (?) nur für Stufen, die der Dienst nicht nachgeschlagen
+  hat; allgemeine Aussagen bleiben ohne Code und ohne Hinweis darauf.
 - **Sichtbarer Text.** Der vollständige Text jeder Frage steht auf der
   Seite (aufklappbar, offen), bevor jemand klickt. Was den Dienst
   erreicht, ist genau dieser Text.
@@ -55,7 +58,8 @@ nichts über das Kind.
    entfernt); leer heisst Deutsch. Standard Deutsch, gespeichert unter
    `nachfragen.lang` und `nachfragen.langOther`.
 2. Karte «Den Lehrplan erklären lassen» (Eltern): Aufbau, Zyklen,
-   Begriffe, woran man erkennt, ob das Kind auf Kurs ist, fünf
+   Begriffe, woran man erkennt, ob das Kind auf Kurs ist, wann es in
+   Bern Noten gibt (mit den Fakten zum Nachprüfen in den AHB), fünf
    Merksätze.
 3. Karte «Was soll ich können?» (Kind, Zyklus-Wahl): Grundanspruch des
    eigenen Zyklus in Mathematik und Deutsch als Liste mit Beispielen,
@@ -66,7 +70,10 @@ nichts über das Kind.
    dann sechs bis acht Aufgaben pro Fach mit Code, Erwartung und
    Lösung, Tabelle zum Ausfüllen, Gesprächshilfe für die Lehrperson.
    Zeitpunkt gespeichert unter `nachfragen.check`, Standard Ende
-   6. Klasse.
+   6. Klasse. Jeder Zeitpunkt nennt auch, was es dann im Kanton Bern
+   an Berichten und Noten gibt (Bericht ohne Noten Ende 2. Klasse,
+   Noten 1 bis 6 ab Ende 4. Klasse, Übertritts- und
+   Gymnasiumsentscheide), aus den AHB und der BKD-Elterninformation.
 5. Karte «Lernmaterial finden» (Eltern und Kind, Zyklus-Wahl): die
    31 Übungs-Apps mit Name, Code, Kurzbeschreibung und vollständigem
    Link sowie die 16 Merkheft-Themen stehen in der Frage; der Dienst
