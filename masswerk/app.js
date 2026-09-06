@@ -2,11 +2,11 @@
 // Abschluss, Medaillen. Eine Runde hat 8 Aufgaben; ausgewertet wird
 // immer die ganze Antwort, nie einzelne Zeichen.
 
-import { STUFEN, COMPETENCY, stufeById, nextStufe, cycleLabel } from './data.js?v=11';
-import { genRound } from './gen.js?v=11';
-import { roundXp, levelFor, nextLevel, earnedMedals, suggestsNextStufe, MEDALS } from './game.js?v=11';
-import { t } from './strings.js?v=11';
-import { icon } from './icons.js?v=11';
+import { STUFEN, COMPETENCY, stufeById, nextStufe, cycleLabel } from './data.js?v=12';
+import { genRound } from './gen.js?v=12';
+import { roundXp, levelFor, nextLevel, earnedMedals, suggestsNextStufe, MEDALS } from './game.js?v=12';
+import { t } from './strings.js?v=12';
+import { icon } from './icons.js?v=12';
 
 const STORE = 'masswerk.progress';
 const STORE_ZYKLUS = STORE.replace(/\.progress$/, '.zyklus');
