@@ -365,6 +365,7 @@ icon:
   semantic:
     overview: layout-grid
     lehrplan: book-marked
+    nachfragen: message-circle-question
     kompass: compass
     ueben: dumbbell
     merkheft: book-open

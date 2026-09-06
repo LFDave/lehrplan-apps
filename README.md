@@ -7,12 +7,13 @@ explainer sheets to read before and after practising.
 
 **Open:** [lfdave.github.io/lehrplan-apps](https://lfdave.github.io/lehrplan-apps)
 
-The start page has exactly four entries: Der Lehrplan 21
+The start page has exactly five entries: Der Lehrplan 21
 (verstehen, a reading page on the curriculum itself: Zyklen,
 Kompetenzstufen, Grundansprüche, Orientierungspunkte, Primar- and
 Sekundarstufe, glossary), Kompass (einschätzen), Merkheft
-(nachschlagen) and Übungs-Apps (üben, listed by subject on
-`ueben/`). Every page below the start carries a breadcrumb
+(nachschlagen), Übungs-Apps (üben, listed by subject on `ueben/`) and
+Nachfragen mit KI (ready-made, PDF-grounded prompts for ChatGPT,
+Claude, Perplexity or Le Chat, built from buttons). Every page below the start carries a breadcrumb
 (Lehrplan-Apps › Bereich › App › Ansicht), and a practice round is its
 own history entry, so the browser back button always retraces the way
 a learner came, for example from a Merkblatt into a round and back.

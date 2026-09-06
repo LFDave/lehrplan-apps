@@ -1,0 +1,131 @@
+/* styles.css — Nachfragen mit KI. Ergänzt ../site.css (Tokens, Kopf,
+   Pfad, Fusszeile). Akzentfamilie amber wie die ganze Shell. */
+
+:root {
+  --color-action-primary-bg: #F5F7FA;
+  --color-action-primary-text: #101722;
+  --color-action-primary-hover-bg: #E5EAF0;
+  --color-action-secondary-bg: #1C2A3B;
+  --color-action-secondary-text: #F5F7FA;
+  --color-action-secondary-hover-bg: #26384E;
+  --color-accent-success: #8ECFA3;
+  --radius-pill: 999px;
+  --shadow-edge: 0 1px 0 #00000040;
+}
+
+.note { margin: var(--space-3) 0 0; color: var(--color-text-muted); font-size: var(--font-size-sm); max-width: 65ch; }
+
+.lang-block { margin-bottom: var(--space-8); }
+.lang-block .section-label { margin-bottom: var(--space-1); }
+.card-desc { margin: 0 0 var(--space-3); color: var(--color-text-secondary); max-width: 65ch; }
+.card-hint { margin: 0 0 var(--space-3); color: var(--color-text-muted); font-size: var(--font-size-sm); max-width: 65ch; }
+
+/* Karten: eine Frage pro Karte, keine Karte in der Karte. */
+.cards { display: grid; gap: var(--space-4); }
+.prompt-card {
+  padding: var(--space-5);
+  background: var(--color-background-surface);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+}
+.prompt-card h2 {
+  margin: 0 0 var(--space-2);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-title);
+  letter-spacing: -0.015em;
+}
+
+/* Auswahl: grosse Knöpfe, gewählt mit Akzentrand und aria-pressed
+   (DESIGN.md component.choice). Gedrückt: 120 ms transform. */
+.choice-block { margin-bottom: var(--space-3); }
+.choice-label { display: block; margin-bottom: var(--space-2); font-size: var(--font-size-sm); font-weight: 700; color: var(--color-text-muted); letter-spacing: 0.02em; }
+.choice-grid { display: grid; gap: var(--space-2); grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr)); }
+.choice-grid-lang { grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr)); }
+.choice {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-1);
+  min-height: var(--target-child);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-background-surface-raised);
+  border: 1.5px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-edge);
+  color: var(--color-text-primary);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 120ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.choice-compact { align-items: center; justify-content: center; text-align: center; }
+.choice:hover { background: var(--color-action-secondary-hover-bg); }
+.choice:active { transform: translateY(1px); box-shadow: none; }
+.choice:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }
+.choice[aria-pressed="true"] { border-color: var(--color-accent); background: var(--color-accent-soft); }
+.choice-main { font-weight: 700; }
+.choice-sub { font-size: var(--font-size-xs); color: var(--color-text-muted); }
+.choice[aria-pressed="true"] .choice-sub { color: var(--color-text-secondary); }
+
+/* Der Text, der den Dienst erreicht, steht sichtbar auf der Seite. */
+.prompt-details { margin: var(--space-2) 0 var(--space-4); }
+.prompt-details summary {
+  cursor: pointer;
+  min-height: 2.25rem;
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+}
+.prompt-details summary:hover { color: var(--color-text-primary); }
+.prompt-details summary:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }
+.prompt-text {
+  margin: var(--space-2) 0 0;
+  padding: var(--space-4);
+  background: var(--color-background-surface-soft);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--color-text-secondary);
+  font: inherit;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-body);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-height: 22rem;
+  overflow-y: auto;
+}
+
+/* Aktionen: Kopieren ist der Hauptknopf (hell), die Dienste sind
+   ruhige Sekundärknöpfe. Alle als Pillen, 2.75rem hoch. */
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
+.actions-label { color: var(--color-text-muted); font-size: var(--font-size-sm); margin-left: var(--space-2); }
+.btn-primary,
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 2.75rem;
+  padding: 0 var(--space-5);
+  border-radius: var(--radius-pill);
+  border: none;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn-primary { background: var(--color-action-primary-bg); color: var(--color-action-primary-text); }
+.btn-primary:hover { background: var(--color-action-primary-hover-bg); }
+.btn-secondary { background: var(--color-action-secondary-bg); color: var(--color-action-secondary-text); }
+.btn-secondary:hover { background: var(--color-action-secondary-hover-bg); }
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }
+.btn-icon { width: 1rem; height: 1rem; flex: none; }
+.btn-secondary .btn-icon { color: var(--color-text-muted); }
+
+.copy-status { margin: var(--space-3) 0 0; min-height: 1.5rem; color: var(--color-accent-success); font-size: var(--font-size-sm); }
+.copy-status:empty { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .choice { transition: none; }
+}
