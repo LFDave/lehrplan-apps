@@ -140,7 +140,7 @@ check("lehrplan21: breadcrumb links the overview and names the page",
 check("lehrplan21: title renders", (await page.textContent("h1")).trim() === "Der Lehrplan 21");
 const sectionIds = await page.locator(".text-page section").evaluateAll((els) => els.map((e) => e.id));
 check("lehrplan21: sections cover concept, Zyklen, Aufbau, Stufen, Verbindlichkeiten, Prim/Sek, Beurteilung, Apps, Glossar, Quelle",
-  sectionIds.join(",") === "was,ansatz,zyklen,laufbahn,aufbau,stufen,verbindlich,primsek,beurteilung,apps,glossar,quellen", sectionIds.join(","));
+  sectionIds.join(",") === "was,ansatz,zyklen,laufbahn,aufbau,stufen,verbindlich,primsek,beurteilung,uebertritt,apps,glossar,quellen", sectionIds.join(","));
 const tocTargets = await page.locator(".toc a").evaluateAll((els) => els.map((e) => e.getAttribute("href").slice(1)));
 check("lehrplan21: every table-of-contents link targets an existing section",
   tocTargets.length >= 8 && tocTargets.every((id) => sectionIds.includes(id)), tocTargets.join(","));
@@ -172,8 +172,16 @@ check("lehrplan21: the Schullaufbahn schema shows all eleven years, the three Se
   })
   && await page.locator("#laufbahn .pairs dt").count() === 4
   && (await page.textContent("#laufbahn")).includes("spezielle Sekundarschule"));
+check("lehrplan21: the Übertrittsverfahren lists ten milestones from the 5th class to the decision, the Kontrollprüfung rules, and only be.ch documents",
+  await page.locator("#uebertritt .milestones li").count() === 10
+  && (await page.locator("#uebertritt .milestones").textContent()).includes("20. Februar")
+  && (await page.textContent("#uebertritt")).includes("55 Punkten")
+  && await page.locator("#uebertritt .doc-list .row").count() === 17
+  && (await page.locator("#uebertritt .doc-list .row").evaluateAll((els) => els.map((a) => a.href))).every((h) => /^https:\/\/[a-z.-]+\.be\.ch\//.test(h) && h.endsWith(".pdf"))
+  && await page.locator('#uebertritt .doc-list .row[href*="uebertrittsprotokoll"]').count() === 1
+  && await page.locator('#uebertritt .doc-list .row[href*="beurteilung-klasse-4-5-6"]').count() === 1);
 check("lehrplan21: the BKD page on Beurteilung und Übertritte is linked as a source",
-  await page.locator('#quellen a[href*="beurteilung-uebertritte"]').count() === 1);
+  await page.locator('#quellen a[href$="beurteilung-uebertritte.html"]').count() === 1);
 check("lehrplan21: Beurteilung names when there are Noten: none before the 4th class, 1 to 6 from then on, with a table of all eleven years",
   bodyText.includes("Wann gibt es Noten?") && bodyText.includes("Die Noten gehen von 1 bis 6")
   && await page.locator("#beurteilung .years tbody tr").count() === 11

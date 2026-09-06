@@ -142,6 +142,7 @@ body {
   margin: 0;
   padding: 0;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-2);
 }
 
@@ -173,8 +174,8 @@ body {
   min-width: 0;
 }
 
-.row-name { font-weight: 700; }
-.row-desc { color: var(--color-text-secondary); font-size: var(--font-size-sm); }
+.row-name { font-weight: 700; overflow-wrap: anywhere; }
+.row-desc { color: var(--color-text-secondary); font-size: var(--font-size-sm); overflow-wrap: anywhere; }
 .row-meta { color: var(--color-text-muted); font-size: var(--font-size-xs); }
 .row-list .row-meta { font-family: var(--font-mono); }
 
@@ -252,6 +253,13 @@ body {
 .text-page strong { color: var(--color-text-primary); }
 .text-page ul { padding-left: 1.25rem; display: grid; gap: var(--space-2); }
 .text-page li::marker { color: var(--color-accent); }
+.milestones { margin: 0 0 var(--space-4); padding-left: 1.5rem; display: grid; gap: var(--space-2); max-width: 68ch; }
+.milestones li { color: var(--color-text-secondary); }
+.milestones li::marker { color: var(--color-accent); font-weight: 700; }
+/* Unterlagen: Listenzeilen wie in der App-Liste, mit Dokument-Symbol. */
+.text-page .doc-list { margin: 0 0 var(--space-4); padding: 0; max-width: none; }
+.doc-list .row { min-width: 0; }
+.doc-list .row-desc { max-width: 60ch; }
 .text-page a.quiet-link { color: var(--color-text-primary); }
 .code {
   font-family: var(--font-mono);
