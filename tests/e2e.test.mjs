@@ -140,7 +140,7 @@ check("lehrplan21: breadcrumb links the overview and names the page",
 check("lehrplan21: title renders", (await page.textContent("h1")).trim() === "Der Lehrplan 21");
 const sectionIds = await page.locator(".text-page section").evaluateAll((els) => els.map((e) => e.id));
 check("lehrplan21: sections cover concept, Zyklen, Aufbau, Stufen, Verbindlichkeiten, Prim/Sek, Beurteilung, Apps, Glossar, Quelle",
-  sectionIds.join(",") === "was,ansatz,zyklen,aufbau,stufen,verbindlich,primsek,beurteilung,apps,glossar,quellen", sectionIds.join(","));
+  sectionIds.join(",") === "was,ansatz,zyklen,laufbahn,aufbau,stufen,verbindlich,primsek,beurteilung,apps,glossar,quellen", sectionIds.join(","));
 const tocTargets = await page.locator(".toc a").evaluateAll((els) => els.map((e) => e.getAttribute("href").slice(1)));
 check("lehrplan21: every table-of-contents link targets an existing section",
   tocTargets.length >= 8 && tocTargets.every((id) => sectionIds.includes(id)), tocTargets.join(","));
@@ -161,9 +161,19 @@ check("lehrplan21: glossary defines at least 30 terms, alphabetically, each with
     return terms.length >= 30 && defs.length === terms.length && defs.every((d) => d.trim().length > 20)
       && terms.join("|") === sorted.join("|") && new Set(terms).size === terms.length;
   })(), (await page.locator(".glossar dt").allTextContents()).join("|"));
-check("lehrplan21: two schemata as labelled inline SVG (Zyklen timeline, Stufen ladder)",
-  await page.locator('.figure svg[role="img"][aria-label]').count() === 2
-  && await page.locator(".figure figcaption").count() === 2);
+check("lehrplan21: three schemata as labelled inline SVG (Zyklen timeline, Schullaufbahn, Stufen ladder)",
+  await page.locator('.figure svg[role="img"][aria-label]').count() === 3
+  && await page.locator(".figure figcaption").count() === 3);
+check("lehrplan21: the Schullaufbahn schema shows all eleven years, the three Sek I levels, both Gymnasium decisions and Sekundarstufe II",
+  await page.locator("#laufbahn svg").evaluate((svg) => {
+    const t = svg.textContent;
+    return ["Real", "Sek", "spez.", "Übertrittsentscheid", "Gymnasium", "Sekundarstufe II", "Grundanspruch", "Orientierungspunkt", "Bericht ohne Noten", "Bericht mit Noten 1 bis 6"].every((w) => t.includes(w))
+      && (t.match(/>?\bKG\b/g) || []).length >= 2 && ["1.", "2.", "3.", "4.", "5.", "6.", "7.", "8.", "9."].every((y) => t.includes(y));
+  })
+  && await page.locator("#laufbahn .pairs dt").count() === 4
+  && (await page.textContent("#laufbahn")).includes("spezielle Sekundarschule"));
+check("lehrplan21: the BKD page on Beurteilung und Übertritte is linked as a source",
+  await page.locator('#quellen a[href*="beurteilung-uebertritte"]').count() === 1);
 check("lehrplan21: Beurteilung names when there are Noten: none before the 4th class, 1 to 6 from then on, with a table of all eleven years",
   bodyText.includes("Wann gibt es Noten?") && bodyText.includes("Die Noten gehen von 1 bis 6")
   && await page.locator("#beurteilung .years tbody tr").count() === 11
