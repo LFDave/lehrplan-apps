@@ -258,7 +258,7 @@ export function genRound(rng, stufe, length = 8) {
   let guard = 0;
   while (tasks.length < length && guard++ < 300) {
     const task = genTask(rng, stufe);
-    const key = task.expr + (task.options ? task.options.join('|') : '');
+    const key = task.expr + '|' + (task.options ? [...task.options].sort().join('|') : '');
     if (seen.has(key)) continue;
     seen.add(key);
     tasks.push(task);

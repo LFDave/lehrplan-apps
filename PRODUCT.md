@@ -123,8 +123,9 @@ it, the competency approach, the three Zyklen with their class
 ranges, the structure and the codes, Kompetenzstufen, the three kinds
 of Verbindlichkeit (Grundanspruch, Auftrag des Zyklus,
 Orientierungspunkte), Primarstufe and Sekundarstufe I with the Bern
-Real/Sek levels, assessment, how the apps follow the Lehrplan, and an
-alphabetical glossary. It follows the sourcing rule (own wording,
+Real/Sek levels, assessment, and an alphabetical glossary. The page
+describes the Lehrplan and the Bern school system only; it does not
+explain the apps of this site, which the start page already does. It follows the sourcing rule (own wording,
 facts cross-checked, no official text) and links the official PDF as
 its source. The practice apps are listed on their own page
 (`ueben/`), grouped by subject, with the competency code next to

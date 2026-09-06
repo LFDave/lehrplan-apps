@@ -218,6 +218,19 @@ function solveMc(task) {
   check("gen: 450 seeded rounds per Stufe agree with the unit oracle", issues.length === 0, issues.slice(0, 4).join("; "));
 }
 
+/* ── No question twice in one round, whatever the button order ────── */
+{
+  const repeats = [];
+  for (const stufe of STUFEN) {
+    const rng = mulberry32(400 + stufe.id.charCodeAt(0));
+    for (let r = 0; r < 50; r++) {
+      const keys = genRound(rng, stufe, 8).map((t) => t.expr + "|" + (t.options ? [...t.options].sort().join("|") : ""));
+      if (new Set(keys).size !== keys.length) repeats.push(`${stufe.id}: ${keys.find((k, i) => keys.indexOf(k) !== i)}`);
+    }
+  }
+  check("gen: a round never asks the same question twice, even with reshuffled buttons", repeats.length === 0, repeats.slice(0, 3).join("; "));
+}
+
 /* ── Static server and browser ────────────────────────────────────── */
 const MIME = { ".html": "text/html", ".css": "text/css", ".js": "text/javascript", ".svg": "image/svg+xml", ".woff2": "font/woff2" };
 const server = createServer(async (req, res) => {

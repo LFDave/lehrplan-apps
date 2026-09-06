@@ -76,6 +76,8 @@ stehen als "Zahl Einheit", das Ziel als "? Einheit".
    Hinweis auf die ausgelassenen Stufen a und f im Fuss. Keine Stufe
    ist je gesperrt.
 2. Eine Runde hat 8 Aufgaben aus den Aufgabenformen der Stufe.
+   Keine Frage kommt in einer Runde zweimal vor, auch nicht mit
+   anders gemischten Antwortknöpfen.
 3. Eingabe: Weil Antwortlängen bei Grössen variieren (etwa "39.90"),
    prüft die App getippte Antworten, sobald die getippte Länge die
    erwartete erreicht, und zusätzlich mit Enter für früh vollständige
@@ -121,7 +123,7 @@ stehen als "Zahl Einheit", das Ziel als "? Einheit".
   UI-Texte in `strings.js` mit stabilen IDs. Keine
   Einstellungen-Ansicht, solange es nichts zu konfigurieren gibt.
 - Tokens aus DESIGN.md, Akzentfamilie **sage**, Atkinson Hyperlegible
-  selbst gehostet, Lucide-Icons inline, Cache-Busting `?v=11`. Bewegung nur als
+  selbst gehostet, Lucide-Icons inline, Cache-Busting `?v=12`. Bewegung nur als
 Zustandswechsel: Fortschrittsbalken wachsen über `transform: scaleX`
 (240 ms), Antwortknöpfe drücken sich beim Antippen ein (120 ms); bei
 reduzierter Bewegung springen die Balken, die Knöpfe bleiben still, und
