@@ -44,10 +44,10 @@ ellipse, Würfel/Quader = 2 rects + 4 Linien, Zylinder = 2 ellipses +
 - **c** (Z1, GA): Raumlagen: Punkt über/unter/links/rechts/in der
   Mitte eines Quadrats (SVG) plus Begriffe wie innerhalb und
   ausserhalb.
-- **d** (Z1+Z2): Figur oder Körper (die Frage lautet «Was ist ein Würfel?», sie nennt die Antworten nicht, weil drei Knöpfe zur Wahl stehen), spiegeln und verschieben,
+- **d** (Z1+Z2): Figur oder Körper (die Frage lautet «Was ist ein Würfel?», sie nennt die Antworten nicht, weil drei Knöpfe zur Wahl stehen; 20 Fragen im Pool, damit sich Runden unterscheiden), spiegeln und verschieben,
   Länge/Breite/Fläche.
 - **e** (Z2): Ecken, Kanten und Seitenflächen von Würfel und Quader
-  zählen (Fakten-Tabelle).
+  zählen (Fakten-Tabelle mit 15 Fragen).
 - **f** (Z2): Würfel, Quader, Kugel, Zylinder und Pyramide am Bild
   erkennen.
 - **g** (Z2, GA): Radius, Durchmesser, Schnittpunkt, rechter Winkel,
@@ -57,7 +57,7 @@ ellipse, Würfel/Quader = 2 rects + 4 Linien, Zylinder = 2 ellipses +
   links, im Aufgabentext erklärt), Auf-, Vorder- und Seitenansicht.
 - **i** (Z3): Parallelogramm, Trapez, Rhombus und Drachenviereck am
   Bild erkennen; Dreiecksarten benennen.
-- **j** (Z3): Vierecke nach Winkeln, Seiten und Parallelität
+- **j** (Z3): Vierecke nach Winkeln, Seiten und Parallelität (16 Fragen im Pool, dazu Diagonalen und Dreiecksarten)
   charakterisieren; x- und y-Achse.
 - **k** (Z3, GA): Kegel, Prisma, Pyramide und Zylinder am Bild
   erkennen; kongruent, Basis, Kongruenzabbildung.

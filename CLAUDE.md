@@ -98,6 +98,7 @@ For learning and quiz apps:
 
 - Ask one clear question at a time.
 - A question never lists its answers unless the buttons are exactly those answers. «Ist X eine Figur oder ein Körper?» with three buttons is wrong; ask «Was ist X?» instead. Either-or wording is fine only when exactly those two (or three) options are shown.
+- A pool that a Stufe draws from on its own holds clearly more items than a round has tasks (at least 12 for a round of 8), so two rounds never show the same set; `genRound` only prevents repeats within one round.
 - Make answer choices or input controls large and easy to understand.
 - Show progress when the task has multiple steps.
 - Keep feedback visible until the learner moves on.
