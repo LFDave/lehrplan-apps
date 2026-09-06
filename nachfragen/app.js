@@ -3,8 +3,8 @@
 // KI-Dienst weiter. Kein Formular, kein Freitext: was der Dienst
 // über das Kind wissen muss, fragt er selbst nach.
 
-import { STRINGS, t } from './strings.js?v=3';
-import { PROVIDERS, LANGS, OTHER_LANG_MAX, ZYKLEN, CHECKS, APPS, MERKHEFT_GROUPS, PDFS, PROMPT_PDFS, SOURCE_BLOCK, LIST_BLOCK, PROMPTS, SITE_URL } from './data.js?v=3';
+import { STRINGS, t } from './strings.js?v=4';
+import { PROVIDERS, LANGS, OTHER_LANG_MAX, ZYKLEN, CHECKS, APPS, MERKHEFT_GROUPS, PDFS, PROMPT_PDFS, SOURCE_BLOCK, LIST_BLOCK, PROMPTS, SITE_URL } from './data.js?v=4';
 
 const STORE = {
   lang: 'nachfragen.lang',

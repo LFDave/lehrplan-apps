@@ -20,7 +20,7 @@ export const SITE_URL = 'https://lfdave.github.io/lehrplan-apps/';
 export const PDFS = {
   ueberblick: { label: 'Überblick (Aufbau, Zyklen, Grundansprüche, Orientierungspunkte, Codes)', url: 'https://be.lehrplan.ch/container/BE_Ueberblick.pdf' },
   grundlagen: { label: 'Grundlagen (Kompetenzorientierung, Zyklen, überfachliche Kompetenzen)', url: 'https://be.lehrplan.ch/container/BE_Grundlagen.pdf' },
-  ahb: { label: 'Allgemeine Hinweise und Bestimmungen des Kantons Bern (Beurteilung, Übertritt)', url: 'https://be.lehrplan.ch/lehrplan_printout.php?e=1&fb_id=92' },
+  ahb: { label: 'Allgemeine Hinweise und Bestimmungen des Kantons Bern (Beurteilung, Noten, Übertritt)', url: 'https://be.lehrplan.ch/lehrplan_printout.php?e=1&fb_id=92' },
   spr: { label: 'Sprachen (Deutsch, Französisch, Englisch, Italienisch)', url: 'https://be.lehrplan.ch/container/BE_DE_Fachbereich_SPR.pdf' },
   ma: { label: 'Mathematik', url: 'https://be.lehrplan.ch/container/BE_DE_Fachbereich_MA.pdf' },
   nmg: { label: 'Natur, Mensch, Gesellschaft (mit NT, WAH, RZG, ERG)', url: 'https://be.lehrplan.ch/container/BE_DE_Fachbereich_NMG.pdf' },
@@ -64,18 +64,20 @@ export const ZYKLEN = [
 ];
 
 // Die fünf offiziellen Marker. `kind` steuert die Vorsicht im Prompt:
-// ein Orientierungspunkt sagt «bearbeitet», nicht «erreicht».
+// ein Orientierungspunkt sagt «bearbeitet», nicht «erreicht». Jeder
+// Marker nennt auch, was es zu diesem Zeitpunkt im Kanton Bern an
+// Berichten und Noten gibt (AHB 5.2.6, Elterninformation der BKD).
 export const CHECKS = [
   { id: 'ga1', label: 'Ende 2. Klasse', sub: 'Grundanspruch 1. Zyklus', kind: 'ga',
-    text: 'Mein Kind ist am Ende der 2. Klasse. Massgebend ist der Grundanspruch des 1. Zyklus (Kindergarten bis 2. Klasse): die Kompetenzstufen, die alle Kinder bis Ende des Zyklus erreichen sollen.' },
+    text: 'Mein Kind ist am Ende der 2. Klasse. Massgebend ist der Grundanspruch des 1. Zyklus (Kindergarten bis 2. Klasse): die Kompetenzstufen, die alle Kinder bis Ende des Zyklus erreichen sollen. Am Ende der 2. Klasse gibt es einen Beurteilungsbericht ohne Noten; er sagt nur, ob der Grundanspruch erreicht ist.' },
   { id: 'op4', label: 'Ende 4. Klasse', sub: 'Orientierungspunkt', kind: 'op',
-    text: 'Mein Kind ist am Ende der 4. Klasse. Massgebend ist der Orientierungspunkt in der Mitte des 2. Zyklus: die Kompetenzstufen, die bis Ende der 4. Klasse im Unterricht bearbeitet sein müssen. Das ist kein Grundanspruch. Beurteile darum vorsichtig und sprich von «bearbeitet» statt «erreicht».' },
+    text: 'Mein Kind ist am Ende der 4. Klasse. Massgebend ist der Orientierungspunkt in der Mitte des 2. Zyklus: die Kompetenzstufen, die bis Ende der 4. Klasse im Unterricht bearbeitet sein müssen. Das ist kein Grundanspruch. Beurteile darum vorsichtig und sprich von «bearbeitet» statt «erreicht». Am Ende der 4. Klasse gibt es den ersten Beurteilungsbericht mit Noten (1 bis 6, 4 ist genügend).' },
   { id: 'ga2', label: 'Ende 6. Klasse', sub: 'Grundanspruch 2. Zyklus', kind: 'ga',
-    text: 'Mein Kind ist am Ende der 6. Klasse, kurz vor dem Übertritt in die Sekundarstufe I. Massgebend ist der Grundanspruch des 2. Zyklus (3. bis 6. Klasse): die Kompetenzstufen, die alle Kinder bis Ende des Zyklus erreichen sollen.' },
+    text: 'Mein Kind ist am Ende der 6. Klasse, kurz vor dem Übertritt in die Sekundarstufe I. Massgebend ist der Grundanspruch des 2. Zyklus (3. bis 6. Klasse): die Kompetenzstufen, die alle Kinder bis Ende des Zyklus erreichen sollen. Der Übertrittsentscheid fällt schon in der Mitte der 6. Klasse; am Ende des Jahres gibt es einen Beurteilungsbericht mit Noten.' },
   { id: 'op8', label: 'Mitte 8. Klasse', sub: 'Orientierungspunkt', kind: 'op',
-    text: 'Mein Kind ist in der Mitte der 8. Klasse. Massgebend ist der Orientierungspunkt in der Mitte des 3. Zyklus: die Kompetenzstufen, die bis dahin im Unterricht bearbeitet sein müssen. Das ist kein Grundanspruch. Beurteile darum vorsichtig und sprich von «bearbeitet» statt «erreicht».' },
+    text: 'Mein Kind ist in der Mitte der 8. Klasse. Massgebend ist der Orientierungspunkt in der Mitte des 3. Zyklus: die Kompetenzstufen, die bis dahin im Unterricht bearbeitet sein müssen. Das ist kein Grundanspruch. Beurteile darum vorsichtig und sprich von «bearbeitet» statt «erreicht». In der Mitte der 8. Klasse fällt der Entscheid für das Gymnasium oder eine Berufsmittelschule; am Ende des Jahres gibt es einen Beurteilungsbericht mit Noten.' },
   { id: 'ga3', label: 'Ende 9. Klasse', sub: 'Grundanspruch 3. Zyklus', kind: 'ga',
-    text: 'Mein Kind ist am Ende der 9. Klasse, am Ende der Volksschule. Massgebend ist der Grundanspruch des 3. Zyklus (7. bis 9. Klasse): die Kompetenzstufen, die alle Jugendlichen bis Ende der Schulzeit erreichen sollen.' },
+    text: 'Mein Kind ist am Ende der 9. Klasse, am Ende der Volksschule. Massgebend ist der Grundanspruch des 3. Zyklus (7. bis 9. Klasse): die Kompetenzstufen, die alle Jugendlichen bis Ende der Schulzeit erreichen sollen. Am Ende der 9. Klasse gibt es den letzten Beurteilungsbericht mit Noten; die Note 4 bedeutet, dass der Grundanspruch zureichend erreicht ist.' },
 ];
 
 // Die Übungs-Apps der Familie, abgeleitet aus ueben/index.html. Die
@@ -126,8 +128,8 @@ export const SOURCE_BLOCK = [
   `- Die Gesamtausgabe (${PDF_URL}) brauchst du nicht; sie ist mit 72 MB für die meisten PDF-Leser zu gross.`,
   '- Falls du im Internet suchen kannst, öffne nur diese PDF-Dateien und keine andere Website.',
   '- Falls du keine davon lesen kannst, sag das zu Beginn und arbeite mit deinem Wissen über den Lehrplan 21.',
-  '- Nenne bei jeder inhaltlichen Aussage den Kompetenz-Code (zum Beispiel MA.1.A.3).',
-  '- Erfinde keine Kompetenzstufen. Markiere Unsicheres mit (?).',
+  '- Wenn du eine Kompetenz oder eine Kompetenzstufe nennst, gib ihren Code an (zum Beispiel MA.1.A.3). Allgemeine Aussagen brauchen keinen Code und keinen Hinweis darauf.',
+  '- Erfinde keine Kompetenzstufen. Markiere mit (?) nur Aussagen zu Kompetenzstufen, die du nicht in den Dateien nachgeschlagen hast.',
   '- Antworte auf {lang}.',
 ].join('\n');
 
@@ -158,6 +160,7 @@ export const PROMPTS = {
     '2. Die drei Zyklen mit ihren Klassen und was ein Zyklus für mein Kind bedeutet.',
     '3. Die Begriffe Kompetenz, Kompetenzstufe, Grundanspruch, Auftrag des Zyklus und Orientierungspunkt, je in zwei Sätzen mit einem Beispiel aus der Mathematik.',
     '4. Woran ich als Elternteil erkenne, ob mein Kind auf Kurs ist, und was ich die Lehrperson am Standortgespräch fragen kann.',
+    '5. Wann es im Kanton Bern Noten gibt. Prüfe das in den AHB nach: Im Kindergarten, in der 1. und in der 3. Klasse gibt es nur ein Standortgespräch und keinen Bericht. Am Ende der 2. Klasse gibt es einen Beurteilungsbericht ohne Noten, der nur sagt, ob der Grundanspruch erreicht ist. Ab der 4. Klasse gibt es jedes Jahr einen Beurteilungsbericht mit Noten von 1 bis 6, wobei 4 genügend heisst. In der Mitte der 6. Klasse fällt der Übertrittsentscheid für die Sekundarstufe I.',
     'Schliess mit fünf Merksätzen ab, die ich mir leicht merken kann.',
   ].join('\n'),
 

@@ -140,7 +140,7 @@ check("lehrplan21: breadcrumb links the overview and names the page",
 check("lehrplan21: title renders", (await page.textContent("h1")).trim() === "Der Lehrplan 21");
 const sectionIds = await page.locator(".text-page section").evaluateAll((els) => els.map((e) => e.id));
 check("lehrplan21: sections cover concept, Zyklen, Aufbau, Stufen, Verbindlichkeiten, Prim/Sek, Beurteilung, Apps, Glossar, Quelle",
-  sectionIds.join(",") === "was,ansatz,zyklen,aufbau,stufen,verbindlich,primsek,beurteilung,apps,glossar,quellen", sectionIds.join(","));
+  sectionIds.join(",") === "was,ansatz,zyklen,laufbahn,aufbau,stufen,verbindlich,primsek,beurteilung,uebertritt,apps,glossar,quellen", sectionIds.join(","));
 const tocTargets = await page.locator(".toc a").evaluateAll((els) => els.map((e) => e.getAttribute("href").slice(1)));
 check("lehrplan21: every table-of-contents link targets an existing section",
   tocTargets.length >= 8 && tocTargets.every((id) => sectionIds.includes(id)), tocTargets.join(","));
@@ -161,9 +161,32 @@ check("lehrplan21: glossary defines at least 30 terms, alphabetically, each with
     return terms.length >= 30 && defs.length === terms.length && defs.every((d) => d.trim().length > 20)
       && terms.join("|") === sorted.join("|") && new Set(terms).size === terms.length;
   })(), (await page.locator(".glossar dt").allTextContents()).join("|"));
-check("lehrplan21: two schemata as labelled inline SVG (Zyklen timeline, Stufen ladder)",
-  await page.locator('.figure svg[role="img"][aria-label]').count() === 2
-  && await page.locator(".figure figcaption").count() === 2);
+check("lehrplan21: three schemata as labelled inline SVG (Zyklen timeline, Schullaufbahn, Stufen ladder)",
+  await page.locator('.figure svg[role="img"][aria-label]').count() === 3
+  && await page.locator(".figure figcaption").count() === 3);
+check("lehrplan21: the Schullaufbahn schema shows all eleven years, the three Sek I levels, both Gymnasium decisions and Sekundarstufe II",
+  await page.locator("#laufbahn svg").evaluate((svg) => {
+    const t = svg.textContent;
+    return ["Real", "Sek", "spez.", "Übertrittsentscheid", "Gymnasium", "Sekundarstufe II", "Grundanspruch", "Orientierungspunkt", "Bericht ohne Noten", "Bericht mit Noten 1 bis 6"].every((w) => t.includes(w))
+      && (t.match(/>?\bKG\b/g) || []).length >= 2 && ["1.", "2.", "3.", "4.", "5.", "6.", "7.", "8.", "9."].every((y) => t.includes(y));
+  })
+  && await page.locator("#laufbahn .pairs dt").count() === 4
+  && (await page.textContent("#laufbahn")).includes("spezielle Sekundarschule"));
+check("lehrplan21: the Übertrittsverfahren lists ten milestones from the 5th class to the decision, the Kontrollprüfung rules, and only be.ch documents",
+  await page.locator("#uebertritt .milestones li").count() === 10
+  && (await page.locator("#uebertritt .milestones").textContent()).includes("20. Februar")
+  && (await page.textContent("#uebertritt")).includes("55 Punkten")
+  && await page.locator("#uebertritt .doc-list .row").count() === 17
+  && (await page.locator("#uebertritt .doc-list .row").evaluateAll((els) => els.map((a) => a.href))).every((h) => /^https:\/\/[a-z.-]+\.be\.ch\//.test(h) && h.endsWith(".pdf"))
+  && await page.locator('#uebertritt .doc-list .row[href*="uebertrittsprotokoll"]').count() === 1
+  && await page.locator('#uebertritt .doc-list .row[href*="beurteilung-klasse-4-5-6"]').count() === 1);
+check("lehrplan21: the BKD page on Beurteilung und Übertritte is linked as a source",
+  await page.locator('#quellen a[href$="beurteilung-uebertritte.html"]').count() === 1);
+check("lehrplan21: Beurteilung names when there are Noten: none before the 4th class, 1 to 6 from then on, with a table of all eleven years",
+  bodyText.includes("Wann gibt es Noten?") && bodyText.includes("Die Noten gehen von 1 bis 6")
+  && await page.locator("#beurteilung .years tbody tr").count() === 11
+  && (await page.locator("#beurteilung .years tbody tr td:last-child").allTextContents()).join(",") === "keine,keine,keine,keine,keine,1 bis 6,1 bis 6,1 bis 6,1 bis 6,1 bis 6,1 bis 6"
+  && await page.locator('#quellen a[href*="beurteilung-lp21-elterninformation"]').count() === 1);
 check("lehrplan21: Swiss standard German, no ß, no em dash",
   !bodyText.includes("ß") && !bodyText.includes("—"));
 check("lehrplan21: names the official source",
@@ -202,6 +225,10 @@ await page.waitForSelector(".entry-list");
   check("nachfragen: the material prompt needs no PDF, marks the list as verified and carries a link per app",
     texts[3].includes("kein PDF und keine Website") && texts[3].includes("brauchen kein (?)")
     && (texts[3].match(/https:\/\/lfdave\.github\.io\/lehrplan-apps\/[a-z-]+\/$/gm) || []).length === 31);
+  check("nachfragen: the code rule asks for codes only where a Kompetenz is named, and (?) only for unchecked Stufen",
+    texts.slice(0, 3).every((x) => x.includes("Allgemeine Aussagen brauchen keinen Code") && x.includes("Markiere mit (?) nur Aussagen zu Kompetenzstufen")));
+  check("nachfragen: the explainer prompt asks when there are Noten in Bern and states the facts to verify",
+    texts[0].includes("Wann es im Kanton Bern Noten gibt") && texts[0].includes("Ab der 4. Klasse") && texts[0].includes("Noten von 1 bis 6"));
   check("nachfragen: every prompt ends with the answer language, German by default",
     texts.every((x) => x.trim().endsWith("Antworte auf Deutsch.")));
   check("nachfragen: prompts stay within the length limits (text ≤ 5000, URL ≤ 7000)",
@@ -228,6 +255,13 @@ await page.waitForSelector(".entry-list");
   const op4 = await np.locator('[data-prompt="einschaetzen"]').textContent();
   check("nachfragen: an Orientierungspunkt prompt asks for caution («bearbeitet», not «erreicht»)",
     op4.includes("Ende der 4. Klasse") && op4.includes("Orientierungspunkt") && op4.includes("kein Grundanspruch") && op4.includes("«bearbeitet»") && op4.includes("was am Orientierungspunkt erwartet wird"));
+  check("nachfragen: every check point says what report and which Noten exist at that time",
+    op4.includes("ersten Beurteilungsbericht mit Noten") && texts[2].includes("Beurteilungsbericht mit Noten")
+    && await np.locator('#einschaetzen [data-choice="check"]').count() === 5);
+  await np.click('#einschaetzen [data-choice="check"][data-value="ga1"]');
+  check("nachfragen: the end-of-2nd-class check says the report carries no Noten",
+    (await np.locator('[data-prompt="einschaetzen"]').textContent()).includes("Beurteilungsbericht ohne Noten"));
+  await np.click('#einschaetzen [data-choice="check"][data-value="op4"]');
   // Language: the closing line follows the chosen answer language.
   await np.click('[data-choice="lang"][data-value="fr"]');
   check("nachfragen: choosing Français changes the closing line of every prompt",

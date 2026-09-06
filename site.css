@@ -3,13 +3,13 @@
 
 @font-face {
   font-family: 'Atkinson Hyperlegible';
-  src: url('fonts/atkinson-hyperlegible-400.woff2?v=3') format('woff2');
+  src: url('fonts/atkinson-hyperlegible-400.woff2?v=4') format('woff2');
   font-weight: 400;
   font-display: swap;
 }
 @font-face {
   font-family: 'Atkinson Hyperlegible';
-  src: url('fonts/atkinson-hyperlegible-700.woff2?v=3') format('woff2');
+  src: url('fonts/atkinson-hyperlegible-700.woff2?v=4') format('woff2');
   font-weight: 700;
   font-display: swap;
 }
@@ -142,6 +142,7 @@ body {
   margin: 0;
   padding: 0;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-2);
 }
 
@@ -173,8 +174,8 @@ body {
   min-width: 0;
 }
 
-.row-name { font-weight: 700; }
-.row-desc { color: var(--color-text-secondary); font-size: var(--font-size-sm); }
+.row-name { font-weight: 700; overflow-wrap: anywhere; }
+.row-desc { color: var(--color-text-secondary); font-size: var(--font-size-sm); overflow-wrap: anywhere; }
 .row-meta { color: var(--color-text-muted); font-size: var(--font-size-xs); }
 .row-list .row-meta { font-family: var(--font-mono); }
 
@@ -252,6 +253,13 @@ body {
 .text-page strong { color: var(--color-text-primary); }
 .text-page ul { padding-left: 1.25rem; display: grid; gap: var(--space-2); }
 .text-page li::marker { color: var(--color-accent); }
+.milestones { margin: 0 0 var(--space-4); padding-left: 1.75rem; display: grid; gap: var(--space-2); max-width: 68ch; }
+.milestones li { color: var(--color-text-secondary); }
+.milestones li::marker { color: var(--color-accent); font-weight: 700; }
+/* Unterlagen: Listenzeilen wie in der App-Liste, mit Dokument-Symbol. */
+.text-page .doc-list { margin: 0 0 var(--space-4); padding: 0; max-width: none; }
+.doc-list .row { min-width: 0; }
+.doc-list .row-desc { max-width: 60ch; }
 .text-page a.quiet-link { color: var(--color-text-primary); }
 .code {
   font-family: var(--font-mono);
@@ -276,6 +284,17 @@ body {
   font-size: var(--font-size-sm);
   max-width: 68ch;
 }
+/* Tabelle: Berichte und Noten pro Schuljahr. Breite Inhalte rollen im
+   eigenen Rahmen, nie die Seite. */
+.table-wrap { margin: var(--space-4) 0; overflow-x: auto; }
+.years { width: 100%; border-collapse: collapse; font-size: var(--font-size-sm); }
+.years caption { text-align: left; padding-bottom: var(--space-2); color: var(--color-text-muted); font-size: var(--font-size-sm); }
+.years th, .years td { padding: var(--space-2) var(--space-3); border-bottom: 1px solid var(--color-border-subtle); text-align: left; vertical-align: top; }
+.years thead th { color: var(--color-text-muted); font-weight: 700; letter-spacing: 0.02em; }
+.years tbody th { white-space: nowrap; font-weight: 700; color: var(--color-text-primary); }
+.years td { color: var(--color-text-secondary); }
+.years td:last-child { white-space: nowrap; }
+
 /* Schema-Klassen: Zeitleiste der Zyklen und Stufenleiter einer Kompetenz. */
 .lp-h { fill: var(--color-accent); font-size: 0.85rem; font-weight: 700; }
 .lp-label { fill: var(--color-text-primary); font-size: 0.85rem; font-weight: 700; }
@@ -286,20 +305,27 @@ body {
 .lp-text { fill: var(--color-border-strong); }
 .lp-ga { fill: var(--color-accent); }
 .lp-op { stroke: var(--color-accent); stroke-width: 2; stroke-dasharray: 3 4; stroke-linecap: round; }
+.lp-arrow { stroke: var(--color-text-secondary); stroke-width: 1.5; stroke-linecap: round; fill: none; }
+.lp-arrowhead { fill: var(--color-text-secondary); }
+.lp-panel { fill: var(--color-background-surface-soft); stroke: var(--color-border-subtle); stroke-width: 1; }
 
-.glossar {
+.glossar,
+.pairs {
   margin: 0;
   display: grid;
   gap: var(--space-2);
 }
-.glossar div {
+.glossar div,
+.pairs div {
   padding: var(--space-3) var(--space-4);
   background: var(--color-background-surface);
   border: 1px solid var(--color-border-subtle);
   border-radius: var(--radius-md);
 }
-.glossar dt { font-weight: 700; }
-.glossar dd { margin: var(--space-1) 0 0; font-size: var(--font-size-sm); max-width: 68ch; }
+.glossar dt,
+.pairs dt { font-weight: 700; }
+.glossar dd,
+.pairs dd { margin: var(--space-1) 0 0; font-size: var(--font-size-sm); max-width: 68ch; }
 
 /* Keine Bewegung auf der Startseite, in der Liste und auf der Textseite:
    Zustände wechseln sofort, darum braucht es hier auch keine Regel für

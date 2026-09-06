@@ -7,6 +7,12 @@
 .cursor/
 node_modules/
 
+# Official Lehrplan text stays local: the PDF, the extracted Stufen and the
+# Markdown working copy produced by tools/lehrplan-extraktion are never committed.
+tools/lehrplan-extraktion/*.pdf
+tools/lehrplan-extraktion/stufen.json
+tools/lehrplan-extraktion/markdown/
+
 # Impeccable critique snapshots are local tool state; the shared config is committed.
 .impeccable/critique/
 .impeccable/config.local.json
