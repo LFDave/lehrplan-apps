@@ -44,7 +44,7 @@ ellipse, Würfel/Quader = 2 rects + 4 Linien, Zylinder = 2 ellipses +
 - **c** (Z1, GA): Raumlagen: Punkt über/unter/links/rechts/in der
   Mitte eines Quadrats (SVG) plus Begriffe wie innerhalb und
   ausserhalb.
-- **d** (Z1+Z2): Figur oder Körper, spiegeln und verschieben,
+- **d** (Z1+Z2): Figur oder Körper (die Frage lautet «Was ist ein Würfel?», sie nennt die Antworten nicht, weil drei Knöpfe zur Wahl stehen), spiegeln und verschieben,
   Länge/Breite/Fläche.
 - **e** (Z2): Ecken, Kanten und Seitenflächen von Würfel und Quader
   zählen (Fakten-Tabelle).

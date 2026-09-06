@@ -97,6 +97,7 @@ For every UI change, before reporting back or opening or updating a PR:
 For learning and quiz apps:
 
 - Ask one clear question at a time.
+- A question never lists its answers unless the buttons are exactly those answers. «Ist X eine Figur oder ein Körper?» with three buttons is wrong; ask «Was ist X?» instead. Either-or wording is fine only when exactly those two (or three) options are shown.
 - Make answer choices or input controls large and easy to understand.
 - Show progress when the task has multiple steps.
 - Keep feedback visible until the learner moves on.
