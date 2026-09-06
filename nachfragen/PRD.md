@@ -27,10 +27,18 @@ nichts über das Kind.
   Klasse und die Orientierungspunkte Ende 4. Klasse und Mitte 8.
   Klasse. Bei einem Orientierungspunkt verlangt die Frage Vorsicht
   («bearbeitet», nicht «erreicht»), weil er kein Grundanspruch ist.
-- **Eine Quelle.** Jede Frage endet mit demselben Block: einzige Quelle
-  ist das offizielle PDF (be.lehrplan.ch, Gesamtausgabe), kein anderes
-  Internet, Kompetenz-Codes nennen, keine Stufen erfinden, Unsicheres
-  mit (?) markieren, Antwort in der gewählten Sprache.
+- **Eine Quelle.** Die drei Fragen zum Lehrplan enden mit demselben
+  Block: einzige Quelle ist der offizielle Lehrplan 21 (be.lehrplan.ch),
+  kein anderes Internet, Kompetenz-Codes nennen, keine Stufen erfinden,
+  Unsicheres mit (?) markieren, Antwort in der gewählten Sprache. Die
+  Gesamtausgabe (72 MB) ist für die PDF-Leser der Dienste zu gross;
+  darum nennt der Block die kleinen Kapitel-Dateien von be.lehrplan.ch:
+  Überblick, Grundlagen, AHB und je eine Datei pro Fachbereich (Sprachen,
+  Mathematik, NMG mit NT/WAH/RZG/ERG, Gestalten, Musik, Bewegung und
+  Sport, Medien und Informatik, Berufliche Orientierung). Welche
+  Dateien eine Frage nennt, steht in `PROMPT_PDFS`. Die Materialfrage
+  braucht kein PDF: ihre Liste ist die Quelle, und der Schlussblock sagt,
+  dass Codes und Links darin geprüft sind und kein (?) brauchen.
 - **Sichtbarer Text.** Der vollständige Text jeder Frage steht auf der
   Seite (aufklappbar, offen), bevor jemand klickt. Was den Dienst
   erreicht, ist genau dieser Text.
@@ -60,9 +68,10 @@ nichts über das Kind.
    Zeitpunkt gespeichert unter `nachfragen.check`, Standard Ende
    6. Klasse.
 5. Karte «Lernmaterial finden» (Eltern und Kind, Zyklus-Wahl): die
-   31 Übungs-Apps mit Code und Kurzbeschreibung und die 16
-   Merkheft-Themen stehen in der Frage; der Dienst fragt nach den
-   schwierigen Themen und schlägt höchstens drei Apps vor.
+   31 Übungs-Apps mit Name, Code, Kurzbeschreibung und vollständigem
+   Link sowie die 16 Merkheft-Themen stehen in der Frage; der Dienst
+   fragt nach den schwierigen Themen und schlägt höchstens drei Apps
+   vor, je mit Name, Link, Code, Begründung und Merkheft-Thema.
 
 Jede Karte: Titel, ein Satz für wen und wozu, Auswahlknöpfe, der
 Text, «Kopieren» (Hauptknopf) und die vier Dienste als Sekundärknöpfe.
@@ -74,7 +83,7 @@ bis zur nächsten Auswahl stehen bleibt.
 - Die Seite sendet selbst nichts. Erst der Klick auf einen Dienst
   öffnet ihn in einem neuen Tab mit dem Text in der Adresse
   (`rel="noopener noreferrer"`, `referrerpolicy="no-referrer"`).
-- Der Text jeder Frage bleibt unter 4000 Zeichen, die Adresse unter
+- Der Text jeder Frage bleibt unter 5000 Zeichen, die Adresse unter
   7000 Zeichen, damit jeder Browser und Dienst sie annimmt.
 - Die Fusszeile sagt, dass KI sich irren kann und dass die geprüften
   Stufen in den Übungs-Apps stehen.

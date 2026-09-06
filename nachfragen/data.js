@@ -13,6 +13,25 @@
 export const PDF_URL = 'https://be.lehrplan.ch/container/BE_DE_Gesamtausgabe.pdf';
 export const SITE_URL = 'https://lfdave.github.io/lehrplan-apps/';
 
+// Die Gesamtausgabe (72 MB) ist für die PDF-Leser der KI-Dienste zu
+// gross. be.lehrplan.ch bietet dieselben Kapitel als kleine Dateien an;
+// die Prompts nennen nur diese. Die Fachbereichsdateien enthalten den
+// vollständigen Kompetenzaufbau (NMG mit NT, WAH, RZG, ERG).
+export const PDFS = {
+  ueberblick: { label: 'Überblick (Aufbau, Zyklen, Grundansprüche, Orientierungspunkte, Codes)', url: 'https://be.lehrplan.ch/container/BE_Ueberblick.pdf' },
+  grundlagen: { label: 'Grundlagen (Kompetenzorientierung, Zyklen, überfachliche Kompetenzen)', url: 'https://be.lehrplan.ch/container/BE_Grundlagen.pdf' },
+  ahb: { label: 'Allgemeine Hinweise und Bestimmungen des Kantons Bern (Beurteilung, Übertritt)', url: 'https://be.lehrplan.ch/lehrplan_printout.php?e=1&fb_id=92' },
+  spr: { label: 'Sprachen (Deutsch, Französisch, Englisch, Italienisch)', url: 'https://be.lehrplan.ch/container/BE_DE_Fachbereich_SPR.pdf' },
+  ma: { label: 'Mathematik', url: 'https://be.lehrplan.ch/container/BE_DE_Fachbereich_MA.pdf' },
+  nmg: { label: 'Natur, Mensch, Gesellschaft (mit NT, WAH, RZG, ERG)', url: 'https://be.lehrplan.ch/container/BE_DE_Fachbereich_NMG.pdf' },
+  ges: { label: 'Gestalten', url: 'https://be.lehrplan.ch/container/BE_DE_Fachbereich_GES.pdf' },
+  mu: { label: 'Musik', url: 'https://be.lehrplan.ch/container/BE_DE_Fachbereich_MU.pdf' },
+  bs: { label: 'Bewegung und Sport', url: 'https://be.lehrplan.ch/container/BE_DE_Fachbereich_BS.pdf' },
+  mi: { label: 'Medien und Informatik', url: 'https://be.lehrplan.ch/container/BE_DE_Modul_MI.pdf' },
+  bo: { label: 'Berufliche Orientierung', url: 'https://be.lehrplan.ch/container/BE_DE_Modul_BO.pdf' },
+};
+export const FACH_PDFS = ['spr', 'ma', 'nmg', 'ges', 'mu', 'bs', 'mi', 'bo'];
+
 // Dienste, die einen vorausgefüllten Prompt per URL annehmen. Der Text
 // wird URL-kodiert an den Parameter gehängt; nichts wird von dieser Seite
 // aus gesendet, erst der Klick öffnet den Dienst in einem neuen Tab.
@@ -97,16 +116,38 @@ export const APPS = [
 
 export const MERKHEFT_GROUPS = ["Zahlen und Rechnen", "Grössen und Masse", "Form und Raum", "Daten und Funktionen", "Deutsch", "Französisch", "Englisch", "Mensch und Körper", "Tiere und Pflanzen", "Wetter und Natur", "Natur und Technik", "Informatik", "Himmel und Weltall", "Zeit und Geschichte", "Raum und Erde", "Zusammenleben"];
 
-// Gemeinsamer Schluss jeder Vorlage. {lang} wird ersetzt.
+// Gemeinsamer Schluss der Vorlagen, die den Lehrplan lesen sollen.
+// {pdfs} wird durch die Kapitel-Dateien der Vorlage ersetzt, {lang}
+// durch die Antwortsprache.
 export const SOURCE_BLOCK = [
   'Quelle und Regeln:',
-  `- Nutze als einzige Quelle den offiziellen Lehrplan 21, Ausgabe Kanton Bern (Gesamtausgabe als PDF: ${PDF_URL}).`,
-  '- Falls du im Internet suchen kannst, öffne nur dieses PDF und keine andere Website.',
-  '- Falls du das PDF nicht lesen kannst, sag das zu Beginn und arbeite mit deinem Wissen über den Lehrplan 21.',
+  '- Einzige Quelle ist der offizielle Lehrplan 21, Ausgabe Kanton Bern. Öffne dazu diese PDF-Dateien, sie sind klein genug zum Lesen:',
+  '{pdfs}',
+  `- Die Gesamtausgabe (${PDF_URL}) brauchst du nicht; sie ist mit 72 MB für die meisten PDF-Leser zu gross.`,
+  '- Falls du im Internet suchen kannst, öffne nur diese PDF-Dateien und keine andere Website.',
+  '- Falls du keine davon lesen kannst, sag das zu Beginn und arbeite mit deinem Wissen über den Lehrplan 21.',
   '- Nenne bei jeder inhaltlichen Aussage den Kompetenz-Code (zum Beispiel MA.1.A.3).',
   '- Erfinde keine Kompetenzstufen. Markiere Unsicheres mit (?).',
   '- Antworte auf {lang}.',
 ].join('\n');
+
+// Schluss der Materialvorlage: die Liste im Prompt ist die Quelle,
+// ein PDF braucht es dafür nicht.
+export const LIST_BLOCK = [
+  'Regeln:',
+  '- Für diese Frage brauchst du kein PDF und keine Website. Die Liste oben ist die Quelle.',
+  '- Die Codes und Links in der Liste sind offiziell und geprüft; sie brauchen kein (?).',
+  '- Nenne nur Apps aus der Liste und gib zu jeder App den Link aus der Liste an.',
+  '- Antworte auf {lang}.',
+].join('\n');
+
+// Welche Kapitel-Dateien eine Vorlage nennt (Schlüssel in PDFS).
+export const PROMPT_PDFS = {
+  erklaeren: ['ueberblick', 'grundlagen', 'ahb'],
+  koennen: ['ueberblick', ...FACH_PDFS],
+  einschaetzen: ['ueberblick', 'ahb', ...FACH_PDFS],
+  material: [],
+};
 
 // Vorlagen. Platzhalter: {zyklus}, {n} (Zyklusnummer), {check}
 // (Markertext), {marker} (kurzer Markername), {apps}, {merkheft}.
@@ -141,9 +182,9 @@ export const PROMPTS = {
 
   material: [
     'Mein Kind ist {zyklus}. Hilf mir, aus dieser Sammlung das passende Lernmaterial auszuwählen. Frag mich zuerst nach zwei oder drei Themen, die dem Kind schwerfallen, und warte auf meine Antwort.',
-    'Kostenlose Übungs-Apps zum Lehrplan 21, je eine App pro Kompetenz (Adresse: {site}NAME/):',
+    'Kostenlose Übungs-Apps zum Lehrplan 21, je eine App pro Kompetenz, mit Code und Link:',
     '{apps}',
-    'Dazu ein Merkheft mit Merkblättern zum Nachlesen ({site}merkheft/), Themen: {merkheft}.',
-    'Schlag dann höchstens drei Apps vor, die zum Zyklus und zu den Themen passen. Sag zu jeder in einem Satz, warum, und nenne ein Merkheft-Thema, das man vorher gemeinsam lesen kann. Nenne nur Apps aus dieser Liste. Andere Websites brauchst du dafür nicht.',
+    'Dazu ein Merkheft mit Merkblättern zum Nachlesen: {site}merkheft/ mit den Themen {merkheft}.',
+    'Schlag dann höchstens drei Apps vor, die zum Zyklus und zu den Themen passen. Zu jeder App: Name, Link, Code, ein Satz, warum sie passt, und ein Merkheft-Thema, das man vorher gemeinsam lesen kann.',
   ].join('\n'),
 };

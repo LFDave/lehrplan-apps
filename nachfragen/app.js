@@ -4,7 +4,7 @@
 // über das Kind wissen muss, fragt er selbst nach.
 
 import { STRINGS, t } from './strings.js?v=3';
-import { PROVIDERS, LANGS, OTHER_LANG_MAX, ZYKLEN, CHECKS, APPS, MERKHEFT_GROUPS, SOURCE_BLOCK, PROMPTS, SITE_URL } from './data.js?v=3';
+import { PROVIDERS, LANGS, OTHER_LANG_MAX, ZYKLEN, CHECKS, APPS, MERKHEFT_GROUPS, PDFS, PROMPT_PDFS, SOURCE_BLOCK, LIST_BLOCK, PROMPTS, SITE_URL } from './data.js?v=3';
 
 const STORE = {
   lang: 'nachfragen.lang',
@@ -57,10 +57,12 @@ export function buildPrompt(id) {
     check: check().text,
     marker: check().kind === 'ga' ? 'Grundanspruch' : 'Orientierungspunkt',
     site: SITE_URL,
-    apps: APPS.map((a) => `- ${a.id} ${a.code} ${a.desc}`).join('\n'),
+    apps: APPS.map((a) => `- ${a.name} (${a.code}): ${a.desc} ${SITE_URL}${a.id}/`).join('\n'),
     merkheft: MERKHEFT_GROUPS.join('; '),
+    pdfs: PROMPT_PDFS[id].map((k) => `  - ${PDFS[k].label}: ${PDFS[k].url}`).join('\n'),
   };
-  return fill(PROMPTS[id], vars) + '\n\n' + fill(SOURCE_BLOCK, vars);
+  const block = PROMPT_PDFS[id].length ? SOURCE_BLOCK : LIST_BLOCK;
+  return fill(PROMPTS[id], vars) + '\n\n' + fill(block, vars);
 }
 
 /* ── Rendering ─────────────────────────────────────────────────────── */
