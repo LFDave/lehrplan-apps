@@ -139,8 +139,8 @@ check("lehrplan21: breadcrumb links the overview and names the page",
   await page.locator('.crumbs a[href="../"]').count() === 1 && (await crumbCurrent()) === "Der Lehrplan 21");
 check("lehrplan21: title renders", (await page.textContent("h1")).trim() === "Der Lehrplan 21");
 const sectionIds = await page.locator(".text-page section").evaluateAll((els) => els.map((e) => e.id));
-check("lehrplan21: sections cover concept, Zyklen, Aufbau, Stufen, Verbindlichkeiten, Prim/Sek, Beurteilung, Apps, Glossar, Quelle",
-  sectionIds.join(",") === "was,ansatz,zyklen,laufbahn,aufbau,stufen,verbindlich,primsek,beurteilung,uebertritt,apps,glossar,quellen", sectionIds.join(","));
+check("lehrplan21: sections cover concept, Zyklen, Schullaufbahn, Aufbau, Stufen, Verbindlichkeiten, Prim/Sek, Beurteilung, Übertritt, Glossar, Quelle",
+  sectionIds.join(",") === "was,ansatz,zyklen,laufbahn,aufbau,stufen,verbindlich,primsek,beurteilung,uebertritt,glossar,quellen", sectionIds.join(","));
 const tocTargets = await page.locator(".toc a").evaluateAll((els) => els.map((e) => e.getAttribute("href").slice(1)));
 check("lehrplan21: every table-of-contents link targets an existing section",
   tocTargets.length >= 8 && tocTargets.every((id) => sectionIds.includes(id)), tocTargets.join(","));
@@ -187,6 +187,8 @@ check("lehrplan21: Beurteilung names when there are Noten: none before the 4th c
   && await page.locator("#beurteilung .years tbody tr").count() === 11
   && (await page.locator("#beurteilung .years tbody tr td:last-child").allTextContents()).join(",") === "keine,keine,keine,keine,keine,1 bis 6,1 bis 6,1 bis 6,1 bis 6,1 bis 6,1 bis 6"
   && await page.locator('#quellen a[href*="beurteilung-lp21-elterninformation"]').count() === 1);
+check("lehrplan21: the page talks about the Lehrplan, not about the apps of this site",
+  !/Übungs-App|Lehrplan-Kompass|Merkheft|Rechenturm/.test(bodyText) && !bodyText.includes("den Apps"));
 check("lehrplan21: Swiss standard German, no ß, no em dash",
   !bodyText.includes("ß") && !bodyText.includes("—"));
 check("lehrplan21: names the official source",
