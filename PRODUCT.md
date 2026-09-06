@@ -1,6 +1,6 @@
 # Mini Apps Product Principles
 
-Version: 2026-09-05
+Version: 2026-09-06
 
 ## Product register
 
@@ -113,9 +113,19 @@ Every app with something to configure uses the same settings surface, so a child
 
 ## Family navigation
 
-The site has three entries and nothing else on its start page, in
-this order: Lehrplan-Kompass (einschätzen), Merkheft (nachschlagen),
-Übungs-Apps (üben). The practice apps are listed on their own page
+The site has four entries and nothing else on its start page, in
+this order: Der Lehrplan 21 (verstehen), Lehrplan-Kompass
+(einschätzen), Merkheft (nachschlagen), Übungs-Apps (üben). The
+first entry is a single reading page (`lehrplan21/`) that explains
+the Lehrplan for parents and older children: what it is and who made
+it, the competency approach, the three Zyklen with their class
+ranges, the structure and the codes, Kompetenzstufen, the three kinds
+of Verbindlichkeit (Grundanspruch, Auftrag des Zyklus,
+Orientierungspunkte), Primarstufe and Sekundarstufe I with the Bern
+Real/Sek levels, assessment, how the apps follow the Lehrplan, and an
+alphabetical glossary. It follows the sourcing rule (own wording,
+facts cross-checked, no official text) and links the official PDF as
+its source. The practice apps are listed on their own page
 (`ueben/`), grouped by subject, with the competency code next to
 each app.
 
@@ -341,9 +351,12 @@ platform work — lives in BACKLOG.md.
   sourcing rule in merkheft/PRD.md (own wording always, facts
   cross-checked against two independent references, no copied
   encyclopedia or Lehrplan text).
-- Site structure: the start page has exactly three entries (Kompass,
-  Merkheft, Übungs-Apps); practice apps are listed on `ueben/` by
-  subject. Every page below the start carries the family breadcrumb
+- Site structure: the start page has exactly four entries (Der
+  Lehrplan 21, Kompass, Merkheft, Übungs-Apps); practice apps are
+  listed on `ueben/` by subject. The Lehrplan-21 page is the one
+  place that explains the curriculum itself (Zyklen, Stufen,
+  Grundanspruch, Orientierungspunkte, Prim/Sek, glossary); apps and
+  Merkblätter do not repeat it (2026-09-06). Every page below the start carries the family breadcrumb
   (Lehrplan-Apps › Bereich › App › Ansicht); per-app overview links
   in footers are gone.
 - History: a practice round is its own history entry (`#stufe/<id>`)

@@ -1,4 +1,4 @@
-version: 2026-09-05
+version: 2026-09-06
 name: mini-apps-design-system
 role: token-only
 register: product-surface
@@ -364,6 +364,7 @@ icon:
   external-icon-cdn: false
   semantic:
     overview: layout-grid
+    lehrplan: book-marked
     kompass: compass
     ueben: dumbbell
     merkheft: book-open

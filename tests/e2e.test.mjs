@@ -1,6 +1,6 @@
 // e2e.test.mjs — Playwright end-to-end tests for the site shell:
-// the root overview with its three entries (Kompass, Übungs-Apps,
-// Merkheft), the Übungs-Apps list, breadcrumbs across the family, the
+// the root overview with its four entries (Lehrplan 21, Kompass,
+// Merkheft, Übungs-Apps), the Lehrplan-21 page, the Übungs-Apps list, breadcrumbs across the family, the
 // 404 page, registry consistency with PRODUCT.md, cache-busting,
 // layout, console and network hygiene.
 //
@@ -35,11 +35,11 @@ function check(name, condition, detail = "") {
   // Cache-busting: the shell files share one ?v= on every local asset.
   const versions = new Set();
   const unversioned = [];
-  for (const f of ["index.html", "ueben/index.html", "site.css"]) {
+  for (const f of ["index.html", "ueben/index.html", "lehrplan21/index.html", "site.css"]) {
     const text = readFileSync(join(ROOT_DIR, f), "utf8");
     for (const m of text.matchAll(/(?:href="[^"]+?|url\('fonts\/[^']+?)(\?v=(\d+))?["')]/g)) {
       const whole = m[0];
-      if (whole.includes("http") || whole.includes('"#') || /href="(\.\.\/|[a-z-]+\/)+"/.test(whole)) continue;
+      if (whole.includes("http") || whole.includes('"#') || /href="(\.\.\/|[a-z0-9-]+\/)+"/.test(whole)) continue;
       if (m[2]) versions.add(m[2]);
       else unversioned.push(`${f}: ${whole}`);
     }
@@ -98,24 +98,68 @@ page.on("request", (req) => { if (!req.url().startsWith(BASE)) externalRequests.
 
 const crumbCurrent = async () => (await page.textContent('.crumbs [aria-current="page"]')).trim();
 
-/* ── Root: three entries ──────────────────────────────────────────── */
+/* ── Root: four entries ───────────────────────────────────────────── */
 await page.goto(`${BASE}/`);
 await page.waitForSelector(".entry-list");
 check("root: title renders", (await page.textContent("h1")).trim() === "Lehrplan-Apps");
-check("root: exactly three entries: Kompass, Übungs-Apps, Merkheft",
-  await page.locator(".entry-list .row").count() === 3
+check("root: exactly four entries: Lehrplan 21, Kompass, Merkheft, Übungs-Apps",
+  await page.locator(".entry-list .row").count() === 4
+  && await page.locator('.row[href="lehrplan21/"]').count() === 1
   && await page.locator('.row[href="lehrplan-kompass/"]').count() === 1
   && await page.locator('.row[href="ueben/"]').count() === 1
   && await page.locator('.row[href="merkheft/"]').count() === 1);
 check("root: no breadcrumb on the root itself", await page.locator(".crumbs").count() === 0);
-check("root: entries read Kompass → Merkheft → Übungs-Apps (einschätzen, nachschlagen, üben)",
-  (await page.locator(".entry-list .row").evaluateAll((els) => els.map((e) => e.getAttribute("href")))).join(",") === "lehrplan-kompass/,merkheft/,ueben/");
+check("root: entries read Lehrplan 21 → Kompass → Merkheft → Übungs-Apps (verstehen, einschätzen, nachschlagen, üben)",
+  (await page.locator(".entry-list .row").evaluateAll((els) => els.map((e) => e.getAttribute("href")))).join(",") === "lehrplan21/,lehrplan-kompass/,merkheft/,ueben/");
 check("root: every entry has icon, name, description and meta",
-  await page.locator(".entry .row-icon").count() === 3
-  && await page.locator(".entry .row-name").count() === 3
-  && await page.locator(".entry .row-desc").count() === 3
-  && await page.locator(".entry .row-meta").count() === 3);
+  await page.locator(".entry .row-icon").count() === 4
+  && await page.locator(".entry .row-name").count() === 4
+  && await page.locator(".entry .row-desc").count() === 4
+  && await page.locator(".entry .row-meta").count() === 4);
 await page.screenshot({ path: join(SHOTS_DIR, "01-root.png"), fullPage: true });
+
+/* ── Lehrplan 21: the explainer page ──────────────────────────────── */
+await page.click('.row[href="lehrplan21/"]');
+await page.waitForSelector(".text-page");
+check("lehrplan21: breadcrumb links the overview and names the page",
+  await page.locator('.crumbs a[href="../"]').count() === 1 && (await crumbCurrent()) === "Der Lehrplan 21");
+check("lehrplan21: title renders", (await page.textContent("h1")).trim() === "Der Lehrplan 21");
+const sectionIds = await page.locator(".text-page section").evaluateAll((els) => els.map((e) => e.id));
+check("lehrplan21: sections cover concept, Zyklen, Aufbau, Stufen, Verbindlichkeiten, Prim/Sek, Beurteilung, Apps, Glossar, Quelle",
+  sectionIds.join(",") === "was,ansatz,zyklen,aufbau,stufen,verbindlich,primsek,beurteilung,apps,glossar,quellen", sectionIds.join(","));
+const tocTargets = await page.locator(".toc a").evaluateAll((els) => els.map((e) => e.getAttribute("href").slice(1)));
+check("lehrplan21: every table-of-contents link targets an existing section",
+  tocTargets.length >= 8 && tocTargets.every((id) => sectionIds.includes(id)), tocTargets.join(","));
+check("lehrplan21: one h1, h2 per section, no skipped heading levels",
+  await page.locator("h1").count() === 1
+  && await page.locator(".text-page h2").count() === sectionIds.length
+  && await page.locator("h3, h4, h5, h6").count() === 0);
+const bodyText = await page.textContent(".text-page");
+check("lehrplan21: explains Grundanspruch, Orientierungspunkt, Zyklus, Kompetenzstufe, Real- und Sekundarschule",
+  ["Grundanspruch", "Orientierungspunkt", "Zyklus", "Kompetenzstufe", "Realschul", "Sekundarschul", "Auftrag des Zyklus"].every((w) => bodyText.includes(w)));
+check("lehrplan21: the three Zyklen carry their class ranges",
+  bodyText.includes("Kindergarten") && bodyText.includes("3. bis 6. Klasse") && bodyText.includes("7. bis 9. Klasse"));
+check("lehrplan21: glossary defines at least 30 terms, alphabetically, each with a definition",
+  await (async () => {
+    const terms = await page.locator(".glossar dt").allTextContents();
+    const defs = await page.locator(".glossar dd").allTextContents();
+    const sorted = [...terms].sort((a, b) => a.localeCompare(b, "de"));
+    return terms.length >= 30 && defs.length === terms.length && defs.every((d) => d.trim().length > 20)
+      && terms.join("|") === sorted.join("|") && new Set(terms).size === terms.length;
+  })(), (await page.locator(".glossar dt").allTextContents()).join("|"));
+check("lehrplan21: two schemata as labelled inline SVG (Zyklen timeline, Stufen ladder)",
+  await page.locator('.figure svg[role="img"][aria-label]').count() === 2
+  && await page.locator(".figure figcaption").count() === 2);
+check("lehrplan21: Swiss standard German, no ß, no em dash",
+  !bodyText.includes("ß") && !bodyText.includes("—"));
+check("lehrplan21: names the official source",
+  await page.locator('#quellen a[href="https://be.lehrplan.ch"]').count() === 1);
+await page.screenshot({ path: join(SHOTS_DIR, "06-lehrplan21.png"), fullPage: true });
+await page.click(".toc a[href='#glossar']");
+check("lehrplan21: table-of-contents link jumps to the glossary", page.url().endsWith("#glossar")
+  && await page.locator("#glossar").evaluate((el) => el.getBoundingClientRect().top >= -1 && el.getBoundingClientRect().top < 200));
+await page.click('.crumbs a[href="../"]');
+await page.waitForSelector(".entry-list");
 
 /* ── Übungs-Apps list ─────────────────────────────────────────────── */
 await page.click('.row[href="ueben/"]');
@@ -178,12 +222,12 @@ async function keyboardWalk(url, ready, stops) {
       const s = getComputedStyle(el);
       return { tag: el.tagName, visible: s.outlineStyle !== "none" && parseFloat(s.outlineWidth) > 0 };
     });
-    if (stop.tag === "BODY") break; // end of the page (the start page has four stops)
+    if (stop.tag === "BODY") break; // end of the page (the start page has five stops)
     seen.push(stop);
   }
   return seen;
 }
-for (const [url, ready, label] of [[`${BASE}/`, ".entry-list", "start page"], [`${BASE}/ueben/`, ".row-list", "Übungs-Apps"], [`${BASE}/zahlenwissen/`, ".stufen-list", "app home"], [`${BASE}/merkheft/zahlenstrahl.html`, ".blatt-page", "Merkblatt"]]) {
+for (const [url, ready, label] of [[`${BASE}/`, ".entry-list", "start page"], [`${BASE}/lehrplan21/`, ".text-page", "Lehrplan 21"], [`${BASE}/ueben/`, ".row-list", "Übungs-Apps"], [`${BASE}/zahlenwissen/`, ".stufen-list", "app home"], [`${BASE}/merkheft/zahlenstrahl.html`, ".blatt-page", "Merkblatt"]]) {
   const walk = await keyboardWalk(url, ready, 5);
   check(`a11y: ${label} shows a visible focus ring on every early tab stop`,
     walk.length >= 3 && walk.every((w) => w.visible), JSON.stringify(walk));
@@ -205,6 +249,13 @@ await page.setViewportSize({ width: 320, height: 700 });
 await page.goto(`${BASE}/`);
 await page.waitForSelector(".entry-list");
 check("layout: root has no horizontal scrolling at 320px", await noHorizScroll());
+await page.goto(`${BASE}/lehrplan21/`);
+await page.waitForSelector(".text-page");
+check("layout: Lehrplan-21 page has no horizontal scrolling at 320px", await noHorizScroll());
+check("layout: Lehrplan-21 paragraphs keep a readable line length (≤ 75ch)",
+  await page.locator(".text-page p").evaluateAll((els) => els.every((p) => {
+    const s = getComputedStyle(p); return p.getBoundingClientRect().width / (parseFloat(s.fontSize) * 0.5) <= 80;
+  })));
 await page.goto(`${BASE}/ueben/`);
 await page.waitForSelector(".row-list");
 check("layout: Übungs-Apps list has no horizontal scrolling at 320px", await noHorizScroll());
@@ -215,6 +266,9 @@ await page.screenshot({ path: join(SHOTS_DIR, "04-root-desktop.png"), fullPage: 
 await page.goto(`${BASE}/ueben/`);
 await page.waitForSelector(".row-list");
 await page.screenshot({ path: join(SHOTS_DIR, "05-ueben-desktop.png"), fullPage: true });
+await page.goto(`${BASE}/lehrplan21/`);
+await page.waitForSelector(".text-page");
+await page.screenshot({ path: join(SHOTS_DIR, "07-lehrplan21-desktop.png"), fullPage: true });
 
 check("console: no errors", consoleErrors.length === 0, consoleErrors.slice(0, 3).join(" | "));
 check("network: no external requests", externalRequests.length === 0, externalRequests.slice(0, 3).join(", "));
